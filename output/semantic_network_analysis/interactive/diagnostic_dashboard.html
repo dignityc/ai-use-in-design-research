@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard Diagnostic Tool</title>
+    
+    <!-- Test CDN Libraries -->
+    <script src="https://unpkg.com/cytoscape@3.26.0/dist/cytoscape.min.js"></script>
+    <script src="https://unpkg.com/cytoscape-cose-bilkent@4.1.0/cytoscape-cose-bilkent.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            margin: 20px;
+            background: #f8f9fa;
+        }
+        
+        .diagnostic-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 10px;
+            padding: 30px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+        
+        .test-section {
+            margin: 20px 0;
+            padding: 15px;
+            border: 2px solid #e9ecef;
+            border-radius: 8px;
+            background: #f8f9fa;
+        }
+        
+        .test-result {
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 5px;
+            font-weight: bold;
+        }
+        
+        .success {
+            background: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+        
+        .error {
+            background: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+        
+        .info {
+            background: #d1ecf1;
+            color: #0c5460;
+            border: 1px solid #bee5eb;
+        }
+        
+        #cy {
+            width: 100%;
+            height: 400px;
+            background: white;
+            border: 2px solid #e9ecef;
+            border-radius: 10px;
+            margin: 20px 0;
+        }
+        
+        pre {
+            background: #f8f9fa;
+            padding: 15px;
+            border-radius: 5px;
+            overflow-x: auto;
+            max-height: 200px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="diagnostic-container">
+        <h1>🔧 Dashboard Diagnostic Tool</h1>
+        <p>Testing each component systematically to identify the initialization failure...</p>
+        
+        <div id="test-results"></div>
+        
+        <div class="test-section">
+            <h3>Network Visualization Test</h3>
+            <div id="cy"></div>
+        </div>
+        
+        <div class="test-section">
+            <h3>Console Log Output</h3>
+            <pre id="console-output">Initializing diagnostic tests...\n</pre>
+        </div>
+    </div>
+
+    <!-- Embedded Network Data (minimal for testing) -->
+    <script>
+        // Custom console logging
+        const originalLog = console.log;
+        const originalError = console.error;
+        
+        function logToScreen(message, type = 'log') {
+            const output = document.getElementById('console-output');
+            const timestamp = new Date().toLocaleTimeString();
+            output.textContent += `[${timestamp}] ${type.toUpperCase()}: ${message}\n`;
+            output.scrollTop = output.scrollHeight;
+            
+            // Also log to browser console
+            if (type === 'error') {
+                originalError(message);
+            } else {
+                originalLog(message);
+            }
+        }
+        
+        // Override console methods
+        console.log = (msg) => logToScreen(msg, 'log');
+        console.error = (msg) => logToScreen(msg, 'error');
+        console.warn = (msg) => logToScreen(msg, 'warn');
+
+        // Test data (minimal)
+        const testNetworkData = {
+            nodes: [
+                {data: {id: 'ai', label: 'artificial intelligence', frequency: 13, color: '#DC143C'}},
+                {data: {id: 'user', label: 'user', frequency: 15, color: '#2E8B57'}},
+                {data: {id: 'product', label: 'product', frequency: 22, color: '#2E8B57'}},
+                {data: {id: 'design', label: 'design', frequency: 10, color: '#4169E1'}},
+                {data: {id: 'model', label: 'model', frequency: 8, color: '#4169E1'}}
+            ],
+            edges: [
+                {data: {source: 'ai', target: 'user', weight: 5}},
+                {data: {source: 'user', target: 'product', weight: 8}},
+                {data: {source: 'product', target: 'design', weight: 6}},
+                {data: {source: 'design', target: 'model', weight: 4}}
+            ]
+        };
+
+        // Diagnostic test functions
+        function addTestResult(testName, success, message, details = '') {
+            const container = document.getElementById('test-results');
+            const testDiv = document.createElement('div');
+            testDiv.className = `test-result ${success ? 'success' : 'error'}`;
+            
+            testDiv.innerHTML = `
+                <strong>${testName}:</strong> ${message}
+                ${details ? `<br><small>${details}</small>` : ''}
+            `;
+            
+            container.appendChild(testDiv);
+        }
+
+        // Test 1: CDN Library Loading
+        function testCDNLibraries() {
+            console.log('🔍 Testing CDN library loading...');
+            
+            // Test Cytoscape.js
+            if (typeof cytoscape !== 'undefined') {
+                addTestResult('Cytoscape.js CDN', true, 'Successfully loaded');
+                console.log('✅ Cytoscape.js loaded successfully');
+            } else {
+                addTestResult('Cytoscape.js CDN', false, 'Failed to load');
+                console.error('❌ Cytoscape.js failed to load');
+                return false;
+            }
+            
+            // Test Bootstrap
+            const bootstrapCSS = document.querySelector('link[href*="bootstrap"]');
+            if (bootstrapCSS) {
+                addTestResult('Bootstrap CSS', true, 'Link element found');
+                console.log('✅ Bootstrap CSS link found');
+            } else {
+                addTestResult('Bootstrap CSS', false, 'Link element missing');
+                console.warn('⚠️ Bootstrap CSS link not found');
+            }
+            
+            // Test cose-bilkent plugin
+            if (typeof cytoscape !== 'undefined' && cytoscape('layout', 'cose-bilkent')) {
+                addTestResult('Cose-bilkent Plugin', true, 'Plugin registered successfully');
+                console.log('✅ Cose-bilkent plugin loaded');
+            } else {
+                addTestResult('Cose-bilkent Plugin', false, 'Plugin not available');
+                console.error('❌ Cose-bilkent plugin failed to load');
+            }
+            
+            return true;
+        }
+
+        // Test 2: Data Validation
+        function testDataValidation() {
+            console.log('🔍 Testing data validation...');
+            
+            try {
+                // Test JSON structure
+                if (testNetworkData && testNetworkData.nodes && testNetworkData.edges) {
+                    addTestResult('Data Structure', true, `${testNetworkData.nodes.length} nodes, ${testNetworkData.edges.length} edges`);
+                    console.log(`✅ Data structure valid: ${testNetworkData.nodes.length} nodes, ${testNetworkData.edges.length} edges`);
+                } else {
+                    throw new Error('Invalid data structure');
+                }
+                
+                // Test node data
+                const sampleNode = testNetworkData.nodes[0];
+                if (sampleNode.data && sampleNode.data.id && sampleNode.data.label) {
+                    addTestResult('Node Data Format', true, 'Valid node structure');
+                    console.log('✅ Node data format valid');
+                } else {
+                    throw new Error('Invalid node data format');
+                }
+                
+                // Test edge data
+                const sampleEdge = testNetworkData.edges[0];
+                if (sampleEdge.data && sampleEdge.data.source && sampleEdge.data.target) {
+                    addTestResult('Edge Data Format', true, 'Valid edge structure');
+                    console.log('✅ Edge data format valid');
+                } else {
+                    throw new Error('Invalid edge data format');
+                }
+                
+                return true;
+            } catch (error) {
+                addTestResult('Data Validation', false, error.message);
+                console.error(`❌ Data validation failed: ${error.message}`);
+                return false;
+            }
+        }
+
+        // Test 3: Basic Cytoscape Initialization
+        function testCytoscapeInit() {
+            console.log('🔍 Testing basic Cytoscape initialization...');
+            
+            try {
+                const cy = cytoscape({
+                    container: document.getElementById('cy'),
+                    elements: [
+                        ...testNetworkData.nodes,
+                        ...testNetworkData.edges
+                    ],
+                    style: [
+                        {
+                            selector: 'node',
+                            style: {
+                                'content': 'data(label)',
+                                'text-valign': 'center',
+                                'text-halign': 'center',
+                                'background-color': 'data(color)',
+                                'width': '50px',
+                                'height': '50px',
+                                'font-size': '12px',
+                                'color': 'white',
+                                'text-outline-color': '#000',
+                                'text-outline-width': '2px'
+                            }
+                        },
+                        {
+                            selector: 'edge',
+                            style: {
+                                'width': 3,
+                                'line-color': '#cccccc',
+                                'curve-style': 'bezier'
+                            }
+                        }
+                    ],
+                    layout: {
+                        name: 'circle',
+                        animate: true,
+                        animationDuration: 1000
+                    }
+                });
+                
+                if (cy && cy.elements().length > 0) {
+                    addTestResult('Cytoscape Initialization', true, `Successfully initialized with ${cy.elements().length} elements`);
+                    console.log(`✅ Cytoscape initialized with ${cy.elements().length} elements`);
+                    
+                    // Test basic interactions
+                    cy.on('tap', 'node', function(evt) {
+                        const node = evt.target;
+                        console.log(`Node clicked: ${node.data('label')}`);
+                        addTestResult('Node Interaction', true, `Clicked: ${node.data('label')}`);
+                    });
+                    
+                    return true;
+                } else {
+                    throw new Error('Cytoscape initialized but no elements found');
+                }
+                
+            } catch (error) {
+                addTestResult('Cytoscape Initialization', false, error.message);
+                console.error(`❌ Cytoscape initialization failed: ${error.message}`);
+                return false;
+            }
+        }
+
+        // Test 4: Layout Plugin Test
+        function testLayoutPlugin() {
+            console.log('🔍 Testing layout plugins...');
+            
+            try {
+                const cy = cytoscape({
+                    container: document.createElement('div'), // Hidden container for testing
+                    elements: [...testNetworkData.nodes, ...testNetworkData.edges]
+                });
+                
+                // Test basic layouts
+                const basicLayouts = ['grid', 'circle', 'breadthfirst', 'cose'];
+                let workingLayouts = [];
+                
+                basicLayouts.forEach(layoutName => {
+                    try {
+                        cy.layout({name: layoutName}).run();
+                        workingLayouts.push(layoutName);
+                    } catch (e) {
+                        console.warn(`Layout ${layoutName} failed: ${e.message}`);
+                    }
+                });
+                
+                if (workingLayouts.length > 0) {
+                    addTestResult('Basic Layouts', true, `Working: ${workingLayouts.join(', ')}`);
+                    console.log(`✅ Basic layouts working: ${workingLayouts.join(', ')}`);
+                }
+                
+                // Test cose-bilkent specifically
+                try {
+                    cy.layout({name: 'cose-bilkent'}).run();
+                    addTestResult('Cose-bilkent Layout', true, 'Plugin working correctly');
+                    console.log('✅ Cose-bilkent layout working');
+                } catch (error) {
+                    addTestResult('Cose-bilkent Layout', false, error.message);
+                    console.error(`❌ Cose-bilkent layout failed: ${error.message}`);
+                }
+                
+                return true;
+            } catch (error) {
+                addTestResult('Layout Plugin Test', false, error.message);
+                console.error(`❌ Layout plugin test failed: ${error.message}`);
+                return false;
+            }
+        }
+
+        // Run all diagnostic tests
+        function runDiagnostics() {
+            console.log('🚀 Starting dashboard diagnostics...');
+            
+            addTestResult('Diagnostic Start', true, 'Beginning systematic testing', 'Testing each component individually');
+            
+            // Run tests in sequence
+            setTimeout(() => {
+                if (!testCDNLibraries()) return;
+                
+                setTimeout(() => {
+                    if (!testDataValidation()) return;
+                    
+                    setTimeout(() => {
+                        if (!testCytoscapeInit()) return;
+                        
+                        setTimeout(() => {
+                            testLayoutPlugin();
+                            
+                            addTestResult('Diagnostic Complete', true, 'All tests completed', 'Check results above for any failures');
+                            console.log('🎉 Diagnostic testing completed!');
+                        }, 1000);
+                    }, 1000);
+                }, 500);
+            }, 500);
+        }
+
+        // Initialize diagnostics when DOM loads
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('📱 DOM loaded, starting diagnostics...');
+            
+            // Add initial info
+            const info = document.createElement('div');
+            info.className = 'test-result info';
+            info.innerHTML = '<strong>Diagnostic Mode:</strong> Testing dashboard initialization step by step...';
+            document.getElementById('test-results').appendChild(info);
+            
+            runDiagnostics();
+        });
+    </script>
+</body>
+</html>

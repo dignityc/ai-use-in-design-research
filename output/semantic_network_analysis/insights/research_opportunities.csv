@@ -1,0 +1,17 @@
+ai_method,design_task,combination,keyword_count,total_frequency,gap_score,opportunity_score,representative_keywords,research_potential,suggested_research_areas
+Traditional ML,Discovery,Traditional ML × Discovery,0,0,596,0.0,None,Medium,"Statistical user research, ML-based user segmentation"
+Traditional ML,Define,Traditional ML × Define,0,0,596,0.0,None,Medium,Novel applications of Traditional ML in Define phase
+Traditional ML,Develop,Traditional ML × Develop,0,0,596,0.0,None,Medium,Novel applications of Traditional ML in Develop phase
+Traditional ML,Delivery,Traditional ML × Delivery,0,0,596,0.0,None,Medium,"Performance prediction, traditional ML evaluation metrics"
+Deep Learning,Discovery,Deep Learning × Discovery,0,0,596,0.0,None,Medium,"Deep user behavior analysis, pattern recognition in user data"
+Deep Learning,Define,Deep Learning × Define,0,0,596,0.0,None,Medium,"AI-driven problem classification, deep requirement analysis"
+Deep Learning,Develop,Deep Learning × Develop,0,0,596,0.0,None,Medium,Novel applications of Deep Learning in Develop phase
+Deep Learning,Delivery,Deep Learning × Delivery,0,0,596,0.0,None,Medium,"Automated quality assessment, deep testing analysis"
+Generative AI,Discovery,Generative AI × Discovery,0,0,596,0.0,None,Medium,"AI-powered user research, automated persona generation"
+Generative AI,Define,Generative AI × Define,0,0,596,0.0,None,Medium,"AI-assisted problem definition, requirement generation"
+Generative AI,Develop,Generative AI × Develop,0,0,596,0.0,None,Medium,Novel applications of Generative AI in Develop phase
+Generative AI,Delivery,Generative AI × Delivery,0,0,596,0.0,None,Medium,"Automated design delivery, AI-generated presentations"
+Exploratory Data Analysis,Discovery,Exploratory Data Analysis × Discovery,0,0,596,0.0,None,Medium,Novel applications of Exploratory Data Analysis in Discovery phase
+Exploratory Data Analysis,Define,Exploratory Data Analysis × Define,0,0,596,0.0,None,Medium,Novel applications of Exploratory Data Analysis in Define phase
+Exploratory Data Analysis,Develop,Exploratory Data Analysis × Develop,0,0,596,0.0,None,Medium,"Data-driven development, EDA-guided design iteration"
+Exploratory Data Analysis,Delivery,Exploratory Data Analysis × Delivery,0,0,596,0.0,None,Medium,"Statistical evaluation, EDA-based testing"

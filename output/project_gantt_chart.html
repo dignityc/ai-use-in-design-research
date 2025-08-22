@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Paper Coding and Writing Project Gantt Chart</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/mermaid@10.6.1/dist/mermaid.min.js"></script>
+    <style>
+        body {
+            font-family: 'Inter', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.15), 0 10px 20px rgba(0,0,0,0.1);
+            padding: 40px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        h1 {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-align: center;
+            margin-bottom: 40px;
+            font-size: 2.5em;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+        }
+        .chart-container {
+            width: 100%;
+            height: 550px;
+            margin: 30px 0;
+            border: none;
+            border-radius: 16px;
+            padding: 20px;
+            background: linear-gradient(145deg, #ffffff 0%, #f8fafc 100%);
+            box-shadow: inset 0 2px 4px rgba(0,0,0,0.05), 0 4px 12px rgba(0,0,0,0.08);
+            position: relative;
+            overflow: hidden;
+        }
+        .chart-container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, #667eea 0%, #764ba2 100%);
+        }
+        .legend {
+            margin-top: 40px;
+            padding: 30px;
+            background: linear-gradient(145deg, #ffffff 0%, #f8fafc 100%);
+            border-radius: 16px;
+            border: none;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.08), 0 3px 8px rgba(0,0,0,0.06);
+            position: relative;
+        }
+        .legend::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, #667eea 0%, #764ba2 100%);
+            border-radius: 16px 16px 0 0;
+        }
+        .legend h3 {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 20px;
+            font-size: 1.4em;
+            font-weight: 600;
+        }
+        .legend-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 12px;
+            padding: 8px 12px;
+            border-radius: 8px;
+            transition: background-color 0.2s ease;
+        }
+        .legend-item:hover {
+            background-color: rgba(102, 126, 234, 0.05);
+        }
+        .legend-color {
+            width: 24px;
+            height: 24px;
+            margin-right: 15px;
+            border-radius: 6px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            border: 2px solid rgba(255,255,255,0.8);
+        }
+        .critical { background: #ff6b6b; }
+        .milestone { background: #feca57; }
+        .task { background: #48dbfb; }
+        .section-header { background: #a55eea; }
+        
+        /* Mermaid SVG color overrides for precise matching */
+        /* Critical tasks - red */
+        .mermaid g.crit rect,
+        .mermaid rect[class*="crit"] { 
+            fill: #ff6b6b !important;
+            stroke: #e55353 !important;
+        }
+        
+        /* Milestone tasks - yellow */
+        .mermaid g.milestone rect,
+        .mermaid rect[class*="milestone"] { 
+            fill: #feca57 !important;
+            stroke: #f9b834 !important;
+        }
+        
+        /* Regular tasks - blue */
+        .mermaid g:not(.crit):not(.milestone) rect,
+        .mermaid rect:not([class*="crit"]):not([class*="milestone"]) { 
+            fill: #48dbfb !important;
+            stroke: #2bc5db !important;
+        }
+        
+        /* Section backgrounds */
+        .mermaid .section rect {
+            fill: rgba(165, 94, 234, 0.1) !important;
+        }
+        
+        /* Alternative approach for task bars */
+        .mermaid svg g g rect[height="20"] {
+            fill: #48dbfb !important; /* Default task color */
+        }
+        
+        /* Critical task pattern */
+        .mermaid svg g g rect[height="20"][class*="crit"] {
+            fill: #ff6b6b !important;
+        }
+        
+        /* Milestone pattern */  
+        .mermaid svg g g rect[height="20"][class*="milestone"] {
+            fill: #feca57 !important;
+        }
+        
+        /* Additional Mermaid gantt overrides */
+        .mermaid .gantt-sections .section-title {
+            fill: #4a5568 !important;
+            font-weight: 600;
+        }
+        
+        .mermaid .grid .tick text {
+            fill: #718096 !important;
+            font-size: 12px;
+        }
+        
+        .feature-section {
+            margin: 30px 0;
+        }
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+        .feature-card {
+            background: linear-gradient(145deg, #ffffff 0%, #f8fafc 100%);
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+            text-align: center;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+        .feature-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+        }
+        .feature-icon {
+            font-size: 2em;
+            margin-bottom: 10px;
+        }
+        .feature-card strong {
+            display: block;
+            color: #4a5568;
+            margin-bottom: 8px;
+            font-size: 1.1em;
+        }
+        .feature-card p {
+            color: #718096;
+            font-size: 0.9em;
+            margin: 0;
+        }
+        .timeline-section {
+            margin: 30px 0;
+        }
+        .timeline-card {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 25px;
+            border-radius: 12px;
+            text-align: center;
+            margin-top: 15px;
+        }
+        .duration-text {
+            display: block;
+            font-size: 1.3em;
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+        .duration-subtitle {
+            opacity: 0.9;
+            font-size: 0.95em;
+        }
+        .workflow-section {
+            margin: 30px 0;
+        }
+        .workflow-steps {
+            margin-top: 20px;
+        }
+        .workflow-step {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 25px;
+            padding: 20px;
+            background: linear-gradient(145deg, #ffffff 0%, #f8fafc 100%);
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+        }
+        .step-number {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 1.1em;
+            margin-right: 20px;
+            flex-shrink: 0;
+        }
+        .step-content h5 {
+            margin: 0 0 8px 0;
+            color: #4a5568;
+            font-size: 1.1em;
+            font-weight: 600;
+        }
+        .step-content p {
+            margin: 0;
+            color: #718096;
+            line-height: 1.5;
+        }
+        h4 {
+            color: #4a5568;
+            font-size: 1.2em;
+            font-weight: 600;
+            margin-bottom: 15px;
+        }
+        @media (max-width: 768px) {
+            .container { padding: 20px; }
+            h1 { font-size: 2em; }
+            .chart-container { height: 450px; }
+            .feature-grid { grid-template-columns: 1fr; }
+            .workflow-step { flex-direction: column; text-align: center; }
+            .step-number { margin-right: 0; margin-bottom: 15px; }
+        }
+        @media (max-width: 480px) {
+            .container { padding: 15px; }
+            h1 { font-size: 1.8em; }
+            .chart-container { height: 400px; padding: 15px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>📊 Paper Coding & Writing Project Timeline</h1>
+        
+        <div class="chart-container">
+            <div class="mermaid">
+gantt
+    title Research Paper Coding and Writing Project
+    dateFormat  YYYY-MM-DD
+    axisFormat  %m/%d
+    
+    section Phase 1: Initial Coding
+    Paper Data Collection     :prep, 2024-09-01, 3d
+    Apply 1st Coding Schema   :coding_work, after prep, 8d
+    Review Coding Results     :review1, after coding_work, 2d
+    Complete 1st Dataset      :milestone, deliver1, after review1, 1d
+    Category Confirmation     :crit, meeting_1, after deliver1, 1d
+    
+    section Phase 2: Revision & Analysis  
+    Plan Meeting Results      :planning, after meeting_1, 1d
+    Apply Confirmed Categories :recoding, after planning, 7d
+    Data Validation           :validation, after recoding, 3d
+    Complete 2nd Dataset      :milestone, deliver2, after validation, 1d
+    Generate Insights         :insights, after deliver2, 5d
+    Create Visualizations     :visualization, after insights, 4d
+    Direction Decision        :crit, meeting_2, after visualization, 1d
+    
+    section Phase 3: Paper Writing
+    Chapter Planning          :chapter_plan, after meeting_2, 1d
+    Finalize Headings         :crit, headers_final, after chapter_plan, 1d
+    Introduction Outline      :intro_outline, after headers_final, 2d
+    Introduction Draft        :intro_draft, after intro_outline, 6d
+    Material Collection       :materials_collect, after headers_final, 5d
+    Material Structure        :materials_structure, after materials_collect, 4d
+    Complete Materials        :milestone, materials_dev, after materials_structure, 5d
+            </div>
+        </div>
+
+        <div class="legend">
+            <h3>📊 Legend & Key Information</h3>
+            <div class="legend-item">
+                <div class="legend-color critical"></div>
+                <span><strong>Critical Meetings</strong> - Strategic decision points that shape project direction</span>
+            </div>
+            <div class="legend-item">
+                <div class="legend-color milestone"></div>
+                <span><strong>Key Milestones</strong> - Major deliverables and completion checkpoints</span>
+            </div>
+            <div class="legend-item">
+                <div class="legend-color task"></div>
+                <span><strong>Core Tasks</strong> - Essential research and development activities</span>
+            </div>
+            <div class="legend-item">
+                <div class="legend-color section-header"></div>
+                <span><strong>Phase Sections</strong> - Organized workflow stages and categories</span>
+            </div>
+            
+            <div class="feature-section">
+                <h4>🎯 Key Features</h4>
+                <div class="feature-grid">
+                    <div class="feature-card">
+                        <div class="feature-icon">📝</div>
+                        <strong>3-Phase Approach</strong>
+                        <p>Coding → Revision/Analysis → Paper Writing</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">⏱️</div>
+                        <strong>2-Week Sprints</strong>
+                        <p>Focused work cycles for maximum productivity</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">🤝</div>
+                        <strong>Meeting-Driven</strong>
+                        <p>Strategic decisions through collaborative sessions</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">⚡</div>
+                        <strong>Parallel Processing</strong>
+                        <p>Simultaneous workflow optimization</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">🔄</div>
+                        <strong>Iterative Refinement</strong>
+                        <p>Continuous quality improvement cycles</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="timeline-section">
+                <h4>📅 Project Timeline</h4>
+                <div class="timeline-card">
+                    <div class="timeline-duration">
+                        <span class="duration-text">Approximately 8-10 weeks</span>
+                        <span class="duration-subtitle">September ~ November 2024</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="workflow-section">
+                <h4>🔄 Project Workflow</h4>
+                <div class="workflow-steps">
+                    <div class="workflow-step">
+                        <div class="step-number">1</div>
+                        <div class="step-content">
+                            <h5>Phase 1: Initial Coding</h5>
+                            <p>Complete paper coding work → Confirm categories through strategic meeting</p>
+                        </div>
+                    </div>
+                    <div class="workflow-step">
+                        <div class="step-number">2</div>
+                        <div class="step-content">
+                            <h5>Phase 2: Revision & Analysis</h5>
+                            <p>Apply confirmed categories + Generate insights → Decide direction and chapter structure</p>
+                        </div>
+                    </div>
+                    <div class="workflow-step">
+                        <div class="step-number">3</div>
+                        <div class="step-content">
+                            <h5>Phase 3: Paper Writing</h5>
+                            <p>Draft introduction and develop main content materials for publication</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        mermaid.initialize({ 
+            startOnLoad: true,
+            theme: 'base',
+            themeVariables: {
+                primaryColor: '#667eea',
+                primaryTextColor: '#2d3748',
+                primaryBorderColor: '#764ba2',
+                lineColor: '#e2e8f0',
+                sectionBkgColor: '#f7fafc',
+                altSectionBkgColor: '#edf2f7',
+                gridColor: '#e2e8f0',
+                tertiaryColor: '#f0fff4',
+                // Gantt chart specific colors
+                taskBkgColor: '#48dbfb',
+                taskTextColor: '#ffffff',
+                taskTextLightColor: '#ffffff',
+                taskTextOutsideColor: '#2d3748',
+                taskTextClickableColor: '#003163',
+                activeTaskBkgColor: '#0abde3',
+                activeTaskBorderColor: '#0abde3',
+                gridColor: '#e2e8f0',
+                section0: '#f7fafc',
+                section1: '#edf2f7',
+                section2: '#f7fafc',
+                section3: '#edf2f7',
+                altSectionBkgColor: '#edf2f7',
+                sectionBkgColor: '#f7fafc',
+                todayLineColor: '#ff6b6b',
+                // Color scales for different task types
+                cScale0: '#ff6b6b', // Critical tasks
+                cScale1: '#feca57', // Milestones  
+                cScale2: '#48dbfb', // Regular tasks
+                cScale3: '#a55eea', // Sections
+                cScale4: '#26de81',
+                cScale5: '#fd79a8',
+                cScale6: '#fdcb6e',
+                cScale7: '#6c5ce7',
+                cScale8: '#fd79a8',
+                cScale9: '#2d3436'
+            },
+            gantt: {
+                fontSize: 13,
+                fontFamily: 'Inter, sans-serif',
+                gridLineStartPadding: 350,
+                bottomPadding: 60,
+                rightPadding: 100
+            }
+        });
+    </script>
+</body>
+</html>

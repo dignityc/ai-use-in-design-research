@@ -1,0 +1,16 @@
+keyword,betweenness_centrality,degree,frequency,unique_communities_connected,unique_ai_methods_connected,unique_design_tasks_connected,bridge_score,dominant_ai_method,dominant_design_task,connected_ai_methods,connected_design_tasks
+product,0.1347482647881487,30,22,4,1,1,0.8084895887288921,nan,nan,Traditional ML,Develop
+user,0.13190976898373566,18,15,4,1,1,0.791458613902414,nan,nan,Traditional ML,Develop
+artificial intelligence,0.061100176111053554,15,13,3,1,1,0.30550088055526775,nan,nan,Traditional ML,Develop
+models,0.03326254359611865,5,5,3,1,1,0.16631271798059327,nan,nan,Traditional ML,Develop
+interaction,0.02465813736662176,8,8,3,1,1,0.1232906868331088,nan,nan,Traditional ML,Develop
+mobile,0.02586156289927138,11,5,2,1,1,0.10344625159708552,nan,nan,Traditional ML,Develop
+recognition,0.02459770710314584,6,5,2,1,1,0.09839082841258336,nan,nan,Traditional ML,Develop
+designs,0.01521116060637453,3,4,2,1,1,0.06084464242549812,nan,nan,Traditional ML,Develop
+deep,0.012653233882385434,3,6,2,1,1,0.050612935529541735,nan,nan,Traditional ML,Develop
+emotion,0.01615128284816464,6,6,1,1,1,0.048453848544493916,nan,nan,Traditional ML,Develop
+conversational,0.011188231637832799,8,4,2,1,1,0.044752926551331194,nan,nan,Traditional ML,Develop
+support,0.014140681653372008,2,4,1,1,1,0.04242204496011602,nan,nan,Traditional ML,Develop
+development,0.009582513208329016,3,3,2,1,1,0.038330052833316065,nan,nan,Traditional ML,Develop
+interface,0.008032045305431817,4,6,2,1,1,0.03212818122172727,nan,nan,Traditional ML,Develop
+decision,0.009582513208329016,3,4,1,1,1,0.02874753962498705,nan,nan,Traditional ML,Develop

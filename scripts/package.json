@@ -1,0 +1,12 @@
+{
+  "name": "gantt-color-analyzer",
+  "version": "1.0.0",
+  "description": "Analyze actual Mermaid gantt chart colors using Puppeteer",
+  "main": "analyze_gantt_colors.js",
+  "dependencies": {
+    "puppeteer": "^21.0.0"
+  },
+  "scripts": {
+    "analyze": "node analyze_gantt_colors.js"
+  }
+}

@@ -1,0 +1,161 @@
+source,target,weight,normalized_weight
+objective,multi,2,0.4
+objective,multi objective,2,0.4
+evolutionary,product,2,0.4
+multi,multi objective,2,0.4
+multi,interaction,2,0.4
+product,product attributes,2,0.4
+product,user,2,0.4
+product,attributes,2,0.4
+product,modeling,3,0.6
+product,iteration,2,0.4
+product,frequency,2,0.4
+product,designers,3,0.6
+product,specifications,2,0.4
+product,product specifications,2,0.4
+product,needs,2,0.4
+product,customer needs,2,0.4
+product,features,2,0.4
+product,customers,2,0.4
+product,reviews,2,0.4
+product,platform,2,0.4
+product,brand,2,0.4
+product,consistency,2,0.4
+product,style,2,0.4
+product,image,3,0.6
+product,color,2,0.4
+product,optimization,2,0.4
+product,deep,2,0.4
+product,visual,2,0.4
+product,customer,4,0.8
+product,product development,2,0.4
+product,designs,2,0.4
+product,framework,2,0.4
+product,aesthetic,2,0.4
+product,machine learning,2,0.4
+product attributes,attributes,2,0.4
+user,requirements,2,0.4
+user,users,3,0.6
+user,language,2,0.4
+user,phase,2,0.4
+user,artificial intelligence,3,0.6
+user,generated,2,0.4
+user,recognition,2,0.4
+user,llms,2,0.4
+user,interface,5,1.0
+user,user interface,4,0.8
+user,conversational,2,0.4
+user,interaction,3,0.6
+user,app,2,0.4
+user,mobile,2,0.4
+user,feedback,2,0.4
+user,apps,2,0.4
+user,experiences,2,0.4
+conceptual design,conceptual,2,0.4
+users,interaction,2,0.4
+specifications,product specifications,2,0.4
+specifications,needs,2,0.4
+specifications,customer needs,2,0.4
+product specifications,needs,2,0.4
+product specifications,customer needs,2,0.4
+needs,customer needs,2,0.4
+features,opinions,2,0.4
+sustainable,customers,2,0.4
+sustainable,products,2,0.4
+sustainable,reviews,2,0.4
+customers,products,2,0.4
+customers,reviews,2,0.4
+products,reviews,2,0.4
+knowledge,patent,3,0.6
+knowledge,graph,3,0.6
+knowledge,knowledge graph,2,0.4
+patent,graph,2,0.4
+graph,knowledge graph,2,0.4
+intelligence,artificial intelligence,2,0.4
+intelligence,artificial,2,0.4
+brand,devices,2,0.4
+technology,recognition,2,0.4
+technology,interaction,3,0.6
+image,color,2,0.4
+optimization,computational,2,0.4
+concept,concepts,2,0.4
+multimodal,emotion,2,0.4
+multimodal,physiological,2,0.4
+model,deep learning,2,0.4
+model,emotion,2,0.4
+model,pso,2,0.4
+model,interface,2,0.4
+deep,deep learning,4,0.8
+deep,loss,2,0.4
+deep learning,emotion,2,0.4
+emotional,emotion,2,0.4
+ai generated,artificial intelligence,2,0.4
+ai generated,generated,2,0.4
+artificial intelligence,generated,2,0.4
+artificial intelligence,ai technology,2,0.4
+artificial intelligence,problem,2,0.4
+artificial intelligence,models,2,0.4
+artificial intelligence,human,4,0.8
+artificial intelligence,trained,2,0.4
+artificial intelligence,artificial,2,0.4
+artificial intelligence,experience,2,0.4
+artificial intelligence,use ai,2,0.4
+artificial intelligence,prototype,2,0.4
+artificial intelligence,apps,2,0.4
+artificial intelligence,experiences,2,0.4
+generation,models,2,0.4
+generation,tasks,2,0.4
+emotion,emotion recognition,3,0.6
+emotion,recognition,3,0.6
+problem,learn,2,0.4
+reinforcement,reinforcement learning,4,0.8
+designs,framework,2,0.4
+designs,models,2,0.4
+support,models,2,0.4
+support,decision,2,0.4
+models,generative,2,0.4
+effects,groups,2,0.4
+components,development,2,0.4
+specific,domain,2,0.4
+specific,domain specific,2,0.4
+decision,making,2,0.4
+decision,decision making,2,0.4
+exploration,shape,2,0.4
+shape,aigc,2,0.4
+agent,policy,2,0.4
+domain,domain specific,2,0.4
+human,trained,2,0.4
+human,interaction,2,0.4
+speech,recognition,2,0.4
+emotion recognition,recognition,3,0.6
+recognition,interaction,2,0.4
+interface,user interface,3,0.6
+interface,mobile,2,0.4
+module,vehicle,2,0.4
+user interface,mobile,2,0.4
+conversational,interaction,2,0.4
+conversational,mobile,2,0.4
+conversational,interfaces,2,0.4
+conversational,mobile conversational,2,0.4
+conversational,generational,2,0.4
+conversational,inter,2,0.4
+conversational,inter cross,2,0.4
+interaction,interaction design,2,0.4
+development,mobile,2,0.4
+development,developers,2,0.4
+mobile,interfaces,2,0.4
+mobile,mobile conversational,2,0.4
+mobile,generational,2,0.4
+mobile,inter,2,0.4
+mobile,inter cross,2,0.4
+mobile,apps,2,0.4
+interfaces,mobile conversational,2,0.4
+interfaces,generational,2,0.4
+interfaces,inter,2,0.4
+interfaces,inter cross,2,0.4
+mobile conversational,generational,2,0.4
+mobile conversational,inter,2,0.4
+mobile conversational,inter cross,2,0.4
+generational,inter,2,0.4
+generational,inter cross,2,0.4
+inter,inter cross,2,0.4

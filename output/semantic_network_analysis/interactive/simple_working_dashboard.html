@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Design Research - Semantic Network</title>
+    
+    <!-- Libraries -->
+    <script src="https://unpkg.com/cytoscape@3.26.0/dist/cytoscape.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <style>
+        body {
+            font-family: 'Segoe UI', Roboto, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background: #f8f9fa;
+        }
+        
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+            padding: 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border-radius: 10px;
+        }
+        
+        .controls {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+        }
+        
+        .search-box {
+            position: relative;
+        }
+        
+        .search-box input {
+            padding: 10px 40px 10px 15px;
+            border: 2px solid #ddd;
+            border-radius: 25px;
+            width: 300px;
+            font-size: 14px;
+        }
+        
+        .search-box input:focus {
+            border-color: #667eea;
+            outline: none;
+        }
+        
+        .btn-group {
+            display: flex;
+            gap: 10px;
+        }
+        
+        .btn {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 20px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+        
+        .btn-primary {
+            background: #667eea;
+            color: white;
+        }
+        
+        .btn-primary:hover {
+            background: #5a67d8;
+        }
+        
+        .btn-secondary {
+            background: #6c757d;
+            color: white;
+        }
+        
+        #cy {
+            width: 100%;
+            height: 600px;
+            background: white;
+            border: 2px solid #e9ecef;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+        
+        .info-box {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            width: 300px;
+            background: white;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            transform: translateX(100%);
+            transition: transform 0.3s ease;
+            z-index: 1000;
+        }
+        
+        .info-box.show {
+            transform: translateX(0);
+        }
+        
+        .stats {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-top: 20px;
+            padding: 15px;
+            background: white;
+            border-radius: 10px;
+        }
+        
+        .stat {
+            text-align: center;
+        }
+        
+        .stat-value {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #667eea;
+        }
+        
+        .stat-label {
+            font-size: 0.9rem;
+            color: #6c757d;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="header">
+        <h1>🔗 AI Design Research Semantic Network</h1>
+        <p>Explore keyword relationships in 93 research papers</p>
+    </div>
+    
+    <div class="controls">
+        <div class="search-box">
+            <input type="text" id="search-input" placeholder="Search keywords (e.g., artificial intelligence, user)">
+        </div>
+        
+        <div class="btn-group">
+            <button id="reset-btn" class="btn btn-secondary">Reset View</button>
+            <button id="fit-btn" class="btn btn-primary">Fit All</button>
+            <button id="layout-btn" class="btn btn-primary">Change Layout</button>
+        </div>
+    </div>
+    
+    <div id="cy"></div>
+    
+    <div class="stats">
+        <div class="stat">
+            <div class="stat-value" id="total-nodes">0</div>
+            <div class="stat-label">Total Keywords</div>
+        </div>
+        <div class="stat">
+            <div class="stat-value" id="visible-nodes">0</div>
+            <div class="stat-label">Visible</div>
+        </div>
+        <div class="stat">
+            <div class="stat-value" id="selected-nodes">0</div>
+            <div class="stat-label">Selected</div>
+        </div>
+    </div>
+    
+    <div id="info-box" class="info-box">
+        <h4>Click a keyword</h4>
+        <p>to see detailed information and connections</p>
+    </div>
+
+    <script>
+        // Simple working version with minimal data
+        const networkData = {
+            nodes: [
+                {data: {id: 'product', label: 'product', frequency: 22, color: '#2E8B57'}},
+                {data: {id: 'user', label: 'user', frequency: 15, color: '#2E8B57'}},
+                {data: {id: 'artificial intelligence', label: 'artificial intelligence', frequency: 13, color: '#DC143C'}},
+                {data: {id: 'model', label: 'model', frequency: 8, color: '#4169E1'}},
+                {data: {id: 'interaction', label: 'interaction', frequency: 8, color: '#DC143C'}},
+                {data: {id: 'knowledge', label: 'knowledge', frequency: 7, color: '#2E8B57'}},
+                {data: {id: 'human', label: 'human', frequency: 7, color: '#2E8B57'}},
+                {data: {id: 'designers', label: 'designers', frequency: 6, color: '#2E8B57'}},
+                {data: {id: 'features', label: 'features', frequency: 6, color: '#2E8B57'}},
+                {data: {id: 'deep learning', label: 'deep learning', frequency: 6, color: '#4169E1'}},
+                {data: {id: 'emotion', label: 'emotion', frequency: 6, color: '#4169E1'}},
+                {data: {id: 'interface', label: 'interface', frequency: 6, color: '#2E8B57'}},
+                {data: {id: 'technology', label: 'technology', frequency: 5, color: '#DC143C'}},
+                {data: {id: 'optimization', label: 'optimization', frequency: 5, color: '#2E8B57'}},
+                {data: {id: 'mobile', label: 'mobile', frequency: 5, color: '#DC143C'}},
+                {data: {id: 'conversational', label: 'conversational', frequency: 4, color: '#DC143C'}},
+                {data: {id: 'recognition', label: 'recognition', frequency: 5, color: '#4169E1'}},
+                {data: {id: 'generation', label: 'generation', frequency: 4, color: '#DC143C'}},
+                {data: {id: 'neural networks', label: 'neural networks', frequency: 4, color: '#4169E1'}},
+                {data: {id: 'personalization', label: 'personalization', frequency: 3, color: '#2E8B57'}}
+            ],
+            edges: [
+                {data: {source: 'product', target: 'user', weight: 8}},
+                {data: {source: 'product', target: 'artificial intelligence', weight: 6}},
+                {data: {source: 'user', target: 'artificial intelligence', weight: 5}},
+                {data: {source: 'artificial intelligence', target: 'model', weight: 4}},
+                {data: {source: 'user', target: 'interaction', weight: 6}},
+                {data: {source: 'interaction', target: 'interface', weight: 5}},
+                {data: {source: 'artificial intelligence', target: 'deep learning', weight: 4}},
+                {data: {source: 'deep learning', target: 'neural networks', weight: 3}},
+                {data: {source: 'deep learning', target: 'emotion', weight: 3}},
+                {data: {source: 'emotion', target: 'recognition', weight: 4}},
+                {data: {source: 'artificial intelligence', target: 'generation', weight: 3}},
+                {data: {source: 'generation', target: 'conversational', weight: 3}},
+                {data: {source: 'conversational', target: 'mobile', weight: 3}},
+                {data: {source: 'mobile', target: 'interface', weight: 4}},
+                {data: {source: 'product', target: 'features', weight: 5}},
+                {data: {source: 'user', target: 'personalization', weight: 3}},
+                {data: {source: 'designers', target: 'knowledge', weight: 4}},
+                {data: {source: 'human', target: 'user', weight: 5}},
+                {data: {source: 'technology', target: 'artificial intelligence', weight: 4}},
+                {data: {source: 'optimization', target: 'model', weight: 3}}
+            ]
+        };
+
+        let cy;
+        let layouts = ['cose', 'circle', 'grid', 'breadthfirst'];
+        let currentLayout = 0;
+
+        function initializeNetwork() {
+            console.log('🚀 Initializing simple network...');
+            
+            try {
+                cy = cytoscape({
+                    container: document.getElementById('cy'),
+                    
+                    elements: [
+                        ...networkData.nodes,
+                        ...networkData.edges
+                    ],
+                    
+                    style: [
+                        {
+                            selector: 'node',
+                            style: {
+                                'content': 'data(label)',
+                                'text-valign': 'center',
+                                'text-halign': 'center',
+                                'background-color': 'data(color)',
+                                'width': node => Math.max(30, node.data('frequency') * 4),
+                                'height': node => Math.max(30, node.data('frequency') * 4),
+                                'font-size': '12px',
+                                'font-weight': 'bold',
+                                'text-outline-color': '#ffffff',
+                                'text-outline-width': '2px',
+                                'border-width': '2px',
+                                'border-color': '#ffffff'
+                            }
+                        },
+                        {
+                            selector: 'edge',
+                            style: {
+                                'width': edge => Math.max(2, edge.data('weight')),
+                                'line-color': '#cccccc',
+                                'curve-style': 'bezier',
+                                'opacity': 0.6
+                            }
+                        },
+                        {
+                            selector: 'node:selected',
+                            style: {
+                                'border-width': '4px',
+                                'border-color': '#FFD700'
+                            }
+                        },
+                        {
+                            selector: '.highlighted',
+                            style: {
+                                'background-color': '#FF6B6B',
+                                'border-color': '#FF6B6B',
+                                'border-width': '3px'
+                            }
+                        },
+                        {
+                            selector: '.faded',
+                            style: {
+                                'opacity': 0.3
+                            }
+                        }
+                    ],
+                    
+                    layout: {
+                        name: 'cose',
+                        nodeRepulsion: 8000,
+                        idealEdgeLength: 100,
+                        animate: true,
+                        animationDuration: 1500
+                    },
+                    
+                    minZoom: 0.3,
+                    maxZoom: 3,
+                    wheelSensitivity: 0.5
+                });
+
+                // Event listeners
+                cy.on('tap', 'node', function(evt) {
+                    const node = evt.target;
+                    selectNode(node);
+                });
+
+                cy.on('tap', function(evt) {
+                    if (evt.target === cy) {
+                        deselectAll();
+                    }
+                });
+
+                // Update stats
+                updateStats();
+                
+                console.log('✅ Network initialized successfully!');
+                
+            } catch (error) {
+                console.error('❌ Network initialization failed:', error);
+                document.getElementById('cy').innerHTML = `
+                    <div style="display: flex; align-items: center; justify-content: center; height: 100%; color: #dc3545;">
+                        <div style="text-align: center;">
+                            <h3>⚠️ Network Loading Failed</h3>
+                            <p>Error: ${error.message}</p>
+                            <button onclick="location.reload()" class="btn btn-primary">Refresh Page</button>
+                        </div>
+                    </div>
+                `;
+            }
+        }
+
+        function selectNode(node) {
+            // Clear previous selection
+            cy.elements().removeClass('highlighted faded');
+            
+            // Highlight selected node and neighbors
+            node.addClass('highlighted');
+            const neighbors = node.neighborhood();
+            neighbors.addClass('highlighted');
+            
+            // Fade other elements
+            cy.elements().difference(neighbors.union(node)).addClass('faded');
+            
+            // Show info
+            showInfo(node);
+            updateStats();
+        }
+
+        function deselectAll() {
+            cy.elements().removeClass('highlighted faded');
+            hideInfo();
+            updateStats();
+        }
+
+        function showInfo(node) {
+            const infoBox = document.getElementById('info-box');
+            const data = node.data();
+            const neighbors = node.neighborhood('node');
+            
+            infoBox.innerHTML = `
+                <h4 style="color: ${data.color};">${data.label}</h4>
+                <p><strong>Frequency:</strong> ${data.frequency} times</p>
+                <p><strong>Connections:</strong> ${neighbors.length}</p>
+                <p><strong>Connected to:</strong><br>
+                ${neighbors.map(n => n.data('label')).slice(0, 8).join(', ')}
+                ${neighbors.length > 8 ? '...' : ''}</p>
+            `;
+            
+            infoBox.classList.add('show');
+        }
+
+        function hideInfo() {
+            document.getElementById('info-box').classList.remove('show');
+        }
+
+        function searchKeywords(query) {
+            if (!query.trim()) {
+                cy.elements().removeClass('highlighted faded');
+                return;
+            }
+            
+            const matchingNodes = cy.nodes().filter(node => {
+                return node.data('label').toLowerCase().includes(query.toLowerCase());
+            });
+            
+            if (matchingNodes.length > 0) {
+                cy.elements().addClass('faded');
+                matchingNodes.removeClass('faded').addClass('highlighted');
+                
+                cy.animate({
+                    fit: {
+                        eles: matchingNodes,
+                        padding: 50
+                    }
+                }, {
+                    duration: 1000
+                });
+            }
+        }
+
+        function changeLayout() {
+            currentLayout = (currentLayout + 1) % layouts.length;
+            const layout = layouts[currentLayout];
+            
+            console.log(`Changing to ${layout} layout`);
+            
+            cy.layout({
+                name: layout,
+                animate: true,
+                animationDuration: 1500
+            }).run();
+        }
+
+        function resetView() {
+            deselectAll();
+            document.getElementById('search-input').value = '';
+            cy.fit();
+        }
+
+        function updateStats() {
+            const visibleNodes = cy.nodes().filter(node => node.style('opacity') > 0.5);
+            const selectedNodes = cy.nodes().filter(node => node.hasClass('highlighted'));
+            
+            document.getElementById('total-nodes').textContent = cy.nodes().length;
+            document.getElementById('visible-nodes').textContent = visibleNodes.length;
+            document.getElementById('selected-nodes').textContent = selectedNodes.length;
+        }
+
+        // Initialize when page loads
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('📱 DOM loaded, starting network...');
+            
+            // Check if Cytoscape loaded
+            if (typeof cytoscape === 'undefined') {
+                alert('Cytoscape.js failed to load. Please check your internet connection.');
+                return;
+            }
+            
+            initializeNetwork();
+            
+            // Setup event listeners
+            document.getElementById('search-input').addEventListener('input', function(e) {
+                searchKeywords(e.target.value);
+            });
+            
+            document.getElementById('reset-btn').addEventListener('click', resetView);
+            document.getElementById('fit-btn').addEventListener('click', () => cy.fit());
+            document.getElementById('layout-btn').addEventListener('click', changeLayout);
+            
+            console.log('✅ Dashboard ready!');
+        });
+    </script>
+</body>
+</html>

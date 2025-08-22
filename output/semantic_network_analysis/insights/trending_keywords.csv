@@ -1,0 +1,199 @@
+keyword,total_frequency,first_appearance,last_appearance,average_year,year_span,early_period_freq,recent_period_freq,trend_score,growth_rate,dominant_ai_method,trend_category
+product,22,2020,2024,2022.8181818181818,4,5,17,12,240.0,,Rising Star
+artificial intelligence,13,2021,2025,2023.1538461538462,4,1,12,11,1100.0,,Rising Star
+user,15,2020,2024,2022.8,4,3,12,9,300.0,,Rising Star
+model,8,2022,2025,2023.5,3,0,8,8,0.0,,Rising Star
+features,6,2022,2024,2023.3333333333333,2,0,6,6,0.0,,Rising Star
+knowledge,7,2020,2024,2022.857142857143,4,1,6,5,500.0,,Rising Star
+human,7,2020,2024,2022.2857142857142,4,1,6,5,500.0,,Rising Star
+models,5,2022,2025,2023.8,3,0,5,5,0.0,,Rising Star
+optimization,5,2022,2024,2023.4,2,0,5,5,0.0,,Rising Star
+multimodal,4,2023,2024,2023.75,1,0,4,4,0.0,,Rising Star
+language,4,2022,2024,2023.5,2,0,4,4,0.0,,Rising Star
+conceptual,4,2023,2025,2023.75,2,0,4,4,0.0,,Rising Star
+color,4,2022,2024,2023.0,2,0,4,4,0.0,,Rising Star
+learning,4,2022,2025,2023.75,3,0,4,4,0.0,,Rising Star
+interface,6,2021,2024,2023.1666666666667,3,1,5,4,400.0,,Rising Star
+conversational,4,2024,2024,2024.0,0,0,4,4,0.0,,Rising Star
+deep learning,6,2020,2024,2022.5,4,1,5,4,400.0,,Rising Star
+generation,4,2024,2024,2024.0,0,0,4,4,0.0,,Rising Star
+phase,4,2022,2024,2023.5,2,0,4,4,0.0,,Rising Star
+modeling,4,2022,2024,2023.25,2,0,4,4,0.0,,Rising Star
+generated,4,2022,2024,2022.75,2,0,4,4,0.0,,Rising Star
+generative,4,2022,2025,2023.75,3,0,4,4,0.0,,Rising Star
+framework,4,2022,2024,2023.25,2,0,4,4,0.0,,Rising Star
+designs,4,2022,2024,2023.5,2,0,4,4,0.0,,Rising Star
+emotion,6,2021,2024,2023.0,3,1,5,4,400.0,,Rising Star
+computational,3,2022,2024,2022.6666666666667,2,0,3,3,0.0,,Rising Star
+optimisation,3,2023,2024,2023.6666666666667,1,0,3,3,0.0,,Rising Star
+graph,3,2022,2024,2023.0,2,0,3,3,0.0,,Rising Star
+self,3,2023,2024,2023.6666666666667,1,0,3,3,0.0,,Rising Star
+functions,3,2022,2024,2023.0,2,0,3,3,0.0,,Rising Star
+platform,3,2022,2024,2023.0,2,0,3,3,0.0,,Rising Star
+exploration,3,2024,2025,2024.3333333333333,1,0,3,3,0.0,,Rising Star
+machine learning,3,2022,2024,2023.0,2,0,3,3,0.0,,Rising Star
+intelligence,3,2023,2024,2023.6666666666667,1,0,3,3,0.0,,Rising Star
+shape,3,2024,2025,2024.6666666666667,1,0,3,3,0.0,,Rising Star
+services,3,2022,2024,2022.6666666666667,2,0,3,3,0.0,,Rising Star
+text,2,2022,2025,2023.5,3,0,2,2,0.0,,Growing
+impact,2,2024,2024,2024.0,0,0,2,2,0.0,,Growing
+dimensional,2,2023,2023,2023.0,0,0,2,2,0.0,,Growing
+automation,2,2024,2024,2024.0,0,0,2,2,0.0,,Growing
+opinions,2,2024,2024,2024.0,0,0,2,2,0.0,,Growing
+specific,4,2021,2025,2023.25,4,1,3,2,200.0,,Growing
+properties,2,2023,2024,2023.5,1,0,2,2,0.0,,Growing
+virtual,2,2022,2022,2022.0,0,0,2,2,0.0,,Growing
+engineering design,2,2024,2024,2024.0,0,0,2,2,0.0,,Growing
+decomposition,2,2024,2024,2024.0,0,0,2,2,0.0,,Growing
+groups,2,2024,2024,2024.0,0,0,2,2,0.0,,Growing
+variables,2,2023,2024,2023.5,1,0,2,2,0.0,,Growing
+effects,2,2024,2024,2024.0,0,0,2,2,0.0,,Growing
+problem,4,2021,2024,2022.5,3,1,3,2,200.0,,Growing
+resources,2,2022,2022,2022.0,0,0,2,2,0.0,,Growing
+tasks,2,2024,2024,2024.0,0,0,2,2,0.0,,Growing
+gan,2,2024,2024,2024.0,0,0,2,2,0.0,,Growing
+domain,2,2024,2025,2024.5,1,0,2,2,0.0,,Growing
+enhance,2,2024,2024,2024.0,0,0,2,2,0.0,,Growing
+interaction,8,2020,2024,2022.0,4,3,5,2,66.66666666666666,,Growing
+feedback,2,2022,2024,2023.0,2,0,2,2,0.0,,Growing
+behaviors,2,2024,2024,2024.0,0,0,2,2,0.0,,Growing
+use ai,2,2023,2024,2023.5,1,0,2,2,0.0,,Growing
+prototype,2,2022,2023,2022.5,1,0,2,2,0.0,,Growing
+focus,2,2022,2024,2023.0,2,0,2,2,0.0,,Growing
+physiological,2,2024,2024,2024.0,0,0,2,2,0.0,,Growing
+interfaces,2,2024,2024,2024.0,0,0,2,2,0.0,,Growing
+mobile conversational,2,2024,2024,2024.0,0,0,2,2,0.0,,Growing
+generational,2,2024,2024,2024.0,0,0,2,2,0.0,,Growing
+inter,2,2024,2024,2024.0,0,0,2,2,0.0,,Growing
+inter cross,2,2024,2024,2024.0,0,0,2,2,0.0,,Growing
+class,2,2022,2022,2022.0,0,0,2,2,0.0,,Growing
+human computer interaction,2,2022,2024,2023.0,2,0,2,2,0.0,,Growing
+experiences,2,2022,2022,2022.0,0,0,2,2,0.0,,Growing
+user interface,4,2021,2024,2022.75,3,1,3,2,200.0,,Growing
+llms,2,2024,2024,2024.0,0,0,2,2,0.0,,Growing
+experience,2,2022,2024,2023.0,2,0,2,2,0.0,,Growing
+health,2,2024,2025,2024.5,1,0,2,2,0.0,,Growing
+domain specific,2,2024,2025,2024.5,1,0,2,2,0.0,,Growing
+new,2,2022,2024,2023.0,2,0,2,2,0.0,,Growing
+aigc,2,2024,2025,2024.5,1,0,2,2,0.0,,Growing
+prompt,2,2024,2024,2024.0,0,0,2,2,0.0,,Growing
+topology,2,2022,2024,2023.0,2,0,2,2,0.0,,Growing
+pso,2,2024,2025,2024.5,1,0,2,2,0.0,,Growing
+algorithm,2,2022,2024,2023.0,2,0,2,2,0.0,,Growing
+tool,2,2022,2024,2023.0,2,0,2,2,0.0,,Growing
+reading,2,2022,2023,2022.5,1,0,2,2,0.0,,Growing
+trained,2,2022,2023,2022.5,1,0,2,2,0.0,,Growing
+issue,2,2022,2023,2022.5,1,0,2,2,0.0,,Growing
+electric,2,2023,2024,2023.5,1,0,2,2,0.0,,Growing
+artificial,2,2024,2024,2024.0,0,0,2,2,0.0,,Growing
+learning model,2,2022,2022,2022.0,0,0,2,2,0.0,,Growing
+error,2,2022,2024,2023.0,2,0,2,2,0.0,,Growing
+interaction design,2,2023,2024,2023.5,1,0,2,2,0.0,,Growing
+customer,4,2020,2024,2023.0,4,1,3,2,200.0,,Growing
+power,2,2022,2023,2022.5,1,0,2,2,0.0,,Growing
+solutions,2,2024,2024,2024.0,0,0,2,2,0.0,,Growing
+given,2,2022,2024,2023.0,2,0,2,2,0.0,,Growing
+concepts,2,2024,2024,2024.0,0,0,2,2,0.0,,Growing
+concept,2,2024,2024,2024.0,0,0,2,2,0.0,,Growing
+natural,2,2024,2024,2024.0,0,0,2,2,0.0,,Growing
+image,4,2020,2025,2022.75,5,1,3,2,200.0,,Growing
+style,2,2022,2024,2023.0,2,0,2,2,0.0,,Growing
+device,2,2022,2022,2022.0,0,0,2,2,0.0,,Growing
+important,2,2022,2022,2022.0,0,0,2,2,0.0,,Growing
+knowledge graph,2,2022,2024,2023.0,2,0,2,2,0.0,,Growing
+patent,4,2020,2023,2021.75,3,1,3,2,200.0,,Growing
+make,2,2022,2022,2022.0,0,0,2,2,0.0,,Growing
+designers,6,2020,2024,2022.6666666666667,4,2,4,2,100.0,,Growing
+frequency,2,2024,2024,2024.0,0,0,2,2,0.0,,Growing
+iteration,2,2023,2024,2023.5,1,0,2,2,0.0,,Growing
+conceptual design,2,2023,2024,2023.5,1,0,2,2,0.0,,Growing
+requirements,4,2020,2024,2022.25,4,1,3,2,200.0,,Growing
+attributes,2,2024,2024,2024.0,0,0,2,2,0.0,,Growing
+product attributes,2,2024,2024,2024.0,0,0,2,2,0.0,,Growing
+scheme,2,2024,2024,2024.0,0,0,2,2,0.0,,Growing
+form,2,2024,2024,2024.0,0,0,2,2,0.0,,Growing
+multi objective,2,2023,2024,2023.5,1,0,2,2,0.0,,Growing
+evolutionary,2,2023,2024,2023.5,1,0,2,2,0.0,,Growing
+affective,2,2022,2024,2023.0,2,0,2,2,0.0,,Growing
+objective,2,2023,2024,2023.5,1,0,2,2,0.0,,Growing
+ability,2,2022,2023,2022.5,1,0,2,2,0.0,,Growing
+appearance,2,2022,2024,2023.0,2,0,2,2,0.0,,Growing
+key,2,2022,2024,2023.0,2,0,2,2,0.0,,Growing
+recognizing,2,2022,2022,2022.0,0,0,2,2,0.0,,Growing
+ai generated,2,2022,2023,2022.5,1,0,2,2,0.0,,Growing
+augmented,2,2022,2024,2023.0,2,0,2,2,0.0,,Growing
+creative,2,2022,2024,2023.0,2,0,2,2,0.0,,Growing
+similar,2,2024,2024,2024.0,0,0,2,2,0.0,,Growing
+deep,6,2020,2024,2022.1666666666667,4,2,4,2,100.0,,Growing
+social,3,2020,2025,2022.3333333333333,5,1,2,1,100.0,,Growing
+emotion recognition,3,2021,2024,2023.0,3,1,2,1,100.0,,Growing
+apps,3,2020,2024,2022.0,4,1,2,1,100.0,,Growing
+mobile,5,2020,2024,2022.6,4,2,3,1,50.0,,Growing
+multi,3,2020,2024,2022.3333333333333,4,1,2,1,100.0,,Growing
+work,3,2021,2024,2023.0,3,1,2,1,100.0,,Growing
+brand,3,2020,2024,2022.6666666666667,4,1,2,1,100.0,,Growing
+search,3,2020,2024,2022.3333333333333,4,1,2,1,100.0,,Growing
+sub,3,2021,2024,2022.6666666666667,3,1,2,1,100.0,,Growing
+manufacturing,3,2021,2023,2022.0,2,1,2,1,100.0,,Growing
+reviews,3,2021,2024,2022.3333333333333,3,1,2,1,100.0,,Growing
+sustainable,3,2021,2024,2022.3333333333333,3,1,2,1,100.0,,Growing
+interactive,5,2020,2024,2022.4,4,2,3,1,50.0,,Growing
+specifications,3,2020,2022,2021.3333333333333,2,1,2,1,100.0,,Growing
+semantic,3,2020,2024,2022.0,4,1,2,1,100.0,,Growing
+images,3,2020,2024,2022.0,4,1,2,1,100.0,,Growing
+agent,3,2021,2023,2022.3333333333333,2,1,2,1,100.0,,Growing
+software,5,2020,2024,2021.6,4,2,3,1,50.0,,Growing
+innovative,3,2020,2024,2022.0,4,1,2,1,100.0,,Growing
+visual,3,2020,2024,2022.3333333333333,4,1,2,1,100.0,,Growing
+making,3,2020,2023,2022.0,3,1,2,1,100.0,,Growing
+module,2,2021,2022,2021.5,1,1,1,0,0.0,,Stable
+ii,2,2021,2022,2021.5,1,1,1,0,0.0,,Stable
+learn,2,2021,2023,2022.0,2,1,1,0,0.0,,Stable
+chi,2,2020,2024,2022.0,4,1,1,0,0.0,,Stable
+customer needs,2,2020,2022,2021.0,2,1,1,0,0.0,,Stable
+needs,2,2020,2022,2021.0,2,1,1,0,0.0,,Stable
+emotional,4,2021,2025,2022.5,4,2,2,0,0.0,,Stable
+developed,2,2021,2024,2022.5,3,1,1,0,0.0,,Stable
+product development,2,2020,2024,2022.0,4,1,1,0,0.0,,Stable
+product specifications,2,2020,2022,2021.0,2,1,1,0,0.0,,Stable
+opportunities,2,2021,2022,2021.5,1,1,1,0,0.0,,Stable
+users,4,2020,2024,2021.75,4,2,2,0,0.0,,Stable
+stage,2,2021,2024,2022.5,3,1,1,0,0.0,,Stable
+app,2,2021,2022,2021.5,1,1,1,0,0.0,,Stable
+service,2,2020,2022,2021.0,2,1,1,0,0.0,,Stable
+real,2,2020,2023,2021.5,3,1,1,0,0.0,,Stable
+support,4,2020,2024,2021.5,4,2,2,0,0.0,,Stable
+challenges,2,2020,2024,2022.0,4,1,1,0,0.0,,Stable
+decision making,2,2020,2023,2021.5,3,1,1,0,0.0,,Stable
+drawing,2,2020,2023,2021.5,3,1,1,0,0.0,,Stable
+decision,4,2020,2023,2021.5,3,2,2,0,0.0,,Stable
+high,2,2021,2023,2022.0,2,1,1,0,0.0,,Stable
+seven,2,2020,2024,2022.0,4,1,1,0,0.0,,Stable
+supported,2,2021,2024,2022.5,3,1,1,0,0.0,,Stable
+gap,2,2020,2024,2022.0,4,1,1,0,0.0,,Stable
+components,4,2020,2024,2022.25,4,2,2,0,0.0,,Stable
+policy,2,2021,2023,2022.0,2,1,1,0,0.0,,Stable
+terms,2,2020,2022,2021.0,2,1,1,0,0.0,,Stable
+loss,2,2020,2022,2021.0,2,1,1,0,0.0,,Stable
+ai technology,2,2021,2023,2022.0,2,1,1,0,0.0,,Stable
+ideas,2,2020,2024,2022.0,4,1,1,0,0.0,,Stable
+devices,2,2020,2024,2022.0,4,1,1,0,0.0,,Stable
+consistency,2,2020,2024,2022.0,4,1,1,0,0.0,,Stable
+eeg,2,2021,2024,2022.5,3,1,1,0,0.0,,Stable
+human factors,2,2021,2024,2022.5,3,1,1,0,0.0,,Stable
+aesthetic,2,2020,2024,2022.0,4,1,1,0,0.0,,Stable
+reinforcement,4,2021,2024,2022.5,3,2,2,0,0.0,,Stable
+smart,2,2020,2023,2021.5,3,1,1,0,0.0,,Stable
+products,2,2021,2022,2021.5,1,1,1,0,0.0,,Stable
+hand,2,2020,2024,2022.0,4,1,1,0,0.0,,Stable
+reinforcement learning,4,2021,2024,2022.5,3,2,2,0,0.0,,Stable
+customers,3,2020,2022,2021.0,2,2,1,-1,-50.0,,Declining
+developers,3,2020,2024,2021.3333333333333,4,2,1,-1,-50.0,,Declining
+vehicle,3,2020,2022,2021.0,2,2,1,-1,-50.0,,Declining
+recognition,5,2020,2024,2022.0,4,3,2,-1,-33.33333333333333,,Recent Entry
+technology,5,2020,2023,2021.2,3,3,2,-1,-33.33333333333333,,Declining
+classification,3,2020,2024,2021.3333333333333,4,2,1,-1,-50.0,,Declining
+speech,2,2021,2021,2021.0,0,2,0,-2,-100.0,,Declining
+different,2,2021,2021,2021.0,0,2,0,-2,-100.0,,Declining
+development,3,2020,2021,2020.3333333333333,1,3,0,-3,-100.0,,Declining
+input,3,2020,2021,2020.6666666666667,1,3,0,-3,-100.0,,Declining
