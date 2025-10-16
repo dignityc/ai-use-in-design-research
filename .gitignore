@@ -61,6 +61,10 @@ Pipfile.lock
 *.pkl
 *.model
 
+# Research Papers (PDFs)
+Papers/
+checked_papers/
+
 # Cache
 *.cache
 .cache/
