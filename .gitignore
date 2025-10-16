@@ -71,3 +71,7 @@ logs/
 
 # Node modules (if any)
 node_modules/
+
+# Google API credentials
+coding_work/credentials/
+*.json
