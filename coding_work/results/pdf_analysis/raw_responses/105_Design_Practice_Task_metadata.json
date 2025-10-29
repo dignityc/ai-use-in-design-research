@@ -1,0 +1,11 @@
+{
+  "pdf_file": "105_Three-Dimensional Shape Reconstruction from Digital Freehand Design Sketching Based on Deep Learning Techniques.pdf",
+  "category": "Design Practice/Task",
+  "timestamp": "2025-10-29T12:48:46.400300",
+  "parsing_success": true,
+  "parsing_methods_tried": [
+    "parse_json_response"
+  ],
+  "parsing_error": null,
+  "raw_response_file": "105_Design_Practice_Task.txt"
+}

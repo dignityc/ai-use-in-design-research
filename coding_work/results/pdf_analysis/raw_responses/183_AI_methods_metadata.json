@@ -1,0 +1,11 @@
+{
+  "pdf_file": "183_Machine Learning Based User Interface Generation.pdf",
+  "category": "AI methods",
+  "timestamp": "2025-10-29T12:53:01.265268",
+  "parsing_success": true,
+  "parsing_methods_tried": [
+    "parse_json_response"
+  ],
+  "parsing_error": null,
+  "raw_response_file": "183_AI_methods.txt"
+}

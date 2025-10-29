@@ -1,0 +1,11 @@
+{
+  "pdf_file": "183_Machine Learning Based User Interface Generation.pdf",
+  "category": "AI Assistance Types (Lee and Kim, 2025)",
+  "timestamp": "2025-10-29T12:53:25.061971",
+  "parsing_success": true,
+  "parsing_methods_tried": [
+    "parse_json_response"
+  ],
+  "parsing_error": null,
+  "raw_response_file": "183_AI_Assistance_Types_Lee_and_Kim,_2025.txt"
+}

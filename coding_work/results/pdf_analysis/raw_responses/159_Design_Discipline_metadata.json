@@ -1,0 +1,11 @@
+{
+  "pdf_file": "159_Will artificial intelligence platforms replace designers in the future analyzing the impact of artificial intelligence platforms on the engineering design industry through color perception.pdf",
+  "category": "Design Discipline",
+  "timestamp": "2025-10-29T12:42:25.520842",
+  "parsing_success": true,
+  "parsing_methods_tried": [
+    "parse_json_response"
+  ],
+  "parsing_error": null,
+  "raw_response_file": "159_Design_Discipline.txt"
+}

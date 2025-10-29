@@ -78,4 +78,5 @@ node_modules/
 
 # Google API credentials
 coding_work/credentials/
-*.json
+coding_work/credentials/*.json
+**/gen-lang-client-*.json

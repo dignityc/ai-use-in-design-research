@@ -1,0 +1,59 @@
+﻿index,filename,pdf_found,sheets_matched,sheets_updated,row_number,error,timestamp
+23,23_The TrollLabs open hackathon dataset Generative AI and large language models for prototyping in engineering design.pdf,True,True,False,24,,2025-10-15T11:10:06.132991
+28,28_Using Artificial Intelligence Image Generators in Product Design Within Industry 4.0.pdf,True,True,False,29,,2025-10-15T11:10:06.133011
+29,29_Deep reinforcement learning for engineering design through topology optimization of elementally discretized design domains.pdf,True,True,False,30,,2025-10-15T11:10:06.133016
+101,101_How to obtain customer requirements for each stage of the product life cycle from online reviews Using mobile phones as an example.pdf,True,True,False,102,,2025-10-15T11:10:06.133018
+123,123_NOVEL METHODOLOGY FOR REAL-TIME STRUCTURAL ANALYSIS ASSISTANCE IN CUSTOM PRODUCT DESIGN.pdf,True,True,False,124,,2025-10-15T11:10:06.133021
+125,125_Machine learning-based design support system for the prediction of heterogeneous machine parameters in industry 4.0.pdf,True,True,False,126,,2025-10-15T11:10:06.133024
+128,128_Discovering the relationship between attributes of facial masks and review rating in online customer reviews using Explainable Artificial Intelligence (XAI).pdf,True,True,False,129,,2025-10-15T11:10:06.133026
+129,129_Efficiency Monitoring of Engineering System Designer Work Based on Multi-System User Behavior Analysis with AIML Algorithms.pdf,True,True,False,130,,2025-10-15T11:10:06.133028
+130,130_Computers as co-creative assistants. A comparative study on the use of text-to-image AI models for computer aided conceptual design.pdf,True,True,False,131,,2025-10-15T11:10:06.133030
+132,132_Automated Evaluation and Rating of Product Repairability Using Artificial Intelligence-Based Approaches.pdf,True,True,False,133,,2025-10-15T11:10:06.133032
+134,"134_Graph models for engineering design Model encoding, and fidelity evaluation based on dataset and other sources of knowledge.pdf",True,True,False,135,,2025-10-15T11:10:06.133035
+135,135_ChatGPT and finetuned BERT A comparative study for developing intelligent design support systems.pdf,True,True,False,136,,2025-10-15T11:10:06.133037
+136,136_The Generative Generic-Field Design Method Based on Design Cognition and Knowledge Reasoning.pdf,True,True,False,137,,2025-10-15T11:10:06.133039
+138,138_Research on design forms based on artificial intelligence collaboration model.pdf,True,True,False,139,,2025-10-15T11:10:06.133041
+139,139_A Generative Deep Learning Approach for Improving the Mechanical Performance of Structural Components.pdf,True,True,False,140,,2025-10-15T11:10:06.133043
+141,"141_Intelligent RFQ Summarization Using Natural Language Processing, Text Mining, and Machine Learning Techniques.pdf",True,True,False,142,,2025-10-15T11:10:06.133045
+143,143_Plan-Based Derivation of General Functional Structures in Product Design.pdf,True,True,False,144,,2025-10-15T11:10:06.133047
+144,144_Machine learning for topology optimization Physics-based learning through an independent training strategy.pdf,True,True,False,145,,2025-10-15T11:10:06.133051
+145,145_Decision-Making with Probabilistic Reasoning in Engineering Design.pdf,True,True,False,146,,2025-10-15T11:10:06.133053
+146,146_Deep learning-based surrogate modeling via physics-informed artificial image (PiAI) for strongly coupled multidisciplinary engineering systems.pdf,True,True,False,147,,2025-10-15T11:10:06.133055
+147,147_SplineLearner Generative learning system of design constraints for models represented using B-spline surfaces.pdf,True,True,False,148,,2025-10-15T11:10:06.133057
+148,148_Integrating and navigating engineering design decision-related knowledge using decision knowledge graph.pdf,True,True,False,149,,2025-10-15T11:10:06.133059
+149,149_The form of AI-driven luxury how generative AI (GAI) and Large Language Models (LLMs) are transforming the creative process.pdf,True,True,False,150,,2025-10-15T11:10:06.133061
+150,150_Configuration-Based Smart Customization Service A Multitask Learning Approach.pdf,True,True,False,151,,2025-10-15T11:10:06.133063
+152,152_Digital servitization of symbiotic service composition in product-service systems.pdf,True,True,False,153,,2025-10-15T11:10:06.133065
+153,153_Collaborative Decision-Making Assistant for Healthcare Professionals A Human-Centered AI Prototype Powered by Azure Open AI.pdf,True,True,False,154,,2025-10-15T11:10:06.133067
+155,155_Impaction of Artificial Intelligence on Interaction Design.pdf,True,True,False,156,,2025-10-15T11:10:06.133069
+156,156_PIKAR A Pixel-Level Image Kansei Analysis and Recognition System Based on Deep Learning for User-Centered Product Design.pdf,True,True,False,157,,2025-10-15T11:10:06.133071
+157,157_User Experience Design Professionals' Perceptions of Generative Artificial Intelligence.pdf,True,True,False,158,,2025-10-15T11:10:06.133074
+158,158_A Novel User Emotional Interaction Design Model Using Long and Short-Term Memory Networks and Deep Learning.pdf,True,True,False,159,,2025-10-15T11:10:06.133076
+159,159_Will artificial intelligence platforms replace designers in the future analyzing the impact of artificial intelligence platforms on the engineering design industry through color perception.pdf,True,True,False,160,,2025-10-15T11:10:06.133078
+161,161_Exploring the Potential of Chatbots.pdf,True,True,False,162,,2025-10-15T11:10:06.133080
+162,"162_Designing Age-Inclusive Interfaces Emerging Mobile, Conversational, and Generative AI to Support Interactions across the Life Span.pdf",True,True,False,163,,2025-10-15T11:10:06.133082
+163,163_The artistic design of user interaction experience for mobile systems based on context-awareness and machine learning.pdf,True,True,False,164,,2025-10-15T11:10:06.133085
+164,164_ITIU Intention Understanding via Interactive Table in Large Language Models.pdf,True,True,False,165,,2025-10-15T11:10:06.133087
+165,165_CUI@CHI Mapping Grand Challenges for the Conversational User Interface Community.pdf,True,True,False,166,,2025-10-15T11:10:06.133089
+166,166_Combining a Universal OBD-II Module with Deep Learning to Develop an Eco-Driving Analysis System.pdf,True,True,False,167,,2025-10-15T11:10:06.133091
+167,167_Optimizing HMI for Intelligent Electric Vehicles Using BCI and Deep Neural Networks with Genetic Algorithms.pdf,True,True,False,168,,2025-10-15T11:10:06.133093
+168,168_Empirical Evidence on Conversational Control of GUI in Semantic Automation.pdf,True,True,False,169,,2025-10-15T11:10:06.133095
+170,170_APPLICATION OF AR VIRTUAL IMPLANTATION TECHNOLOGY BASED ON DEEP LEARNING AND EMOTIONAL TECHNOLOGY IN THE CREATION OF INTERACTIVE PICTURE BOOKS.pdf,True,True,False,171,,2025-10-15T11:10:06.133097
+171,171_A training and assessment system for human-computer interaction combining fNIRS and eye-tracking data.pdf,True,True,False,172,,2025-10-15T11:10:06.133099
+172,172_Beyond Manual Modeling Automating GUI Model Generation Using Design Documents.pdf,True,True,False,173,,2025-10-15T11:10:06.133101
+173,173_Exploring the impact of integrated design on employee learning engagement in the ubiquitous learning context A deep learning-based hybrid multistage approach.pdf,True,True,False,174,,2025-10-15T11:10:06.133103
+174,174_(Re-)connecting with Nature in Urban Life Engaging with Wildlife via AI-powered Wearables.pdf,True,True,False,175,,2025-10-15T11:10:06.133105
+175,175_Society sync - Digitalize society management systems with artificial intelligence technologies.pdf,True,True,False,176,,2025-10-15T11:10:06.133107
+176,176_User Feedback Design in AI-Driven Mood Tracker Mobile Apps_(1).pdf,True,True,False,177,,2025-10-15T11:10:06.133109
+177,177_Boundary-Aware Supervoxel-Level Iteratively Refined Interactive 3D Image Segmentation With Multi-Agent Reinforcement Learning.pdf,True,True,False,178,,2025-10-15T11:10:06.133114
+178,178_AI driven human-computer interaction design framework of virtual environment based on comprehensive semantic data analysis with feature extraction.pdf,True,True,False,179,,2025-10-15T11:10:06.133117
+179,179_Conversations in the Cloud Crafting Harmony in AliCloud Computing Interaction Design.pdf,True,True,False,180,,2025-10-15T11:10:06.133119
+180,180_Vehicle Multi-sensory User Interaction Design Research Based on MINDS Methods.pdf,True,True,False,181,,2025-10-15T11:10:06.133121
+181,181_GANSpiration Balancing Targeted and Serendipitous Inspiration in User Interface Design with Style-Based Generative Adversarial Network.pdf,True,True,False,182,,2025-10-15T11:10:06.133123
+182,182_Enhancing Human-AI (H-AI) Collaboration On Design Tasks Using An Interactive TextVoice Artificial Intelligence (AI) Agent.pdf,True,True,False,183,,2025-10-15T11:10:06.133125
+183,183_Machine Learning Based User Interface Generation.pdf,True,True,False,184,,2025-10-15T11:10:06.133127
+184,184_Interaction Design With Multi-Objective Bayesian Optimization.pdf,True,True,False,185,,2025-10-15T11:10:06.133132
+185,185_A Checklist for the Usability Evaluation of Artificial Intelligence (AI) mHealth Applications Graphical User Interface.pdf,True,True,False,186,,2025-10-15T11:10:06.133150
+186,186_User emotion recognition and indoor space interaction design a CNN model optimized by multimodal weighted networks.pdf,True,True,False,187,,2025-10-15T11:10:06.133153
+187,187_AN EEG-BASED EMOTION RECOGNITION MODEL USING AN INTERACTION DESIGN FRAMEWORK AND DEEP LEARNING.pdf,True,True,False,188,,2025-10-15T11:10:06.133155
+189,189_The Application of Deep Learning for the Evaluation of User Interfaces.pdf,True,True,False,190,,2025-10-15T11:10:06.133157

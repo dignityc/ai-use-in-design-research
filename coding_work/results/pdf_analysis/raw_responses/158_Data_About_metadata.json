@@ -1,0 +1,11 @@
+{
+  "pdf_file": "158_A Novel User Emotional Interaction Design Model Using Long and Short-Term Memory Networks and Deep Learning.pdf",
+  "category": "Data About",
+  "timestamp": "2025-10-29T13:01:31.907400",
+  "parsing_success": true,
+  "parsing_methods_tried": [
+    "parse_json_response"
+  ],
+  "parsing_error": null,
+  "raw_response_file": "158_Data_About.txt"
+}

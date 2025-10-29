@@ -1,0 +1,32 @@
+# NLP Analysis Workflow Requirements
+
+# Core NLP Libraries
+bertopic==0.15.0
+sentence-transformers==2.2.2
+keybert==0.8.3
+spacy>=3.4.0
+
+# Machine Learning
+scikit-learn>=1.0.0
+umap-learn>=0.5.3
+hdbscan>=0.8.29
+
+# Visualization
+plotly>=5.11.0
+matplotlib>=3.5.0
+seaborn>=0.11.0
+networkx>=2.8.0
+
+# Data Processing
+pandas>=1.4.0
+numpy>=1.21.0
+
+# Optional: for advanced topic modeling
+transformers>=4.21.0
+torch>=1.12.0
+
+# Google Sheets API Integration
+gspread>=5.7.0
+google-auth>=2.16.0
+google-auth-oauthlib>=0.8.0
+google-auth-httplib2>=0.1.0

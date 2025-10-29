@@ -1,0 +1,2 @@
+﻿index,title,assigned_to,pdf_found,decision,reason,ai_method_found,design_task,has_empirical_study,sheets_updated,error,timestamp
+80,A Tool to Facilitate the Cross-Cultural Design Process Using Deep Learning,J,True,Y,"The paper uses deep learning-based style transfer to directly support cross-cultural product design by automatically integrating cultural elements into design images, helping designers with idea generation and prototyping.",Deep models in CV,Cross-cultural product design and cultural element integration,True,True,,2025-10-16T11:11:46.817305

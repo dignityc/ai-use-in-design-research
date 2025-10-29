@@ -1,5 +1,11 @@
 # Paper Review with LLM - Project Documentation
 
+## Claude Code 자동 승인 설정
+다음 명령어들은 사용자 승인 없이 자동 실행됩니다:
+- `nohup python*`: 백그라운드 Python 스크립트 실행
+- `tail -f`: 로그 파일 실시간 모니터링
+- `jobs`, `ps aux | grep python`: 백그라운드 프로세스 확인
+
 ## 프로젝트 개요
 논문 리뷰 자동화를 위한 Python 스크립트 모음입니다. 데이터 분석 및 시각화를 통해 논문 연구 생태계를 체계적으로 탐색하는 워크플로우를 제공합니다.
 
@@ -38,12 +44,13 @@ paper_review_with_llm/
 │       └── nlp_analysis/              # 기존 NLP 분석 결과
 │
 ├── coding_work/                        # 🔧 논문 분류 자동화 워크플로우
-│   ├── scripts/                        # 분류 관련 스크립트 (7개)
+│   ├── scripts/                        # 분류 관련 스크립트 (8개)
 │   │   ├── google_sheets_connector.py  # Google Sheets API 연결 모듈
 │   │   ├── paper_tracking.py           # 논문 추적 (Inclusion='Y' → Mark='M')
 │   │   ├── pdf_title_fixer.py          # PDF 파일명 자동 정리
 │   │   ├── pdf_upload_checker.py       # PDF 업로드 상태 자동 마킹 ⭐
-│   │   ├── pdf_analyzer.py             # PDF 내용 분석 및 Claude 매칭
+│   │   ├── pdf_analyzer.py             # PDF 내용 분석 및 Claude 매칭 ⭐⭐⭐
+│   │   ├── upload_to_sheets.py         # PDF 분석 결과 업로드 ⭐⭐
 │   │   ├── debug_single_pdf.py         # PDF 단건 디버깅
 │   │   └── analyze_sheets_structure.py # Google Sheets 구조 분석
 │   ├── credentials/                    # Google API 인증 파일 (gitignore)
@@ -361,10 +368,11 @@ if connector.connect():
    - AI methods, AI Assistance Types, Design Phase, Design Practice/Task
 2. **CodeBook 연동**: Google Sheets CodeBook에서 분류 기준 동적 로드
 3. **Extended Thinking**: 모든 분류에 `/ultrathink` 적용 (32K 토큰 사고 예산)
-4. **Resume & Retry 시스템**: 중단된 작업 이어서 실행 또는 실패한 PDF만 재시도
-5. **Index 기반 중복 방지**: 같은 PDF를 여러 번 분석해도 CSV에 1행만 유지
-6. **즉시 저장**: 각 PDF 처리 후 즉시 CSV 저장 (중단 시 손실 없음)
-7. **자동 백업**: progress.json 수정 시 자동 백업 생성
+4. **처리 개수 제어**: 필수 인자로 처리할 PDF 개수 지정 (예: `python3 pdf_analyzer.py 5`)
+5. **자동 Resume 시스템**: 기본 동작이 이어서 실행 (처리된 PDF 자동 건너뛰기)
+6. **Index 기반 중복 방지**: 같은 PDF를 여러 번 분석해도 CSV에 1행만 유지
+7. **즉시 저장**: 각 PDF 처리 후 즉시 CSV 저장 (중단 시 손실 없음)
+8. **자동 백업**: progress.json 수정 시 자동 백업 생성
 
 **데이터 흐름**:
 ```
@@ -377,22 +385,25 @@ Google Sheets (3rd Screening)
   → progress.json 업데이트
 ```
 
-**명령줄 옵션**:
+**명령줄 옵션** (처리 개수 필수, 기본: 자동 이어서 실행):
 ```bash
-# 처음 실행 (또는 일반 실행)
-python3 pdf_analyzer.py
+# 5개 처리 (자동으로 이어서 실행)
+python3 pdf_analyzer.py 5
 
-# 중단된 작업 이어서 실행 (31/54 완료 → 23개만 추가 처리)
-python3 pdf_analyzer.py --resume
+# 다시 실행 → 다음 5개 자동 처리 (6-10번째)
+python3 pdf_analyzer.py 5
 
-# 실패한 PDF만 재시도
-python3 pdf_analyzer.py --retry-failed
+# 다시 실행 → 다음 10개 자동 처리 (11-20번째)
+python3 pdf_analyzer.py 10
 
-# 진행 상태 초기화 후 새로 시작
-python3 pdf_analyzer.py --reset
+# 진행 상태 초기화 후 처음부터 20개 시작
+python3 pdf_analyzer.py 20 --reset
 
-# 백그라운드 실행
-nohup python3 pdf_analyzer.py --resume > ../logs/pdf_analyzer_$(date +%Y%m%d_%H%M%S).log 2>&1 &
+# 실패한 PDF 중 3개만 재시도
+python3 pdf_analyzer.py 3 --retry-failed
+
+# 백그라운드 실행 (10개 처리)
+nohup python3 pdf_analyzer.py 10 > ../logs/pdf_analyzer_$(date +%Y%m%d_%H%M%S).log 2>&1 &
 ```
 
 **진행 상태 관리** (`progress.json`):
@@ -433,16 +444,78 @@ Index, Article Title, ..., Design Discipline, AI methods, ...
 - `coding_work/results/pdf_analysis/progress.json.backup` (자동 백업)
 
 **주요 개선사항** (2025-10-16 업데이트):
-- ✅ Resume 기능: 중단된 작업 이어서 실행 (처리된 PDF 건너뛰기)
-- ✅ Retry 기능: 실패한 PDF만 선별적으로 재시도
+- ✅ 처리 개수 필수화: 실수로 전체 처리 방지 (예: `python3 pdf_analyzer.py 5`)
+- ✅ 자동 Resume: 기본 동작이 이어서 실행 (처리된 PDF 자동 건너뛰기)
+- ✅ Retry 기능: 실패한 PDF만 선별적으로 재시도 (예: `python3 pdf_analyzer.py 3 --retry-failed`)
 - ✅ Index 기준 Upsert: 같은 PDF 재분석 시 자동 덮어쓰기 (중복 방지)
 - ✅ 즉시 저장: 각 PDF 처리 후 즉시 CSV 업데이트 (중단 시 손실 없음)
 - ✅ 자동 백업: progress.json 수정 전 항상 이전 상태 백업
 - ✅ Null byte 에러 수정: PDF 텍스트에서 `\x00` 자동 제거
 
-**실행**: `cd coding_work/scripts && python3 pdf_analyzer.py [--resume|--retry-failed|--reset]`
+**실행**: `cd coding_work/scripts && python3 pdf_analyzer.py <개수> [--reset|--retry-failed]`
 
-#### 5. debug_single_pdf.py - PDF 단건 디버깅
+#### 5. upload_to_sheets.py - PDF 분석 결과 Google Sheets 업로드 ⭐⭐
+**목적**: PDF 분석 결과를 Google Sheets의 "CodedPapers_2" 시트에 자동 업로드
+
+**핵심 기능**:
+1. **메타데이터 자동 병합**: Google Sheets "3rd Screening"에서 정확한 논문 메타데이터 가져오기
+   - Article Title, Author Full Names, Source Title, Publication Year, DOI Link
+   - Index 기반 자동 매칭 및 병합 (pandas merge)
+2. **Index 기반 Upsert**: 중복 방지 시스템
+   - 기존 Index 존재 시 → 행 덮어쓰기 (업데이트)
+   - 새로운 Index → 새 행 추가 (삽입)
+3. **Cell 메모 첨부**: 분류 근거 원문을 셀 노트로 첨부
+   - 7개 분류 컬럼에 reference_text를 호버 메모로 표시
+   - 깔끔한 스프레드시트 UI 유지하면서 상세 정보 제공
+4. **자동 헤더 관리**: 시트가 비어있거나 헤더 없을 경우 자동 생성
+
+**데이터 흐름**:
+```
+PDF 분석 결과 CSV (pdf_classifications.csv, pdf_references.csv)
+  → Google Sheets "3rd Screening"에서 메타데이터 fetch (Index 매칭)
+  → pandas DataFrame merge (left join)
+  → Index 기반 Upsert로 "CodedPapers_2" 시트 업데이트
+  → 각 분류 컬럼에 reference_text를 셀 노트로 첨부
+```
+
+**시트 구조** (15개 컬럼):
+```
+Index | Article Title | Author Full Names | Source Title | Publication Year | DOI Link |
+Design Discipline | Data About | Data Modality | AI methods |
+AI Assistance Types | Design Phase | Design Practice/Task | Notes | Questions
+```
+
+**주요 메서드**:
+- `fetch_metadata_from_sheets()`: Google Sheets에서 메타데이터 가져오기
+- `load_csv_data()`: CSV 로드 + 메타데이터 병합
+- `find_or_create_sheet()`: 시트 찾기 또는 생성 (헤더 자동 추가)
+- `upsert_data()`: Index 기반 Upsert 로직
+- `attach_cell_notes()`: 분류 근거를 셀 메모로 첨부
+
+**실행**:
+```bash
+cd coding_work/scripts
+python3 upload_to_sheets.py
+```
+
+**성공 예시**:
+```
+=== PDF 분석 결과 Google Sheets 업로드 ===
+✓ Google Sheets 연결 성공
+✓ 메타데이터 로드: 13개 Index
+✓ CSV 데이터 병합 완료
+✓ 'CodedPapers_2' 시트 준비 완료
+✓ 13개 논문 업데이트 완료 (Index 기준 Upsert)
+✓ 91개 셀 메모 첨부 완료
+```
+
+**주요 특징**:
+- **중복 방지**: 같은 PDF를 여러 번 업로드해도 행 1개만 유지
+- **메타데이터 정확성**: CSV NaN 값 대신 Google Sheets 원본 데이터 사용
+- **깔끔한 UI**: 분류 근거는 호버 메모로 숨김 (셀에 직접 표시 안 함)
+- **자동 복구**: 헤더 누락 시 자동 생성
+
+#### 6. debug_single_pdf.py - PDF 단건 디버깅
 **목적**: 특정 PDF 파일 1개만 분석하여 문제 진단
 - **기능**:
   - PDF 파일 단일 선택
@@ -451,7 +524,7 @@ Index, Article Title, ..., Design Discipline, AI methods, ...
   - 상세 에러 로그 출력
 - **실행**: `python coding_work/scripts/debug_single_pdf.py`
 
-#### 6. analyze_sheets_structure.py - Sheets 구조 분석
+#### 7. analyze_sheets_structure.py - Sheets 구조 분석
 **목적**: Google Sheets의 구조 및 데이터 현황 파악
 - **출력**:
   - 전체 시트 목록
@@ -460,7 +533,7 @@ Index, Article Title, ..., Design Discipline, AI methods, ...
   - 통계 정보 (행/열 개수)
 - **실행**: `python coding_work/scripts/analyze_sheets_structure.py`
 
-#### 7. google_sheets_connector.py - Google Sheets API 연결
+#### 8. google_sheets_connector.py - Google Sheets API 연결
 **역할**: 모든 스크립트의 기반 모듈
 - **클래스**: `GoogleSheetsConnector`
 - **주요 메서드**:
@@ -472,6 +545,100 @@ Index, Article Title, ..., Design Discipline, AI methods, ...
   - `add_new_row()`: 새 행 추가
 - **로깅**: `coding_work/logs/google_sheets.log`
 
+### 📋 최신 개선사항 (2025-10-17)
+
+#### PDF 분석기 구조화된 출력 개선
+**목적**: Claude CLI를 통한 분류 결과의 정확성과 일관성 향상
+
+**주요 개선사항**:
+
+1. **Enum 기반 검증 시스템** (`pdf_analyzer.py`)
+   - CodeBook에서 허용된 옵션만 추출 (description 제거, label만 사용)
+   - `validate_classification()` 함수로 분류 결과 검증
+   - Fuzzy matching (`difflib.get_close_matches()`) 폴백 지원
+   - 잘못된 분류 자동 수정 또는 기본값 사용
+
+2. **강화된 프롬프트 구조**
+   - JSON Schema 명시: 각 필드 타입 및 최소 길이 지정
+   - EXACT 텍스트 복사 규칙: "MUST copy EXACT text character-by-character"
+   - Enum 옵션 리스트: 선택 가능한 옵션만 번호와 함께 제시
+   - 출력 형식 예제: 정확한 JSON 구조 제공
+
+3. **Multiple 선택 유연한 포맷**
+   - 적용 카테고리:
+     - Design Discipline: "Multiple [UI/UX Design, Service Design]"
+     - Data Modality: "Multimodal [Image, Text, Audio]"
+     - AI Assistance Types: "Multiple [Design generation, Prediction]"
+   - 검증 로직: Multiple 키워드로 시작하면 괄호 안 내용 허용
+   - 최소 2개 이상 옵션 조합 명시
+
+4. **CodeBook 데이터 품질 개선** (`source/CodeBook.csv`)
+   - 오타 수정: "Insudtrial" → "Industrial Design"
+   - 오타 수정: "Auido" → "Audio"
+
+**기술적 구현**:
+
+```python
+# MULTIPLE_CATEGORIES 상수 정의
+self.MULTIPLE_CATEGORIES = {
+    "Design Discipline": "Multiple",
+    "Data Modality": "Multimodal",
+    "AI Assistance Types (Lee and Kim, 2025)": "Multiple"
+}
+
+# 검증 함수
+def validate_classification(self, result: Dict, allowed_options: List[str], category: str) -> str:
+    classification = result.get("classification", "")
+
+    # Multiple/Multimodal 유연한 검증
+    if category in self.MULTIPLE_CATEGORIES:
+        multiple_keyword = self.MULTIPLE_CATEGORIES[category]
+        if classification.startswith(multiple_keyword):
+            return classification  # "Multiple [Option1, Option2]" 형식 허용
+
+    # Exact match
+    if classification in allowed_options:
+        return classification
+
+    # Fuzzy matching 폴백
+    matches = get_close_matches(classification, allowed_options, n=1, cutoff=0.6)
+    return matches[0] if matches else allowed_options[0]
+```
+
+**프롬프트 구조 개선**:
+```
+CLASSIFICATION RULES:
+1. You MUST select EXACTLY ONE option from the list below
+2. DO NOT modify, combine, or paraphrase the option text
+3. Copy the EXACT text character-by-character from the list
+
+AVAILABLE OPTIONS (choose EXACTLY one):
+1. "Industrial Design/ Engineering design/ product design"
+2. "Service Design /System Design/ Business design"
+3. "UI/UX Design"
+4. "Multiple"
+
+SPECIAL RULE for "Multiple":
+- If you select "Multiple", you MUST specify which options are combined
+- Format: "Multiple [Option1, Option2, ...]"
+- Example: "Multiple [UI/UX Design, Service Design]"
+- Only list the specific options that apply (minimum 2)
+
+JSON OUTPUT SCHEMA (STRICT):
+{
+  "category": "Design Discipline",
+  "classification": <MUST be EXACT text from options above>,
+  "reasoning": <string, min 10 chars>,
+  "reference_text": <EXACT sentence(s) from paper text, min 20 chars>
+}
+```
+
+**효과**:
+- ✅ 분류 정확도 향상: Enum 기반 검증으로 오분류 방지
+- ✅ 일관된 출력: JSON Schema 강제로 파싱 에러 감소
+- ✅ 세밀한 분류: Multiple 선택 시 구체적 조합 추적 가능
+- ✅ 자동 복구: Fuzzy matching으로 유사 옵션 자동 매칭
+
 ### 활용 가능한 작업들
 1. **미분류 논문 자동 분류** (375개)
 2. **Abstract 기반 AI 자동 분류**
@@ -480,6 +647,7 @@ Index, Article Title, ..., Design Discipline, AI methods, ...
 5. **분류 결과 통계 및 리포팅**
 6. **PDF 파일명 자동 정리** (Index 기반)
 7. **PDF 업로드 상태 자동 마킹** (Papers 폴더 → Google Sheets 동기화) ⭐
+8. **PDF 분석 결과 자동 업로드** (CSV → Google Sheets, 메타데이터 병합, 셀 메모) ⭐⭐
 
 ## 📄 연구 리포트
 
@@ -532,6 +700,11 @@ AI 방법론 진화를 시각화한 다이어그램 및 차트
 
 ---
 
-**최종 업데이트**: 2025년 10월 15일
-**프로젝트 상태**: 분석 시스템 완성, 논문 분류 58.3% 진행, PDF 업로드 추적 시스템 추가
-**문서 버전**: v2.1
+**최종 업데이트**: 2025년 10월 17일
+**프로젝트 상태**:
+- 분석 시스템 완성
+- 논문 분류 진행 중 (13편 완료)
+- PDF 분석기 구조화된 출력 개선 완료 (Enum 검증, Multiple 포맷)
+- Google Sheets 자동 업로드 시스템 구축 완료 (메타데이터 병합, 셀 메모)
+
+**문서 버전**: v2.3

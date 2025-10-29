@@ -1,0 +1,725 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Evolution of AI Interaction Modes - Presentation</title>
+    
+    <!-- Reveal.js CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@4.3.1/dist/reveal.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@4.3.1/dist/theme/white.css">
+    
+    <style>
+        :root {
+            /* Spacing Variables - 프레젠테이션에 최적화된 간격 */
+            --era-spacing: 2.5rem;         /* 시대 간 간격 */
+            --box-spacing: 1rem;           /* 프로세스 박스 간 간격 */
+            --box-padding: 1rem;           /* 박스 내부 여백 */
+            --revolution-spacing: 1.5rem;  /* 혁명 레이블 간격 */
+            
+            /* Color Scheme - 원본과 동일한 색상 */
+            --traditional-bg: #fff3e0;
+            --traditional-border: #ffb74d;
+            --deep-bg: #e8f5e9;
+            --deep-border: #81c784;
+            --genai-bg: #f3e5f5;
+            --genai-border: #ba68c8;
+            --revolution-bg: #ffeef0;
+            --revolution-border: #e91e63;
+            
+            /* Typography - 화면에 맞게 크기 조정 */
+            --font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            --font-size-base: 13px;
+            --font-size-title: 16px;
+            --font-size-small: 11px;
+        }
+
+        /* Reveal.js 기본 스타일 오버라이드 */
+        .reveal {
+            font-family: var(--font-family);
+        }
+
+        .reveal .slides {
+            text-align: left;
+        }
+
+        .reveal .slides > section {
+            height: 100vh;
+            padding: 2rem;
+        }
+
+        /* 슬라이드 배경 */
+        .reveal .slide-background {
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+        }
+
+        /* 메인 타이틀 */
+        .slide-title {
+            text-align: center;
+            font-size: 2.2rem;
+            margin-bottom: 1.5rem;
+            color: #2c3e50;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+            font-weight: bold;
+        }
+
+        /* Evolution 다이어그램 컨테이너 */
+        .evolution-diagram {
+            display: grid;
+            gap: var(--era-spacing);
+            position: relative;
+            height: calc(100vh - 200px);
+            overflow-y: auto;
+            padding: 1rem;
+        }
+
+        /* Revolution Labels */
+        .revolution-labels {
+            position: absolute;
+            left: -180px;
+            top: 50px;
+            height: calc(100% - 100px);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-around;
+            padding: var(--revolution-spacing) 0;
+            z-index: 10;
+        }
+
+        .revolution-label {
+            background: var(--revolution-bg);
+            border: 2px solid var(--revolution-border);
+            border-radius: 12px;
+            padding: 0.8rem;
+            font-weight: bold;
+            font-size: var(--font-size-small);
+            text-align: center;
+            max-width: 160px;
+            box-shadow: 0 4px 8px rgba(233, 30, 99, 0.2);
+            animation: slideInLeft 1s ease-out;
+            position: relative;
+        }
+
+        .revolution-label:nth-child(1) {
+            animation-delay: 0.5s;
+        }
+
+        .revolution-label:nth-child(2) {
+            animation-delay: 1s;
+        }
+
+        .revolution-label::after {
+            content: '';
+            position: absolute;
+            right: -10px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 0;
+            height: 0;
+            border-left: 10px solid var(--revolution-border);
+            border-top: 6px solid transparent;
+            border-bottom: 6px solid transparent;
+        }
+
+        /* Era Containers */
+        .era-container {
+            border-radius: 16px;
+            padding: 1.5rem;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.1);
+            position: relative;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            animation: fadeInUp 1s ease-out;
+        }
+
+        .era-container:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 32px rgba(0,0,0,0.15);
+        }
+
+        .era-container:nth-child(2) { animation-delay: 0.3s; }
+        .era-container:nth-child(3) { animation-delay: 0.6s; }
+        .era-container:nth-child(4) { animation-delay: 0.9s; }
+
+        .traditional-ml { 
+            background: var(--traditional-bg);
+            border: 3px solid var(--traditional-border);
+        }
+
+        .deep-learning { 
+            background: var(--deep-bg);
+            border: 3px solid var(--deep-border);
+        }
+
+        .generative-ai { 
+            background: var(--genai-bg);
+            border: 3px solid var(--genai-border);
+        }
+
+        .era-title {
+            font-size: var(--font-size-title);
+            font-weight: bold;
+            margin-bottom: 1rem;
+            text-align: center;
+            color: #2c3e50;
+        }
+
+        .process-flow {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: var(--box-spacing);
+            flex-wrap: wrap;
+        }
+
+        .process-box {
+            flex: 1;
+            min-width: 180px;
+            background: rgba(255, 255, 255, 0.9);
+            border: 2px solid rgba(0,0,0,0.1);
+            border-radius: 12px;
+            padding: var(--box-padding);
+            text-align: center;
+            font-size: var(--font-size-base);
+            font-weight: 500;
+            line-height: 1.4;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .process-box::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+            transition: left 0.5s ease;
+        }
+
+        .process-box:hover::before {
+            left: 100%;
+        }
+
+        .process-box:hover {
+            transform: scale(1.05);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+            background: rgba(255, 255, 255, 1);
+        }
+
+        .process-box h4 {
+            font-size: 14px;
+            margin-bottom: 0.4rem;
+            color: #2c3e50;
+        }
+
+        .process-box ul {
+            list-style: none;
+            font-size: var(--font-size-small);
+            color: #555;
+        }
+
+        .process-box li {
+            margin-bottom: 0.2rem;
+        }
+
+        .process-box li::before {
+            content: "• ";
+            color: #666;
+            font-weight: bold;
+        }
+
+        /* Arrows */
+        .arrow {
+            width: 30px;
+            height: 20px;
+            fill: #666;
+            transition: fill 0.3s ease;
+            flex-shrink: 0;
+        }
+
+        .arrow:hover {
+            fill: #333;
+        }
+
+        /* Era Connection Arrows */
+        .era-connection {
+            display: flex;
+            justify-content: center;
+            margin: 0.5rem 0;
+        }
+
+        .era-arrow {
+            width: 40px;
+            height: 30px;
+            fill: #999;
+            animation: bounce 2s infinite;
+        }
+
+        /* 프레젠테이션용 반응형 디자인 */
+        @media (max-width: 1200px) {
+            .revolution-labels {
+                position: static;
+                flex-direction: row;
+                justify-content: center;
+                margin-bottom: 1rem;
+                gap: 1rem;
+                height: auto;
+            }
+            
+            .revolution-label::after {
+                display: none;
+            }
+
+            .evolution-diagram {
+                height: auto;
+                max-height: calc(100vh - 150px);
+            }
+        }
+
+        @media (max-width: 900px) {
+            :root {
+                --era-spacing: 1.5rem;
+                --box-spacing: 0.8rem;
+                --box-padding: 0.8rem;
+            }
+
+            .process-flow {
+                flex-direction: column;
+            }
+
+            .process-box {
+                min-width: unset;
+                width: 100%;
+                max-width: 300px;
+            }
+
+            .arrow {
+                transform: rotate(90deg);
+                width: 20px;
+                height: 15px;
+            }
+
+            .slide-title {
+                font-size: 1.8rem;
+                margin-bottom: 1rem;
+            }
+
+            .evolution-diagram {
+                padding: 0.5rem;
+            }
+        }
+
+        /* Reveal.js 전용 애니메이션 */
+        .reveal .slides section[data-state="present"] .era-container {
+            animation: slideInFromBottom 0.8s ease-out;
+        }
+
+        .reveal .slides section[data-state="present"] .revolution-label {
+            animation: slideInFromLeft 0.6s ease-out;
+        }
+
+        /* 키 인사이트 섹션 (숨김 처리, 필요시 두 번째 슬라이드로 분리 가능) */
+        .insights-section {
+            display: none; /* 1장 슬라이드를 위해 숨김 */
+        }
+
+        /* Custom Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes slideInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes slideInFromBottom {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes slideInFromLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {
+                transform: translateY(0);
+            }
+            40% {
+                transform: translateY(-10px);
+            }
+            60% {
+                transform: translateY(-5px);
+            }
+        }
+
+        /* 툴팁 스타일 (프레젠테이션용 간소화) */
+        .tooltip {
+            position: absolute;
+            background: rgba(0,0,0,0.9);
+            color: white;
+            padding: 0.4rem 0.8rem;
+            border-radius: 6px;
+            font-size: 10px;
+            white-space: nowrap;
+            z-index: 1000;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s ease;
+            top: -35px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .process-box:hover .tooltip {
+            opacity: 1;
+        }
+
+        /* 프레젠테이션 모드 최적화 */
+        .reveal .progress {
+            color: var(--traditional-border);
+        }
+
+        .reveal .controls {
+            color: #666;
+        }
+    </style>
+</head>
+<body>
+    <div class="reveal">
+        <div class="slides">
+            <!-- Main Slide -->
+            <section data-background-gradient="linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%)">
+                <h1 class="slide-title">🤖 Evolution of AI Interaction Modes</h1>
+                
+                <div class="evolution-diagram">
+                    <!-- Revolution Labels -->
+                    <div class="revolution-labels">
+                        <div class="revolution-label">🔄 Feature Engineering<br/>Automation</div>
+                        <div class="revolution-label">🚀 Generalization Performance<br/>Revolution</div>
+                    </div>
+
+                    <!-- Traditional ML Era -->
+                    <div class="era-container traditional-ml">
+                        <h2 class="era-title">🔢 Traditional ML (Pre-2010s)</h2>
+                        <div class="process-flow">
+                            <div class="process-box">
+                                <h4>📊 Structured Inputs</h4>
+                                <ul>
+                                    <li>Numerical data only</li>
+                                    <li>Manual feature engineering</li>
+                                    <li>Clean, preprocessed data</li>
+                                </ul>
+                                <div class="tooltip">Extensive data prep required</div>
+                            </div>
+
+                            <svg class="arrow" viewBox="0 0 40 20">
+                                <path d="M0 10 L30 10 M25 5 L30 10 L25 15" stroke="#666" stroke-width="2" fill="none"/>
+                            </svg>
+
+                            <div class="process-box">
+                                <h4>⚙️ Processing</h4>
+                                <ul>
+                                    <li>Statistical algorithms</li>
+                                    <li>Domain expert required</li>
+                                    <li>Complex pipeline setup</li>
+                                </ul>
+                                <div class="tooltip">Deep statistical knowledge needed</div>
+                            </div>
+
+                            <svg class="arrow" viewBox="0 0 40 20">
+                                <path d="M0 10 L30 10 M25 5 L30 10 L25 15" stroke="#666" stroke-width="2" fill="none"/>
+                            </svg>
+
+                            <div class="process-box">
+                                <h4>📈 Numeric Outputs</h4>
+                                <ul>
+                                    <li>Probability scores</li>
+                                    <li>Cluster IDs</li>
+                                    <li>Abstract results</li>
+                                </ul>
+                                <div class="tooltip">Results need interpretation</div>
+                            </div>
+
+                            <svg class="arrow" viewBox="0 0 40 20">
+                                <path d="M0 10 L30 10 M25 5 L30 10 L25 15" stroke="#666" stroke-width="2" fill="none"/>
+                            </svg>
+
+                            <div class="process-box">
+                                <h4>👨‍💼 Users: Specialists Only</h4>
+                                <ul>
+                                    <li>Data scientists</li>
+                                    <li>Statisticians</li>
+                                    <li>Domain experts</li>
+                                </ul>
+                                <div class="tooltip">Limited to trained professionals</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Era Connection Arrow -->
+                    <div class="era-connection">
+                        <svg class="era-arrow" viewBox="0 0 60 40">
+                            <path d="M30 5 L30 25 M25 20 L30 25 L35 20" stroke="#999" stroke-width="3" fill="none"/>
+                        </svg>
+                    </div>
+
+                    <!-- Deep Learning Era -->
+                    <div class="era-container deep-learning">
+                        <h2 class="era-title">🧠 Deep Learning (2010s)</h2>
+                        <div class="process-flow">
+                            <div class="process-box">
+                                <h4>🎯 Raw Data Inputs</h4>
+                                <ul>
+                                    <li>Images, text, audio</li>
+                                    <li>End-to-end learning</li>
+                                    <li>Minimal preprocessing</li>
+                                </ul>
+                                <div class="tooltip">Handles diverse data types</div>
+                            </div>
+
+                            <svg class="arrow" viewBox="0 0 40 20">
+                                <path d="M0 10 L30 10 M25 5 L30 10 L25 15" stroke="#666" stroke-width="2" fill="none"/>
+                            </svg>
+
+                            <div class="process-box">
+                                <h4>🔄 Processing</h4>
+                                <ul>
+                                    <li>Neural networks</li>
+                                    <li>Automatic feature extraction</li>
+                                    <li>Reduced expert dependency</li>
+                                </ul>
+                                <div class="tooltip">Learns features automatically</div>
+                            </div>
+
+                            <svg class="arrow" viewBox="0 0 40 20">
+                                <path d="M0 10 L30 10 M25 5 L30 10 L25 15" stroke="#666" stroke-width="2" fill="none"/>
+                            </svg>
+
+                            <div class="process-box">
+                                <h4>🏷️ Interpretable Outputs</h4>
+                                <ul>
+                                    <li>Object labels</li>
+                                    <li>Text translations</li>
+                                    <li>Human-readable results</li>
+                                </ul>
+                                <div class="tooltip">Easily understood outputs</div>
+                            </div>
+
+                            <svg class="arrow" viewBox="0 0 40 20">
+                                <path d="M0 10 L30 10 M25 5 L30 10 L25 15" stroke="#666" stroke-width="2" fill="none"/>
+                            </svg>
+
+                            <div class="process-box">
+                                <h4>👨‍💻 Users: Technical Specialists</h4>
+                                <ul>
+                                    <li>ML engineers</li>
+                                    <li>AI researchers</li>
+                                    <li>Tech-savvy practitioners</li>
+                                </ul>
+                                <div class="tooltip">Broader technical community</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Era Connection Arrow -->
+                    <div class="era-connection">
+                        <svg class="era-arrow" viewBox="0 0 60 40">
+                            <path d="M30 5 L30 25 M25 20 L30 25 L35 20" stroke="#999" stroke-width="3" fill="none"/>
+                        </svg>
+                    </div>
+
+                    <!-- Generative AI Era -->
+                    <div class="era-container generative-ai">
+                        <h2 class="era-title">🤖 Generative AI (2020s+)</h2>
+                        <div class="process-flow">
+                            <div class="process-box">
+                                <h4>💬 Natural Communication</h4>
+                                <ul>
+                                    <li>Conversational prompts</li>
+                                    <li>Multimodal inputs</li>
+                                    <li>Human-like interaction</li>
+                                </ul>
+                                <div class="tooltip">Talk naturally like to humans</div>
+                            </div>
+
+                            <svg class="arrow" viewBox="0 0 40 20">
+                                <path d="M0 10 L30 10 M25 5 L30 10 L25 15" stroke="#666" stroke-width="2" fill="none"/>
+                            </svg>
+
+                            <div class="process-box">
+                                <h4>✨ Processing</h4>
+                                <ul>
+                                    <li>Large language models</li>
+                                    <li>Natural language understanding</li>
+                                    <li>Context-aware responses</li>
+                                </ul>
+                                <div class="tooltip">Understands context and nuance</div>
+                            </div>
+
+                            <svg class="arrow" viewBox="0 0 40 20">
+                                <path d="M0 10 L30 10 M25 5 L30 10 L25 15" stroke="#666" stroke-width="2" fill="none"/>
+                            </svg>
+
+                            <div class="process-box">
+                                <h4>🎨 Creative Outputs</h4>
+                                <ul>
+                                    <li>Generated text</li>
+                                    <li>Created images</li>
+                                    <li>Natural conversations</li>
+                                </ul>
+                                <div class="tooltip">Creates new content</div>
+                            </div>
+
+                            <svg class="arrow" viewBox="0 0 40 20">
+                                <path d="M0 10 L30 10 M25 5 L30 10 L25 15" stroke="#666" stroke-width="2" fill="none"/>
+                            </svg>
+
+                            <div class="process-box">
+                                <h4>🌍 Users: Everyone</h4>
+                                <ul>
+                                    <li>General public</li>
+                                    <li>Domain experts</li>
+                                    <li>Non-technical users</li>
+                                </ul>
+                                <div class="tooltip">Accessible to anyone</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 하단에 간단한 인사이트 추가 -->
+                <div style="position: absolute; bottom: 20px; left: 50%; transform: translateX(-50%); text-align: center; font-style: italic; color: #666; background: rgba(255,255,255,0.9); padding: 1rem; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.1);">
+                    <p><strong>Key Evolution:</strong> AI learning to "speak" in increasingly human terms, from numbers → labels → conversations</p>
+                </div>
+            </section>
+        </div>
+    </div>
+
+    <!-- Reveal.js JavaScript -->
+    <script src="https://cdn.jsdelivr.net/npm/reveal.js@4.3.1/dist/reveal.js"></script>
+    
+    <script>
+        // Reveal.js 초기화
+        Reveal.initialize({
+            hash: true,
+            controls: true,
+            progress: true,
+            keyboard: true,
+            touch: true,
+            loop: false,
+            rtl: false,
+            navigationMode: 'default',
+            shuffle: false,
+            fragments: true,
+            fragmentInURL: true,
+            embedded: false,
+            help: true,
+            pause: true,
+            showNotes: false,
+            autoPlayMedia: null,
+            preloadIframes: null,
+            autoAnimate: true,
+            autoAnimateMatcher: null,
+            autoAnimateEasing: 'ease',
+            autoAnimateDuration: 1.0,
+            autoAnimateUnmatched: true,
+            autoSlide: 0,
+            autoSlideStoppable: true,
+            autoSlideMethod: null,
+            defaultTiming: null,
+            mouseWheel: false,
+            previewLinks: false,
+            postMessage: true,
+            postMessageEvents: false,
+            focusBodyOnPageVisibilityChange: true,
+            transition: 'slide',
+            transitionSpeed: 'default',
+            backgroundTransition: 'fade',
+            parallaxBackgroundImage: '',
+            parallaxBackgroundSize: '',
+            parallaxBackgroundRepeat: '',
+            parallaxBackgroundPosition: '',
+            parallaxBackgroundHorizontal: null,
+            parallaxBackgroundVertical: null,
+            width: '100%',
+            height: '100%',
+            margin: 0.04,
+            minScale: 0.2,
+            maxScale: 2.0,
+            disableLayout: false,
+
+            // 플러그인 설정
+            plugins: []
+        });
+
+        // 커스텀 인터랙션 추가
+        document.addEventListener('DOMContentLoaded', function() {
+            // Process box 호버 효과 강화
+            const processBoxes = document.querySelectorAll('.process-box');
+            processBoxes.forEach(box => {
+                box.addEventListener('mouseenter', function() {
+                    this.style.transform = 'scale(1.05) rotate(1deg)';
+                });
+                
+                box.addEventListener('mouseleave', function() {
+                    this.style.transform = 'scale(1) rotate(0deg)';
+                });
+
+                // 클릭 시 펄스 효과
+                box.addEventListener('click', function() {
+                    this.style.animation = 'none';
+                    setTimeout(() => {
+                        this.style.animation = 'fadeInUp 0.5s ease-out';
+                    }, 10);
+                });
+            });
+
+            // 키보드 단축키 안내
+            document.addEventListener('keydown', function(e) {
+                if (e.key === '?' || e.key === 'h') {
+                    alert(`
+🎮 Presentation Controls:
+• Space/Arrow Keys: Navigate
+• F: Fullscreen
+• ESC: Overview/Exit
+• S: Speaker notes
+• B: Blackout screen
+• ?: Help
+                    `);
+                }
+            });
+        });
+    </script>
+</body>
+</html>

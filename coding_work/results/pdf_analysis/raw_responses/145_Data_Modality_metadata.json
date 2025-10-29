@@ -1,0 +1,11 @@
+{
+  "pdf_file": "145_Decision-Making with Probabilistic Reasoning in Engineering Design.pdf",
+  "category": "Data Modality",
+  "timestamp": "2025-10-29T12:55:54.745930",
+  "parsing_success": true,
+  "parsing_methods_tried": [
+    "parse_json_response"
+  ],
+  "parsing_error": null,
+  "raw_response_file": "145_Data_Modality.txt"
+}

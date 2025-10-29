@@ -1,0 +1,11 @@
+{
+  "pdf_file": "125_Machine learning-based design support system for the prediction of heterogeneous machine parameters in industry 4.0.pdf",
+  "category": "AI Assistance Types (Lee and Kim, 2025)",
+  "timestamp": "2025-10-29T13:06:13.557795",
+  "parsing_success": true,
+  "parsing_methods_tried": [
+    "parse_json_response"
+  ],
+  "parsing_error": null,
+  "raw_response_file": "125_AI_Assistance_Types_Lee_and_Kim,_2025.txt"
+}

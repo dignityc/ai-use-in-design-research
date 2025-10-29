@@ -1,0 +1,11 @@
+{
+  "pdf_file": "115_Data-driven multi-objective affective product design integrating three-dimensional form and color.pdf",
+  "category": "Design Discipline",
+  "timestamp": "2025-10-29T12:38:57.622480",
+  "parsing_success": true,
+  "parsing_methods_tried": [
+    "parse_json_response"
+  ],
+  "parsing_error": null,
+  "raw_response_file": "115_Design_Discipline.txt"
+}

@@ -1,0 +1,11 @@
+{
+  "pdf_file": "148_Integrating and navigating engineering design decision-related knowledge using decision knowledge graph.pdf",
+  "category": "Data Modality",
+  "timestamp": "2025-10-29T12:31:52.394261",
+  "parsing_success": true,
+  "parsing_methods_tried": [
+    "parse_json_response"
+  ],
+  "parsing_error": null,
+  "raw_response_file": "148_Data_Modality.txt"
+}

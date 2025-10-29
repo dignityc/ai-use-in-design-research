@@ -1,0 +1,2 @@
+﻿index,title,assigned_to,pdf_found,decision,reason,ai_method_found,design_task,has_empirical_study,sheets_updated,error,timestamp
+101,How to obtain customer requirements for each stage of the product life cycle from online reviews: Using mobile phones as an example,J,True,N,"The AI extracts and analyzes customer requirements from online reviews to provide insights for designers, but does not directly generate, optimize, or create design outputs. This is indirect support similar to data mining/analysis.",None,None,True,False,,2025-10-14T14:38:54.729885

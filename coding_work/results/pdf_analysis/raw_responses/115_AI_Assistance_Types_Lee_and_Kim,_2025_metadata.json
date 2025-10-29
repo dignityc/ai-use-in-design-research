@@ -1,0 +1,11 @@
+{
+  "pdf_file": "115_Data-driven multi-objective affective product design integrating three-dimensional form and color.pdf",
+  "category": "AI Assistance Types (Lee and Kim, 2025)",
+  "timestamp": "2025-10-29T12:40:53.914586",
+  "parsing_success": true,
+  "parsing_methods_tried": [
+    "parse_json_response"
+  ],
+  "parsing_error": null,
+  "raw_response_file": "115_AI_Assistance_Types_Lee_and_Kim,_2025.txt"
+}
