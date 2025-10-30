@@ -1,0 +1,11 @@
+{
+  "pdf_file": "99_DEEP LEARNING-BASED HAND-DRAWN ILLUSTRATION IN PACKAGING DESIGN OF CULTURAL AND CREATIVE PRODUCTS.pdf",
+  "category": "Design Phase",
+  "timestamp": "2025-10-29T21:16:05.107498",
+  "parsing_success": true,
+  "parsing_methods_tried": [
+    "parse_json_response"
+  ],
+  "parsing_error": null,
+  "raw_response_file": "99_Design_Phase.txt"
+}

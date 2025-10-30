@@ -1,0 +1,11 @@
+{
+  "pdf_file": "150_Configuration-Based Smart Customization Service A Multitask Learning Approach.pdf",
+  "category": "Design Phase",
+  "timestamp": "2025-10-29T21:03:09.920330",
+  "parsing_success": true,
+  "parsing_methods_tried": [
+    "parse_json_response"
+  ],
+  "parsing_error": null,
+  "raw_response_file": "150_Design_Phase.txt"
+}

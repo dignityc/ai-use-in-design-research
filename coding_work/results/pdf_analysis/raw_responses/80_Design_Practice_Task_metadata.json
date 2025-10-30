@@ -1,0 +1,11 @@
+{
+  "pdf_file": "80_A Tool to Facilitate the Cross-Cultural Design Process Using Deep Learning.pdf",
+  "category": "Design Practice/Task",
+  "timestamp": "2025-10-29T21:06:41.709879",
+  "parsing_success": true,
+  "parsing_methods_tried": [
+    "parse_json_response"
+  ],
+  "parsing_error": null,
+  "raw_response_file": "80_Design_Practice_Task.txt"
+}

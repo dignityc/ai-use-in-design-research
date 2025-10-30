@@ -1,0 +1,11 @@
+{
+  "pdf_file": "91_Using Online Customer Reviews to Classify, Predict, and Learn About Domestic Robot Failures.pdf",
+  "category": "Design Practice/Task",
+  "timestamp": "2025-10-29T21:13:47.665024",
+  "parsing_success": true,
+  "parsing_methods_tried": [
+    "parse_json_response"
+  ],
+  "parsing_error": null,
+  "raw_response_file": "91_Design_Practice_Task.txt"
+}

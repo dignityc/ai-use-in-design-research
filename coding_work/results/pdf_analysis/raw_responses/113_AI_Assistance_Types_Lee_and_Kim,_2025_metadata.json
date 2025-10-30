@@ -1,0 +1,11 @@
+{
+  "pdf_file": "113_A cognitive analysis-based key concepts derivation approach for product design.pdf",
+  "category": "AI Assistance Types (Lee and Kim, 2025)",
+  "timestamp": "2025-10-29T20:56:21.129010",
+  "parsing_success": true,
+  "parsing_methods_tried": [
+    "parse_json_response"
+  ],
+  "parsing_error": null,
+  "raw_response_file": "113_AI_Assistance_Types_Lee_and_Kim,_2025.txt"
+}

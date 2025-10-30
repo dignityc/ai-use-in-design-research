@@ -289,6 +289,7 @@ class PDFDataUploader:
         print(f"🔄 Index 기준 Upsert 중... (총 {len(classifications_df)}개)")
 
         updated_indices = {}  # Index → 행 번호 매핑
+        appended_count = 0  # 새로 추가된 행 개수
 
         for idx, row in classifications_df.iterrows():
             paper_index = str(row['Index']).strip()
@@ -309,9 +310,11 @@ class PDFDataUploader:
             else:
                 # 새 행 추가
                 sheet.append_row(row_data)
+                appended_count += 1
 
-                # 새로 추가된 행 번호 계산 (기존 행 개수 + 1)
-                new_row_num = len(existing_indices) + idx + 2  # 2 = 헤더(1) + 0-based index 보정
+                # 새로 추가된 행 번호 계산: 기존 최대 행 번호 + 추가된 행 개수
+                max_existing_row = max(existing_indices.values()) if existing_indices else 1
+                new_row_num = max_existing_row + appended_count
 
                 print(f"   [{idx+1}/{len(classifications_df)}] Index={paper_index} → 새 행 {new_row_num} 추가")
                 updated_indices[paper_index] = new_row_num

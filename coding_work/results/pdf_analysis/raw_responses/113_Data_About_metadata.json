@@ -1,0 +1,11 @@
+{
+  "pdf_file": "113_A cognitive analysis-based key concepts derivation approach for product design.pdf",
+  "category": "Data About",
+  "timestamp": "2025-10-29T20:55:01.831962",
+  "parsing_success": true,
+  "parsing_methods_tried": [
+    "parse_json_response"
+  ],
+  "parsing_error": null,
+  "raw_response_file": "113_Data_About.txt"
+}

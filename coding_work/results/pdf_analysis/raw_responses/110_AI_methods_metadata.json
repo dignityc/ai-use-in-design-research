@@ -1,0 +1,11 @@
+{
+  "pdf_file": "110_Nonlinear Time Series Fuzzy Regression for Developing Explainable Consumer Preferences' Models Based on Online Comments.pdf",
+  "category": "AI methods",
+  "timestamp": "2025-10-29T20:43:12.637227",
+  "parsing_success": true,
+  "parsing_methods_tried": [
+    "parse_json_response"
+  ],
+  "parsing_error": null,
+  "raw_response_file": "110_AI_methods.txt"
+}

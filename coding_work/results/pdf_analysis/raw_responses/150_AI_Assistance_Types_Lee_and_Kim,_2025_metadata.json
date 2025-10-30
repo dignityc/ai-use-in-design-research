@@ -1,0 +1,11 @@
+{
+  "pdf_file": "150_Configuration-Based Smart Customization Service A Multitask Learning Approach.pdf",
+  "category": "AI Assistance Types (Lee and Kim, 2025)",
+  "timestamp": "2025-10-29T21:02:43.904930",
+  "parsing_success": true,
+  "parsing_methods_tried": [
+    "parse_json_response"
+  ],
+  "parsing_error": null,
+  "raw_response_file": "150_AI_Assistance_Types_Lee_and_Kim,_2025.txt"
+}

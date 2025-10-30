@@ -1,0 +1,11 @@
+{
+  "pdf_file": "163_The artistic design of user interaction experience for mobile systems based on context-awareness and machine learning.pdf",
+  "category": "Design Practice/Task",
+  "timestamp": "2025-10-29T21:10:34.796908",
+  "parsing_success": true,
+  "parsing_methods_tried": [
+    "parse_json_response"
+  ],
+  "parsing_error": null,
+  "raw_response_file": "163_Design_Practice_Task.txt"
+}

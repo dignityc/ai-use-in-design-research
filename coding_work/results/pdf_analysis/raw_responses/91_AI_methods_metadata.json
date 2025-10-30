@@ -1,0 +1,11 @@
+{
+  "pdf_file": "91_Using Online Customer Reviews to Classify, Predict, and Learn About Domestic Robot Failures.pdf",
+  "category": "AI methods",
+  "timestamp": "2025-10-29T21:12:22.437037",
+  "parsing_success": true,
+  "parsing_methods_tried": [
+    "parse_json_response"
+  ],
+  "parsing_error": null,
+  "raw_response_file": "91_AI_methods.txt"
+}

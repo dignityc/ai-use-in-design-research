@@ -1,0 +1,11 @@
+{
+  "pdf_file": "150_Configuration-Based Smart Customization Service A Multitask Learning Approach.pdf",
+  "category": "Data Modality",
+  "timestamp": "2025-10-29T21:01:39.893055",
+  "parsing_success": true,
+  "parsing_methods_tried": [
+    "parse_json_response"
+  ],
+  "parsing_error": null,
+  "raw_response_file": "150_Data_Modality.txt"
+}

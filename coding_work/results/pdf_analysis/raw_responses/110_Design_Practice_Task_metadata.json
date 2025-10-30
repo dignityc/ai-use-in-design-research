@@ -1,0 +1,11 @@
+{
+  "pdf_file": "110_Nonlinear Time Series Fuzzy Regression for Developing Explainable Consumer Preferences' Models Based on Online Comments.pdf",
+  "category": "Design Practice/Task",
+  "timestamp": "2025-10-29T20:44:32.611896",
+  "parsing_success": true,
+  "parsing_methods_tried": [
+    "parse_json_response"
+  ],
+  "parsing_error": null,
+  "raw_response_file": "110_Design_Practice_Task.txt"
+}

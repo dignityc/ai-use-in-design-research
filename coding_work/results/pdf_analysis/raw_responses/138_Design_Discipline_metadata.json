@@ -1,0 +1,11 @@
+{
+  "pdf_file": "138_Research on design forms based on artificial intelligence collaboration model.pdf",
+  "category": "Design Discipline",
+  "timestamp": "2025-10-29T20:48:21.010084",
+  "parsing_success": true,
+  "parsing_methods_tried": [
+    "parse_json_response"
+  ],
+  "parsing_error": null,
+  "raw_response_file": "138_Design_Discipline.txt"
+}

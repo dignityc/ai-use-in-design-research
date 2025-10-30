@@ -1,0 +1,11 @@
+{
+  "pdf_file": "143_Plan-Based Derivation of General Functional Structures in Product Design.pdf",
+  "category": "Design Phase",
+  "timestamp": "2025-10-29T20:59:50.980320",
+  "parsing_success": true,
+  "parsing_methods_tried": [
+    "parse_json_response"
+  ],
+  "parsing_error": null,
+  "raw_response_file": "143_Design_Phase.txt"
+}

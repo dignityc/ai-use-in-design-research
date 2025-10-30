@@ -1,7 +1,7 @@
 {
-  "last_updated": "2025-10-29T13:03:56.440018",
+  "last_updated": "2025-10-29T21:13:49.702789",
   "total_target": 54,
-  "processed_count": 42,
+  "processed_count": 53,
   "failed_count": 0,
   "processed": [
     "167_Optimizing HMI for Intelligent Electric Vehicles Using BCI and Deep Neural Networks with Genetic Algorithms.pdf",
@@ -45,7 +45,18 @@
     "183_Machine Learning Based User Interface Generation.pdf",
     "145_Decision-Making with Probabilistic Reasoning in Engineering Design.pdf",
     "98_Supervised deep learning for the moving morphable components topology optimization framework.pdf",
-    "158_A Novel User Emotional Interaction Design Model Using Long and Short-Term Memory Networks and Deep Learning.pdf"
+    "158_A Novel User Emotional Interaction Design Model Using Long and Short-Term Memory Networks and Deep Learning.pdf",
+    "125_Machine learning-based design support system for the prediction of heterogeneous machine parameters in industry 4.0.pdf",
+    "110_Nonlinear Time Series Fuzzy Regression for Developing Explainable Consumer Preferences' Models Based on Online Comments.pdf",
+    "181_GANSpiration Balancing Targeted and Serendipitous Inspiration in User Interface Design with Style-Based Generative Adversarial Network.pdf",
+    "138_Research on design forms based on artificial intelligence collaboration model.pdf",
+    "92_Manifold learning for coherent design interpolation based on geometrical and topological descriptors.pdf",
+    "113_A cognitive analysis-based key concepts derivation approach for product design.pdf",
+    "143_Plan-Based Derivation of General Functional Structures in Product Design.pdf",
+    "150_Configuration-Based Smart Customization Service A Multitask Learning Approach.pdf",
+    "80_A Tool to Facilitate the Cross-Cultural Design Process Using Deep Learning.pdf",
+    "163_The artistic design of user interaction experience for mobile systems based on context-awareness and machine learning.pdf",
+    "91_Using Online Customer Reviews to Classify, Predict, and Learn About Domestic Robot Failures.pdf"
   ],
   "failed": {}
 }
