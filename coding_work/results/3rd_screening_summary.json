@@ -1,0 +1,30 @@
+{
+  "total_papers": 189,
+  "inclusion_stats": {
+    "Y": 54,
+    "N": 31,
+    "Q": 0,
+    "blank": 104
+  },
+  "columns": [
+    "Index",
+    "Article Title",
+    "Author Full Names",
+    "Source Title",
+    "Publication Year",
+    "Abstract",
+    "DOI Link",
+    "ENGINEERING.PRODUCT/UI.UX/SERVICE",
+    "Inclusion (Y/N/Q/R) for 2nd screening",
+    "Assigned_to",
+    "PDF_uploaded",
+    "Note"
+  ],
+  "notes_columns": [
+    "Note"
+  ],
+  "inclusion_columns": [
+    "Inclusion (Y/N/Q/R) for 2nd screening"
+  ],
+  "exclusion_columns": []
+}

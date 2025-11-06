@@ -1,0 +1,25 @@
+[
+  {
+    "type": "exclusion_reasons",
+    "top_keywords": [
+      [
+        "not design",
+        3
+      ],
+      [
+        "not ai",
+        3
+      ],
+      [
+        "review",
+        1
+      ]
+    ]
+  },
+  {
+    "type": "papers_needing_review",
+    "questionable": 0,
+    "blank": 104,
+    "total": 104
+  }
+]
