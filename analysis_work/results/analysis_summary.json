@@ -1,0 +1,80 @@
+{
+  "total_screening_papers": 189,
+  "total_coded_papers": 54,
+  "coding_progress_percent": 28.6,
+  "year_distribution_coded": {
+    "2020": 5,
+    "2021": 6,
+    "2022": 17,
+    "2023": 5,
+    "2024": 19,
+    "2025": 2
+  },
+  "year_distribution_screening": {
+    "2020": 17,
+    "2021": 23,
+    "2022": 47,
+    "2023": 26,
+    "2024": 71,
+    "2025": 5
+  },
+  "design_discipline": {
+    "Industrial Design/ Engineering design/ product design": 40,
+    "UI/UX Design": 7,
+    "Multiple [UI/UX Design, Industrial Design/ Engineering design/ product design]": 2,
+    "Multiple [Industrial Design/ Engineering design/ product design, UI/UX Design]": 2,
+    "Multiple [Service Design /System Design/ Business design, UI/UX Design]": 1,
+    "Multiple [Industrial Design/ Engineering design/ product design, Service Design /System Design/ Business design]": 1,
+    "Multiple [Industrial Design/ Engineering design/ product design, Service Design /System Design/ Business design, UI/UX Design]": 1
+  },
+  "ai_methods": {
+    "Deep models in CV": 19,
+    "Traditional ML (shallow models)": 15,
+    "Gen AI": 8,
+    "Deep models in NLP": 7,
+    "Large Gen AI": 4,
+    "Reinforcement learning": 1
+  },
+  "data_modality": {
+    "Image": 18,
+    "Text": 15,
+    "Multimodal [Text, Image]": 6,
+    "Time Series": 6,
+    "Multimodal [Image, Text]": 3,
+    "Multimodal [Time Series, Image]": 1,
+    "Multimodal [Image, Video]": 1,
+    "Multimodal [Image, Text, Audio]": 1,
+    "Audio": 1,
+    "Multimodal [Text, Time Series]": 1,
+    "Multimodal [Text, Image, Audio]": 1
+  },
+  "design_phase": {
+    "Develop": 50,
+    "Define": 4
+  },
+  "ai_assistance_types": {
+    "Design generation": 10,
+    "Multiple [Design generation, Prediction]": 8,
+    "Multiple [Design generation, Prediction, Decision making (Validation, evaluation)]": 5,
+    "Multiple [Prediction, Decision making (Validation, evaluation)]": 5,
+    "Prediction": 5,
+    "Multiple [Design generation, Decision making (Validation, evaluation)]": 3,
+    "Multiple [Prediction, Sense making]": 3,
+    "Multiple [Sense making, Decision making (Validation, evaluation)]": 2,
+    "Multiple [Prediction, Sense making, Decision making (Validation, evaluation)]": 2,
+    "Multiple [Design generation, Sense making]": 2,
+    "Decision making (Validation, evaluation)": 2,
+    "Multiple [Sense making, Prediction]": 2,
+    "Multiple [Prediction, Decision making (Validation, evaluation), Sense making]": 1,
+    "Multiple [Prediction, Design generation]": 1,
+    "Multiple [Design generation, Prediction, Sense making]": 1,
+    "Multiple [Sense making, Decision making]": 1,
+    "Multiple [Sense making, Design generation]": 1
+  },
+  "data_about": {
+    "Product": 41,
+    "Behavior": 6,
+    "Perception": 6,
+    "Physiology": 1
+  }
+}
