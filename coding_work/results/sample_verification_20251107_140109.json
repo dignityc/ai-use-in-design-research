@@ -1,0 +1,269 @@
+{
+  "metadata": {
+    "timestamp": "2025-11-07T14:01:16.651705",
+    "sample_size": 5,
+    "sample_indices": [
+      159,
+      128,
+      149,
+      104,
+      92
+    ],
+    "total_cells": 35
+  },
+  "summary": {
+    "enum_valid": 6,
+    "enum_invalid": 29,
+    "claude_high": 0,
+    "claude_medium": 0,
+    "claude_low": 0,
+    "claude_error": 35
+  },
+  "details": [
+    {
+      "Index": 159,
+      "Category": "Design Discipline",
+      "Classification": "Multiple [Industrial Design/ Engineering design/ product design, UI/UX Design]",
+      "Enum_Valid": true,
+      "Issues": "NONE"
+    },
+    {
+      "Index": 159,
+      "Category": "Data About",
+      "Classification": "Perception",
+      "Enum_Valid": false,
+      "Issues": "ENUM_INVALID"
+    },
+    {
+      "Index": 159,
+      "Category": "Data Modality",
+      "Classification": "Multimodal [Image, Text]",
+      "Enum_Valid": true,
+      "Issues": "NONE"
+    },
+    {
+      "Index": 159,
+      "Category": "AI methods",
+      "Classification": "Deep models in CV",
+      "Enum_Valid": false,
+      "Issues": "ENUM_INVALID"
+    },
+    {
+      "Index": 159,
+      "Category": "AI Assistance Types (Lee and Kim, 2025)",
+      "Classification": "Multiple [Design generation, Sense making]",
+      "Enum_Valid": true,
+      "Issues": "NONE"
+    },
+    {
+      "Index": 159,
+      "Category": "Design Phase",
+      "Classification": "Develop",
+      "Enum_Valid": false,
+      "Issues": "ENUM_INVALID"
+    },
+    {
+      "Index": 159,
+      "Category": "Design Practice/Task",
+      "Classification": "Concept Design, Ideation, and Inspiration Collection",
+      "Enum_Valid": false,
+      "Issues": "ENUM_INVALID"
+    },
+    {
+      "Index": 128,
+      "Category": "Design Discipline",
+      "Classification": "Industrial Design/ Engineering design/ product design",
+      "Enum_Valid": false,
+      "Issues": "ENUM_INVALID"
+    },
+    {
+      "Index": 128,
+      "Category": "Data About",
+      "Classification": "Product",
+      "Enum_Valid": false,
+      "Issues": "ENUM_INVALID"
+    },
+    {
+      "Index": 128,
+      "Category": "Data Modality",
+      "Classification": "Text",
+      "Enum_Valid": false,
+      "Issues": "ENUM_INVALID"
+    },
+    {
+      "Index": 128,
+      "Category": "AI methods",
+      "Classification": "Traditional ML (shallow models)",
+      "Enum_Valid": false,
+      "Issues": "ENUM_INVALID"
+    },
+    {
+      "Index": 128,
+      "Category": "AI Assistance Types (Lee and Kim, 2025)",
+      "Classification": "Multiple [Prediction, Sense making, Decision making (Validation, evaluation)]",
+      "Enum_Valid": true,
+      "Issues": "NONE"
+    },
+    {
+      "Index": 128,
+      "Category": "Design Phase",
+      "Classification": "Define",
+      "Enum_Valid": false,
+      "Issues": "ENUM_INVALID"
+    },
+    {
+      "Index": 128,
+      "Category": "Design Practice/Task",
+      "Classification": "Define - User requirements identification and product attribute analysis",
+      "Enum_Valid": false,
+      "Issues": "ENUM_INVALID"
+    },
+    {
+      "Index": 149,
+      "Category": "Design Discipline",
+      "Classification": "Industrial Design/ Engineering design/ product design",
+      "Enum_Valid": false,
+      "Issues": "ENUM_INVALID"
+    },
+    {
+      "Index": 149,
+      "Category": "Data About",
+      "Classification": "Perception",
+      "Enum_Valid": false,
+      "Issues": "ENUM_INVALID"
+    },
+    {
+      "Index": 149,
+      "Category": "Data Modality",
+      "Classification": "Multimodal [Text, Image]",
+      "Enum_Valid": true,
+      "Issues": "NONE"
+    },
+    {
+      "Index": 149,
+      "Category": "AI methods",
+      "Classification": "Large Gen AI",
+      "Enum_Valid": false,
+      "Issues": "ENUM_INVALID"
+    },
+    {
+      "Index": 149,
+      "Category": "AI Assistance Types (Lee and Kim, 2025)",
+      "Classification": "Design generation",
+      "Enum_Valid": false,
+      "Issues": "ENUM_INVALID"
+    },
+    {
+      "Index": 149,
+      "Category": "Design Phase",
+      "Classification": "Develop",
+      "Enum_Valid": false,
+      "Issues": "ENUM_INVALID"
+    },
+    {
+      "Index": 149,
+      "Category": "Design Practice/Task",
+      "Classification": "New Product Design/Development",
+      "Enum_Valid": false,
+      "Issues": "ENUM_INVALID"
+    },
+    {
+      "Index": 104,
+      "Category": "Design Discipline",
+      "Classification": "Industrial Design/ Engineering design/ product design",
+      "Enum_Valid": false,
+      "Issues": "ENUM_INVALID"
+    },
+    {
+      "Index": 104,
+      "Category": "Data About",
+      "Classification": "Product",
+      "Enum_Valid": false,
+      "Issues": "ENUM_INVALID"
+    },
+    {
+      "Index": 104,
+      "Category": "Data Modality",
+      "Classification": "Image",
+      "Enum_Valid": false,
+      "Issues": "ENUM_INVALID"
+    },
+    {
+      "Index": 104,
+      "Category": "AI methods",
+      "Classification": "Deep models in CV",
+      "Enum_Valid": false,
+      "Issues": "ENUM_INVALID"
+    },
+    {
+      "Index": 104,
+      "Category": "AI Assistance Types (Lee and Kim, 2025)",
+      "Classification": "Multiple [Design generation, Prediction]",
+      "Enum_Valid": true,
+      "Issues": "NONE"
+    },
+    {
+      "Index": 104,
+      "Category": "Design Phase",
+      "Classification": "Develop",
+      "Enum_Valid": false,
+      "Issues": "ENUM_INVALID"
+    },
+    {
+      "Index": 104,
+      "Category": "Design Practice/Task",
+      "Classification": "Develop",
+      "Enum_Valid": false,
+      "Issues": "ENUM_INVALID"
+    },
+    {
+      "Index": 92,
+      "Category": "Design Discipline",
+      "Classification": "Industrial Design/ Engineering design/ product design",
+      "Enum_Valid": false,
+      "Issues": "ENUM_INVALID"
+    },
+    {
+      "Index": 92,
+      "Category": "Data About",
+      "Classification": "Product",
+      "Enum_Valid": false,
+      "Issues": "ENUM_INVALID"
+    },
+    {
+      "Index": 92,
+      "Category": "Data Modality",
+      "Classification": "Image",
+      "Enum_Valid": false,
+      "Issues": "ENUM_INVALID"
+    },
+    {
+      "Index": 92,
+      "Category": "AI methods",
+      "Classification": "Traditional ML (shallow models)",
+      "Enum_Valid": false,
+      "Issues": "ENUM_INVALID"
+    },
+    {
+      "Index": 92,
+      "Category": "AI Assistance Types (Lee and Kim, 2025)",
+      "Classification": "Design generation",
+      "Enum_Valid": false,
+      "Issues": "ENUM_INVALID"
+    },
+    {
+      "Index": 92,
+      "Category": "Design Phase",
+      "Classification": "Develop",
+      "Enum_Valid": false,
+      "Issues": "ENUM_INVALID"
+    },
+    {
+      "Index": 92,
+      "Category": "Design Practice/Task",
+      "Classification": "Design generation and optimization",
+      "Enum_Valid": false,
+      "Issues": "ENUM_INVALID"
+    }
+  ]
+}

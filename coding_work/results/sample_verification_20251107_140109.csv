@@ -1,0 +1,36 @@
+Index,Category,Classification,Enum_Valid,Issues
+159,Design Discipline,"Multiple [Industrial Design/ Engineering design/ product design, UI/UX Design]",True,NONE
+159,Data About,Perception,False,ENUM_INVALID
+159,Data Modality,"Multimodal [Image, Text]",True,NONE
+159,AI methods,Deep models in CV,False,ENUM_INVALID
+159,"AI Assistance Types (Lee and Kim, 2025)","Multiple [Design generation, Sense making]",True,NONE
+159,Design Phase,Develop,False,ENUM_INVALID
+159,Design Practice/Task,"Concept Design, Ideation, and Inspiration Collection",False,ENUM_INVALID
+128,Design Discipline,Industrial Design/ Engineering design/ product design,False,ENUM_INVALID
+128,Data About,Product,False,ENUM_INVALID
+128,Data Modality,Text,False,ENUM_INVALID
+128,AI methods,Traditional ML (shallow models),False,ENUM_INVALID
+128,"AI Assistance Types (Lee and Kim, 2025)","Multiple [Prediction, Sense making, Decision making (Validation, evaluation)]",True,NONE
+128,Design Phase,Define,False,ENUM_INVALID
+128,Design Practice/Task,Define - User requirements identification and product attribute analysis,False,ENUM_INVALID
+149,Design Discipline,Industrial Design/ Engineering design/ product design,False,ENUM_INVALID
+149,Data About,Perception,False,ENUM_INVALID
+149,Data Modality,"Multimodal [Text, Image]",True,NONE
+149,AI methods,Large Gen AI,False,ENUM_INVALID
+149,"AI Assistance Types (Lee and Kim, 2025)",Design generation,False,ENUM_INVALID
+149,Design Phase,Develop,False,ENUM_INVALID
+149,Design Practice/Task,New Product Design/Development,False,ENUM_INVALID
+104,Design Discipline,Industrial Design/ Engineering design/ product design,False,ENUM_INVALID
+104,Data About,Product,False,ENUM_INVALID
+104,Data Modality,Image,False,ENUM_INVALID
+104,AI methods,Deep models in CV,False,ENUM_INVALID
+104,"AI Assistance Types (Lee and Kim, 2025)","Multiple [Design generation, Prediction]",True,NONE
+104,Design Phase,Develop,False,ENUM_INVALID
+104,Design Practice/Task,Develop,False,ENUM_INVALID
+92,Design Discipline,Industrial Design/ Engineering design/ product design,False,ENUM_INVALID
+92,Data About,Product,False,ENUM_INVALID
+92,Data Modality,Image,False,ENUM_INVALID
+92,AI methods,Traditional ML (shallow models),False,ENUM_INVALID
+92,"AI Assistance Types (Lee and Kim, 2025)",Design generation,False,ENUM_INVALID
+92,Design Phase,Develop,False,ENUM_INVALID
+92,Design Practice/Task,Design generation and optimization,False,ENUM_INVALID

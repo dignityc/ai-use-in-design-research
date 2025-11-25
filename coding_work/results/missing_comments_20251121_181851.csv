@@ -1,0 +1,428 @@
+Index,Column,Row,Col,Cell
+1,Design Discipline,56,7,G56
+1,Data About,56,8,H56
+1,Data Modality,56,9,I56
+1,AI methods,56,10,J56
+1,"AI Assistance Types (Lee and Kim, 2025)",56,11,K56
+1,Design Phase,56,12,L56
+1,Design Practice/Task,56,13,M56
+2,Design Discipline,57,7,G57
+2,Data About,57,8,H57
+2,Data Modality,57,9,I57
+2,AI methods,57,10,J57
+2,"AI Assistance Types (Lee and Kim, 2025)",57,11,K57
+2,Design Phase,57,12,L57
+2,Design Practice/Task,57,13,M57
+3,Design Discipline,58,7,G58
+3,Data About,58,8,H58
+3,Data Modality,58,9,I58
+3,AI methods,58,10,J58
+3,"AI Assistance Types (Lee and Kim, 2025)",58,11,K58
+3,Design Phase,58,12,L58
+3,Design Practice/Task,58,13,M58
+4,Design Discipline,59,7,G59
+4,Data About,59,8,H59
+4,Data Modality,59,9,I59
+4,AI methods,59,10,J59
+4,"AI Assistance Types (Lee and Kim, 2025)",59,11,K59
+4,Design Phase,59,12,L59
+4,Design Practice/Task,59,13,M59
+5,Design Discipline,60,7,G60
+5,Data About,60,8,H60
+5,Data Modality,60,9,I60
+5,AI methods,60,10,J60
+5,"AI Assistance Types (Lee and Kim, 2025)",60,11,K60
+5,Design Phase,60,12,L60
+5,Design Practice/Task,60,13,M60
+6,Design Discipline,61,7,G61
+6,Data About,61,8,H61
+6,Data Modality,61,9,I61
+6,AI methods,61,10,J61
+6,"AI Assistance Types (Lee and Kim, 2025)",61,11,K61
+6,Design Phase,61,12,L61
+6,Design Practice/Task,61,13,M61
+7,Design Discipline,62,7,G62
+7,Data About,62,8,H62
+7,Data Modality,62,9,I62
+7,AI methods,62,10,J62
+7,"AI Assistance Types (Lee and Kim, 2025)",62,11,K62
+7,Design Phase,62,12,L62
+7,Design Practice/Task,62,13,M62
+8,Design Discipline,63,7,G63
+8,Data About,63,8,H63
+8,Data Modality,63,9,I63
+8,AI methods,63,10,J63
+8,"AI Assistance Types (Lee and Kim, 2025)",63,11,K63
+8,Design Phase,63,12,L63
+8,Design Practice/Task,63,13,M63
+9,Design Discipline,64,7,G64
+9,Data About,64,8,H64
+9,Data Modality,64,9,I64
+9,AI methods,64,10,J64
+9,"AI Assistance Types (Lee and Kim, 2025)",64,11,K64
+9,Design Phase,64,12,L64
+9,Design Practice/Task,64,13,M64
+10,Design Discipline,65,7,G65
+10,Data About,65,8,H65
+10,Data Modality,65,9,I65
+10,AI methods,65,10,J65
+10,"AI Assistance Types (Lee and Kim, 2025)",65,11,K65
+10,Design Phase,65,12,L65
+10,Design Practice/Task,65,13,M65
+11,Design Discipline,66,7,G66
+11,Data About,66,8,H66
+11,Data Modality,66,9,I66
+11,AI methods,66,10,J66
+11,"AI Assistance Types (Lee and Kim, 2025)",66,11,K66
+11,Design Phase,66,12,L66
+11,Design Practice/Task,66,13,M66
+12,Design Discipline,67,7,G67
+12,Data About,67,8,H67
+12,Data Modality,67,9,I67
+12,AI methods,67,10,J67
+12,"AI Assistance Types (Lee and Kim, 2025)",67,11,K67
+12,Design Phase,67,12,L67
+12,Design Practice/Task,67,13,M67
+13,Design Discipline,68,7,G68
+13,Data About,68,8,H68
+13,Data Modality,68,9,I68
+13,AI methods,68,10,J68
+13,"AI Assistance Types (Lee and Kim, 2025)",68,11,K68
+13,Design Phase,68,12,L68
+13,Design Practice/Task,68,13,M68
+14,Design Discipline,69,7,G69
+14,Data About,69,8,H69
+14,Data Modality,69,9,I69
+14,AI methods,69,10,J69
+14,"AI Assistance Types (Lee and Kim, 2025)",69,11,K69
+14,Design Phase,69,12,L69
+14,Design Practice/Task,69,13,M69
+15,Design Discipline,70,7,G70
+15,Data About,70,8,H70
+15,Data Modality,70,9,I70
+15,AI methods,70,10,J70
+15,"AI Assistance Types (Lee and Kim, 2025)",70,11,K70
+15,Design Phase,70,12,L70
+15,Design Practice/Task,70,13,M70
+16,Design Discipline,71,7,G71
+16,Data About,71,8,H71
+16,Data Modality,71,9,I71
+16,AI methods,71,10,J71
+16,"AI Assistance Types (Lee and Kim, 2025)",71,11,K71
+16,Design Phase,71,12,L71
+16,Design Practice/Task,71,13,M71
+17,Design Discipline,72,7,G72
+17,Data About,72,8,H72
+17,Data Modality,72,9,I72
+17,AI methods,72,10,J72
+17,"AI Assistance Types (Lee and Kim, 2025)",72,11,K72
+17,Design Phase,72,12,L72
+17,Design Practice/Task,72,13,M72
+18,Design Discipline,73,7,G73
+18,Data About,73,8,H73
+18,Data Modality,73,9,I73
+18,AI methods,73,10,J73
+18,"AI Assistance Types (Lee and Kim, 2025)",73,11,K73
+18,Design Phase,73,12,L73
+18,Design Practice/Task,73,13,M73
+19,Design Discipline,74,7,G74
+19,Data About,74,8,H74
+19,Data Modality,74,9,I74
+19,AI methods,74,10,J74
+19,"AI Assistance Types (Lee and Kim, 2025)",74,11,K74
+19,Design Phase,74,12,L74
+19,Design Practice/Task,74,13,M74
+21,Design Discipline,75,7,G75
+21,Data About,75,8,H75
+21,Data Modality,75,9,I75
+21,AI methods,75,10,J75
+21,"AI Assistance Types (Lee and Kim, 2025)",75,11,K75
+21,Design Phase,75,12,L75
+21,Design Practice/Task,75,13,M75
+23,Design Discipline,76,7,G76
+23,Data About,76,8,H76
+23,Data Modality,76,9,I76
+23,AI methods,76,10,J76
+23,"AI Assistance Types (Lee and Kim, 2025)",76,11,K76
+23,Design Phase,76,12,L76
+23,Design Practice/Task,76,13,M76
+24,Design Discipline,77,7,G77
+24,Data About,77,8,H77
+24,Data Modality,77,9,I77
+24,AI methods,77,10,J77
+24,"AI Assistance Types (Lee and Kim, 2025)",77,11,K77
+24,Design Phase,77,12,L77
+24,Design Practice/Task,77,13,M77
+25,Design Discipline,78,7,G78
+25,Data About,78,8,H78
+25,Data Modality,78,9,I78
+25,AI methods,78,10,J78
+25,"AI Assistance Types (Lee and Kim, 2025)",78,11,K78
+25,Design Phase,78,12,L78
+25,Design Practice/Task,78,13,M78
+26,Design Discipline,79,7,G79
+26,Data About,79,8,H79
+26,Data Modality,79,9,I79
+26,AI methods,79,10,J79
+26,"AI Assistance Types (Lee and Kim, 2025)",79,11,K79
+26,Design Phase,79,12,L79
+26,Design Practice/Task,79,13,M79
+29,Design Discipline,80,7,G80
+29,Data About,80,8,H80
+29,Data Modality,80,9,I80
+29,AI methods,80,10,J80
+29,"AI Assistance Types (Lee and Kim, 2025)",80,11,K80
+29,Design Phase,80,12,L80
+29,Design Practice/Task,80,13,M80
+30,Design Discipline,81,7,G81
+30,Data About,81,8,H81
+30,Data Modality,81,9,I81
+30,AI methods,81,10,J81
+30,"AI Assistance Types (Lee and Kim, 2025)",81,11,K81
+30,Design Phase,81,12,L81
+30,Design Practice/Task,81,13,M81
+33,Design Discipline,82,7,G82
+33,Data About,82,8,H82
+33,Data Modality,82,9,I82
+33,AI methods,82,10,J82
+33,"AI Assistance Types (Lee and Kim, 2025)",82,11,K82
+33,Design Phase,82,12,L82
+33,Design Practice/Task,82,13,M82
+36,Design Discipline,83,7,G83
+36,Data About,83,8,H83
+36,Data Modality,83,9,I83
+36,AI methods,83,10,J83
+36,"AI Assistance Types (Lee and Kim, 2025)",83,11,K83
+36,Design Phase,83,12,L83
+36,Design Practice/Task,83,13,M83
+38,Design Discipline,84,7,G84
+38,Data About,84,8,H84
+38,Data Modality,84,9,I84
+38,AI methods,84,10,J84
+38,"AI Assistance Types (Lee and Kim, 2025)",84,11,K84
+38,Design Phase,84,12,L84
+38,Design Practice/Task,84,13,M84
+45,Design Discipline,85,7,G85
+45,Data About,85,8,H85
+45,Data Modality,85,9,I85
+45,AI methods,85,10,J85
+45,"AI Assistance Types (Lee and Kim, 2025)",85,11,K85
+45,Design Phase,85,12,L85
+45,Design Practice/Task,85,13,M85
+49,Design Discipline,86,7,G86
+49,Data About,86,8,H86
+49,Data Modality,86,9,I86
+49,AI methods,86,10,J86
+49,"AI Assistance Types (Lee and Kim, 2025)",86,11,K86
+49,Design Phase,86,12,L86
+49,Design Practice/Task,86,13,M86
+50,Design Discipline,87,7,G87
+50,Data About,87,8,H87
+50,Data Modality,87,9,I87
+50,AI methods,87,10,J87
+50,"AI Assistance Types (Lee and Kim, 2025)",87,11,K87
+50,Design Phase,87,12,L87
+50,Design Practice/Task,87,13,M87
+51,Design Discipline,88,7,G88
+51,Data About,88,8,H88
+51,Data Modality,88,9,I88
+51,AI methods,88,10,J88
+51,"AI Assistance Types (Lee and Kim, 2025)",88,11,K88
+51,Design Phase,88,12,L88
+51,Design Practice/Task,88,13,M88
+52,Design Discipline,89,7,G89
+52,Data About,89,8,H89
+52,Data Modality,89,9,I89
+52,AI methods,89,10,J89
+52,"AI Assistance Types (Lee and Kim, 2025)",89,11,K89
+52,Design Phase,89,12,L89
+52,Design Practice/Task,89,13,M89
+53,Design Discipline,90,7,G90
+53,Data About,90,8,H90
+53,Data Modality,90,9,I90
+53,AI methods,90,10,J90
+53,"AI Assistance Types (Lee and Kim, 2025)",90,11,K90
+53,Design Phase,90,12,L90
+53,Design Practice/Task,90,13,M90
+54,Design Discipline,91,7,G91
+54,Data About,91,8,H91
+54,Data Modality,91,9,I91
+54,AI methods,91,10,J91
+54,"AI Assistance Types (Lee and Kim, 2025)",91,11,K91
+54,Design Phase,91,12,L91
+54,Design Practice/Task,91,13,M91
+55,Design Discipline,92,7,G92
+55,Data About,92,8,H92
+55,Data Modality,92,9,I92
+55,AI methods,92,10,J92
+55,"AI Assistance Types (Lee and Kim, 2025)",92,11,K92
+55,Design Phase,92,12,L92
+55,Design Practice/Task,92,13,M92
+56,Design Discipline,93,7,G93
+56,Data About,93,8,H93
+56,Data Modality,93,9,I93
+56,AI methods,93,10,J93
+56,"AI Assistance Types (Lee and Kim, 2025)",93,11,K93
+56,Design Phase,93,12,L93
+56,Design Practice/Task,93,13,M93
+57,Design Discipline,94,7,G94
+57,Data About,94,8,H94
+57,Data Modality,94,9,I94
+57,AI methods,94,10,J94
+57,"AI Assistance Types (Lee and Kim, 2025)",94,11,K94
+57,Design Phase,94,12,L94
+57,Design Practice/Task,94,13,M94
+58,Design Discipline,95,7,G95
+58,Data About,95,8,H95
+58,Data Modality,95,9,I95
+58,AI methods,95,10,J95
+58,"AI Assistance Types (Lee and Kim, 2025)",95,11,K95
+58,Design Phase,95,12,L95
+58,Design Practice/Task,95,13,M95
+59,Design Discipline,96,7,G96
+59,Data About,96,8,H96
+59,Data Modality,96,9,I96
+59,AI methods,96,10,J96
+59,"AI Assistance Types (Lee and Kim, 2025)",96,11,K96
+59,Design Phase,96,12,L96
+59,Design Practice/Task,96,13,M96
+60,Design Discipline,97,7,G97
+60,Data About,97,8,H97
+60,Data Modality,97,9,I97
+60,AI methods,97,10,J97
+60,"AI Assistance Types (Lee and Kim, 2025)",97,11,K97
+60,Design Phase,97,12,L97
+60,Design Practice/Task,97,13,M97
+61,Design Discipline,98,7,G98
+61,Data About,98,8,H98
+61,Data Modality,98,9,I98
+61,AI methods,98,10,J98
+61,"AI Assistance Types (Lee and Kim, 2025)",98,11,K98
+61,Design Phase,98,12,L98
+61,Design Practice/Task,98,13,M98
+62,Design Discipline,99,7,G99
+62,Data About,99,8,H99
+62,Data Modality,99,9,I99
+62,AI methods,99,10,J99
+62,"AI Assistance Types (Lee and Kim, 2025)",99,11,K99
+62,Design Phase,99,12,L99
+62,Design Practice/Task,99,13,M99
+63,Design Discipline,100,7,G100
+63,Data About,100,8,H100
+63,Data Modality,100,9,I100
+63,AI methods,100,10,J100
+63,"AI Assistance Types (Lee and Kim, 2025)",100,11,K100
+63,Design Phase,100,12,L100
+63,Design Practice/Task,100,13,M100
+64,Design Discipline,101,7,G101
+64,Data About,101,8,H101
+64,Data Modality,101,9,I101
+64,AI methods,101,10,J101
+64,"AI Assistance Types (Lee and Kim, 2025)",101,11,K101
+64,Design Phase,101,12,L101
+64,Design Practice/Task,101,13,M101
+65,Design Discipline,102,7,G102
+65,Data About,102,8,H102
+65,Data Modality,102,9,I102
+65,AI methods,102,10,J102
+65,"AI Assistance Types (Lee and Kim, 2025)",102,11,K102
+65,Design Phase,102,12,L102
+65,Design Practice/Task,102,13,M102
+66,Design Discipline,103,7,G103
+66,Data About,103,8,H103
+66,Data Modality,103,9,I103
+66,AI methods,103,10,J103
+66,"AI Assistance Types (Lee and Kim, 2025)",103,11,K103
+66,Design Phase,103,12,L103
+66,Design Practice/Task,103,13,M103
+67,Design Discipline,104,7,G104
+67,Data About,104,8,H104
+67,Data Modality,104,9,I104
+67,AI methods,104,10,J104
+67,"AI Assistance Types (Lee and Kim, 2025)",104,11,K104
+67,Design Phase,104,12,L104
+67,Design Practice/Task,104,13,M104
+68,Design Discipline,105,7,G105
+68,Data About,105,8,H105
+68,Data Modality,105,9,I105
+68,AI methods,105,10,J105
+68,"AI Assistance Types (Lee and Kim, 2025)",105,11,K105
+68,Design Phase,105,12,L105
+68,Design Practice/Task,105,13,M105
+69,Design Discipline,106,7,G106
+69,Data About,106,8,H106
+69,Data Modality,106,9,I106
+69,AI methods,106,10,J106
+69,"AI Assistance Types (Lee and Kim, 2025)",106,11,K106
+69,Design Phase,106,12,L106
+69,Design Practice/Task,106,13,M106
+70,Design Discipline,107,7,G107
+70,Data About,107,8,H107
+70,Data Modality,107,9,I107
+70,AI methods,107,10,J107
+70,"AI Assistance Types (Lee and Kim, 2025)",107,11,K107
+70,Design Phase,107,12,L107
+70,Design Practice/Task,107,13,M107
+71,Design Discipline,108,7,G108
+71,Data About,108,8,H108
+71,Data Modality,108,9,I108
+71,AI methods,108,10,J108
+71,"AI Assistance Types (Lee and Kim, 2025)",108,11,K108
+71,Design Phase,108,12,L108
+71,Design Practice/Task,108,13,M108
+72,Design Discipline,109,7,G109
+72,Data About,109,8,H109
+72,Data Modality,109,9,I109
+72,AI methods,109,10,J109
+72,"AI Assistance Types (Lee and Kim, 2025)",109,11,K109
+72,Design Phase,109,12,L109
+72,Design Practice/Task,109,13,M109
+73,Design Discipline,110,7,G110
+73,Data About,110,8,H110
+73,Data Modality,110,9,I110
+73,AI methods,110,10,J110
+73,"AI Assistance Types (Lee and Kim, 2025)",110,11,K110
+73,Design Phase,110,12,L110
+73,Design Practice/Task,110,13,M110
+74,Design Discipline,111,7,G111
+74,Data About,111,8,H111
+74,Data Modality,111,9,I111
+74,AI methods,111,10,J111
+74,"AI Assistance Types (Lee and Kim, 2025)",111,11,K111
+74,Design Phase,111,12,L111
+74,Design Practice/Task,111,13,M111
+75,Design Discipline,112,7,G112
+75,Data About,112,8,H112
+75,Data Modality,112,9,I112
+75,AI methods,112,10,J112
+75,"AI Assistance Types (Lee and Kim, 2025)",112,11,K112
+75,Design Phase,112,12,L112
+75,Design Practice/Task,112,13,M112
+76,Design Discipline,113,7,G113
+76,Data About,113,8,H113
+76,Data Modality,113,9,I113
+76,AI methods,113,10,J113
+76,"AI Assistance Types (Lee and Kim, 2025)",113,11,K113
+76,Design Phase,113,12,L113
+76,Design Practice/Task,113,13,M113
+77,Design Discipline,114,7,G114
+77,Data About,114,8,H114
+77,Data Modality,114,9,I114
+77,AI methods,114,10,J114
+77,"AI Assistance Types (Lee and Kim, 2025)",114,11,K114
+77,Design Phase,114,12,L114
+77,Design Practice/Task,114,13,M114
+78,Design Discipline,115,7,G115
+78,Data About,115,8,H115
+78,Data Modality,115,9,I115
+78,AI methods,115,10,J115
+78,"AI Assistance Types (Lee and Kim, 2025)",115,11,K115
+78,Design Phase,115,12,L115
+78,Design Practice/Task,115,13,M115
+79,Design Discipline,116,7,G116
+79,Data About,116,8,H116
+79,Data Modality,116,9,I116
+79,AI methods,116,10,J116
+79,"AI Assistance Types (Lee and Kim, 2025)",116,11,K116
+79,Design Phase,116,12,L116
+79,Design Practice/Task,116,13,M116

@@ -1,0 +1,145 @@
+Index,Category,Classification,Enum_Valid,Claude_Score,Claude_Level,Claude_Comment,Issues
+186,Design Discipline,"Multiple [Service Design /System Design/ Business design, UI/UX Design]",True,5.0,high,"**5/5** - Reference Text가 PDF INTRODUCTION 섹션에 정확히 존재하며, interaction design의 시스템 통합(Service/System Design)과 사용자 경험 향상(UI/UX Design) 측면을 모두 다루고 있어 Multiple 분류가 타당함",NONE
+186,Data About,Behavior,False,3.0,medium,"**3/5 - Reference Text 일부만 정확히 존재, 나머지는 의역**
+
+**상세:**
+- 첫 문장 ""Users predominantly express emotions through multiple languages, facial expressions, and body language..."" → PDF INTRODUCTION에 정확히 존재 ✓
+- ",ENUM_INVALID
+186,Data Modality,"Multimodal [Image, Video]",True,5.0,high,"**5/5** - Reference Text가 PDF ""Parameterization"" 섹션에 정확히 존재하며, HMDB(video)와 CK+(image) 두 데이터셋 사용으로 Multimodal 분류가 완벽히 일치함",NONE
+186,AI methods,Deep models in CV,True,5.0,high,"5/5 - Reference Text가 PDF의 ""Related Works"" 섹션에 정확히 존재하며, CNN 기반 visual emotion recognition을 다루는 논문의 특성상 ""Deep models in CV"" 분류가 적절함",NONE
+186,"AI Assistance Types (Lee and Kim, 2025)","Multiple [Prediction, Sense making]",True,3.0,medium,"PDF를 검토한 결과:
+
+**3/5 - Reference Text의 70%는 정확하나, 마지막 문장(""By monitoring users' visual responses, designers can discern..."")은 PDF에 존재하지 않음. Classification과 Reasoning은 타당함.**
+
+**상세:**
+- ✅ 첫 2문장은 INTRODUC",NONE
+186,Design Phase,Develop,True,5.0,high,"5/5 - Reference Text가 PDF Abstract에 정확히 존재하며, Classification ""Develop""은 실험 검증(77.057% correctness)과 비교 분석을 포함한 모델 개발 내용과 완벽히 일치함",NONE
+186,Design Practice/Task,Develop,False,5.0,high,"5/5 - Reference Text가 PDF Abstract에 정확히 존재하며, ""Develop"" 분류가 모델 개발·구현·검증 내용과 완벽히 일치함",ENUM_INVALID
+92,Design Discipline,Industrial Design/ Engineering design/ product design,True,4.0,high,"**4/5 - Reference Text는 PDF Introduction과 Section 3에서 가져왔으나 약간 paraphrasing되고 두 문장이 병합됨. Classification과 Reasoning은 논문 내용(structural optimization, car bumpers)과 정확히 일치함**",NONE
+92,Data About,Product,False,5.0,high,"**5/5** - Reference Text가 PDF Section 3에 정확히 존재하며, 자동차 범퍼 등 산업 제품 설계에 초점을 맞춘 논문으로 Classification ""Product""가 완벽히 일치함",ENUM_INVALID
+92,Data Modality,Image,True,5.0,high,"**5/5** - Reference Text가 PDF Section 2.3.1에 정확히 존재하며, SDF의 961-node grid discretization과 n×n pixel-based Persistence Image가 명확히 Image 데이터 modality에 해당함. Reasoning도 논리적으로 타당함.",NONE
+92,AI methods,Traditional ML (shallow models),True,5.0,high,"**5/5 - Reference Text가 PDF Abstract와 Introduction에 정확히 존재하며, Classification과 Reasoning이 논리적으로 일치함**
+
+세부 확인:
+1. ✅ Reference Text 정확성: Abstract와 Introduction(2페이지)에서 ""scarcity of available data, making",NONE
+92,"AI Assistance Types (Lee and Kim, 2025)",Design generation,True,5.0,high,"**5/5 - Reference Text가 PDF Abstract에 정확히 존재하며, Classification과 Reasoning이 완벽하게 일치함**
+
+Reference 문장이 Abstract 섹션에 verbatim으로 존재하고, ""working as a generator basis, to create new and coherent designs"" 표현",NONE
+92,Design Phase,Develop,True,5.0,high,"**5/5 - Reference Text가 PDF Abstract에 정확히 존재하며, ""create new and coherent designs""라는 핵심 표현이 Develop 단계 분류를 명확히 뒷받침함**",NONE
+92,Design Practice/Task,Design generation and optimization,False,4.0,high,"4/5 - 첫 번째 Reference는 Abstract에 정확히 존재하나, 두 번째 optimization 관련 인용은 Abstract에 없음. 논문의 주요 초점은 design generation이며 optimization은 부차적 응용 사례로 언급됨.",ENUM_INVALID
+81,Design Discipline,Industrial Design/ Engineering design/ product design,True,4.0,high,"**4/5 - Reference 내용은 논문 맥락과 일치하나, 제공된 OCR 텍스트에서 정확한 문구 확인 어려움**
+
+코멘트: 
+- Classification은 명백히 정확함 (제목부터 ""Product Shapes"" 명시)
+- Reasoning도 논리적으로 타당함
+- Reference Text의 핵심인 ""product shape design""은 논문 전반에",NONE
+81,Data About,Product,False,5.0,high,"**5/5 - Reference Text가 PDF 제목 및 본문에 정확히 존재하며, Classification과 Reasoning이 완벽히 일치함**
+
+Reference의 첫 문장은 논문 제목 그대로이고, ""shape grammar rules""와 ""Drone shape design"" 케이스 스터디 언급도 PDF에 명확히 있습니다. ""Product"" 분류도 ",ENUM_INVALID
+81,Data Modality,"Multimodal [Text, Image]",True,3.0,medium,"**3/5 - Reference 텍스트 검증 불가, 분류는 논리적으로 타당함**
+
+**이유:**
+- PDF가 심하게 왜곡되어 Reference Text의 정확한 존재 여부 확인 불가
+- 논문 제목에서 ""GAN and Transformer Models"" 명시로 Multimodal 분류는 논리적
+- Reasoning은 타당하나(Transformer=시퀀스, G",NONE
+81,AI methods,Gen AI,False,5.0,high,"5/5 - Reference Text가 PDF 본문에 정확히 존재하며, GAN과 Transformer는 명백한 Gen AI 기술로 분류가 적절함",ENUM_INVALID
+81,"AI Assistance Types (Lee and Kim, 2025)","Multiple [Design generation, Prediction, Decision making (Validation, evaluation)]",True,5.0,high,"**5/5** - Reference Text가 PDF Abstract에 정확히 존재하며, Classification(Design generation/GAN, Prediction/Transformer, Decision making/Bayesian network)이 원문과 완벽히 일치함. Reasoning도 세 가지 AI 보조 유형을 논리적으로 연결함.",NONE
+81,Design Phase,Develop,True,5.0,high,"**5/5 - Reference Text가 PDF Abstract에 정확히 존재하며, ""Develop"" 분류가 생성적 디자인 방법론 개발이라는 논문 내용과 완벽히 일치함**",NONE
+81,Design Practice/Task,Develop,False,5.0,high,"5/5 - Reference Text가 PDF Abstract에 정확히 존재하며, ""Develop"" 분류는 불완전한 디자인 입력으로부터 완전한 디자인 솔루션을 생성하는 방법론의 핵심과 정확히 일치함",ENUM_INVALID
+82,Design Discipline,Industrial Design/ Engineering design/ product design,True,5.0,high,"**5/5 - Reference Text가 PDF Abstract와 Introduction에 정확히 존재하며, Classification과 Reasoning이 논문의 제품 형태 디자인 및 커피 머신 사례 연구 내용과 완벽히 일치함**",NONE
+82,Data About,Product,False,5.0,high,"**5/5** - Reference Text가 PDF Abstract에 정확히 존재하며, ""Product"" 분류는 스마트 캡슐 커피머신의 형태/디자인 요소를 분석한 연구 내용과 완벽히 일치함. Reasoning도 논문의 핵심(제품 특성 분석, 디자인 요소 분해, 제품 대안 평가)을 정확히 반영함.",ENUM_INVALID
+82,Data Modality,"Multimodal [Text, Image]",True,5.0,high,"제공하신 PDF 전문을 분석한 결과:
+
+**5/5 - Reference Text가 PDF 본문에 정확히 존재하며, Classification이 타당함**
+
+**검증 내용:**
+1. ✅ **Reference 존재**: PDF Section 4.1에서 ""Customer reviews are collected from the two most popular mai",NONE
+82,AI methods,Deep models in NLP,True,4.0,high,"**4/5 - Reference Text는 PDF 3.1절에 정확히 존재하나, Word2Vec을 ""Deep models""로 분류하는 것은 다소 부정확함 (Word2Vec은 shallow neural network)**
+
+- ✅ Reference Text: PDF 7-8페이지 3.1 Natural Language Processing 섹션에 정확히 존재
+- ⚠",NONE
+82,"AI Assistance Types (Lee and Kim, 2025)","Decision making (Validation, evaluation)",True,5.0,high,"**4.5/5 - Reference 첫 문장은 Abstract에 정확히 존재하며, Classification과 Reasoning이 논문 내용과 완벽히 일치함. 다만 두 번째 문장은 의역됨.**
+
+세부:
+- ✅ ""Finally, by calculating the indicator weight based on the Entropy method and using",NONE
+82,Design Phase,Develop,True,5.0,high,"5/5 - Reference Text가 PDF Introduction 섹션에 정확히 존재하며, ""제품 평가 및 대안 선택""이라는 논문 주제가 Develop 단계(디자인 개선, 테스트, 최적화)와 완벽히 일치함.",NONE
+82,Design Practice/Task,Product Evaluation and Design Decision-Making,False,5.0,high,"**5/5 - Reference Text가 PDF Introduction 섹션에 정확히 존재하며, Classification과 Reasoning이 논문의 핵심(제품 평가 프레임워크 제안 및 의사결정 지원)을 정확히 반영함**",ENUM_INVALID
+168,Design Discipline,UI/UX Design,True,5.0,high,"**5/5 - Reference Text가 PDF Abstract에 정확히 존재하며, UI/UX Design 분류가 논문의 Conversational GUI 디자인 및 HCI 실증 연구 내용과 완벽히 일치함**",NONE
+168,Data About,Product,False,4.0,high,"**4/5 - Reference Text가 논문의 Section 5 (Study Protocol) 부분에 존재하며, 은행 고객 데이터 예제를 사용했다는 내용과 일치함. ""Product"" 분류는 사용된 데이터 도메인(은행 제품/서비스)으로는 합리적이나, 논문의 주제는 HCI/UI 시스템이므로 ""Data About""의 정의에 따라 평가가 달라질 수 있음.**",ENUM_INVALID
+168,Data Modality,Text,True,5.0,high,"**5/5 - Reference Text가 PDF에 정확히 존재하며, 분류와 논리적으로 일치함**
+
+검증 결과:
+1. ✅ Reference Text의 두 문장 모두 PDF에 정확히 존재 (p.870 Introduction & p.871)
+2. ✅ Classification ""Text""는 적절함 - 실제 구현된 시스템은 text-based chat compo",NONE
+168,AI methods,Large Gen AI,False,5.0,high,"**5/5 - Reference Text가 Introduction 섹션에 정확히 존재하며, LLM/GPT를 명시적으로 다루는 논문이므로 ""Large Gen AI"" 분류 완벽히 타당함**",ENUM_INVALID
+168,"AI Assistance Types (Lee and Kim, 2025)","Multiple [Design generation, Prediction, Sense making]",True,4.0,high,"**4/5 - Reference Text들이 PDF 여러 섹션(Abstract, 4.1, 4.2)에 실제로 존재하며, Classification과 Reasoning이 논리적으로 연결됨. 다만 Reference가 단일 연속 문장이 아닌 여러 부분의 조합이라는 점에서 소폭 감점.**",NONE
+168,Design Phase,Develop,True,4.0,high,"**4/5 - Reference Text는 paraphrase되었지만 핵심 내용이 정확하며, Develop 분류는 타당함**
+
+코멘트:
+- Reference의 첫 문장은 Section 4.1에서 발견되나 약간 paraphrase됨 (""developed a Svelte web application"")
+- ""11 business analysts"" 언급은 PDF",NONE
+168,Design Practice/Task,User Testing/Evaluation,False,5.0,high,"**5/5 - Reference Text가 PDF Abstract에 정확히 존재하며, 논문의 핵심인 empirical user study를 통한 시스템 평가가 User Testing/Evaluation 분류와 완벽히 일치함**",ENUM_INVALID
+167,Design Discipline,"Multiple [UI/UX Design, Industrial Design/ Engineering design/ product design]",True,5.0,high,"**5/5 - Reference Text가 PDF에 정확히 존재하며, Multiple 분류도 논문의 UI/UX+Engineering 복합적 성격과 완벽히 일치함**",NONE
+167,Data About,Physiology,False,5.0,high,"**5/5 - Reference Text가 PDF 3.3절에 거의 정확히 존재하며, EEG 데이터를 Physiology로 분류한 것은 완벽히 타당함**",ENUM_INVALID
+167,Data Modality,"Multimodal [Time Series, Image]",True,3.0,medium,"제공된 PDF 부분을 검토한 결과:
+
+**3/5 - Reference Text의 구체적 문장은 제공된 PDF 부분(1-7페이지)에서 직접 확인 불가, 하지만 Classification과 Reasoning은 논문 내용과 일치**
+
+**상세 평가:**
+1. **Classification 타당성**: ✅ 논문에서 EEG(시계열) + AR HMI(시각) 사용 명시",NONE
+167,AI methods,Deep models in CV,True,3.0,medium,"**3/5 - Reference Text는 정확하나, Classification이 부적절함**
+
+**이유:**
+1. ✅ Reference Text: PDF의 Abstract, Section 2.2, Section 3.2.1에서 모든 문장 확인됨
+2. ❌ Classification: ""Deep models in CV""는 **부적절** - Reasoning에서",NONE
+167,"AI Assistance Types (Lee and Kim, 2025)","Multiple [Design generation, Prediction, Decision making (Validation, evaluation)]",True,5.0,high,"**5/5 - Reference Text가 PDF Section 3.2에 정확히 존재하며, Classification이 논문 내용과 완벽히 일치함**
+
+Reference 문장은 논문 3.2절 ""DNN-GA Intelligent Algorithm"" 섹션에 그대로 있고, DNN의 Prediction, GA의 Design generation, 그리고 fitnes",NONE
+167,Design Phase,Develop,True,4.0,high,"**4/5 - Reference Text는 PDF의 여러 섹션에서 조합되었으나, 핵심 내용이 정확하게 존재하고 Classification도 타당함**
+
+**코멘트**: 
+- ""This iterative process identified..."" 문장은 PDF p.6 Methodology에 정확히 존재
+- ""32 university students (18 ma",NONE
+167,Design Practice/Task,"Multiple [Develop (Prototyping and iterative optimization), Delivery (Testing and evaluation)]",True,4.0,high,"4/5 - Reference의 전반부는 PDF 3페이지에 정확히 존재하나, 실험 세부사항(32명 참가자, AR 태스크 등)은 제공된 8페이지 범위에서 명확히 확인되지 않음. Classification과 Reasoning은 논리적으로 타당함.",NONE
+80,Design Discipline,Industrial Design/ Engineering design/ product design,True,5.0,high,"**5/5 - Reference Text가 PDF Introduction 섹션에 정확히 존재하며, 문화적 제품 디자인 도구 개발과 페이스 마스크 사례 연구가 Industrial Design 분류와 완벽히 일치함**",NONE
+80,Data About,Product,False,5.0,high,"5/5 - Reference Text가 PDF의 Introduction과 Section IV에 정확히 존재하며, product design 도구 개발 및 face mask 제품 디자인 케이스 스터디로 ""Product"" 분류가 적절함",ENUM_INVALID
+80,Data Modality,Image,True,5.0,high,"5/5 - Reference Text가 PDF Section III-A에 정확히 존재하며, 이미지 데이터셋 기반 CNN 방법론이 명확하므로 분류 및 근거 모두 타당함",NONE
+80,AI methods,Deep models in CV,True,5.0,high,"**5/5점 - Reference Text가 PDF의 Abstract, Introduction, Section III에 정확히 존재하며, ResNet-50 기반 CNN을 사용한 이미지 분류 및 스타일 변환 작업으로 ""Deep models in CV"" 분류가 완벽히 일치함**",NONE
+80,"AI Assistance Types (Lee and Kim, 2025)","Multiple [Design generation, Prediction, Decision making (Validation, evaluation)]",True,4.0,high,"**4/5 - Reference Text는 PDF에 정확히 존재하나, ""Decision making (Validation, evaluation)""의 세부 분류가 애매함. PDF는 ranking/selection을 언급하지 validation/evaluation을 직접 언급하지 않음**",NONE
+80,Design Phase,Develop,True,3.0,medium,"**3/5 - Reference Text가 제공된 PDF 발췌본에는 없음 (Table V 이후 결과 섹션이 누락됨)**
+
+제공된 PDF는 Section IV(Case Study 실험 설계)까지만 포함되어 있고, 실험 결과와 Table V가 포함된 섹션(Results)이 누락되어 있습니다. Classification(""Develop"")과 Reasoning은 ",NONE
+80,Design Practice/Task,Idea generation and prototyping,False,3.0,medium,"**3/5 - Reference Text의 구체적 통계(72.7%, 36.4%)는 제공된 PDF 부분(첫 4페이지)에서 확인 불가. 단, Abstract에 ""idea generation and fast prototyping""이 명시되어 있어 Classification 자체는 타당함. 통계는 Results 섹션(미제공)에 있을 것으로 추정됨.**",ENUM_INVALID
+94,Design Discipline,Industrial Design/ Engineering design/ product design,True,5.0,high,"5/5 - Reference Text가 PDF Abstract에 정확히 존재하며, Classification과 Reasoning 모두 논문 내용과 완벽히 일치함",NONE
+94,Data About,Product,False,5.0,high,"**5/5** - Reference Text가 PDF Abstract에 정확히 존재하며, 논문 전체가 product design과 historical product data 분석을 다루므로 Classification과 Reasoning 모두 완벽하게 일치함",ENUM_INVALID
+94,Data Modality,Text,True,3.0,medium,"3/5 - Reference Text는 PDF Section 4.1에 정확히 존재하나, ""Text"" 분류는 부적절함. 논문은 실제 텍스트 데이터(NLP)가 아닌 기호적/구조적 설계 표현(symbolic/structural representation)을 다루므로 Data Modality는 ""Symbolic"" 또는 ""Structural""이 더 적절함.",NONE
+94,AI methods,Traditional ML (shallow models),True,5.0,high,"**5/5 - Reference Text가 PDF Abstract에 정확히 존재하며, HMM은 Markov process 기반 통계 모델로 Traditional ML 분류가 적절함**",NONE
+94,"AI Assistance Types (Lee and Kim, 2025)","Multiple [Design generation, Prediction, Decision making (Validation, evaluation)]",True,5.0,high,"**5/5 - Reference Text가 PDF 원문에 정확히 존재하며, Classification과 Reasoning이 논리적으로 일치함**
+
+세부 확인:
+- ✅ ""generative adaptable design method based on HMM"" (Abstract)
+- ✅ ""evaluated to provide designers with clear",NONE
+94,Design Phase,Develop,True,5.0,high,"5/5 - Reference Text가 PDF Abstract에 정확히 존재하며, ""Develop"" 분류와 reasoning이 논문 내용(디자인 솔루션 생성 방법론 + HAM 프로토타입 개발)과 완벽히 일치함",NONE
+94,Design Practice/Task,Concept Generation and Configuration Design,False,5.0,high,"5/5 - Reference Text가 PDF Abstract에 정확히 존재하며, ""generative design"", ""generate diverse design configurations"", ""matching structural modules to functional requirements"" 등의 핵심 용어가 Concept Generation and C",ENUM_INVALID
+181,Design Discipline,UI/UX Design,True,5.0,high,"**5/5** - Reference Text가 PDF Introduction 첫 문단에 정확히 존재하며, UI/UX Design 분류와 Reasoning이 논문 내용(GANSpiration tool for UI designers, evaluation with UI/UX practitioners)과 완벽히 일치함",NONE
+181,Data About,Product,False,3.0,medium,"3/5 - Reference는 PDF Section 3.4.1에 정확히 존재하나, ""Product"" 분류를 직접 뒷받침하기보다는 데이터셋이 UI 스크린샷을 포함한다는 사실만 언급함. Reasoning의 ""design artifacts/products"" 해석은 타당하지만, Reference Text와의 연결이 간접적임.",ENUM_INVALID
+181,Data Modality,Image,True,5.0,high,"**5/5** - Reference Text가 PDF에 정확히 존재하며(p.2 Introduction, p.4 Dataset 섹션), Image 분류와 UI 스크린샷 이미지 기반 접근 방식을 논리적으로 연결함",NONE
+181,AI methods,Gen AI,False,5.0,high,"**5/5 - Reference Text가 PDF Abstract와 Introduction에 정확히 존재하며, StyleGAN(GAN 기반)은 명백한 Generative AI 기법임**",ENUM_INVALID
+181,"AI Assistance Types (Lee and Kim, 2025)",Design generation,True,,,,NONE
+181,Design Phase,Develop,True,3.0,medium,"**3/5 - Reference Text는 PDF에 정확히 존재하나, ""ideation phase""를 ""Develop""로 분류한 것은 부적절함**
+
+문제점:
+- Reference Text는 ""**ideation phase**""를 명시하는데, 이는 일반적으로 **Define** 또는 **Discover** 단계에 가까움
+- Reasoning도 ""creativ",NONE
+181,Design Practice/Task,Ideation / Design Inspiration,False,5.0,high,"**5/5 - Reference Text가 PDF의 Abstract와 Section 4에 정확히 존재하며, Classification과 Reasoning이 논문의 핵심 목적(ideation 단계에서 design fixation 방지를 위한 inspirational support)을 정확히 반영함**",ENUM_INVALID
+104,Design Discipline,Industrial Design/ Engineering design/ product design,True,5.0,high,"**5/5** - Reference Text가 PDF Introduction 섹션(1장)에 정확히 존재하며, Industrial/Engineering Design 분류와 완벽히 일치함. Reasoning도 논문의 핵심(산업 장비 토폴로지 최적화)을 정확히 반영함.",NONE
+104,Data About,Product,False,5.0,high,"5/5 - Reference Text가 PDF Introduction 섹션에 정확히 존재하며, 제품(산업 장비)의 구조/성능 최적화를 다루므로 ""Product"" 분류가 타당함",ENUM_INVALID
+104,Data Modality,Image,True,5.0,high,"5/5 - Reference Text가 PDF Section 4.1에 정확히 존재하며, three-channel image data 변환과 32×64 density matrix 언급이 모두 확인됨. Classification과 Reasoning도 논리적으로 일치함.",NONE
+104,AI methods,Deep models in CV,True,5.0,high,"**5/5** - Reference Text가 PDF Abstract에 정확히 존재하며, U-Net 기반 CNN을 사용한 displacement field → topology 이미지 변환 작업이므로 ""Deep models in CV"" 분류가 적절함",NONE
+104,"AI Assistance Types (Lee and Kim, 2025)","Multiple [Design generation, Prediction]",True,5.0,high,"**5/5 - Reference Text가 PDF Abstract와 Section 4.3에 정확히 존재하며, Classification과 Reasoning이 완벽하게 일치함**
+
+검증 결과:
+1. ✅ Reference의 첫 문장은 Abstract에, 두 번째 문장은 Section 4.3 Results and Discussion에 정확히 존재
+2. ✅ ""ou",NONE
+104,Design Phase,Develop,True,5.0,high,"5/5 - Reference Text가 PDF Abstract에 정확히 존재하고, 소프트웨어 개발-모델 구축-테스트 활동이 Develop 단계 분류와 완벽히 일치함",NONE
+104,Design Practice/Task,Develop,False,5.0,high,"**5/5 - Reference Text가 PDF Introduction 섹션에 정확히 존재하며, ""Develop"" 분류가 소프트웨어/딥러닝 모델 개발 내용과 완벽히 일치함**",ENUM_INVALID
