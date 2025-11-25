@@ -30,3 +30,6 @@ gspread>=5.7.0
 google-auth>=2.16.0
 google-auth-oauthlib>=0.8.0
 google-auth-httplib2>=0.1.0
+
+# Audio Transcription (OpenAI Whisper API)
+openai>=1.0.0

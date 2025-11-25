@@ -1,0 +1,8 @@
+{
+  "filename": "KIDP_workshoo_audio 01.m4a",
+  "timestamp": "2025-11-12T17:25:09.545770",
+  "model": "gpt-4o-transcribe",
+  "language": "ko",
+  "error": "Error code: 400 - {'error': {'message': \"response_format 'verbose_json' is not compatible with model 'gpt-4o-transcribe-api-ev3'. Use 'json' or 'text' instead.\", 'type': 'invalid_request_error', 'param': 'response_format', 'code': 'unsupported_value'}}",
+  "status": "failed"
+}

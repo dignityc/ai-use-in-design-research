@@ -1,0 +1,8 @@
+{
+  "filename": "KIDP_workshoo_audio 02.m4a",
+  "timestamp": "2025-11-12T17:38:23.310413",
+  "model": "gpt-4o-transcribe",
+  "language": "ko",
+  "error": "Error code: 400 - {'error': {'message': 'Audio file might be corrupted or unsupported', 'type': 'invalid_request_error', 'param': 'file', 'code': 'invalid_value'}}",
+  "status": "failed"
+}

@@ -80,3 +80,5 @@ node_modules/
 coding_work/credentials/
 coding_work/credentials/*.json
 **/gen-lang-client-*.json
+# Audio files (too large for git)
+audio_files/
