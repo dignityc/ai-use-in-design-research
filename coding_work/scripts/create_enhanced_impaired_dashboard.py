@@ -271,10 +271,6 @@ def html_template(data: dict[str, object]) -> str:
       padding: 28px;
     }}
     header {{
-      display: grid;
-      grid-template-columns: minmax(0, 1fr) auto;
-      gap: 20px;
-      align-items: end;
       margin-bottom: 18px;
     }}
     h1 {{
@@ -321,6 +317,47 @@ def html_template(data: dict[str, object]) -> str:
       cursor: pointer;
       font-weight: 650;
     }}
+    .scope-section {{
+      margin-top: 16px;
+      padding: 16px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: #fff;
+    }}
+    .scope-section.filtered-zone {{
+      border-top: 5px solid #22c55e;
+      background: #fbfffc;
+    }}
+    .scope-section.global-zone {{
+      border-top: 5px solid #64748b;
+      background: #fbfcff;
+    }}
+    .section-head {{
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto;
+      gap: 18px;
+      align-items: end;
+      margin-bottom: 14px;
+    }}
+    .section-kicker {{
+      margin: 0 0 5px;
+      color: var(--muted);
+      font-size: 12px;
+      font-weight: 760;
+      text-transform: uppercase;
+    }}
+    .section-title {{
+      margin: 0;
+      font-size: 20px;
+      line-height: 1.2;
+      font-weight: 760;
+    }}
+    .section-note {{
+      margin: 6px 0 0;
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.45;
+    }}
     .cards {{
       display: grid;
       grid-template-columns: repeat(4, minmax(0, 1fr));
@@ -360,6 +397,12 @@ def html_template(data: dict[str, object]) -> str:
       grid-template-columns: minmax(0, 1.1fr) minmax(420px, .9fr);
       gap: 14px;
     }}
+    .filtered-grid {{
+      grid-template-columns: minmax(0, 1fr) minmax(420px, .9fr);
+    }}
+    .global-grid {{
+      grid-template-columns: minmax(0, 1fr) minmax(420px, .9fr);
+    }}
     .panel {{
       background: var(--panel);
       border: 1px solid var(--line);
@@ -380,38 +423,10 @@ def html_template(data: dict[str, object]) -> str:
       font-size: 15px;
       font-weight: 760;
     }}
-    .panel-title-row {{
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      min-width: 0;
-    }}
     .panel-caption {{
       color: var(--muted);
       font-size: 12px;
       text-align: right;
-    }}
-    .scope-badge {{
-      display: inline-flex;
-      align-items: center;
-      height: 22px;
-      padding: 0 8px;
-      border-radius: 999px;
-      font-size: 11px;
-      font-weight: 760;
-      line-height: 1;
-      border: 1px solid transparent;
-      white-space: nowrap;
-    }}
-    .scope-badge.filtered {{
-      color: #166534;
-      background: #dcfce7;
-      border-color: #bbf7d0;
-    }}
-    .scope-badge.global {{
-      color: #334155;
-      background: #e2e8f0;
-      border-color: #cbd5e1;
     }}
     .chart {{
       width: 100%;
@@ -450,7 +465,7 @@ def html_template(data: dict[str, object]) -> str:
     .pos {{ color: var(--green); font-weight: 700; }}
     .neg {{ color: var(--red); font-weight: 700; }}
     @media (max-width: 1050px) {{
-      header, .grid, .cards {{ grid-template-columns: 1fr; }}
+      .section-head, .grid, .cards {{ grid-template-columns: 1fr; }}
       .toolbar {{ align-items: stretch; flex-direction: column; }}
       select, button {{ width: 100%; }}
       .chart, .wide .chart {{ height: 390px; }}
@@ -464,44 +479,64 @@ def html_template(data: dict[str, object]) -> str:
         <h1>Enhanced vs Impaired Value Comparison</h1>
         <p class="sub">Interactive dashboard generated from <strong>00_Final.xlsx</strong>. Enhanced Value 1/2 and Impaired Value 1/2 are normalized into shared value buckets, then compared across value dimensions and aggregated design dimensions.</p>
       </div>
-      <div class="toolbar">
-        <select id="dimensionFilter" aria-label="Dimension filter">
-          <option value="All">All dimensions</option>
-        </select>
-        <button id="resetBtn" type="button">Reset View</button>
-        <div class="toolbar-note">Filter changes panels marked <strong>Filtered</strong>. Panels marked <strong>Global</strong> stay fixed for whole-dataset context.</div>
-      </div>
     </header>
 
-    <section class="cards">
-      <div class="card"><div class="label">Rows Used</div><div class="metric blue" id="eligibleRows"></div><div class="note" id="rowNote"></div></div>
-      <div class="card"><div class="label">Enhanced Counts</div><div class="metric green" id="enhancedTotal"></div><div class="note">Positive value mentions</div></div>
-      <div class="card"><div class="label">Impaired Counts</div><div class="metric red" id="impairedTotal"></div><div class="note">Negative value mentions</div></div>
-      <div class="card"><div class="label">Net Balance</div><div class="metric" id="netTotal"></div><div class="note">Enhanced minus impaired</div></div>
-    </section>
-
-    <main class="grid">
+    <section class="scope-section filtered-zone">
+      <div class="section-head">
+        <div>
+          <p class="section-kicker">Filter-controlled area</p>
+          <h2 class="section-title">Views that change with the dimension filter</h2>
+          <p class="section-note">Use this area to compare enhanced and impaired values within one selected design dimension.</p>
+        </div>
+        <div class="toolbar">
+          <select id="dimensionFilter" aria-label="Dimension filter">
+            <option value="All">All dimensions</option>
+          </select>
+          <button id="resetBtn" type="button">Reset View</button>
+          <div class="toolbar-note">This control updates only the charts and table inside this green section.</div>
+        </div>
+      </div>
+      <div class="grid filtered-grid">
       <section class="panel wide">
-        <div class="panel-head"><div class="panel-title-row"><h2 class="panel-title">Diverging Value Balance</h2><span class="scope-badge filtered">Filtered</span></div><div class="panel-caption">Changes with dimension filter</div></div>
+        <div class="panel-head"><h2 class="panel-title">Diverging Value Balance</h2><div class="panel-caption">Changes with dimension filter</div></div>
         <div id="divergingChart" class="chart"></div>
       </section>
       <section class="panel">
-        <div class="panel-head"><div class="panel-title-row"><h2 class="panel-title">Difference Heatmap</h2><span class="scope-badge global">Global</span></div><div class="panel-caption">Fixed: all dimensions, enhanced - impaired</div></div>
-        <div id="heatmapChart" class="chart"></div>
-      </section>
-      <section class="panel">
-        <div class="panel-head"><div class="panel-title-row"><h2 class="panel-title">Trade-off Scatter</h2><span class="scope-badge filtered">Filtered</span></div><div class="panel-caption">Changes with dimension filter</div></div>
+        <div class="panel-head"><h2 class="panel-title">Trade-off Scatter</h2><div class="panel-caption">Changes with dimension filter</div></div>
         <div id="scatterChart" class="chart"></div>
       </section>
       <section class="panel">
-        <div class="panel-head"><div class="panel-title-row"><h2 class="panel-title">Design Dimension Totals</h2><span class="scope-badge global">Global</span></div><div class="panel-caption">Fixed: whole-dataset context</div></div>
-        <div id="dimensionChart" class="chart"></div>
-      </section>
-      <section class="panel">
-        <div class="panel-head"><div class="panel-title-row"><h2 class="panel-title">Value Summary Table</h2><span class="scope-badge filtered">Filtered</span></div><div class="panel-caption">Changes with dimension filter</div></div>
+        <div class="panel-head"><h2 class="panel-title">Value Summary Table</h2><div class="panel-caption">Changes with dimension filter</div></div>
         <div class="table-wrap"><table id="summaryTable"></table></div>
       </section>
-    </main>
+      </div>
+    </section>
+
+    <section class="scope-section global-zone">
+      <div class="section-head">
+        <div>
+          <p class="section-kicker">Global reference area</p>
+          <h2 class="section-title">Views that stay fixed across the full dataset</h2>
+          <p class="section-note">These stay unchanged when the filter changes, so they remain the whole-dataset baseline.</p>
+        </div>
+      </div>
+      <section class="cards">
+        <div class="card"><div class="label">Rows Used</div><div class="metric blue" id="eligibleRows"></div><div class="note" id="rowNote"></div></div>
+        <div class="card"><div class="label">Enhanced Counts</div><div class="metric green" id="enhancedTotal"></div><div class="note">Positive value mentions</div></div>
+        <div class="card"><div class="label">Impaired Counts</div><div class="metric red" id="impairedTotal"></div><div class="note">Negative value mentions</div></div>
+        <div class="card"><div class="label">Net Balance</div><div class="metric" id="netTotal"></div><div class="note">Enhanced minus impaired</div></div>
+      </section>
+      <div class="grid global-grid">
+        <section class="panel">
+          <div class="panel-head"><h2 class="panel-title">Difference Heatmap</h2><div class="panel-caption">Fixed: all dimensions, enhanced - impaired</div></div>
+          <div id="heatmapChart" class="chart"></div>
+        </section>
+        <section class="panel">
+          <div class="panel-head"><h2 class="panel-title">Design Dimension Totals</h2><div class="panel-caption">Fixed: whole-dataset context</div></div>
+          <div id="dimensionChart" class="chart"></div>
+        </section>
+      </div>
+    </section>
   </div>
   <script>
     const DATA = {data_json};

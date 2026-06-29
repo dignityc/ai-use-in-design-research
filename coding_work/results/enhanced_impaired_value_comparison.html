@@ -33,10 +33,6 @@
       padding: 28px;
     }
     header {
-      display: grid;
-      grid-template-columns: minmax(0, 1fr) auto;
-      gap: 20px;
-      align-items: end;
       margin-bottom: 18px;
     }
     h1 {
@@ -83,6 +79,47 @@
       cursor: pointer;
       font-weight: 650;
     }
+    .scope-section {
+      margin-top: 16px;
+      padding: 16px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: #fff;
+    }
+    .scope-section.filtered-zone {
+      border-top: 5px solid #22c55e;
+      background: #fbfffc;
+    }
+    .scope-section.global-zone {
+      border-top: 5px solid #64748b;
+      background: #fbfcff;
+    }
+    .section-head {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto;
+      gap: 18px;
+      align-items: end;
+      margin-bottom: 14px;
+    }
+    .section-kicker {
+      margin: 0 0 5px;
+      color: var(--muted);
+      font-size: 12px;
+      font-weight: 760;
+      text-transform: uppercase;
+    }
+    .section-title {
+      margin: 0;
+      font-size: 20px;
+      line-height: 1.2;
+      font-weight: 760;
+    }
+    .section-note {
+      margin: 6px 0 0;
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.45;
+    }
     .cards {
       display: grid;
       grid-template-columns: repeat(4, minmax(0, 1fr));
@@ -122,6 +159,12 @@
       grid-template-columns: minmax(0, 1.1fr) minmax(420px, .9fr);
       gap: 14px;
     }
+    .filtered-grid {
+      grid-template-columns: minmax(0, 1fr) minmax(420px, .9fr);
+    }
+    .global-grid {
+      grid-template-columns: minmax(0, 1fr) minmax(420px, .9fr);
+    }
     .panel {
       background: var(--panel);
       border: 1px solid var(--line);
@@ -142,38 +185,10 @@
       font-size: 15px;
       font-weight: 760;
     }
-    .panel-title-row {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      min-width: 0;
-    }
     .panel-caption {
       color: var(--muted);
       font-size: 12px;
       text-align: right;
-    }
-    .scope-badge {
-      display: inline-flex;
-      align-items: center;
-      height: 22px;
-      padding: 0 8px;
-      border-radius: 999px;
-      font-size: 11px;
-      font-weight: 760;
-      line-height: 1;
-      border: 1px solid transparent;
-      white-space: nowrap;
-    }
-    .scope-badge.filtered {
-      color: #166534;
-      background: #dcfce7;
-      border-color: #bbf7d0;
-    }
-    .scope-badge.global {
-      color: #334155;
-      background: #e2e8f0;
-      border-color: #cbd5e1;
     }
     .chart {
       width: 100%;
@@ -212,7 +227,7 @@
     .pos { color: var(--green); font-weight: 700; }
     .neg { color: var(--red); font-weight: 700; }
     @media (max-width: 1050px) {
-      header, .grid, .cards { grid-template-columns: 1fr; }
+      .section-head, .grid, .cards { grid-template-columns: 1fr; }
       .toolbar { align-items: stretch; flex-direction: column; }
       select, button { width: 100%; }
       .chart, .wide .chart { height: 390px; }
@@ -226,44 +241,64 @@
         <h1>Enhanced vs Impaired Value Comparison</h1>
         <p class="sub">Interactive dashboard generated from <strong>00_Final.xlsx</strong>. Enhanced Value 1/2 and Impaired Value 1/2 are normalized into shared value buckets, then compared across value dimensions and aggregated design dimensions.</p>
       </div>
-      <div class="toolbar">
-        <select id="dimensionFilter" aria-label="Dimension filter">
-          <option value="All">All dimensions</option>
-        </select>
-        <button id="resetBtn" type="button">Reset View</button>
-        <div class="toolbar-note">Filter changes panels marked <strong>Filtered</strong>. Panels marked <strong>Global</strong> stay fixed for whole-dataset context.</div>
-      </div>
     </header>
 
-    <section class="cards">
-      <div class="card"><div class="label">Rows Used</div><div class="metric blue" id="eligibleRows"></div><div class="note" id="rowNote"></div></div>
-      <div class="card"><div class="label">Enhanced Counts</div><div class="metric green" id="enhancedTotal"></div><div class="note">Positive value mentions</div></div>
-      <div class="card"><div class="label">Impaired Counts</div><div class="metric red" id="impairedTotal"></div><div class="note">Negative value mentions</div></div>
-      <div class="card"><div class="label">Net Balance</div><div class="metric" id="netTotal"></div><div class="note">Enhanced minus impaired</div></div>
-    </section>
-
-    <main class="grid">
+    <section class="scope-section filtered-zone">
+      <div class="section-head">
+        <div>
+          <p class="section-kicker">Filter-controlled area</p>
+          <h2 class="section-title">Views that change with the dimension filter</h2>
+          <p class="section-note">Use this area to compare enhanced and impaired values within one selected design dimension.</p>
+        </div>
+        <div class="toolbar">
+          <select id="dimensionFilter" aria-label="Dimension filter">
+            <option value="All">All dimensions</option>
+          </select>
+          <button id="resetBtn" type="button">Reset View</button>
+          <div class="toolbar-note">This control updates only the charts and table inside this green section.</div>
+        </div>
+      </div>
+      <div class="grid filtered-grid">
       <section class="panel wide">
-        <div class="panel-head"><div class="panel-title-row"><h2 class="panel-title">Diverging Value Balance</h2><span class="scope-badge filtered">Filtered</span></div><div class="panel-caption">Changes with dimension filter</div></div>
+        <div class="panel-head"><h2 class="panel-title">Diverging Value Balance</h2><div class="panel-caption">Changes with dimension filter</div></div>
         <div id="divergingChart" class="chart"></div>
       </section>
       <section class="panel">
-        <div class="panel-head"><div class="panel-title-row"><h2 class="panel-title">Difference Heatmap</h2><span class="scope-badge global">Global</span></div><div class="panel-caption">Fixed: all dimensions, enhanced - impaired</div></div>
-        <div id="heatmapChart" class="chart"></div>
-      </section>
-      <section class="panel">
-        <div class="panel-head"><div class="panel-title-row"><h2 class="panel-title">Trade-off Scatter</h2><span class="scope-badge filtered">Filtered</span></div><div class="panel-caption">Changes with dimension filter</div></div>
+        <div class="panel-head"><h2 class="panel-title">Trade-off Scatter</h2><div class="panel-caption">Changes with dimension filter</div></div>
         <div id="scatterChart" class="chart"></div>
       </section>
       <section class="panel">
-        <div class="panel-head"><div class="panel-title-row"><h2 class="panel-title">Design Dimension Totals</h2><span class="scope-badge global">Global</span></div><div class="panel-caption">Fixed: whole-dataset context</div></div>
-        <div id="dimensionChart" class="chart"></div>
-      </section>
-      <section class="panel">
-        <div class="panel-head"><div class="panel-title-row"><h2 class="panel-title">Value Summary Table</h2><span class="scope-badge filtered">Filtered</span></div><div class="panel-caption">Changes with dimension filter</div></div>
+        <div class="panel-head"><h2 class="panel-title">Value Summary Table</h2><div class="panel-caption">Changes with dimension filter</div></div>
         <div class="table-wrap"><table id="summaryTable"></table></div>
       </section>
-    </main>
+      </div>
+    </section>
+
+    <section class="scope-section global-zone">
+      <div class="section-head">
+        <div>
+          <p class="section-kicker">Global reference area</p>
+          <h2 class="section-title">Views that stay fixed across the full dataset</h2>
+          <p class="section-note">These stay unchanged when the filter changes, so they remain the whole-dataset baseline.</p>
+        </div>
+      </div>
+      <section class="cards">
+        <div class="card"><div class="label">Rows Used</div><div class="metric blue" id="eligibleRows"></div><div class="note" id="rowNote"></div></div>
+        <div class="card"><div class="label">Enhanced Counts</div><div class="metric green" id="enhancedTotal"></div><div class="note">Positive value mentions</div></div>
+        <div class="card"><div class="label">Impaired Counts</div><div class="metric red" id="impairedTotal"></div><div class="note">Negative value mentions</div></div>
+        <div class="card"><div class="label">Net Balance</div><div class="metric" id="netTotal"></div><div class="note">Enhanced minus impaired</div></div>
+      </section>
+      <div class="grid global-grid">
+        <section class="panel">
+          <div class="panel-head"><h2 class="panel-title">Difference Heatmap</h2><div class="panel-caption">Fixed: all dimensions, enhanced - impaired</div></div>
+          <div id="heatmapChart" class="chart"></div>
+        </section>
+        <section class="panel">
+          <div class="panel-head"><h2 class="panel-title">Design Dimension Totals</h2><div class="panel-caption">Fixed: whole-dataset context</div></div>
+          <div id="dimensionChart" class="chart"></div>
+        </section>
+      </div>
+    </section>
   </div>
   <script>
     const DATA = {"sourceRows": 271, "eligibleRows": 270, "excludedRows": [275], "enhancedTotal": 302, "impairedTotal": 251, "combinedTotal": 553, "values": [{"value": "Efficiency", "enhanced": 90, "impaired": 6, "total": 96, "net": 84, "shareEnhanced": 0.9375}, {"value": "Learning/Skills development", "enhanced": 42, "impaired": 35, "total": 77, "net": 7, "shareEnhanced": 0.5454545454545454}, {"value": "Accuracy", "enhanced": 21, "impaired": 49, "total": 70, "net": -28, "shareEnhanced": 0.3}, {"value": "Context appropriateness", "enhanced": 15, "impaired": 44, "total": 59, "net": -29, "shareEnhanced": 0.2542372881355932}, {"value": "Creativity", "enhanced": 31, "impaired": 24, "total": 55, "net": 7, "shareEnhanced": 0.5636363636363636}, {"value": "User-centredness", "enhanced": 22, "impaired": 24, "total": 46, "net": -2, "shareEnhanced": 0.4782608695652174}, {"value": "Collaboration", "enhanced": 21, "impaired": 13, "total": 34, "net": 8, "shareEnhanced": 0.6176470588235294}, {"value": "Feasibility", "enhanced": 25, "impaired": 7, "total": 32, "net": 18, "shareEnhanced": 0.78125}, {"value": "Controllability", "enhanced": 10, "impaired": 18, "total": 28, "net": -8, "shareEnhanced": 0.35714285714285715}, {"value": "Scalability", "enhanced": 20, "impaired": 4, "total": 24, "net": 16, "shareEnhanced": 0.8333333333333334}, {"value": "AI-Literacy (Trust)", "enhanced": 3, "impaired": 16, "total": 19, "net": -13, "shareEnhanced": 0.15789473684210525}, {"value": "Authenticity", "enhanced": 0, "impaired": 9, "total": 9, "net": -9, "shareEnhanced": 0.0}, {"value": "Affordability", "enhanced": 2, "impaired": 1, "total": 3, "net": 1, "shareEnhanced": 0.6666666666666666}, {"value": "Other", "enhanced": 0, "impaired": 1, "total": 1, "net": -1, "shareEnhanced": 0.0}], "valueOrder": ["Efficiency", "Learning/Skills development", "Accuracy", "Context appropriateness", "Creativity", "User-centredness", "Collaboration", "Feasibility", "Controllability", "Scalability", "AI-Literacy (Trust)", "Authenticity", "Affordability", "Other"], "dimensions": [{"dimension": "Background Research & Sensemaking", "enhanced": 124, "impaired": 105, "total": 229, "net": 19}, {"dimension": "Ideation & Design Generation", "enhanced": 62, "impaired": 65, "total": 127, "net": -3}, {"dimension": "Design & Process Evaluation", "enhanced": 34, "impaired": 34, "total": 68, "net": 0}, {"dimension": "Planning, Coordination & Management", "enhanced": 82, "impaired": 47, "total": 129, "net": 35}], "disciplines": [{"discipline": "ED", "enhanced": 87, "impaired": 71, "total": 158, "net": 16}, {"discipline": "SD", "enhanced": 110, "impaired": 92, "total": 202, "net": 18}, {"discipline": "UIUX", "enhanced": 105, "impaired": 88, "total": 193, "net": 17}], "dimensionValue": {"Background Research & Sensemaking": {"AI-Literacy (Trust)": {"enhanced": 1, "impaired": 8, "net": -7, "total": 9}, "Authenticity": {"enhanced": 0, "impaired": 0, "net": 0, "total": 0}, "Affordability": {"enhanced": 1, "impaired": 0, "net": 1, "total": 1}, "Efficiency": {"enhanced": 45, "impaired": 5, "net": 40, "total": 50}, "Controllability": {"enhanced": 0, "impaired": 4, "net": -4, "total": 4}, "Collaboration": {"enhanced": 4, "impaired": 2, "net": 2, "total": 6}, "Learning/Skills development": {"enhanced": 23, "impaired": 19, "net": 4, "total": 42}, "Accuracy": {"enhanced": 11, "impaired": 28, "net": -17, "total": 39}, "Context appropriateness": {"enhanced": 11, "impaired": 22, "net": -11, "total": 33}, "Creativity": {"enhanced": 6, "impaired": 4, "net": 2, "total": 10}, "Scalability": {"enhanced": 5, "impaired": 1, "net": 4, "total": 6}, "Feasibility": {"enhanced": 8, "impaired": 0, "net": 8, "total": 8}, "User-centredness": {"enhanced": 9, "impaired": 11, "net": -2, "total": 20}, "Other": {"enhanced": 0, "impaired": 1, "net": -1, "total": 1}}, "Ideation & Design Generation": {"AI-Literacy (Trust)": {"enhanced": 0, "impaired": 3, "net": -3, "total": 3}, "Authenticity": {"enhanced": 0, "impaired": 7, "net": -7, "total": 7}, "Affordability": {"enhanced": 1, "impaired": 1, "net": 0, "total": 2}, "Efficiency": {"enhanced": 15, "impaired": 0, "net": 15, "total": 15}, "Controllability": {"enhanced": 3, "impaired": 7, "net": -4, "total": 10}, "Collaboration": {"enhanced": 2, "impaired": 2, "net": 0, "total": 4}, "Learning/Skills development": {"enhanced": 5, "impaired": 6, "net": -1, "total": 11}, "Accuracy": {"enhanced": 0, "impaired": 6, "net": -6, "total": 6}, "Context appropriateness": {"enhanced": 1, "impaired": 9, "net": -8, "total": 10}, "Creativity": {"enhanced": 17, "impaired": 14, "net": 3, "total": 31}, "Scalability": {"enhanced": 8, "impaired": 0, "net": 8, "total": 8}, "Feasibility": {"enhanced": 6, "impaired": 6, "net": 0, "total": 12}, "User-centredness": {"enhanced": 4, "impaired": 4, "net": 0, "total": 8}, "Other": {"enhanced": 0, "impaired": 0, "net": 0, "total": 0}}, "Design & Process Evaluation": {"AI-Literacy (Trust)": {"enhanced": 1, "impaired": 3, "net": -2, "total": 4}, "Authenticity": {"enhanced": 0, "impaired": 0, "net": 0, "total": 0}, "Affordability": {"enhanced": 0, "impaired": 0, "net": 0, "total": 0}, "Efficiency": {"enhanced": 7, "impaired": 1, "net": 6, "total": 8}, "Controllability": {"enhanced": 1, "impaired": 1, "net": 0, "total": 2}, "Collaboration": {"enhanced": 0, "impaired": 4, "net": -4, "total": 4}, "Learning/Skills development": {"enhanced": 5, "impaired": 1, "net": 4, "total": 6}, "Accuracy": {"enhanced": 2, "impaired": 8, "net": -6, "total": 10}, "Context appropriateness": {"enhanced": 2, "impaired": 6, "net": -4, "total": 8}, "Creativity": {"enhanced": 1, "impaired": 2, "net": -1, "total": 3}, "Scalability": {"enhanced": 3, "impaired": 2, "net": 1, "total": 5}, "Feasibility": {"enhanced": 8, "impaired": 0, "net": 8, "total": 8}, "User-centredness": {"enhanced": 4, "impaired": 6, "net": -2, "total": 10}, "Other": {"enhanced": 0, "impaired": 0, "net": 0, "total": 0}}, "Planning, Coordination & Management": {"AI-Literacy (Trust)": {"enhanced": 1, "impaired": 2, "net": -1, "total": 3}, "Authenticity": {"enhanced": 0, "impaired": 2, "net": -2, "total": 2}, "Affordability": {"enhanced": 0, "impaired": 0, "net": 0, "total": 0}, "Efficiency": {"enhanced": 23, "impaired": 0, "net": 23, "total": 23}, "Controllability": {"enhanced": 6, "impaired": 6, "net": 0, "total": 12}, "Collaboration": {"enhanced": 15, "impaired": 5, "net": 10, "total": 20}, "Learning/Skills development": {"enhanced": 9, "impaired": 9, "net": 0, "total": 18}, "Accuracy": {"enhanced": 8, "impaired": 7, "net": 1, "total": 15}, "Context appropriateness": {"enhanced": 1, "impaired": 7, "net": -6, "total": 8}, "Creativity": {"enhanced": 7, "impaired": 4, "net": 3, "total": 11}, "Scalability": {"enhanced": 4, "impaired": 1, "net": 3, "total": 5}, "Feasibility": {"enhanced": 3, "impaired": 1, "net": 2, "total": 4}, "User-centredness": {"enhanced": 5, "impaired": 3, "net": 2, "total": 8}, "Other": {"enhanced": 0, "impaired": 0, "net": 0, "total": 0}}}};
