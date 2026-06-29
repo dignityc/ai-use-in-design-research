@@ -438,6 +438,9 @@ def html_template(data: dict[str, object]) -> str:
     .wide .chart {{
       height: 480px;
     }}
+    .matrix-wide .chart {{
+      height: 520px;
+    }}
     table {{
       width: 100%;
       border-collapse: collapse;
@@ -527,6 +530,10 @@ def html_template(data: dict[str, object]) -> str:
         <div class="card"><div class="label">Net Balance</div><div class="metric" id="netTotal"></div><div class="note">Enhanced minus impaired</div></div>
       </section>
       <div class="grid global-grid">
+        <section class="panel wide matrix-wide">
+          <div class="panel-head"><h2 class="panel-title">Global Dimension x Value Balance</h2><div class="panel-caption">Y = design dimension, X = value bucket; green = enhanced-dominant, red = impaired-dominant</div></div>
+          <div id="globalBalanceChart" class="chart"></div>
+        </section>
         <section class="panel">
           <div class="panel-head"><h2 class="panel-title">Difference Heatmap</h2><div class="panel-caption">Fixed: all dimensions, enhanced - impaired</div></div>
           <div id="heatmapChart" class="chart"></div>
@@ -552,6 +559,7 @@ def html_template(data: dict[str, object]) -> str:
 
     const charts = {{
       diverging: echarts.init(document.getElementById('divergingChart')),
+      globalBalance: echarts.init(document.getElementById('globalBalanceChart')),
       heatmap: echarts.init(document.getElementById('heatmapChart')),
       scatter: echarts.init(document.getElementById('scatterChart')),
       dimension: echarts.init(document.getElementById('dimensionChart'))
@@ -677,6 +685,61 @@ def html_template(data: dict[str, object]) -> str:
       }});
     }}
 
+    function renderGlobalBalance() {{
+      const dims = Object.keys(DATA.dimensionValue);
+      const values = DATA.valueOrder;
+      const points = [];
+      let maxAbs = 1;
+      dims.forEach((dimension, y) => {{
+        values.forEach((value, x) => {{
+          const d = DATA.dimensionValue[dimension][value];
+          maxAbs = Math.max(maxAbs, Math.abs(d.net));
+          points.push([x, y, d.net, d.enhanced, d.impaired, d.total]);
+        }});
+      }});
+      charts.globalBalance.setOption({{
+        grid: {{ left: 178, right: 34, top: 26, bottom: 124 }},
+        tooltip: {{
+          formatter: item => {{
+            const value = values[item.value[0]];
+            const dimension = dims[item.value[1]];
+            return `<b>${{value}}</b><br/>${{dimension}}<br/>Enhanced: ${{item.value[3]}}<br/>Impaired: ${{item.value[4]}}<br/>Total: ${{item.value[5]}}<br/>Net: ${{item.value[2] >= 0 ? '+' : ''}}${{item.value[2]}}`;
+          }}
+        }},
+        xAxis: {{
+          type: 'category',
+          data: values,
+          axisLabel: {{ rotate: 45, interval: 0, color: COLORS.text }}
+        }},
+        yAxis: {{
+          type: 'category',
+          data: dims.map(shortDimension),
+          axisLabel: {{ color: COLORS.text }}
+        }},
+        visualMap: {{
+          min: -maxAbs,
+          max: maxAbs,
+          calculable: true,
+          orient: 'horizontal',
+          left: 'center',
+          bottom: 16,
+          inRange: {{ color: ['#c43131', '#ffffff', '#1f8a4c'] }}
+        }},
+        series: [{{
+          name: 'Net balance',
+          type: 'heatmap',
+          data: points,
+          label: {{
+            show: true,
+            formatter: p => p.value[5] ? `${{p.value[2] >= 0 ? '+' : ''}}${{p.value[2]}}` : '',
+            color: COLORS.text,
+            fontWeight: 700
+          }},
+          emphasis: {{ itemStyle: {{ borderColor: '#172033', borderWidth: 1 }} }}
+        }}]
+      }});
+    }}
+
     function renderScatter(values) {{
       charts.scatter.setOption({{
         grid: {{ left: 58, right: 24, top: 20, bottom: 48 }},
@@ -732,6 +795,7 @@ def html_template(data: dict[str, object]) -> str:
     function renderAll() {{
       const values = currentValues();
       renderDiverging(values);
+      renderGlobalBalance();
       renderHeatmap();
       renderScatter(values);
       renderDimensionTotals();
