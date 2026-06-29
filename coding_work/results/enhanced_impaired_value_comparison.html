@@ -200,126 +200,8 @@
     .wide .chart {
       height: 480px;
     }
-    .balance-matrix-wrap {
-      padding: 12px 14px 18px;
-      overflow-x: auto;
-    }
-    .matrix-legend {
-      display: flex;
-      justify-content: flex-end;
-      gap: 14px;
-      margin: 0 0 10px;
-      color: var(--muted);
-      font-size: 12px;
-      font-weight: 650;
-    }
-    .legend-item {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-    }
-    .legend-chip {
-      width: 22px;
-      height: 10px;
-      border-radius: 999px;
-      display: inline-block;
-    }
-    .legend-chip.red { background: var(--red); }
-    .legend-chip.green { background: var(--green); }
-    .balance-matrix {
-      min-width: 1540px;
-      width: 100%;
-      table-layout: fixed;
-      border-collapse: separate;
-      border-spacing: 0;
-      font-size: 12px;
-    }
-    .balance-matrix th,
-    .balance-matrix td {
-      border-right: 1px solid #edf0f5;
-      border-bottom: 1px solid #edf0f5;
-      padding: 0;
-      text-align: center;
-      white-space: normal;
-    }
-    .balance-matrix th {
-      background: #fbfcff;
-      color: var(--muted);
-      font-weight: 760;
-    }
-    .balance-matrix .corner {
-      width: 190px;
-      border-left: 1px solid #edf0f5;
-    }
-    .balance-matrix .value-label {
-      height: 118px;
-      vertical-align: bottom;
-      overflow: hidden;
-    }
-    .balance-matrix .value-label span {
-      display: block;
-      width: 150px;
-      margin: 0 0 14px 24px;
-      transform: rotate(-50deg);
-      transform-origin: left bottom;
-      text-align: left;
-      color: var(--ink);
-      line-height: 1.15;
-    }
-    .balance-matrix .row-label {
-      width: 190px;
-      padding: 0 14px;
-      text-align: right;
-      color: var(--ink);
-      font-size: 13px;
-      font-weight: 700;
-      background: #fbfcff;
-      border-left: 1px solid #edf0f5;
-    }
-    .balance-cell {
-      height: 78px;
-      min-width: 70px;
-      padding: 11px 8px 8px;
-      background: #fff;
-    }
-    .balance-cell.empty {
-      background: #fafbfc;
-    }
-    .mini-balance {
-      position: relative;
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      align-items: center;
-      gap: 0;
-      height: 28px;
-      margin-bottom: 7px;
-    }
-    .mini-balance::after {
-      content: "";
-      position: absolute;
-      left: 50%;
-      top: 2px;
-      bottom: 2px;
-      border-left: 1px solid #98a2b3;
-    }
-    .mini-bar {
-      height: 14px;
-      min-width: 0;
-    }
-    .mini-bar.impaired {
-      justify-self: end;
-      background: var(--red);
-      border-radius: 7px 0 0 7px;
-    }
-    .mini-bar.enhanced {
-      justify-self: start;
-      background: var(--green);
-      border-radius: 0 7px 7px 0;
-    }
-    .cell-net {
-      font-size: 13px;
-      line-height: 1.1;
-      font-weight: 800;
+    .matrix-wide .chart {
+      height: 650px;
     }
     table {
       width: 100%;
@@ -411,8 +293,8 @@
       </section>
       <div class="grid global-grid">
         <section class="panel wide matrix-wide">
-          <div class="panel-head"><h2 class="panel-title">Global Dimension x Value Balance</h2><div class="panel-caption">Each cell is a mini balance bar: red left, green right, number = enhanced - impaired</div></div>
-          <div id="globalBalanceMatrix" class="balance-matrix-wrap"></div>
+          <div class="panel-head"><h2 class="panel-title">Global Dimension x Value Balance</h2><div class="panel-caption">Four dimension rows; green rises above the row baseline, red drops below it</div></div>
+          <div id="globalBalanceChart" class="chart"></div>
         </section>
         <section class="panel">
           <div class="panel-head"><h2 class="panel-title">Difference Heatmap</h2><div class="panel-caption">Fixed: all dimensions, enhanced - impaired</div></div>
@@ -439,6 +321,7 @@
 
     const charts = {
       diverging: echarts.init(document.getElementById('divergingChart')),
+      globalBalance: echarts.init(document.getElementById('globalBalanceChart')),
       heatmap: echarts.init(document.getElementById('heatmapChart')),
       scatter: echarts.init(document.getElementById('scatterChart')),
       dimension: echarts.init(document.getElementById('dimensionChart'))
@@ -450,13 +333,6 @@
       'Planning, Coordination & Management': 'Planning & Management'
     };
     const shortDimension = name => DIM_LABELS[name] || name;
-    const escapeHtml = value => String(value).replace(/[&<>"']/g, char => ({
-      '&': '&amp;',
-      '<': '&lt;',
-      '>': '&gt;',
-      '"': '&quot;',
-      "'": '&#39;'
-    }[char]));
 
     const format = new Intl.NumberFormat('en-US');
     document.getElementById('eligibleRows').textContent = format.format(DATA.eligibleRows);
@@ -574,42 +450,147 @@
     function renderGlobalBalance() {
       const dims = Object.keys(DATA.dimensionValue);
       const values = DATA.valueOrder;
+      const points = [];
       let maxCount = 1;
-      dims.forEach((dimension, y) => {
+      dims.forEach((dimension, dimIndex) => {
         values.forEach((value, x) => {
           const d = DATA.dimensionValue[dimension][value];
           maxCount = Math.max(maxCount, d.enhanced, d.impaired);
+          points.push([x, dimIndex, d.enhanced, d.impaired, d.net, d.total, value, dimension]);
         });
       });
-      const header = values.map(value => `<th class="value-label"><span>${escapeHtml(value)}</span></th>`).join('');
-      const rows = dims.map(dimension => {
-        const cells = values.map(value => {
-          const d = DATA.dimensionValue[dimension][value];
-          const impairedWidth = Math.round((d.impaired / maxCount) * 100);
-          const enhancedWidth = Math.round((d.enhanced / maxCount) * 100);
-          const netClass = d.net >= 0 ? 'pos' : 'neg';
-          const netText = d.total ? `${d.net >= 0 ? '+' : ''}${d.net}` : '';
-          const title = `${value} / ${dimension} | enhanced ${d.enhanced}, impaired ${d.impaired}, net ${d.net >= 0 ? '+' : ''}${d.net}`;
-          return `
-            <td class="balance-cell ${d.total ? '' : 'empty'}" title="${escapeHtml(title)}">
-              <div class="mini-balance">
-                <div class="mini-bar impaired" style="width: ${impairedWidth}%;"></div>
-                <div class="mini-bar enhanced" style="width: ${enhancedWidth}%;"></div>
-              </div>
-              <div class="cell-net ${netClass}">${netText}</div>
-            </td>`;
-        }).join('');
-        return `<tr><th class="row-label">${escapeHtml(shortDimension(dimension))}</th>${cells}</tr>`;
-      }).join('');
-      document.getElementById('globalBalanceMatrix').innerHTML = `
-        <div class="matrix-legend">
-          <span class="legend-item"><span class="legend-chip red"></span>Impaired</span>
-          <span class="legend-item"><span class="legend-chip green"></span>Enhanced</span>
-        </div>
-        <table class="balance-matrix">
-          <thead><tr><th class="corner"></th>${header}</tr></thead>
-          <tbody>${rows}</tbody>
-        </table>`;
+      charts.globalBalance.setOption({
+        animation: false,
+        grid: { left: 185, right: 34, top: 150, bottom: 30 },
+        tooltip: {
+          formatter: item => {
+            const d = item.value;
+            return `<b>${d[6]}</b><br/>${d[7]}<br/>Enhanced: ${d[2]}<br/>Impaired: ${d[3]}<br/>Net: ${d[4] >= 0 ? '+' : ''}${d[4]}`;
+          }
+        },
+        legend: {
+          top: 16,
+          right: 18,
+          data: ['Enhanced', 'Impaired']
+        },
+        xAxis: {
+          type: 'category',
+          position: 'top',
+          data: values,
+          axisTick: { alignWithLabel: true },
+          axisLabel: {
+            rotate: 50,
+            interval: 0,
+            color: COLORS.text,
+            fontWeight: 700,
+            margin: 18
+          },
+          axisLine: { lineStyle: { color: '#cbd5e1' } },
+          splitLine: { show: true, lineStyle: { color: '#eef2f7' } }
+        },
+        yAxis: {
+          type: 'category',
+          data: dims.map(shortDimension),
+          inverse: true,
+          axisTick: { show: false },
+          axisLine: { show: false },
+          axisLabel: {
+            color: COLORS.text,
+            fontSize: 14,
+            fontWeight: 760,
+            margin: 22
+          },
+          splitLine: { show: true, lineStyle: { color: '#edf0f5' } }
+        },
+        series: [
+          {
+            name: 'Enhanced',
+            type: 'bar',
+            data: [],
+            itemStyle: { color: COLORS.green }
+          },
+          {
+            name: 'Impaired',
+            type: 'bar',
+            data: [],
+            itemStyle: { color: COLORS.red }
+          },
+          {
+            name: 'Dimension value balance',
+            type: 'custom',
+            coordinateSystem: 'cartesian2d',
+            data: points,
+            renderItem: (params, api) => {
+              const x = api.value(0);
+              const y = api.value(1);
+              const enhanced = api.value(2);
+              const impaired = api.value(3);
+              const net = api.value(4);
+              const total = api.value(5);
+              const coord = api.coord([x, y]);
+              const categoryWidth = api.size([1, 0])[0];
+              const bandHeight = api.size([0, 1])[1];
+              const scale = (bandHeight * 0.33) / maxCount;
+              const barWidth = Math.max(8, Math.min(18, categoryWidth * 0.22));
+              const enhancedHeight = enhanced * scale;
+              const impairedHeight = impaired * scale;
+              const netText = total ? `${net >= 0 ? '+' : ''}${net}` : '';
+              const netColor = net >= 0 ? COLORS.green : COLORS.red;
+              const children = [
+                {
+                  type: 'line',
+                  shape: {
+                    x1: coord[0] - categoryWidth * 0.42,
+                    y1: coord[1],
+                    x2: coord[0] + categoryWidth * 0.42,
+                    y2: coord[1]
+                  },
+                  style: { stroke: '#b8c2d1', lineWidth: 1.2 }
+                }
+              ];
+              if (enhancedHeight > 0) {
+                children.push({
+                  type: 'rect',
+                  shape: {
+                    x: coord[0] - barWidth / 2,
+                    y: coord[1] - enhancedHeight,
+                    width: barWidth,
+                    height: enhancedHeight,
+                    r: [7, 7, 0, 0]
+                  },
+                  style: { fill: COLORS.green }
+                });
+              }
+              if (impairedHeight > 0) {
+                children.push({
+                  type: 'rect',
+                  shape: {
+                    x: coord[0] - barWidth / 2,
+                    y: coord[1],
+                    width: barWidth,
+                    height: impairedHeight,
+                    r: [0, 0, 7, 7]
+                  },
+                  style: { fill: COLORS.red }
+                });
+              }
+              children.push({
+                type: 'text',
+                style: {
+                  x: coord[0],
+                  y: coord[1] + bandHeight * 0.40,
+                  text: netText,
+                  fill: netColor,
+                  align: 'center',
+                  verticalAlign: 'middle',
+                  font: '700 12px Inter, sans-serif'
+                }
+              });
+              return { type: 'group', children };
+            }
+          }
+        ]
+      });
     }
 
     function renderScatter(values) {
