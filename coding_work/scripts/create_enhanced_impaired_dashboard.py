@@ -292,12 +292,20 @@ def html_template(data: dict[str, object]) -> str:
     }}
     .toolbar {{
       display: flex;
+      flex-wrap: wrap;
       gap: 8px;
       align-items: center;
       padding: 8px;
       border: 1px solid var(--line);
       border-radius: 8px;
       background: var(--panel);
+    }}
+    .toolbar-note {{
+      flex-basis: 100%;
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.35;
+      padding: 0 2px 2px;
     }}
     select, button {{
       height: 34px;
@@ -372,9 +380,38 @@ def html_template(data: dict[str, object]) -> str:
       font-size: 15px;
       font-weight: 760;
     }}
+    .panel-title-row {{
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      min-width: 0;
+    }}
     .panel-caption {{
       color: var(--muted);
       font-size: 12px;
+      text-align: right;
+    }}
+    .scope-badge {{
+      display: inline-flex;
+      align-items: center;
+      height: 22px;
+      padding: 0 8px;
+      border-radius: 999px;
+      font-size: 11px;
+      font-weight: 760;
+      line-height: 1;
+      border: 1px solid transparent;
+      white-space: nowrap;
+    }}
+    .scope-badge.filtered {{
+      color: #166534;
+      background: #dcfce7;
+      border-color: #bbf7d0;
+    }}
+    .scope-badge.global {{
+      color: #334155;
+      background: #e2e8f0;
+      border-color: #cbd5e1;
     }}
     .chart {{
       width: 100%;
@@ -432,6 +469,7 @@ def html_template(data: dict[str, object]) -> str:
           <option value="All">All dimensions</option>
         </select>
         <button id="resetBtn" type="button">Reset View</button>
+        <div class="toolbar-note">Filter changes panels marked <strong>Filtered</strong>. Panels marked <strong>Global</strong> stay fixed for whole-dataset context.</div>
       </div>
     </header>
 
@@ -444,23 +482,23 @@ def html_template(data: dict[str, object]) -> str:
 
     <main class="grid">
       <section class="panel wide">
-        <div class="panel-head"><h2 class="panel-title">Diverging Value Balance</h2><div class="panel-caption">Green = enhanced, red = impaired</div></div>
+        <div class="panel-head"><div class="panel-title-row"><h2 class="panel-title">Diverging Value Balance</h2><span class="scope-badge filtered">Filtered</span></div><div class="panel-caption">Changes with dimension filter</div></div>
         <div id="divergingChart" class="chart"></div>
       </section>
       <section class="panel">
-        <div class="panel-head"><h2 class="panel-title">Difference Heatmap</h2><div class="panel-caption">Enhanced - impaired</div></div>
+        <div class="panel-head"><div class="panel-title-row"><h2 class="panel-title">Difference Heatmap</h2><span class="scope-badge global">Global</span></div><div class="panel-caption">Fixed: all dimensions, enhanced - impaired</div></div>
         <div id="heatmapChart" class="chart"></div>
       </section>
       <section class="panel">
-        <div class="panel-head"><h2 class="panel-title">Trade-off Scatter</h2><div class="panel-caption">x = enhanced, y = impaired, size = total</div></div>
+        <div class="panel-head"><div class="panel-title-row"><h2 class="panel-title">Trade-off Scatter</h2><span class="scope-badge filtered">Filtered</span></div><div class="panel-caption">Changes with dimension filter</div></div>
         <div id="scatterChart" class="chart"></div>
       </section>
       <section class="panel">
-        <div class="panel-head"><h2 class="panel-title">Design Dimension Totals</h2><div class="panel-caption">Where positive and negative value concentrates</div></div>
+        <div class="panel-head"><div class="panel-title-row"><h2 class="panel-title">Design Dimension Totals</h2><span class="scope-badge global">Global</span></div><div class="panel-caption">Fixed: whole-dataset context</div></div>
         <div id="dimensionChart" class="chart"></div>
       </section>
       <section class="panel">
-        <div class="panel-head"><h2 class="panel-title">Value Summary Table</h2><div class="panel-caption">Sorted by total mentions</div></div>
+        <div class="panel-head"><div class="panel-title-row"><h2 class="panel-title">Value Summary Table</h2><span class="scope-badge filtered">Filtered</span></div><div class="panel-caption">Changes with dimension filter</div></div>
         <div class="table-wrap"><table id="summaryTable"></table></div>
       </section>
     </main>
