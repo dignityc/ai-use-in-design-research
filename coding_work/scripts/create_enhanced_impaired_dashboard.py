@@ -438,8 +438,126 @@ def html_template(data: dict[str, object]) -> str:
     .wide .chart {{
       height: 480px;
     }}
-    .matrix-wide .chart {{
-      height: 520px;
+    .balance-matrix-wrap {{
+      padding: 12px 14px 18px;
+      overflow-x: auto;
+    }}
+    .matrix-legend {{
+      display: flex;
+      justify-content: flex-end;
+      gap: 14px;
+      margin: 0 0 10px;
+      color: var(--muted);
+      font-size: 12px;
+      font-weight: 650;
+    }}
+    .legend-item {{
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }}
+    .legend-chip {{
+      width: 22px;
+      height: 10px;
+      border-radius: 999px;
+      display: inline-block;
+    }}
+    .legend-chip.red {{ background: var(--red); }}
+    .legend-chip.green {{ background: var(--green); }}
+    .balance-matrix {{
+      min-width: 1540px;
+      width: 100%;
+      table-layout: fixed;
+      border-collapse: separate;
+      border-spacing: 0;
+      font-size: 12px;
+    }}
+    .balance-matrix th,
+    .balance-matrix td {{
+      border-right: 1px solid #edf0f5;
+      border-bottom: 1px solid #edf0f5;
+      padding: 0;
+      text-align: center;
+      white-space: normal;
+    }}
+    .balance-matrix th {{
+      background: #fbfcff;
+      color: var(--muted);
+      font-weight: 760;
+    }}
+    .balance-matrix .corner {{
+      width: 190px;
+      border-left: 1px solid #edf0f5;
+    }}
+    .balance-matrix .value-label {{
+      height: 118px;
+      vertical-align: bottom;
+      overflow: hidden;
+    }}
+    .balance-matrix .value-label span {{
+      display: block;
+      width: 150px;
+      margin: 0 0 14px 24px;
+      transform: rotate(-50deg);
+      transform-origin: left bottom;
+      text-align: left;
+      color: var(--ink);
+      line-height: 1.15;
+    }}
+    .balance-matrix .row-label {{
+      width: 190px;
+      padding: 0 14px;
+      text-align: right;
+      color: var(--ink);
+      font-size: 13px;
+      font-weight: 700;
+      background: #fbfcff;
+      border-left: 1px solid #edf0f5;
+    }}
+    .balance-cell {{
+      height: 78px;
+      min-width: 70px;
+      padding: 11px 8px 8px;
+      background: #fff;
+    }}
+    .balance-cell.empty {{
+      background: #fafbfc;
+    }}
+    .mini-balance {{
+      position: relative;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      align-items: center;
+      gap: 0;
+      height: 28px;
+      margin-bottom: 7px;
+    }}
+    .mini-balance::after {{
+      content: "";
+      position: absolute;
+      left: 50%;
+      top: 2px;
+      bottom: 2px;
+      border-left: 1px solid #98a2b3;
+    }}
+    .mini-bar {{
+      height: 14px;
+      min-width: 0;
+    }}
+    .mini-bar.impaired {{
+      justify-self: end;
+      background: var(--red);
+      border-radius: 7px 0 0 7px;
+    }}
+    .mini-bar.enhanced {{
+      justify-self: start;
+      background: var(--green);
+      border-radius: 0 7px 7px 0;
+    }}
+    .cell-net {{
+      font-size: 13px;
+      line-height: 1.1;
+      font-weight: 800;
     }}
     table {{
       width: 100%;
@@ -531,8 +649,8 @@ def html_template(data: dict[str, object]) -> str:
       </section>
       <div class="grid global-grid">
         <section class="panel wide matrix-wide">
-          <div class="panel-head"><h2 class="panel-title">Global Dimension x Value Balance</h2><div class="panel-caption">Y = design dimension, X = value bucket; green = enhanced-dominant, red = impaired-dominant</div></div>
-          <div id="globalBalanceChart" class="chart"></div>
+          <div class="panel-head"><h2 class="panel-title">Global Dimension x Value Balance</h2><div class="panel-caption">Each cell is a mini balance bar: red left, green right, number = enhanced - impaired</div></div>
+          <div id="globalBalanceMatrix" class="balance-matrix-wrap"></div>
         </section>
         <section class="panel">
           <div class="panel-head"><h2 class="panel-title">Difference Heatmap</h2><div class="panel-caption">Fixed: all dimensions, enhanced - impaired</div></div>
@@ -559,7 +677,6 @@ def html_template(data: dict[str, object]) -> str:
 
     const charts = {{
       diverging: echarts.init(document.getElementById('divergingChart')),
-      globalBalance: echarts.init(document.getElementById('globalBalanceChart')),
       heatmap: echarts.init(document.getElementById('heatmapChart')),
       scatter: echarts.init(document.getElementById('scatterChart')),
       dimension: echarts.init(document.getElementById('dimensionChart'))
@@ -571,6 +688,13 @@ def html_template(data: dict[str, object]) -> str:
       'Planning, Coordination & Management': 'Planning & Management'
     }};
     const shortDimension = name => DIM_LABELS[name] || name;
+    const escapeHtml = value => String(value).replace(/[&<>"']/g, char => ({{
+      '&': '&amp;',
+      '<': '&lt;',
+      '>': '&gt;',
+      '"': '&quot;',
+      "'": '&#39;'
+    }}[char]));
 
     const format = new Intl.NumberFormat('en-US');
     document.getElementById('eligibleRows').textContent = format.format(DATA.eligibleRows);
@@ -688,56 +812,42 @@ def html_template(data: dict[str, object]) -> str:
     function renderGlobalBalance() {{
       const dims = Object.keys(DATA.dimensionValue);
       const values = DATA.valueOrder;
-      const points = [];
-      let maxAbs = 1;
+      let maxCount = 1;
       dims.forEach((dimension, y) => {{
         values.forEach((value, x) => {{
           const d = DATA.dimensionValue[dimension][value];
-          maxAbs = Math.max(maxAbs, Math.abs(d.net));
-          points.push([x, y, d.net, d.enhanced, d.impaired, d.total]);
+          maxCount = Math.max(maxCount, d.enhanced, d.impaired);
         }});
       }});
-      charts.globalBalance.setOption({{
-        grid: {{ left: 178, right: 34, top: 26, bottom: 124 }},
-        tooltip: {{
-          formatter: item => {{
-            const value = values[item.value[0]];
-            const dimension = dims[item.value[1]];
-            return `<b>${{value}}</b><br/>${{dimension}}<br/>Enhanced: ${{item.value[3]}}<br/>Impaired: ${{item.value[4]}}<br/>Total: ${{item.value[5]}}<br/>Net: ${{item.value[2] >= 0 ? '+' : ''}}${{item.value[2]}}`;
-          }}
-        }},
-        xAxis: {{
-          type: 'category',
-          data: values,
-          axisLabel: {{ rotate: 45, interval: 0, color: COLORS.text }}
-        }},
-        yAxis: {{
-          type: 'category',
-          data: dims.map(shortDimension),
-          axisLabel: {{ color: COLORS.text }}
-        }},
-        visualMap: {{
-          min: -maxAbs,
-          max: maxAbs,
-          calculable: true,
-          orient: 'horizontal',
-          left: 'center',
-          bottom: 16,
-          inRange: {{ color: ['#c43131', '#ffffff', '#1f8a4c'] }}
-        }},
-        series: [{{
-          name: 'Net balance',
-          type: 'heatmap',
-          data: points,
-          label: {{
-            show: true,
-            formatter: p => p.value[5] ? `${{p.value[2] >= 0 ? '+' : ''}}${{p.value[2]}}` : '',
-            color: COLORS.text,
-            fontWeight: 700
-          }},
-          emphasis: {{ itemStyle: {{ borderColor: '#172033', borderWidth: 1 }} }}
-        }}]
-      }});
+      const header = values.map(value => `<th class="value-label"><span>${{escapeHtml(value)}}</span></th>`).join('');
+      const rows = dims.map(dimension => {{
+        const cells = values.map(value => {{
+          const d = DATA.dimensionValue[dimension][value];
+          const impairedWidth = Math.round((d.impaired / maxCount) * 100);
+          const enhancedWidth = Math.round((d.enhanced / maxCount) * 100);
+          const netClass = d.net >= 0 ? 'pos' : 'neg';
+          const netText = d.total ? `${{d.net >= 0 ? '+' : ''}}${{d.net}}` : '';
+          const title = `${{value}} / ${{dimension}} | enhanced ${{d.enhanced}}, impaired ${{d.impaired}}, net ${{d.net >= 0 ? '+' : ''}}${{d.net}}`;
+          return `
+            <td class="balance-cell ${{d.total ? '' : 'empty'}}" title="${{escapeHtml(title)}}">
+              <div class="mini-balance">
+                <div class="mini-bar impaired" style="width: ${{impairedWidth}}%;"></div>
+                <div class="mini-bar enhanced" style="width: ${{enhancedWidth}}%;"></div>
+              </div>
+              <div class="cell-net ${{netClass}}">${{netText}}</div>
+            </td>`;
+        }}).join('');
+        return `<tr><th class="row-label">${{escapeHtml(shortDimension(dimension))}}</th>${{cells}}</tr>`;
+      }}).join('');
+      document.getElementById('globalBalanceMatrix').innerHTML = `
+        <div class="matrix-legend">
+          <span class="legend-item"><span class="legend-chip red"></span>Impaired</span>
+          <span class="legend-item"><span class="legend-chip green"></span>Enhanced</span>
+        </div>
+        <table class="balance-matrix">
+          <thead><tr><th class="corner"></th>${{header}}</tr></thead>
+          <tbody>${{rows}}</tbody>
+        </table>`;
     }}
 
     function renderScatter(values) {{
