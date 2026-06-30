@@ -162,6 +162,30 @@ def build_data() -> dict[str, object]:
         discipline: {"discipline": discipline, "enhanced": 0, "impaired": 0, "total": 0, "net": 0}
         for discipline in ["ED", "SD", "UIUX"]
     }
+    discipline_value = {
+        discipline: {
+            bucket: {"enhanced": 0, "impaired": 0, "net": 0, "total": 0}
+            for bucket in VALUE_BUCKETS
+        }
+        for discipline in ["ED", "SD", "UIUX"]
+    }
+    discipline_dimension = {
+        discipline: {
+            dimension: {"enhanced": 0, "impaired": 0, "net": 0, "total": 0}
+            for dimension in DIMENSIONS
+        }
+        for discipline in ["ED", "SD", "UIUX"]
+    }
+    discipline_dimension_value = {
+        discipline: {
+            dimension: {
+                bucket: {"enhanced": 0, "impaired": 0, "net": 0, "total": 0}
+                for bucket in VALUE_BUCKETS
+            }
+            for dimension in DIMENSIONS
+        }
+        for discipline in ["ED", "SD", "UIUX"]
+    }
 
     excluded_rows: list[int] = []
     source_rows = 0
@@ -191,6 +215,12 @@ def build_data() -> dict[str, object]:
             dimension_totals[dimension]["total"] += 1
             discipline_totals[discipline]["enhanced"] += 1
             discipline_totals[discipline]["total"] += 1
+            discipline_value[discipline][bucket]["enhanced"] += 1
+            discipline_value[discipline][bucket]["total"] += 1
+            discipline_dimension[discipline][dimension]["enhanced"] += 1
+            discipline_dimension[discipline][dimension]["total"] += 1
+            discipline_dimension_value[discipline][dimension][bucket]["enhanced"] += 1
+            discipline_dimension_value[discipline][dimension][bucket]["total"] += 1
 
         for raw in (row.get(15), row.get(16)):
             bucket = normalize_value(raw)
@@ -204,6 +234,12 @@ def build_data() -> dict[str, object]:
             dimension_totals[dimension]["total"] += 1
             discipline_totals[discipline]["impaired"] += 1
             discipline_totals[discipline]["total"] += 1
+            discipline_value[discipline][bucket]["impaired"] += 1
+            discipline_value[discipline][bucket]["total"] += 1
+            discipline_dimension[discipline][dimension]["impaired"] += 1
+            discipline_dimension[discipline][dimension]["total"] += 1
+            discipline_dimension_value[discipline][dimension][bucket]["impaired"] += 1
+            discipline_dimension_value[discipline][dimension][bucket]["total"] += 1
 
     for item in totals.values():
         item["net"] = item["enhanced"] - item["impaired"]
@@ -217,6 +253,16 @@ def build_data() -> dict[str, object]:
             item["net"] = item["enhanced"] - item["impaired"]
     for item in discipline_totals.values():
         item["net"] = item["enhanced"] - item["impaired"]
+    for discipline in ["ED", "SD", "UIUX"]:
+        for bucket in VALUE_BUCKETS:
+            item = discipline_value[discipline][bucket]
+            item["net"] = item["enhanced"] - item["impaired"]
+        for dimension in DIMENSIONS:
+            item = discipline_dimension[discipline][dimension]
+            item["net"] = item["enhanced"] - item["impaired"]
+            for bucket in VALUE_BUCKETS:
+                bucket_item = discipline_dimension_value[discipline][dimension][bucket]
+                bucket_item["net"] = bucket_item["enhanced"] - bucket_item["impaired"]
 
     by_value = sorted(totals.values(), key=lambda item: item["total"], reverse=True)
     return {
@@ -231,6 +277,9 @@ def build_data() -> dict[str, object]:
         "dimensions": list(dimension_totals.values()),
         "disciplines": list(discipline_totals.values()),
         "dimensionValue": dimension_value,
+        "disciplineValue": discipline_value,
+        "disciplineDimension": discipline_dimension,
+        "disciplineDimensionValue": discipline_dimension_value,
     }
 
 
@@ -439,7 +488,97 @@ def html_template(data: dict[str, object]) -> str:
       height: 480px;
     }}
     .matrix-wide .chart {{
-      height: 650px;
+      height: 960px;
+    }}
+    .discipline-value-wide .chart {{
+      height: 520px;
+    }}
+    .discipline-dimension-wide .chart {{
+      height: 760px;
+    }}
+    .fingerprint-grid {{
+      padding: 16px;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 12px;
+    }}
+    .fingerprint-card {{
+      min-width: 0;
+      border: 1px solid #e3e9f3;
+      border-radius: 8px;
+      background: #ffffff;
+      overflow: hidden;
+      box-shadow: 0 1px 0 rgba(15, 23, 42, 0.03);
+    }}
+    .fingerprint-head {{
+      display: flex;
+      justify-content: space-between;
+      gap: 10px;
+      align-items: flex-start;
+      padding: 11px 12px 9px;
+      border-bottom: 1px solid #eef2f7;
+      background: #fbfcff;
+    }}
+    .fingerprint-title {{
+      min-width: 0;
+      font-size: 13px;
+      font-weight: 800;
+      color: var(--ink);
+      line-height: 1.2;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }}
+    .fingerprint-meta {{
+      font-size: 11px;
+      color: var(--muted);
+      white-space: nowrap;
+    }}
+    .fingerprint-body {{
+      padding: 10px 12px 12px;
+      display: grid;
+      gap: 8px;
+    }}
+    .fingerprint-lane {{
+      display: grid;
+      grid-template-columns: 38px 1fr;
+      gap: 8px;
+      align-items: center;
+    }}
+    .fingerprint-discipline {{
+      font-size: 11px;
+      font-weight: 800;
+      color: var(--ink);
+    }}
+    .fingerprint-cells {{
+      min-width: 0;
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 5px;
+    }}
+    .fingerprint-cell {{
+      min-height: 34px;
+      border: 1px solid rgba(148, 163, 184, 0.20);
+      border-radius: 6px;
+      padding: 5px 5px 4px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 1px;
+    }}
+    .fingerprint-dim {{
+      font-size: 9px;
+      color: rgba(23, 32, 51, 0.72);
+      font-weight: 700;
+      line-height: 1;
+    }}
+    .fingerprint-net {{
+      font-size: 12px;
+      font-weight: 850;
+      line-height: 1;
+      color: var(--ink);
+    }}
+    .fingerprint-empty {{
+      color: #b6c0cf;
     }}
     table {{
       width: 100%;
@@ -472,6 +611,12 @@ def html_template(data: dict[str, object]) -> str:
       .toolbar {{ align-items: stretch; flex-direction: column; }}
       select, button {{ width: 100%; }}
       .chart, .wide .chart {{ height: 390px; }}
+      .matrix-wide .chart {{ height: 840px; }}
+      .discipline-value-wide .chart {{ height: 560px; }}
+      .discipline-dimension-wide .chart {{ height: 760px; }}
+    }}
+    @media (max-width: 720px) {{
+      .fingerprint-grid {{ grid-template-columns: 1fr; }}
     }}
   </style>
 </head>
@@ -534,6 +679,14 @@ def html_template(data: dict[str, object]) -> str:
           <div class="panel-head"><h2 class="panel-title">Global Dimension x Value Balance</h2><div class="panel-caption">Four dimension rows; green rises above the row baseline, red drops below it</div></div>
           <div id="globalBalanceChart" class="chart"></div>
         </section>
+        <section class="panel wide discipline-value-wide">
+          <div class="panel-head"><h2 class="panel-title">Discipline Divergence by Value</h2><div class="panel-caption">Sorted by SD/ED/UIUX disagreement; x-axis is normalized net score</div></div>
+          <div id="disciplineValueChart" class="chart"></div>
+        </section>
+        <section class="panel wide discipline-dimension-wide">
+          <div class="panel-head"><h2 class="panel-title">Value Fingerprint Cards</h2><div class="panel-caption">Card = value; row = discipline; four cells = design dimensions; green/red = net balance</div></div>
+          <div id="disciplineDimensionChart" class="fingerprint-grid"></div>
+        </section>
         <section class="panel">
           <div class="panel-head"><h2 class="panel-title">Difference Heatmap</h2><div class="panel-caption">Fixed: all dimensions, enhanced - impaired</div></div>
           <div id="heatmapChart" class="chart"></div>
@@ -560,6 +713,7 @@ def html_template(data: dict[str, object]) -> str:
     const charts = {{
       diverging: echarts.init(document.getElementById('divergingChart')),
       globalBalance: echarts.init(document.getElementById('globalBalanceChart')),
+      disciplineValue: echarts.init(document.getElementById('disciplineValueChart')),
       heatmap: echarts.init(document.getElementById('heatmapChart')),
       scatter: echarts.init(document.getElementById('scatterChart')),
       dimension: echarts.init(document.getElementById('dimensionChart'))
@@ -656,7 +810,7 @@ def html_template(data: dict[str, object]) -> str:
         }});
       }});
       charts.heatmap.setOption({{
-        grid: {{ left: 150, right: 20, top: 24, bottom: 116 }},
+        grid: {{ left: 150, right: 20, top: 22, bottom: 172 }},
         tooltip: {{
           formatter: item => {{
             const value = values[item.value[0]];
@@ -665,7 +819,7 @@ def html_template(data: dict[str, object]) -> str:
             return `<b>${{value}}</b><br/>${{dimension}}<br/>Enhanced: ${{d.enhanced}}<br/>Impaired: ${{d.impaired}}<br/>Net: ${{d.net >= 0 ? '+' : ''}}${{d.net}}`;
           }}
         }},
-        xAxis: {{ type: 'category', data: values, axisLabel: {{ rotate: 45, interval: 0, color: COLORS.text }} }},
+        xAxis: {{ type: 'category', data: values, axisLabel: {{ rotate: 45, interval: 0, margin: 14, color: COLORS.text }} }},
         yAxis: {{ type: 'category', data: dims.map(shortDimension), axisLabel: {{ color: COLORS.text }} }},
         visualMap: {{
           min: -15,
@@ -689,6 +843,7 @@ def html_template(data: dict[str, object]) -> str:
       const dims = Object.keys(DATA.dimensionValue);
       const values = DATA.valueOrder;
       const points = [];
+      const baselines = dims.map((dimension, dimIndex) => [0, dimIndex, dimension]);
       let maxCount = 1;
       dims.forEach((dimension, dimIndex) => {{
         values.forEach((value, x) => {{
@@ -699,7 +854,7 @@ def html_template(data: dict[str, object]) -> str:
       }});
       charts.globalBalance.setOption({{
         animation: false,
-        grid: {{ left: 185, right: 34, top: 150, bottom: 30 }},
+        grid: {{ left: 185, right: 34, top: 210, bottom: 70 }},
         tooltip: {{
           formatter: item => {{
             const d = item.value;
@@ -738,7 +893,7 @@ def html_template(data: dict[str, object]) -> str:
             fontWeight: 760,
             margin: 22
           }},
-          splitLine: {{ show: true, lineStyle: {{ color: '#edf0f5' }} }}
+          splitLine: {{ show: false }}
         }},
         series: [
           {{
@@ -754,9 +909,34 @@ def html_template(data: dict[str, object]) -> str:
             itemStyle: {{ color: COLORS.red }}
           }},
           {{
+            name: 'Row baseline',
+            type: 'custom',
+            coordinateSystem: 'cartesian2d',
+            silent: true,
+            z: 1,
+            data: baselines,
+            renderItem: (params, api) => {{
+              const y = api.value(1);
+              const first = api.coord([0, y]);
+              const last = api.coord([values.length - 1, y]);
+              const categoryWidth = api.size([1, 0])[0];
+              return {{
+                type: 'line',
+                shape: {{
+                  x1: first[0] - categoryWidth * 0.46,
+                  y1: first[1],
+                  x2: last[0] + categoryWidth * 0.46,
+                  y2: last[1]
+                }},
+                style: {{ stroke: '#aeb9c9', lineWidth: 1.8 }}
+              }};
+            }}
+          }},
+          {{
             name: 'Dimension value balance',
             type: 'custom',
             coordinateSystem: 'cartesian2d',
+            z: 3,
             data: points,
             renderItem: (params, api) => {{
               const x = api.value(0);
@@ -768,24 +948,13 @@ def html_template(data: dict[str, object]) -> str:
               const coord = api.coord([x, y]);
               const categoryWidth = api.size([1, 0])[0];
               const bandHeight = api.size([0, 1])[1];
-              const scale = (bandHeight * 0.33) / maxCount;
-              const barWidth = Math.max(8, Math.min(18, categoryWidth * 0.22));
+              const scale = (bandHeight * 0.50) / maxCount;
+              const barWidth = Math.max(12, Math.min(28, categoryWidth * 0.32));
               const enhancedHeight = enhanced * scale;
               const impairedHeight = impaired * scale;
               const netText = total ? `${{net >= 0 ? '+' : ''}}${{net}}` : '';
               const netColor = net >= 0 ? COLORS.green : COLORS.red;
-              const children = [
-                {{
-                  type: 'line',
-                  shape: {{
-                    x1: coord[0] - categoryWidth * 0.42,
-                    y1: coord[1],
-                    x2: coord[0] + categoryWidth * 0.42,
-                    y2: coord[1]
-                  }},
-                  style: {{ stroke: '#b8c2d1', lineWidth: 1.2 }}
-                }}
-              ];
+              const children = [];
               if (enhancedHeight > 0) {{
                 children.push({{
                   type: 'rect',
@@ -816,7 +985,7 @@ def html_template(data: dict[str, object]) -> str:
                 type: 'text',
                 style: {{
                   x: coord[0],
-                  y: coord[1] + bandHeight * 0.40,
+                  y: coord[1] + bandHeight * 0.60,
                   text: netText,
                   fill: netColor,
                   align: 'center',
@@ -831,12 +1000,202 @@ def html_template(data: dict[str, object]) -> str:
       }});
     }}
 
-    function renderScatter(values) {{
-      charts.scatter.setOption({{
-        grid: {{ left: 58, right: 24, top: 20, bottom: 48 }},
+    function renderDisciplineValue() {{
+      const disciplines = ['ED', 'SD', 'UIUX'];
+      const disciplineMeta = [
+        {{ key: 'ED', color: '#2563eb' }},
+        {{ key: 'SD', color: '#ea580c' }},
+        {{ key: 'UIUX', color: '#7c3aed' }}
+      ];
+      const rows = DATA.values
+        .filter(d => d.total >= 8)
+        .map(item => {{
+          const scores = disciplines.map(discipline => {{
+            const d = DATA.disciplineValue[discipline][item.value];
+            return d.total ? ((d.enhanced - d.impaired) / d.total) * 100 : 0;
+          }});
+          return {{
+            value: item.value,
+            scores,
+            spread: Math.max(...scores) - Math.min(...scores),
+            total: item.total
+          }};
+        }})
+        .sort((a, b) => b.spread - a.spread)
+        .slice(0, 12);
+      const yLabels = rows.map(d => d.value);
+      const allScores = rows.flatMap(d => d.scores);
+      const minScore = Math.min(-100, ...allScores) - 4;
+      const maxScore = Math.max(100, ...allScores) + 4;
+      charts.disciplineValue.setOption({{
+        animation: false,
+        grid: {{ left: 210, right: 104, top: 54, bottom: 46 }},
         tooltip: {{
+          trigger: 'item',
           formatter: item => {{
             const d = item.data;
+            return `<b>${{d.valueName}}</b><br/>${{item.seriesName}}<br/>Enhanced: ${{d.enhanced}}<br/>Impaired: ${{d.impaired}}<br/>Net: ${{d.net >= 0 ? '+' : ''}}${{d.net}}<br/>Net score: ${{d.score >= 0 ? '+' : ''}}${{d.score.toFixed(0)}}%`;
+          }}
+        }},
+        legend: {{ top: 12, right: 18, data: disciplineMeta.map(d => d.key) }},
+        xAxis: {{
+          type: 'value',
+          name: 'Net score',
+          min: minScore,
+          max: maxScore,
+          axisLabel: {{ color: COLORS.muted, formatter: value => `${{value}}%` }},
+          splitLine: {{ lineStyle: {{ color: '#eef2f7' }} }}
+        }},
+        yAxis: {{
+          type: 'category',
+          data: yLabels,
+          inverse: true,
+          axisTick: {{ show: false }},
+          axisLine: {{ show: false }},
+          axisLabel: {{ color: COLORS.text, fontWeight: 760 }},
+          splitLine: {{ show: true, lineStyle: {{ color: '#edf0f5' }} }}
+        }},
+        series: [
+          {{
+            name: 'Spread',
+            type: 'custom',
+            silent: true,
+            z: 1,
+            data: rows.map((row, index) => {{
+              const min = Math.min(...row.scores);
+              const max = Math.max(...row.scores);
+              return [min, max, index, row.spread];
+            }}),
+            renderItem: (params, api) => {{
+              const y = api.coord([0, api.value(2)])[1];
+              const x1 = api.coord([api.value(0), api.value(2)])[0];
+              const x2 = api.coord([api.value(1), api.value(2)])[0];
+              return {{
+                type: 'line',
+                shape: {{ x1, y1: y, x2, y2: y }},
+                style: {{ stroke: '#cbd5e1', lineWidth: 3, opacity: 0.85 }}
+              }};
+            }}
+          }},
+          ...disciplineMeta.map(meta => ({{
+            name: meta.key,
+            type: 'scatter',
+            z: 3,
+            symbolSize: (value, params) => Math.max(10, Math.min(24, 7 + Math.sqrt(params.data.total) * 2.2)),
+            itemStyle: {{ color: meta.color, opacity: 0.9 }},
+            data: rows.map((row, index) => {{
+              const d = DATA.disciplineValue[meta.key][row.value];
+              const score = d.total ? ((d.enhanced - d.impaired) / d.total) * 100 : 0;
+              return {{
+                value: [score, index],
+                valueName: row.value,
+                valueLabel: row.value,
+                valueIndex: index,
+                valueTotal: row.total,
+                score,
+                enhanced: d.enhanced,
+                impaired: d.impaired,
+                net: d.net,
+                total: d.total
+              }};
+            }}),
+            label: {{
+              show: true,
+              formatter: p => Math.abs(p.data.score) < 15 ? '' : `${{p.data.score >= 0 ? '+' : ''}}${{p.data.score.toFixed(0)}}%`,
+              position: 'right',
+              color: meta.color,
+              fontWeight: 700,
+              fontSize: 11
+            }},
+            labelLayout: {{ hideOverlap: true }},
+            markLine: meta.key === 'ED' ? {{
+              symbol: 'none',
+              label: {{ show: false }},
+              lineStyle: {{ color: '#94a3b8', width: 1.6 }},
+              data: [{{ xAxis: 0 }}]
+            }} : undefined
+          }}))
+        ]
+      }});
+    }}
+
+    function renderDisciplineDimension() {{
+      const disciplineMeta = [
+        {{ key: 'ED', color: '#2563eb' }},
+        {{ key: 'SD', color: '#ea580c' }},
+        {{ key: 'UIUX', color: '#7c3aed' }}
+      ];
+      const dimensions = Object.keys(DATA.dimensionValue);
+      const dimKeys = ['BR', 'IG', 'DE', 'PM'];
+      let maxAbs = 1;
+      DATA.valueOrder.forEach(value => {{
+        disciplineMeta.forEach(meta => {{
+          dimensions.forEach(dimension => {{
+            const d = DATA.disciplineDimensionValue[meta.key][dimension][value];
+            maxAbs = Math.max(maxAbs, Math.abs(d.net));
+          }});
+        }});
+      }});
+
+      const fillFor = net => {{
+        if (!net) return '#f8fafc';
+        const opacity = Math.min(0.92, 0.12 + (Math.abs(net) / maxAbs) * 0.72);
+        return net > 0 ? `rgba(31, 138, 76, ${{opacity}})` : `rgba(196, 49, 49, ${{opacity}})`;
+      }};
+      const textFor = net => net ? `${{net > 0 ? '+' : ''}}${{net}}` : '0';
+      const totalForValue = value => DATA.values.find(item => item.value === value)?.total || 0;
+      const netForValue = value => {{
+        const item = DATA.values.find(entry => entry.value === value);
+        return item ? item.net : 0;
+      }};
+
+      const html = DATA.valueOrder.map(value => {{
+        const valueNet = netForValue(value);
+        const lanes = disciplineMeta.map(meta => {{
+          const cells = dimensions.map((dimension, dimIndex) => {{
+            const d = DATA.disciplineDimensionValue[meta.key][dimension][value];
+            const tooltip = `${{value}} | ${{meta.key}} / ${{shortDimension(dimension)}}\\nEnhanced: ${{d.enhanced}}\\nImpaired: ${{d.impaired}}\\nNet: ${{d.net >= 0 ? '+' : ''}}${{d.net}}`;
+            return `<div class="fingerprint-cell" style="background:${{fillFor(d.net)}}" title="${{tooltip}}">
+              <div class="fingerprint-dim">${{dimKeys[dimIndex]}}</div>
+              <div class="fingerprint-net ${{d.total ? '' : 'fingerprint-empty'}}">${{d.total ? textFor(d.net) : '-'}}</div>
+            </div>`;
+          }}).join('');
+          return `<div class="fingerprint-lane">
+            <div class="fingerprint-discipline" style="color:${{meta.color}}">${{meta.key}}</div>
+            <div class="fingerprint-cells">${{cells}}</div>
+          </div>`;
+        }}).join('');
+        return `<article class="fingerprint-card">
+          <div class="fingerprint-head">
+            <div class="fingerprint-title">${{value}}</div>
+            <div class="fingerprint-meta">${{totalForValue(value)}} mentions / ${{valueNet >= 0 ? '+' : ''}}${{valueNet}}</div>
+          </div>
+          <div class="fingerprint-body">${{lanes}}</div>
+        </article>`;
+      }}).join('');
+      document.getElementById('disciplineDimensionChart').innerHTML = html;
+    }}
+
+    function renderScatter(values) {{
+      const labelPositions = {{
+        'User-centredness': 'left',
+        'Creativity': 'right',
+        'Affordability': 'top',
+        'Other': 'bottom'
+      }};
+      const scatterData = values.map(d => ({{
+        value: [d.enhanced, d.impaired, d.total, d.value, d.net],
+        label: {{
+          show: d.total >= 4,
+          position: labelPositions[d.value] || 'right',
+          distance: 9
+        }}
+      }}));
+      charts.scatter.setOption({{
+        grid: {{ left: 58, right: 92, top: 20, bottom: 48 }},
+        tooltip: {{
+          formatter: item => {{
+            const d = item.data.value;
             return `<b>${{d[3]}}</b><br/>Enhanced: ${{d[0]}}<br/>Impaired: ${{d[1]}}<br/>Total: ${{d[2]}}<br/>Net: ${{d[4] >= 0 ? '+' : ''}}${{d[4]}}`;
           }}
         }},
@@ -844,10 +1203,18 @@ def html_template(data: dict[str, object]) -> str:
         yAxis: {{ name: 'Impaired', nameLocation: 'middle', nameGap: 40, splitLine: {{ lineStyle: {{ color: '#eef2f7' }} }} }},
         series: [{{
           type: 'scatter',
-          data: values.map(d => [d.enhanced, d.impaired, d.total, d.value, d.net]),
+          data: scatterData,
           symbolSize: data => Math.max(12, Math.sqrt(data[2]) * 5),
-          itemStyle: {{ color: data => data.data[4] >= 0 ? COLORS.green : COLORS.red, opacity: 0.76 }},
-          label: {{ show: true, formatter: p => p.data[3], position: 'right', color: COLORS.text, fontSize: 10 }}
+          itemStyle: {{ color: data => data.data.value[4] >= 0 ? COLORS.green : COLORS.red, opacity: 0.76 }},
+          label: {{
+            show: true,
+            formatter: p => p.data.value[3],
+            color: COLORS.text,
+            fontSize: 10,
+            width: 132,
+            overflow: 'truncate'
+          }},
+          labelLayout: {{ hideOverlap: true }}
         }}]
       }});
     }}
@@ -887,6 +1254,8 @@ def html_template(data: dict[str, object]) -> str:
       const values = currentValues();
       renderDiverging(values);
       renderGlobalBalance();
+      renderDisciplineValue();
+      renderDisciplineDimension();
       renderHeatmap();
       renderScatter(values);
       renderDimensionTotals();
