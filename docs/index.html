@@ -1,294 +1,987 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>AI Design Research Visualizations</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Enhanced vs Impaired Value Comparison</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Crect width='16' height='16' rx='3' fill='%232754c5'/%3E%3Cpath d='M4 9h8v2H4zM4 5h5v2H4z' fill='white'/%3E%3C/svg%3E" />
+  <script src="https://cdn.jsdelivr.net/npm/echarts@5/dist/echarts.min.js"></script>
   <style>
     :root {
-      color-scheme: light;
       --ink: #172033;
-      --muted: #5d687b;
-      --line: #d8dee8;
-      --paper: #ffffff;
-      --bg: #f6f8fb;
-      --accent: #1f6feb;
-      --accent-dark: #1554b7;
-      --green: #1f883d;
-      --orange: #bc4c00;
-      --purple: #8250df;
+      --muted: #667085;
+      --line: #d8dee9;
+      --panel: #ffffff;
+      --page: #f5f7fb;
+      --green: #1f8a4c;
+      --green-soft: #dff4e8;
+      --red: #c43131;
+      --red-soft: #f9dfdf;
+      --blue: #2754c5;
     }
-
-    * {
-      box-sizing: border-box;
-    }
-
+    * { box-sizing: border-box; }
     body {
       margin: 0;
-      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: var(--page);
       color: var(--ink);
-      background: var(--bg);
-      line-height: 1.5;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      letter-spacing: 0;
     }
-
-    header {
-      border-bottom: 1px solid var(--line);
-      background: var(--paper);
-    }
-
-    .wrap {
-      width: min(1120px, calc(100% - 32px));
+    .shell {
+      max-width: 1480px;
       margin: 0 auto;
+      padding: 28px;
     }
-
-    .top {
-      display: grid;
-      gap: 14px;
-      padding: 34px 0 26px;
+    header {
+      margin-bottom: 18px;
     }
-
     h1 {
-      margin: 0;
-      font-size: clamp(28px, 4vw, 46px);
-      line-height: 1.08;
-      letter-spacing: 0;
-    }
-
-    .lede {
-      max-width: 820px;
-      margin: 0;
-      color: var(--muted);
-      font-size: 17px;
-    }
-
-    main {
-      padding: 28px 0 48px;
-    }
-
-    .section-head {
-      display: flex;
-      align-items: end;
-      justify-content: space-between;
-      gap: 16px;
-      margin: 0 0 14px;
-    }
-
-    h2 {
-      margin: 0;
-      font-size: 18px;
-      letter-spacing: 0;
-    }
-
-    .note {
-      margin: 0;
-      color: var(--muted);
-      font-size: 14px;
-    }
-
-    .grid {
-      display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 14px;
-    }
-
-    .panel {
-      display: flex;
-      flex-direction: column;
-      min-height: 190px;
-      padding: 18px;
-      border: 1px solid var(--line);
-      border-radius: 8px;
-      background: var(--paper);
-      box-shadow: 0 1px 2px rgba(23, 32, 51, 0.06);
-    }
-
-    .panel h3 {
       margin: 0 0 8px;
-      font-size: 18px;
-      letter-spacing: 0;
+      font-size: 30px;
+      line-height: 1.1;
+      font-weight: 760;
     }
-
-    .panel p {
-      margin: 0 0 18px;
+    .sub {
+      max-width: 940px;
+      margin: 0;
       color: var(--muted);
       font-size: 14px;
+      line-height: 1.55;
     }
-
-    .panel .meta {
+    .toolbar {
       display: flex;
       flex-wrap: wrap;
       gap: 8px;
-      margin-top: auto;
-      padding-top: 10px;
-    }
-
-    .tag {
-      display: inline-flex;
       align-items: center;
-      min-height: 24px;
-      padding: 2px 8px;
-      border-radius: 999px;
-      background: #eef2f7;
-      color: #394255;
-      font-size: 12px;
-      font-weight: 650;
-    }
-
-    .link {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      min-height: 38px;
-      margin-top: 16px;
-      padding: 8px 12px;
-      border-radius: 6px;
-      background: var(--accent);
-      color: white;
-      font-weight: 700;
-      text-decoration: none;
-    }
-
-    .link:hover,
-    .link:focus {
-      background: var(--accent-dark);
-      outline: none;
-    }
-
-    .secondary {
-      margin-top: 30px;
-    }
-
-    .list {
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 10px;
-      margin: 0;
-      padding: 0;
-      list-style: none;
-    }
-
-    .list a {
-      display: block;
-      padding: 12px 14px;
+      padding: 8px;
       border: 1px solid var(--line);
       border-radius: 8px;
-      background: var(--paper);
+      background: var(--panel);
+    }
+    .toolbar-note {
+      flex-basis: 100%;
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.35;
+      padding: 0 2px 2px;
+    }
+    select, button {
+      height: 34px;
+      border-radius: 6px;
+      border: 1px solid #cfd6e3;
+      background: #fff;
       color: var(--ink);
-      text-decoration: none;
+      padding: 0 10px;
+      font: inherit;
+      font-size: 13px;
     }
-
-    .list a:hover,
-    .list a:focus {
-      border-color: var(--accent);
-      outline: none;
+    button {
+      cursor: pointer;
+      font-weight: 650;
     }
-
-    .color-a {
-      border-top: 4px solid var(--accent);
+    .scope-section {
+      margin-top: 16px;
+      padding: 16px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: #fff;
     }
-
-    .color-b {
-      border-top: 4px solid var(--green);
+    .scope-section.filtered-zone {
+      border-top: 5px solid #22c55e;
+      background: #fbfffc;
     }
-
-    .color-c {
-      border-top: 4px solid var(--orange);
+    .scope-section.global-zone {
+      border-top: 5px solid #64748b;
+      background: #fbfcff;
     }
-
-    .color-d {
-      border-top: 4px solid var(--purple);
+    .section-head {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto;
+      gap: 18px;
+      align-items: end;
+      margin-bottom: 14px;
     }
-
-    footer {
-      border-top: 1px solid var(--line);
-      background: var(--paper);
+    .section-kicker {
+      margin: 0 0 5px;
+      color: var(--muted);
+      font-size: 12px;
+      font-weight: 760;
+      text-transform: uppercase;
+    }
+    .section-title {
+      margin: 0;
+      font-size: 20px;
+      line-height: 1.2;
+      font-weight: 760;
+    }
+    .section-note {
+      margin: 6px 0 0;
       color: var(--muted);
       font-size: 13px;
-      padding: 18px 0;
+      line-height: 1.45;
     }
-
-    @media (max-width: 860px) {
-      .grid,
-      .list {
-        grid-template-columns: 1fr;
-      }
-
-      .section-head {
-        align-items: start;
-        flex-direction: column;
-      }
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 12px;
+      margin-bottom: 14px;
+    }
+    .card {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 14px 16px;
+      min-height: 86px;
+    }
+    .label {
+      color: var(--muted);
+      font-size: 12px;
+      font-weight: 700;
+      text-transform: uppercase;
+    }
+    .metric {
+      margin-top: 8px;
+      font-size: 28px;
+      font-weight: 760;
+      line-height: 1;
+    }
+    .metric.green { color: var(--green); }
+    .metric.red { color: var(--red); }
+    .metric.blue { color: var(--blue); }
+    .note {
+      margin-top: 8px;
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.35;
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.1fr) minmax(420px, .9fr);
+      gap: 14px;
+    }
+    .filtered-grid {
+      grid-template-columns: minmax(0, 1fr) minmax(420px, .9fr);
+    }
+    .global-grid {
+      grid-template-columns: minmax(0, 1fr) minmax(420px, .9fr);
+    }
+    .panel {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      overflow: hidden;
+    }
+    .panel-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      padding: 13px 16px;
+      border-bottom: 1px solid var(--line);
+      background: #fbfcff;
+    }
+    .panel-title {
+      margin: 0;
+      font-size: 15px;
+      font-weight: 760;
+    }
+    .panel-caption {
+      color: var(--muted);
+      font-size: 12px;
+      text-align: right;
+    }
+    .chart {
+      width: 100%;
+      height: 430px;
+    }
+    .wide {
+      grid-column: 1 / -1;
+    }
+    .wide .chart {
+      height: 480px;
+    }
+    .matrix-wide .chart {
+      height: 960px;
+    }
+    .discipline-value-wide .chart {
+      height: 520px;
+    }
+    .discipline-dimension-wide .chart {
+      height: 760px;
+    }
+    .fingerprint-grid {
+      padding: 16px;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 12px;
+    }
+    .fingerprint-card {
+      min-width: 0;
+      border: 1px solid #e3e9f3;
+      border-radius: 8px;
+      background: #ffffff;
+      overflow: hidden;
+      box-shadow: 0 1px 0 rgba(15, 23, 42, 0.03);
+    }
+    .fingerprint-head {
+      display: flex;
+      justify-content: space-between;
+      gap: 10px;
+      align-items: flex-start;
+      padding: 11px 12px 9px;
+      border-bottom: 1px solid #eef2f7;
+      background: #fbfcff;
+    }
+    .fingerprint-title {
+      min-width: 0;
+      font-size: 13px;
+      font-weight: 800;
+      color: var(--ink);
+      line-height: 1.2;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .fingerprint-meta {
+      font-size: 11px;
+      color: var(--muted);
+      white-space: nowrap;
+    }
+    .fingerprint-body {
+      padding: 10px 12px 12px;
+      display: grid;
+      gap: 8px;
+    }
+    .fingerprint-lane {
+      display: grid;
+      grid-template-columns: 38px 1fr;
+      gap: 8px;
+      align-items: center;
+    }
+    .fingerprint-discipline {
+      font-size: 11px;
+      font-weight: 800;
+      color: var(--ink);
+    }
+    .fingerprint-cells {
+      min-width: 0;
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 5px;
+    }
+    .fingerprint-cell {
+      min-height: 34px;
+      border: 1px solid rgba(148, 163, 184, 0.20);
+      border-radius: 6px;
+      padding: 5px 5px 4px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 1px;
+    }
+    .fingerprint-dim {
+      font-size: 9px;
+      color: rgba(23, 32, 51, 0.72);
+      font-weight: 700;
+      line-height: 1;
+    }
+    .fingerprint-net {
+      font-size: 12px;
+      font-weight: 850;
+      line-height: 1;
+      color: var(--ink);
+    }
+    .fingerprint-empty {
+      color: #b6c0cf;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 13px;
+    }
+    th, td {
+      padding: 9px 10px;
+      border-bottom: 1px solid #edf0f5;
+      text-align: right;
+      white-space: nowrap;
+    }
+    th:first-child, td:first-child {
+      text-align: left;
+      white-space: normal;
+    }
+    th {
+      color: var(--muted);
+      font-size: 12px;
+      background: #fbfcff;
+    }
+    .table-wrap {
+      max-height: 430px;
+      overflow: auto;
+    }
+    .pos { color: var(--green); font-weight: 700; }
+    .neg { color: var(--red); font-weight: 700; }
+    @media (max-width: 1050px) {
+      .section-head, .grid, .cards { grid-template-columns: 1fr; }
+      .toolbar { align-items: stretch; flex-direction: column; }
+      select, button { width: 100%; }
+      .chart, .wide .chart { height: 390px; }
+      .matrix-wide .chart { height: 840px; }
+      .discipline-value-wide .chart { height: 560px; }
+      .discipline-dimension-wide .chart { height: 760px; }
+    }
+    @media (max-width: 720px) {
+      .fingerprint-grid { grid-template-columns: 1fr; }
     }
   </style>
 </head>
 <body>
-  <header>
-    <div class="wrap top">
-      <h1>AI Design Research Visualizations</h1>
-      <p class="lede">Interactive dashboards and figures for exploring topic modeling, semantic networks, research gaps, and the project timeline.</p>
-    </div>
-  </header>
-
-  <main class="wrap">
-    <div class="section-head">
-      <h2>Main Dashboards</h2>
-      <p class="note">Open these first for interactive exploration.</p>
-    </div>
-
-    <section class="grid" aria-label="Main dashboards">
-      <article class="panel color-a">
-        <h3>Topic Analysis Dashboard</h3>
-        <p>Explore topics, yearly trends, AI methods, design practices, and paper-level metadata.</p>
-        <div class="meta">
-          <span class="tag">Topics</span>
-          <span class="tag">Trends</span>
-          <span class="tag">Papers</span>
-        </div>
-        <a class="link" href="interactive_topic_dashboard_en.html">Open Dashboard</a>
-      </article>
-
-      <article class="panel color-b">
-        <h3>Semantic Network Dashboard</h3>
-        <p>Inspect keyword communities, AI method filters, design task filters, and network structure.</p>
-        <div class="meta">
-          <span class="tag">Network</span>
-          <span class="tag">Keywords</span>
-          <span class="tag">Filters</span>
-        </div>
-        <a class="link" href="semantic_network_analysis/interactive/english_dashboard.html">Open Network</a>
-      </article>
-
-      <article class="panel color-c">
-        <h3>Project Timeline</h3>
-        <p>Review the analysis and coding workflow schedule as an interactive Gantt-style page.</p>
-        <div class="meta">
-          <span class="tag">Timeline</span>
-          <span class="tag">Workflow</span>
-        </div>
-        <a class="link" href="project_gantt_chart_custom.html">Open Timeline</a>
-      </article>
-    </section>
-
-    <section class="secondary" aria-label="Additional visualizations">
-      <div class="section-head">
-        <h2>Additional Views</h2>
-        <p class="note">Supporting charts and alternate network exports.</p>
+  <div class="shell">
+    <header>
+      <div>
+        <h1>Enhanced vs Impaired Value Comparison</h1>
+        <p class="sub">Interactive dashboard generated from <strong>00_Final.xlsx</strong>. Enhanced Value 1/2 and Impaired Value 1/2 are normalized into shared value buckets, then compared across value dimensions and aggregated design dimensions.</p>
       </div>
+    </header>
 
-      <ul class="list">
-        <li><a href="semantic_network_analysis/interactive/self_contained_english_dashboard.html">Self-contained semantic network dashboard</a></li>
-        <li><a href="semantic_network_analysis/visualizations/interactive_network.html">Plotly interactive semantic network</a></li>
-        <li><a href="nlp_analysis/visualizations/method_timeline.html">AI method timeline</a></li>
-        <li><a href="nlp_analysis/visualizations/research_heatmap.html">Research heatmap</a></li>
-        <li><a href="nlp_analysis_improved/visualizations/ai_evolution_story.png">AI evolution story figure</a></li>
-        <li><a href="nlp_analysis_improved/visualizations/research_gap_matrix.png">Research gap matrix figure</a></li>
-        <li><a href="topic_modeling_analysis/visualizations/topic_trends_timeline.png">Topic trends timeline figure</a></li>
-        <li><a href="project_gantt_chart.html">Original project Gantt chart</a></li>
-      </ul>
+    <section class="scope-section filtered-zone">
+      <div class="section-head">
+        <div>
+          <p class="section-kicker">Filter-controlled area</p>
+          <h2 class="section-title">Views that change with the dimension filter</h2>
+          <p class="section-note">Use this area to compare enhanced and impaired values within one selected design dimension.</p>
+        </div>
+        <div class="toolbar">
+          <select id="dimensionFilter" aria-label="Dimension filter">
+            <option value="All">All dimensions</option>
+          </select>
+          <button id="resetBtn" type="button">Reset View</button>
+          <div class="toolbar-note">This control updates only the charts and table inside this green section.</div>
+        </div>
+      </div>
+      <div class="grid filtered-grid">
+      <section class="panel wide">
+        <div class="panel-head"><h2 class="panel-title">Diverging Value Balance</h2><div class="panel-caption">Changes with dimension filter</div></div>
+        <div id="divergingChart" class="chart"></div>
+      </section>
+      <section class="panel">
+        <div class="panel-head"><h2 class="panel-title">Trade-off Scatter</h2><div class="panel-caption">Changes with dimension filter</div></div>
+        <div id="scatterChart" class="chart"></div>
+      </section>
+      <section class="panel">
+        <div class="panel-head"><h2 class="panel-title">Value Summary Table</h2><div class="panel-caption">Changes with dimension filter</div></div>
+        <div class="table-wrap"><table id="summaryTable"></table></div>
+      </section>
+      </div>
     </section>
-  </main>
 
-  <footer>
-    <div class="wrap">Paper Review with LLM static visualization site.</div>
-  </footer>
+    <section class="scope-section global-zone">
+      <div class="section-head">
+        <div>
+          <p class="section-kicker">Global reference area</p>
+          <h2 class="section-title">Views that stay fixed across the full dataset</h2>
+          <p class="section-note">These stay unchanged when the filter changes, so they remain the whole-dataset baseline.</p>
+        </div>
+      </div>
+      <section class="cards">
+        <div class="card"><div class="label">Rows Used</div><div class="metric blue" id="eligibleRows"></div><div class="note" id="rowNote"></div></div>
+        <div class="card"><div class="label">Enhanced Counts</div><div class="metric green" id="enhancedTotal"></div><div class="note">Positive value mentions</div></div>
+        <div class="card"><div class="label">Impaired Counts</div><div class="metric red" id="impairedTotal"></div><div class="note">Negative value mentions</div></div>
+        <div class="card"><div class="label">Net Balance</div><div class="metric" id="netTotal"></div><div class="note">Enhanced minus impaired</div></div>
+      </section>
+      <div class="grid global-grid">
+        <section class="panel wide matrix-wide">
+          <div class="panel-head"><h2 class="panel-title">Global Dimension x Value Balance</h2><div class="panel-caption">Four dimension rows; green rises above the row baseline, red drops below it</div></div>
+          <div id="globalBalanceChart" class="chart"></div>
+        </section>
+        <section class="panel wide discipline-value-wide">
+          <div class="panel-head"><h2 class="panel-title">Discipline Divergence by Value</h2><div class="panel-caption">Sorted by SD/ED/UIUX disagreement; x-axis is normalized net score</div></div>
+          <div id="disciplineValueChart" class="chart"></div>
+        </section>
+        <section class="panel wide discipline-dimension-wide">
+          <div class="panel-head"><h2 class="panel-title">Value Fingerprint Cards</h2><div class="panel-caption">Card = value; row = discipline; four cells = design dimensions; green/red = net balance</div></div>
+          <div id="disciplineDimensionChart" class="fingerprint-grid"></div>
+        </section>
+        <section class="panel">
+          <div class="panel-head"><h2 class="panel-title">Difference Heatmap</h2><div class="panel-caption">Fixed: all dimensions, enhanced - impaired</div></div>
+          <div id="heatmapChart" class="chart"></div>
+        </section>
+        <section class="panel">
+          <div class="panel-head"><h2 class="panel-title">Design Dimension Totals</h2><div class="panel-caption">Fixed: whole-dataset context</div></div>
+          <div id="dimensionChart" class="chart"></div>
+        </section>
+      </div>
+    </section>
+  </div>
+  <script>
+    const DATA = {"sourceRows": 271, "eligibleRows": 270, "excludedRows": [275], "enhancedTotal": 302, "impairedTotal": 251, "combinedTotal": 553, "values": [{"value": "Efficiency", "enhanced": 90, "impaired": 6, "total": 96, "net": 84, "shareEnhanced": 0.9375}, {"value": "Learning/Skills development", "enhanced": 42, "impaired": 35, "total": 77, "net": 7, "shareEnhanced": 0.5454545454545454}, {"value": "Accuracy", "enhanced": 21, "impaired": 49, "total": 70, "net": -28, "shareEnhanced": 0.3}, {"value": "Context appropriateness", "enhanced": 15, "impaired": 44, "total": 59, "net": -29, "shareEnhanced": 0.2542372881355932}, {"value": "Creativity", "enhanced": 31, "impaired": 24, "total": 55, "net": 7, "shareEnhanced": 0.5636363636363636}, {"value": "User-centredness", "enhanced": 22, "impaired": 24, "total": 46, "net": -2, "shareEnhanced": 0.4782608695652174}, {"value": "Collaboration", "enhanced": 21, "impaired": 13, "total": 34, "net": 8, "shareEnhanced": 0.6176470588235294}, {"value": "Feasibility", "enhanced": 25, "impaired": 7, "total": 32, "net": 18, "shareEnhanced": 0.78125}, {"value": "Controllability", "enhanced": 10, "impaired": 18, "total": 28, "net": -8, "shareEnhanced": 0.35714285714285715}, {"value": "Scalability", "enhanced": 20, "impaired": 4, "total": 24, "net": 16, "shareEnhanced": 0.8333333333333334}, {"value": "AI-Literacy (Trust)", "enhanced": 3, "impaired": 16, "total": 19, "net": -13, "shareEnhanced": 0.15789473684210525}, {"value": "Authenticity", "enhanced": 0, "impaired": 9, "total": 9, "net": -9, "shareEnhanced": 0.0}, {"value": "Affordability", "enhanced": 2, "impaired": 1, "total": 3, "net": 1, "shareEnhanced": 0.6666666666666666}, {"value": "Other", "enhanced": 0, "impaired": 1, "total": 1, "net": -1, "shareEnhanced": 0.0}], "valueOrder": ["Efficiency", "Learning/Skills development", "Accuracy", "Context appropriateness", "Creativity", "User-centredness", "Collaboration", "Feasibility", "Controllability", "Scalability", "AI-Literacy (Trust)", "Authenticity", "Affordability", "Other"], "dimensions": [{"dimension": "Background Research & Sensemaking", "enhanced": 124, "impaired": 105, "total": 229, "net": 19}, {"dimension": "Ideation & Design Generation", "enhanced": 62, "impaired": 65, "total": 127, "net": -3}, {"dimension": "Design & Process Evaluation", "enhanced": 34, "impaired": 34, "total": 68, "net": 0}, {"dimension": "Planning, Coordination & Management", "enhanced": 82, "impaired": 47, "total": 129, "net": 35}], "disciplines": [{"discipline": "ED", "enhanced": 87, "impaired": 71, "total": 158, "net": 16}, {"discipline": "SD", "enhanced": 110, "impaired": 92, "total": 202, "net": 18}, {"discipline": "UIUX", "enhanced": 105, "impaired": 88, "total": 193, "net": 17}], "dimensionValue": {"Background Research & Sensemaking": {"AI-Literacy (Trust)": {"enhanced": 1, "impaired": 8, "net": -7, "total": 9}, "Authenticity": {"enhanced": 0, "impaired": 0, "net": 0, "total": 0}, "Affordability": {"enhanced": 1, "impaired": 0, "net": 1, "total": 1}, "Efficiency": {"enhanced": 45, "impaired": 5, "net": 40, "total": 50}, "Controllability": {"enhanced": 0, "impaired": 4, "net": -4, "total": 4}, "Collaboration": {"enhanced": 4, "impaired": 2, "net": 2, "total": 6}, "Learning/Skills development": {"enhanced": 23, "impaired": 19, "net": 4, "total": 42}, "Accuracy": {"enhanced": 11, "impaired": 28, "net": -17, "total": 39}, "Context appropriateness": {"enhanced": 11, "impaired": 22, "net": -11, "total": 33}, "Creativity": {"enhanced": 6, "impaired": 4, "net": 2, "total": 10}, "Scalability": {"enhanced": 5, "impaired": 1, "net": 4, "total": 6}, "Feasibility": {"enhanced": 8, "impaired": 0, "net": 8, "total": 8}, "User-centredness": {"enhanced": 9, "impaired": 11, "net": -2, "total": 20}, "Other": {"enhanced": 0, "impaired": 1, "net": -1, "total": 1}}, "Ideation & Design Generation": {"AI-Literacy (Trust)": {"enhanced": 0, "impaired": 3, "net": -3, "total": 3}, "Authenticity": {"enhanced": 0, "impaired": 7, "net": -7, "total": 7}, "Affordability": {"enhanced": 1, "impaired": 1, "net": 0, "total": 2}, "Efficiency": {"enhanced": 15, "impaired": 0, "net": 15, "total": 15}, "Controllability": {"enhanced": 3, "impaired": 7, "net": -4, "total": 10}, "Collaboration": {"enhanced": 2, "impaired": 2, "net": 0, "total": 4}, "Learning/Skills development": {"enhanced": 5, "impaired": 6, "net": -1, "total": 11}, "Accuracy": {"enhanced": 0, "impaired": 6, "net": -6, "total": 6}, "Context appropriateness": {"enhanced": 1, "impaired": 9, "net": -8, "total": 10}, "Creativity": {"enhanced": 17, "impaired": 14, "net": 3, "total": 31}, "Scalability": {"enhanced": 8, "impaired": 0, "net": 8, "total": 8}, "Feasibility": {"enhanced": 6, "impaired": 6, "net": 0, "total": 12}, "User-centredness": {"enhanced": 4, "impaired": 4, "net": 0, "total": 8}, "Other": {"enhanced": 0, "impaired": 0, "net": 0, "total": 0}}, "Design & Process Evaluation": {"AI-Literacy (Trust)": {"enhanced": 1, "impaired": 3, "net": -2, "total": 4}, "Authenticity": {"enhanced": 0, "impaired": 0, "net": 0, "total": 0}, "Affordability": {"enhanced": 0, "impaired": 0, "net": 0, "total": 0}, "Efficiency": {"enhanced": 7, "impaired": 1, "net": 6, "total": 8}, "Controllability": {"enhanced": 1, "impaired": 1, "net": 0, "total": 2}, "Collaboration": {"enhanced": 0, "impaired": 4, "net": -4, "total": 4}, "Learning/Skills development": {"enhanced": 5, "impaired": 1, "net": 4, "total": 6}, "Accuracy": {"enhanced": 2, "impaired": 8, "net": -6, "total": 10}, "Context appropriateness": {"enhanced": 2, "impaired": 6, "net": -4, "total": 8}, "Creativity": {"enhanced": 1, "impaired": 2, "net": -1, "total": 3}, "Scalability": {"enhanced": 3, "impaired": 2, "net": 1, "total": 5}, "Feasibility": {"enhanced": 8, "impaired": 0, "net": 8, "total": 8}, "User-centredness": {"enhanced": 4, "impaired": 6, "net": -2, "total": 10}, "Other": {"enhanced": 0, "impaired": 0, "net": 0, "total": 0}}, "Planning, Coordination & Management": {"AI-Literacy (Trust)": {"enhanced": 1, "impaired": 2, "net": -1, "total": 3}, "Authenticity": {"enhanced": 0, "impaired": 2, "net": -2, "total": 2}, "Affordability": {"enhanced": 0, "impaired": 0, "net": 0, "total": 0}, "Efficiency": {"enhanced": 23, "impaired": 0, "net": 23, "total": 23}, "Controllability": {"enhanced": 6, "impaired": 6, "net": 0, "total": 12}, "Collaboration": {"enhanced": 15, "impaired": 5, "net": 10, "total": 20}, "Learning/Skills development": {"enhanced": 9, "impaired": 9, "net": 0, "total": 18}, "Accuracy": {"enhanced": 8, "impaired": 7, "net": 1, "total": 15}, "Context appropriateness": {"enhanced": 1, "impaired": 7, "net": -6, "total": 8}, "Creativity": {"enhanced": 7, "impaired": 4, "net": 3, "total": 11}, "Scalability": {"enhanced": 4, "impaired": 1, "net": 3, "total": 5}, "Feasibility": {"enhanced": 3, "impaired": 1, "net": 2, "total": 4}, "User-centredness": {"enhanced": 5, "impaired": 3, "net": 2, "total": 8}, "Other": {"enhanced": 0, "impaired": 0, "net": 0, "total": 0}}}, "disciplineValue": {"ED": {"AI-Literacy (Trust)": {"enhanced": 2, "impaired": 9, "net": -7, "total": 11}, "Authenticity": {"enhanced": 0, "impaired": 2, "net": -2, "total": 2}, "Affordability": {"enhanced": 0, "impaired": 1, "net": -1, "total": 1}, "Efficiency": {"enhanced": 34, "impaired": 2, "net": 32, "total": 36}, "Controllability": {"enhanced": 2, "impaired": 4, "net": -2, "total": 6}, "Collaboration": {"enhanced": 3, "impaired": 2, "net": 1, "total": 5}, "Learning/Skills development": {"enhanced": 13, "impaired": 4, "net": 9, "total": 17}, "Accuracy": {"enhanced": 1, "impaired": 15, "net": -14, "total": 16}, "Context appropriateness": {"enhanced": 5, "impaired": 10, "net": -5, "total": 15}, "Creativity": {"enhanced": 5, "impaired": 10, "net": -5, "total": 15}, "Scalability": {"enhanced": 10, "impaired": 1, "net": 9, "total": 11}, "Feasibility": {"enhanced": 6, "impaired": 5, "net": 1, "total": 11}, "User-centredness": {"enhanced": 6, "impaired": 6, "net": 0, "total": 12}, "Other": {"enhanced": 0, "impaired": 0, "net": 0, "total": 0}}, "SD": {"AI-Literacy (Trust)": {"enhanced": 1, "impaired": 1, "net": 0, "total": 2}, "Authenticity": {"enhanced": 0, "impaired": 1, "net": -1, "total": 1}, "Affordability": {"enhanced": 2, "impaired": 0, "net": 2, "total": 2}, "Efficiency": {"enhanced": 27, "impaired": 2, "net": 25, "total": 29}, "Controllability": {"enhanced": 6, "impaired": 4, "net": 2, "total": 10}, "Collaboration": {"enhanced": 5, "impaired": 8, "net": -3, "total": 13}, "Learning/Skills development": {"enhanced": 15, "impaired": 14, "net": 1, "total": 29}, "Accuracy": {"enhanced": 13, "impaired": 13, "net": 0, "total": 26}, "Context appropriateness": {"enhanced": 6, "impaired": 24, "net": -18, "total": 30}, "Creativity": {"enhanced": 13, "impaired": 13, "net": 0, "total": 26}, "Scalability": {"enhanced": 6, "impaired": 3, "net": 3, "total": 9}, "Feasibility": {"enhanced": 8, "impaired": 0, "net": 8, "total": 8}, "User-centredness": {"enhanced": 8, "impaired": 8, "net": 0, "total": 16}, "Other": {"enhanced": 0, "impaired": 1, "net": -1, "total": 1}}, "UIUX": {"AI-Literacy (Trust)": {"enhanced": 0, "impaired": 6, "net": -6, "total": 6}, "Authenticity": {"enhanced": 0, "impaired": 6, "net": -6, "total": 6}, "Affordability": {"enhanced": 0, "impaired": 0, "net": 0, "total": 0}, "Efficiency": {"enhanced": 29, "impaired": 2, "net": 27, "total": 31}, "Controllability": {"enhanced": 2, "impaired": 10, "net": -8, "total": 12}, "Collaboration": {"enhanced": 13, "impaired": 3, "net": 10, "total": 16}, "Learning/Skills development": {"enhanced": 14, "impaired": 17, "net": -3, "total": 31}, "Accuracy": {"enhanced": 7, "impaired": 21, "net": -14, "total": 28}, "Context appropriateness": {"enhanced": 4, "impaired": 10, "net": -6, "total": 14}, "Creativity": {"enhanced": 13, "impaired": 1, "net": 12, "total": 14}, "Scalability": {"enhanced": 4, "impaired": 0, "net": 4, "total": 4}, "Feasibility": {"enhanced": 11, "impaired": 2, "net": 9, "total": 13}, "User-centredness": {"enhanced": 8, "impaired": 10, "net": -2, "total": 18}, "Other": {"enhanced": 0, "impaired": 0, "net": 0, "total": 0}}}, "disciplineDimension": {"ED": {"Background Research & Sensemaking": {"enhanced": 44, "impaired": 29, "net": 15, "total": 73}, "Ideation & Design Generation": {"enhanced": 19, "impaired": 25, "net": -6, "total": 44}, "Design & Process Evaluation": {"enhanced": 8, "impaired": 7, "net": 1, "total": 15}, "Planning, Coordination & Management": {"enhanced": 16, "impaired": 10, "net": 6, "total": 26}}, "SD": {"Background Research & Sensemaking": {"enhanced": 48, "impaired": 44, "net": 4, "total": 92}, "Ideation & Design Generation": {"enhanced": 15, "impaired": 15, "net": 0, "total": 30}, "Design & Process Evaluation": {"enhanced": 13, "impaired": 14, "net": -1, "total": 27}, "Planning, Coordination & Management": {"enhanced": 34, "impaired": 19, "net": 15, "total": 53}}, "UIUX": {"Background Research & Sensemaking": {"enhanced": 32, "impaired": 32, "net": 0, "total": 64}, "Ideation & Design Generation": {"enhanced": 28, "impaired": 25, "net": 3, "total": 53}, "Design & Process Evaluation": {"enhanced": 13, "impaired": 13, "net": 0, "total": 26}, "Planning, Coordination & Management": {"enhanced": 32, "impaired": 18, "net": 14, "total": 50}}}, "disciplineDimensionValue": {"ED": {"Background Research & Sensemaking": {"AI-Literacy (Trust)": {"enhanced": 1, "impaired": 6, "net": -5, "total": 7}, "Authenticity": {"enhanced": 0, "impaired": 0, "net": 0, "total": 0}, "Affordability": {"enhanced": 0, "impaired": 0, "net": 0, "total": 0}, "Efficiency": {"enhanced": 18, "impaired": 2, "net": 16, "total": 20}, "Controllability": {"enhanced": 0, "impaired": 1, "net": -1, "total": 1}, "Collaboration": {"enhanced": 2, "impaired": 1, "net": 1, "total": 3}, "Learning/Skills development": {"enhanced": 9, "impaired": 1, "net": 8, "total": 10}, "Accuracy": {"enhanced": 0, "impaired": 7, "net": -7, "total": 7}, "Context appropriateness": {"enhanced": 3, "impaired": 7, "net": -4, "total": 10}, "Creativity": {"enhanced": 2, "impaired": 0, "net": 2, "total": 2}, "Scalability": {"enhanced": 2, "impaired": 1, "net": 1, "total": 3}, "Feasibility": {"enhanced": 5, "impaired": 0, "net": 5, "total": 5}, "User-centredness": {"enhanced": 2, "impaired": 3, "net": -1, "total": 5}, "Other": {"enhanced": 0, "impaired": 0, "net": 0, "total": 0}}, "Ideation & Design Generation": {"AI-Literacy (Trust)": {"enhanced": 0, "impaired": 1, "net": -1, "total": 1}, "Authenticity": {"enhanced": 0, "impaired": 2, "net": -2, "total": 2}, "Affordability": {"enhanced": 0, "impaired": 1, "net": -1, "total": 1}, "Efficiency": {"enhanced": 7, "impaired": 0, "net": 7, "total": 7}, "Controllability": {"enhanced": 2, "impaired": 1, "net": 1, "total": 3}, "Collaboration": {"enhanced": 0, "impaired": 0, "net": 0, "total": 0}, "Learning/Skills development": {"enhanced": 1, "impaired": 2, "net": -1, "total": 3}, "Accuracy": {"enhanced": 0, "impaired": 2, "net": -2, "total": 2}, "Context appropriateness": {"enhanced": 1, "impaired": 0, "net": 1, "total": 1}, "Creativity": {"enhanced": 3, "impaired": 9, "net": -6, "total": 12}, "Scalability": {"enhanced": 5, "impaired": 0, "net": 5, "total": 5}, "Feasibility": {"enhanced": 0, "impaired": 4, "net": -4, "total": 4}, "User-centredness": {"enhanced": 0, "impaired": 3, "net": -3, "total": 3}, "Other": {"enhanced": 0, "impaired": 0, "net": 0, "total": 0}}, "Design & Process Evaluation": {"AI-Literacy (Trust)": {"enhanced": 0, "impaired": 0, "net": 0, "total": 0}, "Authenticity": {"enhanced": 0, "impaired": 0, "net": 0, "total": 0}, "Affordability": {"enhanced": 0, "impaired": 0, "net": 0, "total": 0}, "Efficiency": {"enhanced": 3, "impaired": 0, "net": 3, "total": 3}, "Controllability": {"enhanced": 0, "impaired": 1, "net": -1, "total": 1}, "Collaboration": {"enhanced": 0, "impaired": 0, "net": 0, "total": 0}, "Learning/Skills development": {"enhanced": 1, "impaired": 1, "net": 0, "total": 2}, "Accuracy": {"enhanced": 0, "impaired": 3, "net": -3, "total": 3}, "Context appropriateness": {"enhanced": 1, "impaired": 2, "net": -1, "total": 3}, "Creativity": {"enhanced": 0, "impaired": 0, "net": 0, "total": 0}, "Scalability": {"enhanced": 2, "impaired": 0, "net": 2, "total": 2}, "Feasibility": {"enhanced": 1, "impaired": 0, "net": 1, "total": 1}, "User-centredness": {"enhanced": 0, "impaired": 0, "net": 0, "total": 0}, "Other": {"enhanced": 0, "impaired": 0, "net": 0, "total": 0}}, "Planning, Coordination & Management": {"AI-Literacy (Trust)": {"enhanced": 1, "impaired": 2, "net": -1, "total": 3}, "Authenticity": {"enhanced": 0, "impaired": 0, "net": 0, "total": 0}, "Affordability": {"enhanced": 0, "impaired": 0, "net": 0, "total": 0}, "Efficiency": {"enhanced": 6, "impaired": 0, "net": 6, "total": 6}, "Controllability": {"enhanced": 0, "impaired": 1, "net": -1, "total": 1}, "Collaboration": {"enhanced": 1, "impaired": 1, "net": 0, "total": 2}, "Learning/Skills development": {"enhanced": 2, "impaired": 0, "net": 2, "total": 2}, "Accuracy": {"enhanced": 1, "impaired": 3, "net": -2, "total": 4}, "Context appropriateness": {"enhanced": 0, "impaired": 1, "net": -1, "total": 1}, "Creativity": {"enhanced": 0, "impaired": 1, "net": -1, "total": 1}, "Scalability": {"enhanced": 1, "impaired": 0, "net": 1, "total": 1}, "Feasibility": {"enhanced": 0, "impaired": 1, "net": -1, "total": 1}, "User-centredness": {"enhanced": 4, "impaired": 0, "net": 4, "total": 4}, "Other": {"enhanced": 0, "impaired": 0, "net": 0, "total": 0}}}, "SD": {"Background Research & Sensemaking": {"AI-Literacy (Trust)": {"enhanced": 0, "impaired": 0, "net": 0, "total": 0}, "Authenticity": {"enhanced": 0, "impaired": 0, "net": 0, "total": 0}, "Affordability": {"enhanced": 1, "impaired": 0, "net": 1, "total": 1}, "Efficiency": {"enhanced": 16, "impaired": 1, "net": 15, "total": 17}, "Controllability": {"enhanced": 0, "impaired": 3, "net": -3, "total": 3}, "Collaboration": {"enhanced": 1, "impaired": 1, "net": 0, "total": 2}, "Learning/Skills development": {"enhanced": 7, "impaired": 10, "net": -3, "total": 17}, "Accuracy": {"enhanced": 8, "impaired": 8, "net": 0, "total": 16}, "Context appropriateness": {"enhanced": 4, "impaired": 12, "net": -8, "total": 16}, "Creativity": {"enhanced": 2, "impaired": 4, "net": -2, "total": 6}, "Scalability": {"enhanced": 2, "impaired": 0, "net": 2, "total": 2}, "Feasibility": {"enhanced": 2, "impaired": 0, "net": 2, "total": 2}, "User-centredness": {"enhanced": 5, "impaired": 4, "net": 1, "total": 9}, "Other": {"enhanced": 0, "impaired": 1, "net": -1, "total": 1}}, "Ideation & Design Generation": {"AI-Literacy (Trust)": {"enhanced": 0, "impaired": 1, "net": -1, "total": 1}, "Authenticity": {"enhanced": 0, "impaired": 1, "net": -1, "total": 1}, "Affordability": {"enhanced": 1, "impaired": 0, "net": 1, "total": 1}, "Efficiency": {"enhanced": 1, "impaired": 0, "net": 1, "total": 1}, "Controllability": {"enhanced": 1, "impaired": 0, "net": 1, "total": 1}, "Collaboration": {"enhanced": 0, "impaired": 1, "net": -1, "total": 1}, "Learning/Skills development": {"enhanced": 1, "impaired": 0, "net": 1, "total": 1}, "Accuracy": {"enhanced": 0, "impaired": 1, "net": -1, "total": 1}, "Context appropriateness": {"enhanced": 0, "impaired": 6, "net": -6, "total": 6}, "Creativity": {"enhanced": 6, "impaired": 4, "net": 2, "total": 10}, "Scalability": {"enhanced": 2, "impaired": 0, "net": 2, "total": 2}, "Feasibility": {"enhanced": 3, "impaired": 0, "net": 3, "total": 3}, "User-centredness": {"enhanced": 0, "impaired": 1, "net": -1, "total": 1}, "Other": {"enhanced": 0, "impaired": 0, "net": 0, "total": 0}}, "Design & Process Evaluation": {"AI-Literacy (Trust)": {"enhanced": 1, "impaired": 0, "net": 1, "total": 1}, "Authenticity": {"enhanced": 0, "impaired": 0, "net": 0, "total": 0}, "Affordability": {"enhanced": 0, "impaired": 0, "net": 0, "total": 0}, "Efficiency": {"enhanced": 1, "impaired": 1, "net": 0, "total": 2}, "Controllability": {"enhanced": 1, "impaired": 0, "net": 1, "total": 1}, "Collaboration": {"enhanced": 0, "impaired": 3, "net": -3, "total": 3}, "Learning/Skills development": {"enhanced": 3, "impaired": 0, "net": 3, "total": 3}, "Accuracy": {"enhanced": 1, "impaired": 2, "net": -1, "total": 3}, "Context appropriateness": {"enhanced": 1, "impaired": 2, "net": -1, "total": 3}, "Creativity": {"enhanced": 1, "impaired": 2, "net": -1, "total": 3}, "Scalability": {"enhanced": 0, "impaired": 2, "net": -2, "total": 2}, "Feasibility": {"enhanced": 1, "impaired": 0, "net": 1, "total": 1}, "User-centredness": {"enhanced": 3, "impaired": 2, "net": 1, "total": 5}, "Other": {"enhanced": 0, "impaired": 0, "net": 0, "total": 0}}, "Planning, Coordination & Management": {"AI-Literacy (Trust)": {"enhanced": 0, "impaired": 0, "net": 0, "total": 0}, "Authenticity": {"enhanced": 0, "impaired": 0, "net": 0, "total": 0}, "Affordability": {"enhanced": 0, "impaired": 0, "net": 0, "total": 0}, "Efficiency": {"enhanced": 9, "impaired": 0, "net": 9, "total": 9}, "Controllability": {"enhanced": 4, "impaired": 1, "net": 3, "total": 5}, "Collaboration": {"enhanced": 4, "impaired": 3, "net": 1, "total": 7}, "Learning/Skills development": {"enhanced": 4, "impaired": 4, "net": 0, "total": 8}, "Accuracy": {"enhanced": 4, "impaired": 2, "net": 2, "total": 6}, "Context appropriateness": {"enhanced": 1, "impaired": 4, "net": -3, "total": 5}, "Creativity": {"enhanced": 4, "impaired": 3, "net": 1, "total": 7}, "Scalability": {"enhanced": 2, "impaired": 1, "net": 1, "total": 3}, "Feasibility": {"enhanced": 2, "impaired": 0, "net": 2, "total": 2}, "User-centredness": {"enhanced": 0, "impaired": 1, "net": -1, "total": 1}, "Other": {"enhanced": 0, "impaired": 0, "net": 0, "total": 0}}}, "UIUX": {"Background Research & Sensemaking": {"AI-Literacy (Trust)": {"enhanced": 0, "impaired": 2, "net": -2, "total": 2}, "Authenticity": {"enhanced": 0, "impaired": 0, "net": 0, "total": 0}, "Affordability": {"enhanced": 0, "impaired": 0, "net": 0, "total": 0}, "Efficiency": {"enhanced": 11, "impaired": 2, "net": 9, "total": 13}, "Controllability": {"enhanced": 0, "impaired": 0, "net": 0, "total": 0}, "Collaboration": {"enhanced": 1, "impaired": 0, "net": 1, "total": 1}, "Learning/Skills development": {"enhanced": 7, "impaired": 8, "net": -1, "total": 15}, "Accuracy": {"enhanced": 3, "impaired": 13, "net": -10, "total": 16}, "Context appropriateness": {"enhanced": 4, "impaired": 3, "net": 1, "total": 7}, "Creativity": {"enhanced": 2, "impaired": 0, "net": 2, "total": 2}, "Scalability": {"enhanced": 1, "impaired": 0, "net": 1, "total": 1}, "Feasibility": {"enhanced": 1, "impaired": 0, "net": 1, "total": 1}, "User-centredness": {"enhanced": 2, "impaired": 4, "net": -2, "total": 6}, "Other": {"enhanced": 0, "impaired": 0, "net": 0, "total": 0}}, "Ideation & Design Generation": {"AI-Literacy (Trust)": {"enhanced": 0, "impaired": 1, "net": -1, "total": 1}, "Authenticity": {"enhanced": 0, "impaired": 4, "net": -4, "total": 4}, "Affordability": {"enhanced": 0, "impaired": 0, "net": 0, "total": 0}, "Efficiency": {"enhanced": 7, "impaired": 0, "net": 7, "total": 7}, "Controllability": {"enhanced": 0, "impaired": 6, "net": -6, "total": 6}, "Collaboration": {"enhanced": 2, "impaired": 1, "net": 1, "total": 3}, "Learning/Skills development": {"enhanced": 3, "impaired": 4, "net": -1, "total": 7}, "Accuracy": {"enhanced": 0, "impaired": 3, "net": -3, "total": 3}, "Context appropriateness": {"enhanced": 0, "impaired": 3, "net": -3, "total": 3}, "Creativity": {"enhanced": 8, "impaired": 1, "net": 7, "total": 9}, "Scalability": {"enhanced": 1, "impaired": 0, "net": 1, "total": 1}, "Feasibility": {"enhanced": 3, "impaired": 2, "net": 1, "total": 5}, "User-centredness": {"enhanced": 4, "impaired": 0, "net": 4, "total": 4}, "Other": {"enhanced": 0, "impaired": 0, "net": 0, "total": 0}}, "Design & Process Evaluation": {"AI-Literacy (Trust)": {"enhanced": 0, "impaired": 3, "net": -3, "total": 3}, "Authenticity": {"enhanced": 0, "impaired": 0, "net": 0, "total": 0}, "Affordability": {"enhanced": 0, "impaired": 0, "net": 0, "total": 0}, "Efficiency": {"enhanced": 3, "impaired": 0, "net": 3, "total": 3}, "Controllability": {"enhanced": 0, "impaired": 0, "net": 0, "total": 0}, "Collaboration": {"enhanced": 0, "impaired": 1, "net": -1, "total": 1}, "Learning/Skills development": {"enhanced": 1, "impaired": 0, "net": 1, "total": 1}, "Accuracy": {"enhanced": 1, "impaired": 3, "net": -2, "total": 4}, "Context appropriateness": {"enhanced": 0, "impaired": 2, "net": -2, "total": 2}, "Creativity": {"enhanced": 0, "impaired": 0, "net": 0, "total": 0}, "Scalability": {"enhanced": 1, "impaired": 0, "net": 1, "total": 1}, "Feasibility": {"enhanced": 6, "impaired": 0, "net": 6, "total": 6}, "User-centredness": {"enhanced": 1, "impaired": 4, "net": -3, "total": 5}, "Other": {"enhanced": 0, "impaired": 0, "net": 0, "total": 0}}, "Planning, Coordination & Management": {"AI-Literacy (Trust)": {"enhanced": 0, "impaired": 0, "net": 0, "total": 0}, "Authenticity": {"enhanced": 0, "impaired": 2, "net": -2, "total": 2}, "Affordability": {"enhanced": 0, "impaired": 0, "net": 0, "total": 0}, "Efficiency": {"enhanced": 8, "impaired": 0, "net": 8, "total": 8}, "Controllability": {"enhanced": 2, "impaired": 4, "net": -2, "total": 6}, "Collaboration": {"enhanced": 10, "impaired": 1, "net": 9, "total": 11}, "Learning/Skills development": {"enhanced": 3, "impaired": 5, "net": -2, "total": 8}, "Accuracy": {"enhanced": 3, "impaired": 2, "net": 1, "total": 5}, "Context appropriateness": {"enhanced": 0, "impaired": 2, "net": -2, "total": 2}, "Creativity": {"enhanced": 3, "impaired": 0, "net": 3, "total": 3}, "Scalability": {"enhanced": 1, "impaired": 0, "net": 1, "total": 1}, "Feasibility": {"enhanced": 1, "impaired": 0, "net": 1, "total": 1}, "User-centredness": {"enhanced": 1, "impaired": 2, "net": -1, "total": 3}, "Other": {"enhanced": 0, "impaired": 0, "net": 0, "total": 0}}}}};
+    const COLORS = {
+      green: '#1f8a4c',
+      greenSoft: '#dff4e8',
+      red: '#c43131',
+      redSoft: '#f9dfdf',
+      blue: '#2754c5',
+      text: '#172033',
+      muted: '#667085'
+    };
+
+    const charts = {
+      diverging: echarts.init(document.getElementById('divergingChart')),
+      globalBalance: echarts.init(document.getElementById('globalBalanceChart')),
+      disciplineValue: echarts.init(document.getElementById('disciplineValueChart')),
+      heatmap: echarts.init(document.getElementById('heatmapChart')),
+      scatter: echarts.init(document.getElementById('scatterChart')),
+      dimension: echarts.init(document.getElementById('dimensionChart'))
+    };
+    const DIM_LABELS = {
+      'Background Research & Sensemaking': 'Background Research',
+      'Ideation & Design Generation': 'Ideation & Generation',
+      'Design & Process Evaluation': 'Design Evaluation',
+      'Planning, Coordination & Management': 'Planning & Management'
+    };
+    const shortDimension = name => DIM_LABELS[name] || name;
+
+    const format = new Intl.NumberFormat('en-US');
+    document.getElementById('eligibleRows').textContent = format.format(DATA.eligibleRows);
+    document.getElementById('enhancedTotal').textContent = format.format(DATA.enhancedTotal);
+    document.getElementById('impairedTotal').textContent = format.format(DATA.impairedTotal);
+    const net = DATA.enhancedTotal - DATA.impairedTotal;
+    const netEl = document.getElementById('netTotal');
+    netEl.textContent = `${net >= 0 ? '+' : ''}${format.format(net)}`;
+    netEl.className = `metric ${net >= 0 ? 'green' : 'red'}`;
+    document.getElementById('rowNote').textContent = `${DATA.sourceRows} source rows; excluded rows: ${DATA.excludedRows.join(', ') || 'none'}`;
+
+    const filter = document.getElementById('dimensionFilter');
+    Object.keys(DATA.dimensionValue).forEach(name => {
+      const option = document.createElement('option');
+      option.value = name;
+      option.textContent = name;
+      filter.appendChild(option);
+    });
+
+    function currentValues() {
+      const selected = filter.value;
+      if (selected === 'All') return DATA.values;
+      return DATA.valueOrder.map(value => {
+        const d = DATA.dimensionValue[selected][value];
+        return {
+          value,
+          enhanced: d.enhanced,
+          impaired: d.impaired,
+          total: d.total,
+          net: d.net,
+          shareEnhanced: d.total ? d.enhanced / d.total : 0
+        };
+      }).sort((a, b) => b.total - a.total);
+    }
+
+    function renderDiverging(values) {
+      const labels = values.map(d => d.value).reverse();
+      charts.diverging.setOption({
+        grid: { left: 190, right: 42, top: 28, bottom: 34 },
+        tooltip: {
+          trigger: 'axis',
+          axisPointer: { type: 'shadow' },
+          formatter: params => {
+            const row = values.find(v => v.value === params[0].axisValue);
+            return `<b>${row.value}</b><br/>Enhanced: ${row.enhanced}<br/>Impaired: ${row.impaired}<br/>Net: ${row.net >= 0 ? '+' : ''}${row.net}`;
+          }
+        },
+        legend: { top: 0, right: 10 },
+        xAxis: {
+          type: 'value',
+          axisLabel: { formatter: value => Math.abs(value) },
+          splitLine: { lineStyle: { color: '#eef2f7' } }
+        },
+        yAxis: { type: 'category', data: labels, axisLabel: { color: COLORS.text } },
+        series: [
+          {
+            name: 'Impaired',
+            type: 'bar',
+            stack: 'balance',
+            data: values.map(d => -d.impaired).reverse(),
+            itemStyle: { color: COLORS.red },
+            barWidth: 16
+          },
+          {
+            name: 'Enhanced',
+            type: 'bar',
+            stack: 'balance',
+            data: values.map(d => d.enhanced).reverse(),
+            itemStyle: { color: COLORS.green },
+            barWidth: 16
+          }
+        ]
+      });
+    }
+
+    function renderHeatmap() {
+      const dims = Object.keys(DATA.dimensionValue);
+      const values = DATA.valueOrder;
+      const points = [];
+      dims.forEach((dimension, y) => {
+        values.forEach((value, x) => {
+          points.push([x, y, DATA.dimensionValue[dimension][value].net]);
+        });
+      });
+      charts.heatmap.setOption({
+        grid: { left: 150, right: 20, top: 22, bottom: 172 },
+        tooltip: {
+          formatter: item => {
+            const value = values[item.value[0]];
+            const dimension = dims[item.value[1]];
+            const d = DATA.dimensionValue[dimension][value];
+            return `<b>${value}</b><br/>${dimension}<br/>Enhanced: ${d.enhanced}<br/>Impaired: ${d.impaired}<br/>Net: ${d.net >= 0 ? '+' : ''}${d.net}`;
+          }
+        },
+        xAxis: { type: 'category', data: values, axisLabel: { rotate: 45, interval: 0, margin: 14, color: COLORS.text } },
+        yAxis: { type: 'category', data: dims.map(shortDimension), axisLabel: { color: COLORS.text } },
+        visualMap: {
+          min: -15,
+          max: 15,
+          calculable: true,
+          orient: 'horizontal',
+          left: 'center',
+          bottom: 12,
+          inRange: { color: ['#b91c1c', '#ffffff', '#1f8a4c'] }
+        },
+        series: [{
+          type: 'heatmap',
+          data: points,
+          label: { show: true, formatter: p => p.value[2] ? p.value[2] : '', color: COLORS.text },
+          emphasis: { itemStyle: { borderColor: '#111827', borderWidth: 1 } }
+        }]
+      });
+    }
+
+    function renderGlobalBalance() {
+      const dims = Object.keys(DATA.dimensionValue);
+      const values = DATA.valueOrder;
+      const points = [];
+      const baselines = dims.map((dimension, dimIndex) => [0, dimIndex, dimension]);
+      let maxCount = 1;
+      dims.forEach((dimension, dimIndex) => {
+        values.forEach((value, x) => {
+          const d = DATA.dimensionValue[dimension][value];
+          maxCount = Math.max(maxCount, d.enhanced, d.impaired);
+          points.push([x, dimIndex, d.enhanced, d.impaired, d.net, d.total, value, dimension]);
+        });
+      });
+      charts.globalBalance.setOption({
+        animation: false,
+        grid: { left: 185, right: 34, top: 210, bottom: 70 },
+        tooltip: {
+          formatter: item => {
+            const d = item.value;
+            return `<b>${d[6]}</b><br/>${d[7]}<br/>Enhanced: ${d[2]}<br/>Impaired: ${d[3]}<br/>Net: ${d[4] >= 0 ? '+' : ''}${d[4]}`;
+          }
+        },
+        legend: {
+          top: 16,
+          right: 18,
+          data: ['Enhanced', 'Impaired']
+        },
+        xAxis: {
+          type: 'category',
+          position: 'top',
+          data: values,
+          axisTick: { alignWithLabel: true },
+          axisLabel: {
+            rotate: 50,
+            interval: 0,
+            color: COLORS.text,
+            fontWeight: 700,
+            margin: 18
+          },
+          axisLine: { lineStyle: { color: '#cbd5e1' } },
+          splitLine: { show: true, lineStyle: { color: '#eef2f7' } }
+        },
+        yAxis: {
+          type: 'category',
+          data: dims.map(shortDimension),
+          inverse: true,
+          axisTick: { show: false },
+          axisLine: { show: false },
+          axisLabel: {
+            color: COLORS.text,
+            fontSize: 14,
+            fontWeight: 760,
+            margin: 22
+          },
+          splitLine: { show: false }
+        },
+        series: [
+          {
+            name: 'Enhanced',
+            type: 'bar',
+            data: [],
+            itemStyle: { color: COLORS.green }
+          },
+          {
+            name: 'Impaired',
+            type: 'bar',
+            data: [],
+            itemStyle: { color: COLORS.red }
+          },
+          {
+            name: 'Row baseline',
+            type: 'custom',
+            coordinateSystem: 'cartesian2d',
+            silent: true,
+            z: 1,
+            data: baselines,
+            renderItem: (params, api) => {
+              const y = api.value(1);
+              const first = api.coord([0, y]);
+              const last = api.coord([values.length - 1, y]);
+              const categoryWidth = api.size([1, 0])[0];
+              return {
+                type: 'line',
+                shape: {
+                  x1: first[0] - categoryWidth * 0.46,
+                  y1: first[1],
+                  x2: last[0] + categoryWidth * 0.46,
+                  y2: last[1]
+                },
+                style: { stroke: '#aeb9c9', lineWidth: 1.8 }
+              };
+            }
+          },
+          {
+            name: 'Dimension value balance',
+            type: 'custom',
+            coordinateSystem: 'cartesian2d',
+            z: 3,
+            data: points,
+            renderItem: (params, api) => {
+              const x = api.value(0);
+              const y = api.value(1);
+              const enhanced = api.value(2);
+              const impaired = api.value(3);
+              const net = api.value(4);
+              const total = api.value(5);
+              const coord = api.coord([x, y]);
+              const categoryWidth = api.size([1, 0])[0];
+              const bandHeight = api.size([0, 1])[1];
+              const scale = (bandHeight * 0.50) / maxCount;
+              const barWidth = Math.max(12, Math.min(28, categoryWidth * 0.32));
+              const enhancedHeight = enhanced * scale;
+              const impairedHeight = impaired * scale;
+              const netText = total ? `${net >= 0 ? '+' : ''}${net}` : '';
+              const netColor = net >= 0 ? COLORS.green : COLORS.red;
+              const children = [];
+              if (enhancedHeight > 0) {
+                children.push({
+                  type: 'rect',
+                  shape: {
+                    x: coord[0] - barWidth / 2,
+                    y: coord[1] - enhancedHeight,
+                    width: barWidth,
+                    height: enhancedHeight,
+                    r: [7, 7, 0, 0]
+                  },
+                  style: { fill: COLORS.green }
+                });
+              }
+              if (impairedHeight > 0) {
+                children.push({
+                  type: 'rect',
+                  shape: {
+                    x: coord[0] - barWidth / 2,
+                    y: coord[1],
+                    width: barWidth,
+                    height: impairedHeight,
+                    r: [0, 0, 7, 7]
+                  },
+                  style: { fill: COLORS.red }
+                });
+              }
+              children.push({
+                type: 'text',
+                style: {
+                  x: coord[0],
+                  y: coord[1] + bandHeight * 0.60,
+                  text: netText,
+                  fill: netColor,
+                  align: 'center',
+                  verticalAlign: 'middle',
+                  font: '700 12px Inter, sans-serif'
+                }
+              });
+              return { type: 'group', children };
+            }
+          }
+        ]
+      });
+    }
+
+    function renderDisciplineValue() {
+      const disciplines = ['ED', 'SD', 'UIUX'];
+      const disciplineMeta = [
+        { key: 'ED', color: '#2563eb' },
+        { key: 'SD', color: '#ea580c' },
+        { key: 'UIUX', color: '#7c3aed' }
+      ];
+      const rows = DATA.values
+        .filter(d => d.total >= 8)
+        .map(item => {
+          const scores = disciplines.map(discipline => {
+            const d = DATA.disciplineValue[discipline][item.value];
+            return d.total ? ((d.enhanced - d.impaired) / d.total) * 100 : 0;
+          });
+          return {
+            value: item.value,
+            scores,
+            spread: Math.max(...scores) - Math.min(...scores),
+            total: item.total
+          };
+        })
+        .sort((a, b) => b.spread - a.spread)
+        .slice(0, 12);
+      const yLabels = rows.map(d => d.value);
+      const allScores = rows.flatMap(d => d.scores);
+      const minScore = Math.min(-100, ...allScores) - 4;
+      const maxScore = Math.max(100, ...allScores) + 4;
+      charts.disciplineValue.setOption({
+        animation: false,
+        grid: { left: 210, right: 104, top: 54, bottom: 46 },
+        tooltip: {
+          trigger: 'item',
+          formatter: item => {
+            const d = item.data;
+            return `<b>${d.valueName}</b><br/>${item.seriesName}<br/>Enhanced: ${d.enhanced}<br/>Impaired: ${d.impaired}<br/>Net: ${d.net >= 0 ? '+' : ''}${d.net}<br/>Net score: ${d.score >= 0 ? '+' : ''}${d.score.toFixed(0)}%`;
+          }
+        },
+        legend: { top: 12, right: 18, data: disciplineMeta.map(d => d.key) },
+        xAxis: {
+          type: 'value',
+          name: 'Net score',
+          min: minScore,
+          max: maxScore,
+          axisLabel: { color: COLORS.muted, formatter: value => `${value}%` },
+          splitLine: { lineStyle: { color: '#eef2f7' } }
+        },
+        yAxis: {
+          type: 'category',
+          data: yLabels,
+          inverse: true,
+          axisTick: { show: false },
+          axisLine: { show: false },
+          axisLabel: { color: COLORS.text, fontWeight: 760 },
+          splitLine: { show: true, lineStyle: { color: '#edf0f5' } }
+        },
+        series: [
+          {
+            name: 'Spread',
+            type: 'custom',
+            silent: true,
+            z: 1,
+            data: rows.map((row, index) => {
+              const min = Math.min(...row.scores);
+              const max = Math.max(...row.scores);
+              return [min, max, index, row.spread];
+            }),
+            renderItem: (params, api) => {
+              const y = api.coord([0, api.value(2)])[1];
+              const x1 = api.coord([api.value(0), api.value(2)])[0];
+              const x2 = api.coord([api.value(1), api.value(2)])[0];
+              return {
+                type: 'line',
+                shape: { x1, y1: y, x2, y2: y },
+                style: { stroke: '#cbd5e1', lineWidth: 3, opacity: 0.85 }
+              };
+            }
+          },
+          ...disciplineMeta.map(meta => ({
+            name: meta.key,
+            type: 'scatter',
+            z: 3,
+            symbolSize: (value, params) => Math.max(10, Math.min(24, 7 + Math.sqrt(params.data.total) * 2.2)),
+            itemStyle: { color: meta.color, opacity: 0.9 },
+            data: rows.map((row, index) => {
+              const d = DATA.disciplineValue[meta.key][row.value];
+              const score = d.total ? ((d.enhanced - d.impaired) / d.total) * 100 : 0;
+              return {
+                value: [score, index],
+                valueName: row.value,
+                valueLabel: row.value,
+                valueIndex: index,
+                valueTotal: row.total,
+                score,
+                enhanced: d.enhanced,
+                impaired: d.impaired,
+                net: d.net,
+                total: d.total
+              };
+            }),
+            label: {
+              show: true,
+              formatter: p => Math.abs(p.data.score) < 15 ? '' : `${p.data.score >= 0 ? '+' : ''}${p.data.score.toFixed(0)}%`,
+              position: 'right',
+              color: meta.color,
+              fontWeight: 700,
+              fontSize: 11
+            },
+            labelLayout: { hideOverlap: true },
+            markLine: meta.key === 'ED' ? {
+              symbol: 'none',
+              label: { show: false },
+              lineStyle: { color: '#94a3b8', width: 1.6 },
+              data: [{ xAxis: 0 }]
+            } : undefined
+          }))
+        ]
+      });
+    }
+
+    function renderDisciplineDimension() {
+      const disciplineMeta = [
+        { key: 'ED', color: '#2563eb' },
+        { key: 'SD', color: '#ea580c' },
+        { key: 'UIUX', color: '#7c3aed' }
+      ];
+      const dimensions = Object.keys(DATA.dimensionValue);
+      const dimKeys = ['BR', 'IG', 'DE', 'PM'];
+      let maxAbs = 1;
+      DATA.valueOrder.forEach(value => {
+        disciplineMeta.forEach(meta => {
+          dimensions.forEach(dimension => {
+            const d = DATA.disciplineDimensionValue[meta.key][dimension][value];
+            maxAbs = Math.max(maxAbs, Math.abs(d.net));
+          });
+        });
+      });
+
+      const fillFor = net => {
+        if (!net) return '#f8fafc';
+        const opacity = Math.min(0.92, 0.12 + (Math.abs(net) / maxAbs) * 0.72);
+        return net > 0 ? `rgba(31, 138, 76, ${opacity})` : `rgba(196, 49, 49, ${opacity})`;
+      };
+      const textFor = net => net ? `${net > 0 ? '+' : ''}${net}` : '0';
+      const totalForValue = value => DATA.values.find(item => item.value === value)?.total || 0;
+      const netForValue = value => {
+        const item = DATA.values.find(entry => entry.value === value);
+        return item ? item.net : 0;
+      };
+
+      const html = DATA.valueOrder.map(value => {
+        const valueNet = netForValue(value);
+        const lanes = disciplineMeta.map(meta => {
+          const cells = dimensions.map((dimension, dimIndex) => {
+            const d = DATA.disciplineDimensionValue[meta.key][dimension][value];
+            const tooltip = `${value} | ${meta.key} / ${shortDimension(dimension)}\nEnhanced: ${d.enhanced}\nImpaired: ${d.impaired}\nNet: ${d.net >= 0 ? '+' : ''}${d.net}`;
+            return `<div class="fingerprint-cell" style="background:${fillFor(d.net)}" title="${tooltip}">
+              <div class="fingerprint-dim">${dimKeys[dimIndex]}</div>
+              <div class="fingerprint-net ${d.total ? '' : 'fingerprint-empty'}">${d.total ? textFor(d.net) : '-'}</div>
+            </div>`;
+          }).join('');
+          return `<div class="fingerprint-lane">
+            <div class="fingerprint-discipline" style="color:${meta.color}">${meta.key}</div>
+            <div class="fingerprint-cells">${cells}</div>
+          </div>`;
+        }).join('');
+        return `<article class="fingerprint-card">
+          <div class="fingerprint-head">
+            <div class="fingerprint-title">${value}</div>
+            <div class="fingerprint-meta">${totalForValue(value)} mentions / ${valueNet >= 0 ? '+' : ''}${valueNet}</div>
+          </div>
+          <div class="fingerprint-body">${lanes}</div>
+        </article>`;
+      }).join('');
+      document.getElementById('disciplineDimensionChart').innerHTML = html;
+    }
+
+    function renderScatter(values) {
+      const labelPositions = {
+        'User-centredness': 'left',
+        'Creativity': 'right',
+        'Affordability': 'top',
+        'Other': 'bottom'
+      };
+      const scatterData = values.map(d => ({
+        value: [d.enhanced, d.impaired, d.total, d.value, d.net],
+        label: {
+          show: d.total >= 4,
+          position: labelPositions[d.value] || 'right',
+          distance: 9
+        }
+      }));
+      charts.scatter.setOption({
+        grid: { left: 58, right: 92, top: 20, bottom: 48 },
+        tooltip: {
+          formatter: item => {
+            const d = item.data.value;
+            return `<b>${d[3]}</b><br/>Enhanced: ${d[0]}<br/>Impaired: ${d[1]}<br/>Total: ${d[2]}<br/>Net: ${d[4] >= 0 ? '+' : ''}${d[4]}`;
+          }
+        },
+        xAxis: { name: 'Enhanced', nameLocation: 'middle', nameGap: 30, splitLine: { lineStyle: { color: '#eef2f7' } } },
+        yAxis: { name: 'Impaired', nameLocation: 'middle', nameGap: 40, splitLine: { lineStyle: { color: '#eef2f7' } } },
+        series: [{
+          type: 'scatter',
+          data: scatterData,
+          symbolSize: data => Math.max(12, Math.sqrt(data[2]) * 5),
+          itemStyle: { color: data => data.data.value[4] >= 0 ? COLORS.green : COLORS.red, opacity: 0.76 },
+          label: {
+            show: true,
+            formatter: p => p.data.value[3],
+            color: COLORS.text,
+            fontSize: 10,
+            width: 132,
+            overflow: 'truncate'
+          },
+          labelLayout: { hideOverlap: true }
+        }]
+      });
+    }
+
+    function renderDimensionTotals() {
+      const dims = DATA.dimensions.map(d => shortDimension(d.dimension));
+      const enhanced = DATA.dimensions.map(d => d.enhanced);
+      const impaired = DATA.dimensions.map(d => d.impaired);
+      charts.dimension.setOption({
+        grid: { left: 170, right: 42, top: 30, bottom: 28 },
+        tooltip: { trigger: 'axis', axisPointer: { type: 'shadow' } },
+        legend: { top: 0, right: 10 },
+        xAxis: { type: 'value', splitLine: { lineStyle: { color: '#eef2f7' } } },
+        yAxis: { type: 'category', data: [...dims].reverse(), axisLabel: { color: COLORS.text } },
+        series: [
+          { name: 'Enhanced', type: 'bar', data: [...enhanced].reverse(), itemStyle: { color: COLORS.green }, barWidth: 14 },
+          { name: 'Impaired', type: 'bar', data: [...impaired].reverse(), itemStyle: { color: COLORS.red }, barWidth: 14 }
+        ]
+      });
+    }
+
+    function renderTable(values) {
+      const table = document.getElementById('summaryTable');
+      const rows = values.map(d => `
+        <tr>
+          <td>${d.value}</td>
+          <td class="pos">${d.enhanced}</td>
+          <td class="neg">${d.impaired}</td>
+          <td>${d.total}</td>
+          <td class="${d.net >= 0 ? 'pos' : 'neg'}">${d.net >= 0 ? '+' : ''}${d.net}</td>
+          <td>${Math.round(d.shareEnhanced * 100)}%</td>
+        </tr>`).join('');
+      table.innerHTML = `<thead><tr><th>Value</th><th>Enhanced</th><th>Impaired</th><th>Total</th><th>Net</th><th>Enhanced Share</th></tr></thead><tbody>${rows}</tbody>`;
+    }
+
+    function renderAll() {
+      const values = currentValues();
+      renderDiverging(values);
+      renderGlobalBalance();
+      renderDisciplineValue();
+      renderDisciplineDimension();
+      renderHeatmap();
+      renderScatter(values);
+      renderDimensionTotals();
+      renderTable(values);
+    }
+
+    filter.addEventListener('change', renderAll);
+    document.getElementById('resetBtn').addEventListener('click', () => {
+      filter.value = 'All';
+      renderAll();
+    });
+    window.addEventListener('resize', () => Object.values(charts).forEach(chart => chart.resize()));
+    renderAll();
+  </script>
 </body>
 </html>
