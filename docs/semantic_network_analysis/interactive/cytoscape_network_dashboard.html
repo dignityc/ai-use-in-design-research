@@ -1,0 +1,532 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Design Research - 시맨틱 네트워크 대시보드</title>
+    
+    <!-- 외부 라이브러리 CDN -->
+    <script src="https://unpkg.com/cytoscape@3.26.0/dist/cytoscape.min.js"></script>
+    <script src="https://unpkg.com/cytoscape-cola@2.5.1/cytoscape-cola.js"></script>
+    <script src="https://unpkg.com/cytoscape-dagre@2.5.0/cytoscape-dagre.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f8f9fa;
+            overflow-x: hidden;
+        }
+        
+        .dashboard-container {
+            display: flex;
+            height: 100vh;
+            max-width: 100vw;
+        }
+        
+        .sidebar {
+            width: 320px;
+            background: white;
+            border-right: 2px solid #e9ecef;
+            overflow-y: auto;
+            padding: 20px;
+            box-shadow: 2px 0 10px rgba(0,0,0,0.1);
+        }
+        
+        .main-content {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+        }
+        
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 20px;
+            text-align: center;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        .header h1 {
+            margin: 0;
+            font-size: 1.8rem;
+            font-weight: 700;
+        }
+        
+        .header p {
+            margin: 5px 0 0 0;
+            opacity: 0.9;
+            font-size: 0.9rem;
+        }
+        
+        #cy {
+            width: 100%;
+            height: calc(100vh - 120px);
+            background: #ffffff;
+            border: 2px solid #e9ecef;
+        }
+        
+        .control-section {
+            margin-bottom: 25px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid #e9ecef;
+        }
+        
+        .control-section h3 {
+            color: #495057;
+            font-size: 1.1rem;
+            margin-bottom: 15px;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+        }
+        
+        .control-section h3 i {
+            margin-right: 8px;
+            color: #6c757d;
+        }
+        
+        .search-box {
+            position: relative;
+            margin-bottom: 15px;
+        }
+        
+        .search-box input {
+            width: 100%;
+            padding: 12px 40px 12px 15px;
+            border: 2px solid #e9ecef;
+            border-radius: 8px;
+            font-size: 14px;
+            transition: all 0.3s ease;
+        }
+        
+        .search-box input:focus {
+            border-color: #667eea;
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+        }
+        
+        .search-box i {
+            position: absolute;
+            right: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #6c757d;
+        }
+        
+        .filter-group {
+            margin-bottom: 20px;
+        }
+        
+        .filter-label {
+            font-weight: 600;
+            color: #495057;
+            margin-bottom: 10px;
+            font-size: 0.9rem;
+        }
+        
+        .filter-options {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+        
+        .filter-option {
+            display: flex;
+            align-items: center;
+            padding: 8px 12px;
+            background: #f8f9fa;
+            border-radius: 6px;
+            transition: all 0.2s ease;
+            cursor: pointer;
+        }
+        
+        .filter-option:hover {
+            background: #e9ecef;
+        }
+        
+        .filter-option input[type="checkbox"] {
+            margin-right: 10px;
+            transform: scale(1.2);
+        }
+        
+        .filter-option label {
+            margin: 0;
+            cursor: pointer;
+            font-size: 0.85rem;
+            flex: 1;
+        }
+        
+        .color-indicator {
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            margin-left: 10px;
+            border: 2px solid white;
+            box-shadow: 0 0 0 1px #dee2e6;
+        }
+        
+        .layout-selector {
+            margin-bottom: 20px;
+        }
+        
+        .layout-selector select {
+            width: 100%;
+            padding: 10px;
+            border: 2px solid #e9ecef;
+            border-radius: 6px;
+            font-size: 14px;
+            background: white;
+        }
+        
+        .layout-selector select:focus {
+            border-color: #667eea;
+            outline: none;
+        }
+        
+        .stats-panel {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            color: white;
+            padding: 15px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+        }
+        
+        .stats-panel h4 {
+            margin: 0 0 10px 0;
+            font-size: 1rem;
+        }
+        
+        .stats-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+        }
+        
+        .stat-item {
+            text-align: center;
+        }
+        
+        .stat-value {
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin: 0;
+        }
+        
+        .stat-label {
+            font-size: 0.8rem;
+            opacity: 0.9;
+            margin: 0;
+        }
+        
+        .keyword-list {
+            max-height: 300px;
+            overflow-y: auto;
+            background: #f8f9fa;
+            border-radius: 8px;
+            padding: 10px;
+        }
+        
+        .keyword-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 8px 12px;
+            background: white;
+            border-radius: 6px;
+            margin-bottom: 6px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            font-size: 0.85rem;
+        }
+        
+        .keyword-item:hover {
+            background: #e9ecef;
+            transform: translateX(5px);
+        }
+        
+        .keyword-name {
+            font-weight: 600;
+            color: #495057;
+        }
+        
+        .keyword-freq {
+            background: #667eea;
+            color: white;
+            padding: 2px 8px;
+            border-radius: 12px;
+            font-size: 0.75rem;
+        }
+        
+        .control-buttons {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+        
+        .control-btn {
+            flex: 1;
+            padding: 10px;
+            border: none;
+            border-radius: 6px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+        
+        .btn-primary {
+            background: #667eea;
+            color: white;
+        }
+        
+        .btn-primary:hover {
+            background: #5a67d8;
+        }
+        
+        .btn-secondary {
+            background: #6c757d;
+            color: white;
+        }
+        
+        .btn-secondary:hover {
+            background: #545b62;
+        }
+        
+        .info-panel {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            width: 320px;
+            background: white;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transform: translateX(100%);
+            transition: transform 0.3s ease;
+            z-index: 1000;
+        }
+        
+        .info-panel.show {
+            transform: translateX(0);
+        }
+        
+        .close-btn {
+            position: absolute;
+            top: 10px;
+            right: 15px;
+            background: none;
+            border: none;
+            font-size: 1.2rem;
+            cursor: pointer;
+            color: #6c757d;
+        }
+        
+        .close-btn:hover {
+            color: #495057;
+        }
+        
+        .legend {
+            position: absolute;
+            bottom: 20px;
+            left: 20px;
+            background: white;
+            padding: 15px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            font-size: 0.8rem;
+        }
+        
+        .legend-title {
+            font-weight: bold;
+            margin-bottom: 10px;
+            color: #495057;
+        }
+        
+        .legend-items {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+        }
+        
+        .legend-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .loading {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(255,255,255,0.9);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 9999;
+        }
+        
+        .spinner {
+            width: 50px;
+            height: 50px;
+            border: 5px solid #e9ecef;
+            border-top: 5px solid #667eea;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        /* 반응형 디자인 */
+        @media (max-width: 768px) {
+            .sidebar {
+                width: 280px;
+            }
+            
+            .info-panel {
+                width: 280px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- 로딩 화면 -->
+    <div id="loading" class="loading">
+        <div class="spinner"></div>
+    </div>
+
+    <div class="dashboard-container">
+        <!-- 왼쪽 사이드바 -->
+        <div class="sidebar">
+            <!-- 검색 섹션 -->
+            <div class="control-section">
+                <h3><i class="fas fa-search"></i>키워드 검색</h3>
+                <div class="search-box">
+                    <input type="text" id="search-input" placeholder="키워드를 입력하세요... (예: artificial intelligence)">
+                    <i class="fas fa-search"></i>
+                </div>
+            </div>
+
+            <!-- 레이아웃 선택 -->
+            <div class="control-section">
+                <h3><i class="fas fa-project-diagram"></i>레이아웃</h3>
+                <div class="layout-selector">
+                    <select id="layout-select">
+                        <option value="cose">Force-directed (추천)</option>
+                        <option value="circle">원형 배치</option>
+                        <option value="grid">격자 배치</option>
+                        <option value="breadthfirst">계층형 배치</option>
+                        <option value="concentric">동심원 배치</option>
+                        <option value="cola">Cola 레이아웃</option>
+                    </select>
+                </div>
+            </div>
+
+            <!-- AI Method 필터 -->
+            <div class="control-section">
+                <h3><i class="fas fa-brain"></i>AI 방법론</h3>
+                <div class="filter-group">
+                    <div id="ai-method-filters" class="filter-options">
+                        <!-- 동적으로 생성됨 -->
+                    </div>
+                </div>
+            </div>
+
+            <!-- Design Task 필터 -->
+            <div class="control-section">
+                <h3><i class="fas fa-tasks"></i>디자인 단계</h3>
+                <div class="filter-group">
+                    <div id="design-task-filters" class="filter-options">
+                        <!-- 동적으로 생성됨 -->
+                    </div>
+                </div>
+            </div>
+
+            <!-- 컨트롤 버튼 -->
+            <div class="control-section">
+                <div class="control-buttons">
+                    <button id="reset-btn" class="control-btn btn-secondary">
+                        <i class="fas fa-undo"></i> 초기화
+                    </button>
+                    <button id="fit-btn" class="control-btn btn-primary">
+                        <i class="fas fa-expand-arrows-alt"></i> 전체 보기
+                    </button>
+                </div>
+            </div>
+
+            <!-- 통계 패널 -->
+            <div class="stats-panel">
+                <h4><i class="fas fa-chart-bar"></i> 네트워크 통계</h4>
+                <div class="stats-grid">
+                    <div class="stat-item">
+                        <p class="stat-value" id="total-nodes">0</p>
+                        <p class="stat-label">키워드</p>
+                    </div>
+                    <div class="stat-item">
+                        <p class="stat-value" id="total-edges">0</p>
+                        <p class="stat-label">연결</p>
+                    </div>
+                    <div class="stat-item">
+                        <p class="stat-value" id="visible-nodes">0</p>
+                        <p class="stat-label">표시됨</p>
+                    </div>
+                    <div class="stat-item">
+                        <p class="stat-value" id="selected-nodes">0</p>
+                        <p class="stat-label">선택됨</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 키워드 리스트 -->
+            <div class="control-section">
+                <h3><i class="fas fa-list"></i>상위 키워드</h3>
+                <div id="keyword-list" class="keyword-list">
+                    <!-- 동적으로 생성됨 -->
+                </div>
+            </div>
+        </div>
+
+        <!-- 메인 콘텐츠 -->
+        <div class="main-content">
+            <!-- 헤더 -->
+            <div class="header">
+                <h1>🔗 AI Design Research 시맨틱 네트워크</h1>
+                <p>198개 키워드, 160개 연결 관계 | 클릭, 드래그, 줌으로 탐색하세요</p>
+            </div>
+
+            <!-- Cytoscape.js 네트워크 -->
+            <div id="cy"></div>
+
+            <!-- 정보 패널 (숨김 상태) -->
+            <div id="info-panel" class="info-panel">
+                <button class="close-btn" onclick="hideInfoPanel()">&times;</button>
+                <div id="info-content">
+                    <p>키워드를 클릭하면 상세 정보가 표시됩니다.</p>
+                </div>
+            </div>
+
+            <!-- 범례 -->
+            <div class="legend">
+                <div class="legend-title">AI 방법론</div>
+                <div class="legend-items" id="legend-items">
+                    <!-- 동적으로 생성됨 -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- JavaScript -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="assets/network_controller.js"></script>
+</body>
+</html>

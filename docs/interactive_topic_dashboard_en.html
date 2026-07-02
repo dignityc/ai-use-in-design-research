@@ -1,0 +1,1149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>📊 Interactive Paper Topic Analysis Dashboard</title>
+    
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <!-- Plotly.js -->
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+    
+    <style>
+        :root {
+            --primary-color: #2E86AB;
+            --secondary-color: #A23B72;
+            --accent-color: #F18F01;
+            --success-color: #C73E1D;
+            --light-bg: #F8F9FA;
+            --dark-text: #212529;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--light-bg);
+            color: var(--dark-text);
+        }
+        
+        .navbar-brand {
+            font-weight: 700;
+            font-size: 1.4rem;
+        }
+        
+        .section-card {
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            margin-bottom: 2rem;
+            padding: 1.5rem;
+        }
+        
+        .section-title {
+            color: var(--primary-color);
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 3px solid var(--primary-color);
+        }
+        
+        .chart-container {
+            min-height: 400px;
+            margin-bottom: 1rem;
+        }
+        
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+        
+        .stat-card {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            padding: 1.5rem;
+            border-radius: 8px;
+            text-align: center;
+        }
+        
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 700;
+            display: block;
+        }
+        
+        .stat-label {
+            font-size: 0.9rem;
+            opacity: 0.9;
+        }
+        
+        .filter-panel {
+            background: white;
+            border-radius: 8px;
+            padding: 1rem;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            margin-bottom: 1rem;
+        }
+        
+        .paper-card {
+            background: white;
+            border: 1px solid #dee2e6;
+            border-radius: 8px;
+            padding: 1rem;
+            margin-bottom: 1rem;
+            transition: all 0.3s ease;
+        }
+        
+        .paper-card:hover {
+            border-color: var(--primary-color);
+            box-shadow: 0 4px 12px rgba(46, 134, 171, 0.15);
+            transform: translateY(-2px);
+        }
+        
+        .paper-title {
+            font-weight: 600;
+            color: var(--primary-color);
+            margin-bottom: 0.5rem;
+        }
+        
+        .paper-meta {
+            font-size: 0.9rem;
+            color: #6c757d;
+            margin-bottom: 0.5rem;
+        }
+        
+        .badge-custom {
+            font-size: 0.75rem;
+            padding: 0.25rem 0.5rem;
+        }
+        
+        .topic-badge {
+            background-color: var(--accent-color);
+            color: white;
+        }
+        
+        .ai-method-badge {
+            background-color: var(--secondary-color);
+            color: white;
+        }
+        
+        .design-task-badge {
+            background-color: var(--success-color);
+            color: white;
+        }
+        
+        .loading-spinner {
+            display: none;
+            text-align: center;
+            padding: 2rem;
+        }
+        
+        .search-highlight {
+            background-color: yellow;
+            font-weight: bold;
+        }
+        
+        .insight-box {
+            background: linear-gradient(135deg, #E3F2FD, #F3E5F5);
+            border-left: 4px solid var(--primary-color);
+            padding: 1rem;
+            margin: 1rem 0;
+            border-radius: 0 8px 8px 0;
+        }
+        
+        .insight-title {
+            font-weight: 600;
+            color: var(--primary-color);
+            margin-bottom: 0.5rem;
+        }
+        
+        @media (max-width: 768px) {
+            .chart-container {
+                min-height: 300px;
+            }
+            
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .section-card {
+                margin-bottom: 1rem;
+                padding: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark" style="background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));">
+        <div class="container">
+            <a class="navbar-brand" href="#"><i class="fas fa-chart-bar me-2"></i>Paper Topic Analysis Dashboard</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#overview"><i class="fas fa-pie-chart me-1"></i>Overview</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#trends"><i class="fas fa-chart-line me-1"></i>Trends</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#relationships"><i class="fas fa-project-diagram me-1"></i>Relationships</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#papers"><i class="fas fa-file-alt me-1"></i>Papers</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container mt-4">
+        <!-- Key Insights -->
+        <div class="insight-box">
+            <div class="insight-title">🔍 Key Research Insights</div>
+            <div class="row">
+                <div class="col-md-4">
+                    <strong>Dominant Topic:</strong> "Interaction + User + Technology" (18 papers)
+                </div>
+                <div class="col-md-4">
+                    <strong>AI Evolution:</strong> 2023 marked the Gen AI transition point
+                </div>
+                <div class="col-md-4">
+                    <strong>Research Span:</strong> 2020-2025, covering 74 papers across 9 topics
+                </div>
+            </div>
+        </div>
+
+        <!-- Statistics Grid -->
+        <div class="stats-grid" id="statsGrid">
+            <div class="stat-card">
+                <span class="stat-number" id="totalPapers">-</span>
+                <span class="stat-label">Total Papers</span>
+            </div>
+            <div class="stat-card">
+                <span class="stat-number" id="totalTopics">-</span>
+                <span class="stat-label">Major Topics</span>
+            </div>
+            <div class="stat-card">
+                <span class="stat-number" id="yearRange">-</span>
+                <span class="stat-label">Time Range</span>
+            </div>
+            <div class="stat-card">
+                <span class="stat-number" id="currentFilter">All</span>
+                <span class="stat-label">Current Filter</span>
+            </div>
+        </div>
+
+        <!-- Topic Overview Section -->
+        <section id="overview" class="section-card">
+            <h2 class="section-title"><i class="fas fa-pie-chart me-2"></i>Topic Distribution Overview</h2>
+            <div class="row">
+                <div class="col-lg-8">
+                    <div class="chart-container" id="topicOverviewChart"></div>
+                </div>
+                <div class="col-lg-4">
+                    <h5>Topic Information</h5>
+                    <div id="topicInfo">
+                        <p class="text-muted">Click on a topic in the chart to view detailed information.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Yearly Trends Section -->
+        <section id="trends" class="section-card">
+            <h2 class="section-title"><i class="fas fa-chart-line me-2"></i>Multi-Dimensional Yearly Trends</h2>
+            
+            <!-- Trend Type Selector -->
+            <div class="mb-3">
+                <div class="btn-group" role="group" aria-label="Trend type selector">
+                    <button type="button" class="btn btn-primary active" id="topicsTrendBtn" onclick="showTrend('topics')">
+                        <i class="fas fa-tag me-1"></i>Topics
+                    </button>
+                    <button type="button" class="btn btn-outline-primary" id="aiMethodsTrendBtn" onclick="showTrend('ai_methods')">
+                        <i class="fas fa-robot me-1"></i>AI Methods
+                    </button>
+                    <button type="button" class="btn btn-outline-primary" id="dataModalityTrendBtn" onclick="showTrend('data_modality')">
+                        <i class="fas fa-database me-1"></i>Data Modality
+                    </button>
+                    <button type="button" class="btn btn-outline-primary" id="designPracticeTrendBtn" onclick="showTrend('design_practice')">
+                        <i class="fas fa-tasks me-1"></i>Design Practice
+                    </button>
+                </div>
+            </div>
+
+            <div class="chart-container" id="yearlyTrendsChart"></div>
+            
+            <!-- Dynamic Insights -->
+            <div class="insight-box" id="trendInsights">
+                <div class="insight-title">📈 Topic Trends Analysis</div>
+                <p>The line chart reveals how research interests evolved over time. Notice the surge in "Interaction + User + Technology" 
+                papers from 2022 onwards, coinciding with the rise of conversational AI and generative models.</p>
+            </div>
+        </section>
+
+        <!-- Relationships Section -->
+        <section id="relationships" class="section-card">
+            <h2 class="section-title"><i class="fas fa-project-diagram me-2"></i>Cross-Dimensional Analysis</h2>
+            <div class="row">
+                <div class="col-lg-6 mb-4">
+                    <h5>Topics × AI Methods</h5>
+                    <div class="chart-container" id="aiMethodsChart"></div>
+                </div>
+                <div class="col-lg-6 mb-4">
+                    <h5>Topics × Design Practices</h5>
+                    <div class="chart-container" id="designTasksChart"></div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-6 mb-4">
+                    <h5>AI Methods × Design Practices</h5>
+                    <div class="chart-container" id="aiMethodsDesignPracticesChart"></div>
+                </div>
+                <div class="col-lg-6 mb-4">
+                    <h5>Data Modality × Design Practices</h5>
+                    <div class="chart-container" id="dataModalityDesignPracticesChart"></div>
+                </div>
+            </div>
+            <div class="insight-box">
+                <div class="insight-title">🤖 Cross-Dimensional Insights</div>
+                <p><strong>Generative AI</strong> dominates interaction-focused research, while <strong>Traditional ML</strong> 
+                remains prevalent in design case studies and product analysis. The <strong>AI Methods × Design Practices</strong> 
+                matrix reveals that Traditional ML heavily focuses on the "Develop" phase (27 papers), while Generative AI 
+                shows more balanced distribution across design stages.</p>
+                
+                <p>The new <strong>Data Modality × Design Practices</strong> matrix reveals interesting patterns: 
+                <strong>Text data</strong> dominates with 32 papers (69% in Develop phase), <strong>Multimodal</strong> approaches 
+                are exclusively focused on Develop (11 papers, 100%), while <strong>Audio data</strong> shows the most balanced 
+                distribution across design stages (50% Develop, 38% Define, 12% Discovery). <strong>Image</strong> and 
+                <strong>Time Series</strong> data are heavily concentrated in the Develop phase (74% and 75% respectively).</p>
+            </div>
+        </section>
+
+        <!-- Papers Section -->
+        <section id="papers" class="section-card">
+            <h2 class="section-title"><i class="fas fa-file-alt me-2"></i>Paper Details & Search</h2>
+            
+            <!-- Filter Panel -->
+            <div class="filter-panel">
+                <div class="row align-items-center">
+                    <div class="col-md-4">
+                        <div class="input-group">
+                            <span class="input-group-text"><i class="fas fa-search"></i></span>
+                            <input type="text" class="form-control" id="searchInput" placeholder="Search title, author, keywords...">
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <select class="form-select" id="topicFilter">
+                            <option value="">All Topics</option>
+                        </select>
+                    </div>
+                    <div class="col-md-3">
+                        <select class="form-select" id="aiMethodFilter">
+                            <option value="">All AI Methods</option>
+                        </select>
+                    </div>
+                    <div class="col-md-2">
+                        <button class="btn btn-outline-secondary w-100" id="clearFilters">
+                            <i class="fas fa-times"></i> Clear
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Loading Spinner -->
+            <div class="loading-spinner" id="loadingSpinner">
+                <div class="spinner-border text-primary" role="status">
+                    <span class="visually-hidden">Loading...</span>
+                </div>
+                <p>Loading paper data...</p>
+            </div>
+
+            <!-- Papers Container -->
+            <div id="papersContainer">
+                <!-- Papers will be dynamically loaded here -->
+            </div>
+
+            <!-- Pagination -->
+            <nav aria-label="Paper pagination">
+                <ul class="pagination justify-content-center" id="pagination">
+                    <!-- Pagination will be dynamically generated -->
+                </ul>
+            </nav>
+        </section>
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script>
+        // Global variables
+        let dashboardData = null;
+        let filteredPapers = [];
+        let currentPage = 1;
+        const papersPerPage = 10;
+        let selectedTopic = null;
+        let currentTrendType = 'topics';
+
+        // Color palette - consistent colors for topics
+        const topicColors = [
+            '#2E86AB', '#A23B72', '#F18F01', '#C73E1D', '#3A6351',
+            '#7209B7', '#F72585', '#4CC9F0', '#4361EE', '#F77F00'
+        ];
+
+        // Initialize dashboard on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('🚀 Initializing dashboard...');
+            initDashboard();
+        });
+
+        // Load and initialize dashboard data
+        async function initDashboard() {
+            try {
+                // Load data
+                const response = await fetch('dashboard_data.json');
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+                
+                dashboardData = await response.json();
+                console.log('✅ Dashboard data loaded:', dashboardData.metadata);
+
+                // Initialize UI
+                initUI();
+                initCharts();
+                initFilters();
+                
+                console.log('🎉 Dashboard initialization complete!');
+                
+            } catch (error) {
+                console.error('❌ Dashboard initialization error:', error);
+                showError('Failed to load data. Please refresh the page.');
+            }
+        }
+
+        // Initialize UI statistics
+        function initUI() {
+            const metadata = dashboardData.metadata;
+            
+            document.getElementById('totalPapers').textContent = metadata.total_papers;
+            document.getElementById('totalTopics').textContent = metadata.total_topics;
+            document.getElementById('yearRange').textContent = `${metadata.year_range[0]}-${metadata.year_range[1]}`;
+            
+            // Initialize paper data
+            filteredPapers = dashboardData.paper_details;
+            displayPapers();
+        }
+
+        // Initialize charts
+        function initCharts() {
+            createTopicOverviewChart();
+            createYearlyTrendsChart();
+            createAIMethodsChart();
+            createDesignTasksChart();
+            createAIMethodsDesignPracticesChart();
+            createDataModalityDesignPracticesChart();
+        }
+
+        // Topic overview pie chart
+        function createTopicOverviewChart() {
+            const data = dashboardData.topic_overview;
+            
+            const trace = {
+                type: 'pie',
+                labels: data.map(d => d.topic_label),
+                values: data.map(d => d.count),
+                textinfo: 'label+percent',
+                textposition: 'auto',
+                marker: {
+                    colors: topicColors.slice(0, data.length),
+                    line: {
+                        color: 'white',
+                        width: 2
+                    }
+                },
+                hole: 0.3,
+                hoverlabel: {
+                    bgcolor: 'white',
+                    bordercolor: 'black',
+                    font: {size: 12}
+                },
+                hovertemplate: '<b>%{label}</b><br>' +
+                               'Papers: %{value}<br>' +
+                               'Percentage: %{percent}<br>' +
+                               '<extra></extra>'
+            };
+
+            const layout = {
+                showlegend: true,
+                legend: {
+                    orientation: 'v',
+                    x: 1,
+                    y: 0.5
+                },
+                margin: {t: 20, b: 20, l: 20, r: 150},
+                font: {size: 12},
+                hoverlabel: {
+                    bgcolor: 'white',
+                    bordercolor: 'black'
+                }
+            };
+
+            const config = {
+                responsive: true,
+                displayModeBar: false
+            };
+
+            Plotly.newPlot('topicOverviewChart', [trace], layout, config).then(function(gd) {
+                // Add click event after plot is created
+                gd.on('plotly_click', function(data) {
+                    console.log('Topic clicked:', data); // 디버깅용
+                    const pointIndex = data.points[0].pointIndex;
+                    const selectedTopicData = dashboardData.topic_overview[pointIndex];
+                    console.log('Selected topic:', selectedTopicData); // 디버깅용
+                    selectTopic(selectedTopicData);
+                });
+            });
+        }
+
+        // Multi-dimensional yearly trends chart
+        function createYearlyTrendsChart() {
+            showTrend('topics'); // Initialize with topics
+        }
+
+        // Show specific trend type
+        function showTrend(trendType) {
+            currentTrendType = trendType;
+            
+            // Map trendType to button ID (handle underscore to camelCase conversion)
+            const buttonIdMapping = {
+                'topics': 'topicsTrendBtn',
+                'ai_methods': 'aiMethodsTrendBtn', 
+                'data_modality': 'dataModalityTrendBtn',
+                'design_practice': 'designPracticeTrendBtn'
+            };
+            
+            // Update button states
+            document.querySelectorAll('.btn-group button').forEach(btn => {
+                btn.classList.remove('btn-primary', 'active');
+                btn.classList.add('btn-outline-primary');
+            });
+            
+            const buttonId = buttonIdMapping[trendType];
+            if (buttonId) {
+                document.getElementById(buttonId).classList.add('btn-primary', 'active');
+                document.getElementById(buttonId).classList.remove('btn-outline-primary');
+            }
+
+            const trends = dashboardData.yearly_trends[trendType];
+            const years = trends.map(t => t.year);
+            
+            // Get all unique categories across all years
+            const allCategories = new Set();
+            trends.forEach(yearData => {
+                Object.keys(yearData.categories).forEach(category => {
+                    allCategories.add(category);
+                });
+            });
+            
+            const categories = Array.from(allCategories);
+            
+            // Create traces for each category
+            const traces = [];
+            
+            categories.forEach((category, index) => {
+                const values = years.map(year => {
+                    const yearData = trends.find(t => t.year === year);
+                    return yearData ? (yearData.categories[category] || 0) : 0;
+                });
+
+                traces.push({
+                    x: years,
+                    y: values,
+                    type: 'scatter',
+                    mode: 'lines+markers',
+                    name: category,
+                    line: {
+                        color: topicColors[index % topicColors.length],
+                        width: 3
+                    },
+                    marker: {
+                        size: 8,
+                        color: topicColors[index % topicColors.length],
+                        line: {
+                            color: 'white',
+                            width: 2
+                        }
+                    }
+                });
+            });
+
+            // Dynamic title and labels based on trend type
+            const trendTitles = {
+                'topics': 'Evolution of Research Topics Over Time',
+                'ai_methods': 'AI Method Adoption Trends Over Time',
+                'data_modality': 'Data Modality Usage Trends Over Time',
+                'design_practice': 'Design Practice Focus Trends Over Time'
+            };
+
+            const layout = {
+                title: {
+                    text: trendTitles[trendType] || 'Trends Over Time',
+                    font: {size: 16}
+                },
+                xaxis: {
+                    title: 'Publication Year',
+                    tickmode: 'linear',
+                    tick0: 2020,
+                    dtick: 1
+                },
+                yaxis: {
+                    title: 'Number of Papers'
+                },
+                legend: {
+                    orientation: 'h',
+                    y: -0.2
+                },
+                margin: {t: 60, b: 100, l: 60, r: 20},
+                hovermode: 'x unified'
+            };
+
+            const config = {
+                responsive: true,
+                displayModeBar: false
+            };
+
+            Plotly.newPlot('yearlyTrendsChart', traces, layout, config);
+            updateTrendInsights(trendType);
+        }
+
+        // Update insights based on trend type
+        function updateTrendInsights(trendType) {
+            const insightsBox = document.getElementById('trendInsights');
+            
+            const insights = {
+                'topics': {
+                    title: '📈 Topic Trends Analysis',
+                    content: 'The line chart reveals how research interests evolved over time. Notice the surge in "Interaction + User + Technology" papers from 2022 onwards, coinciding with the rise of conversational AI and generative models.'
+                },
+                'ai_methods': {
+                    title: '🤖 AI Methods Evolution',
+                    content: 'Traditional ML dominates throughout the period, but <strong>2023 marks the Gen AI transition point</strong>. Generative AI papers jumped from 1 in 2022 to 9 in 2024, while Deep Learning usage declined relatively.'
+                },
+                'data_modality': {
+                    title: '💾 Data Modality Patterns',
+                    content: 'Text and Image remain the primary data types across all years. Multimodal approaches gained traction in 2024, reflecting the growing complexity of AI-driven design research.'
+                },
+                'design_practice': {
+                    title: '🎨 Design Practice Focus',
+                    content: 'The "Develop" phase consistently dominates across all years, suggesting most AI applications in design focus on prototyping and development rather than early discovery or final delivery stages.'
+                }
+            };
+
+            const insight = insights[trendType] || insights['topics'];
+            insightsBox.innerHTML = `
+                <div class="insight-title">${insight.title}</div>
+                <p>${insight.content}</p>
+            `;
+        }
+
+        // AI Methods heatmap
+        function createAIMethodsChart() {
+            const matrix = dashboardData.ai_methods_matrix;
+            const topicLabels = Object.keys(dashboardData.topic_labels).filter(k => k !== '-1').map(k => dashboardData.topic_labels[k]);
+            const aiMethods = matrix.map(m => m.ai_method);
+
+            // Calculate Z values (heatmap data)
+            const zData = [];
+            aiMethods.forEach(method => {
+                const methodData = matrix.find(m => m.ai_method === method);
+                const row = [];
+                topicLabels.forEach(topicLabel => {
+                    row.push(methodData.topics[topicLabel] || 0);
+                });
+                zData.push(row);
+            });
+
+            const trace = {
+                z: zData,
+                x: topicLabels,
+                y: aiMethods,
+                type: 'heatmap',
+                colorscale: [
+                    [0, 'white'],
+                    [0.2, '#E3F2FD'],
+                    [0.4, '#BBDEFB'],
+                    [0.6, '#90CAF9'],
+                    [0.8, '#42A5F5'],
+                    [1, '#1E88E5']
+                ],
+                showscale: true,
+                hoverongaps: false,
+                hovertemplate: '<b>%{y}</b><br>' +
+                               '<b>%{x}</b><br>' +
+                               'Papers: %{z}<br>' +
+                               '<extra></extra>'
+            };
+
+            const layout = {
+                xaxis: {
+                    side: 'bottom',
+                    tickangle: -45
+                },
+                yaxis: {
+                    side: 'left'
+                },
+                margin: {t: 20, b: 100, l: 120, r: 60}
+            };
+
+            const config = {
+                responsive: true,
+                displayModeBar: false
+            };
+
+            Plotly.newPlot('aiMethodsChart', [trace], layout, config);
+        }
+
+        // Design Tasks heatmap
+        function createDesignTasksChart() {
+            const matrix = dashboardData.design_tasks_matrix;
+            const topicLabels = Object.keys(dashboardData.topic_labels).filter(k => k !== '-1').map(k => dashboardData.topic_labels[k]);
+            const designTasks = matrix.map(m => m.design_task);
+
+            // Calculate Z values
+            const zData = [];
+            designTasks.forEach(task => {
+                const taskData = matrix.find(m => m.design_task === task);
+                const row = [];
+                topicLabels.forEach(topicLabel => {
+                    row.push(taskData.topics[topicLabel] || 0);
+                });
+                zData.push(row);
+            });
+
+            const trace = {
+                z: zData,
+                x: topicLabels,
+                y: designTasks,
+                type: 'heatmap',
+                colorscale: [
+                    [0, 'white'],
+                    [0.2, '#FCE4EC'],
+                    [0.4, '#F8BBD9'],
+                    [0.6, '#F48FB1'],
+                    [0.8, '#EC407A'],
+                    [1, '#E91E63']
+                ],
+                showscale: true,
+                hoverongaps: false,
+                hovertemplate: '<b>%{y}</b><br>' +
+                               '<b>%{x}</b><br>' +
+                               'Papers: %{z}<br>' +
+                               '<extra></extra>'
+            };
+
+            const layout = {
+                xaxis: {
+                    side: 'bottom',
+                    tickangle: -45
+                },
+                yaxis: {
+                    side: 'left'
+                },
+                margin: {t: 20, b: 100, l: 100, r: 60}
+            };
+
+            const config = {
+                responsive: true,
+                displayModeBar: false
+            };
+
+            Plotly.newPlot('designTasksChart', [trace], layout, config);
+        }
+
+        // AI Methods × Design Practices heatmap
+        function createAIMethodsDesignPracticesChart() {
+            const matrix = dashboardData.ai_methods_design_practices_matrix;
+            const aiMethods = matrix.map(m => m.ai_method);
+            const allPractices = new Set();
+            
+            // Get all unique design practices
+            matrix.forEach(methodData => {
+                Object.keys(methodData.design_practices).forEach(practice => {
+                    allPractices.add(practice);
+                });
+            });
+            
+            const designPractices = Array.from(allPractices);
+
+            // Calculate Z values
+            const zData = [];
+            aiMethods.forEach(method => {
+                const methodData = matrix.find(m => m.ai_method === method);
+                const row = [];
+                designPractices.forEach(practice => {
+                    row.push(methodData.design_practices[practice] || 0);
+                });
+                zData.push(row);
+            });
+
+            const trace = {
+                z: zData,
+                x: designPractices,
+                y: aiMethods,
+                type: 'heatmap',
+                colorscale: [
+                    [0, 'white'],
+                    [0.2, '#E8F5E8'],
+                    [0.4, '#C8E6C9'],
+                    [0.6, '#A5D6A7'],
+                    [0.8, '#81C784'],
+                    [1, '#66BB6A']
+                ],
+                showscale: true,
+                hoverongaps: false,
+                hovertemplate: '<b>%{y}</b><br>' +
+                               '<b>%{x}</b><br>' +
+                               'Papers: %{z}<br>' +
+                               '<extra></extra>'
+            };
+
+            const layout = {
+                xaxis: {
+                    side: 'bottom',
+                    tickangle: -45
+                },
+                yaxis: {
+                    side: 'left'
+                },
+                margin: {t: 20, b: 100, l: 120, r: 60}
+            };
+
+            const config = {
+                responsive: true,
+                displayModeBar: false
+            };
+
+            Plotly.newPlot('aiMethodsDesignPracticesChart', [trace], layout, config);
+        }
+
+        // Data Modality × Design Practices heatmap
+        function createDataModalityDesignPracticesChart() {
+            const matrix = dashboardData.data_modality_design_practices_matrix;
+            const dataModalities = matrix.map(m => m.data_modality);
+            const allPractices = new Set();
+            
+            // Get all unique design practices
+            matrix.forEach(modalityData => {
+                Object.keys(modalityData.design_practices).forEach(practice => {
+                    allPractices.add(practice);
+                });
+            });
+            
+            const designPractices = Array.from(allPractices);
+
+            // Calculate Z values
+            const zData = [];
+            dataModalities.forEach(modality => {
+                const modalityData = matrix.find(m => m.data_modality === modality);
+                const row = [];
+                designPractices.forEach(practice => {
+                    row.push(modalityData.design_practices[practice] || 0);
+                });
+                zData.push(row);
+            });
+
+            const trace = {
+                z: zData,
+                x: designPractices,
+                y: dataModalities,
+                type: 'heatmap',
+                colorscale: [
+                    [0, 'white'],
+                    [0.2, '#FFF3E0'],
+                    [0.4, '#FFCC80'],
+                    [0.6, '#FFB74D'],
+                    [0.8, '#FFA726'],
+                    [1, '#FF9800']
+                ],
+                showscale: true,
+                hoverongaps: false,
+                hovertemplate: '<b>%{y}</b><br>' +
+                               '<b>%{x}</b><br>' +
+                               'Papers: %{z}<br>' +
+                               '<extra></extra>'
+            };
+
+            const layout = {
+                xaxis: {
+                    side: 'bottom',
+                    tickangle: -45
+                },
+                yaxis: {
+                    automargin: true
+                },
+                margin: {l: 80, r: 50, t: 20, b: 100},
+                height: 400,
+                font: {size: 11}
+            };
+
+            const config = {
+                responsive: true,
+                displayModeBar: false
+            };
+
+            Plotly.newPlot('dataModalityDesignPracticesChart', [trace], layout, config);
+        }
+
+        // Initialize filters
+        function initFilters() {
+            const topicFilter = document.getElementById('topicFilter');
+            const aiMethodFilter = document.getElementById('aiMethodFilter');
+
+            // Add topic filter options
+            dashboardData.topic_overview.forEach(topic => {
+                const option = document.createElement('option');
+                option.value = topic.topic_label;
+                option.textContent = topic.topic_label;
+                topicFilter.appendChild(option);
+            });
+
+            // Add AI method filter options
+            const aiMethods = [...new Set(dashboardData.paper_details.map(p => p.ai_method).filter(m => m))];
+            aiMethods.forEach(method => {
+                const option = document.createElement('option');
+                option.value = method;
+                option.textContent = method;
+                aiMethodFilter.appendChild(option);
+            });
+
+            // Add event listeners
+            document.getElementById('searchInput').addEventListener('input', applyFilters);
+            document.getElementById('topicFilter').addEventListener('change', applyFilters);
+            document.getElementById('aiMethodFilter').addEventListener('change', applyFilters);
+            document.getElementById('clearFilters').addEventListener('click', clearFilters);
+        }
+
+        // Handle topic selection
+        function selectTopic(topicData) {
+            console.log('selectTopic called with:', topicData); // 디버깅용
+            selectedTopic = topicData;
+            
+            // Display topic information
+            const infoDiv = document.getElementById('topicInfo');
+            console.log('topicInfo element:', infoDiv); // 디버깅용
+            infoDiv.innerHTML = `
+                <h6 style="color: var(--primary-color);">${topicData.topic_label}</h6>
+                <p><strong>Paper Count:</strong> ${topicData.count} papers (${topicData.percentage}%)</p>
+                <p><strong>Key Keywords:</strong></p>
+                <div class="mb-2">
+                    ${topicData.keywords.map(k => `<span class="badge topic-badge me-1">${k}</span>`).join('')}
+                </div>
+                <button class="btn btn-sm btn-outline-primary" onclick="filterByTopic('${topicData.topic_label}')">
+                    <i class="fas fa-filter"></i> View Topic Papers
+                </button>
+            `;
+
+            // Update current filter
+            document.getElementById('currentFilter').textContent = topicData.topic_label;
+        }
+
+        // Filter by topic
+        function filterByTopic(topicLabel) {
+            document.getElementById('topicFilter').value = topicLabel;
+            applyFilters();
+            
+            // Scroll to papers section
+            document.getElementById('papers').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        // Apply filters
+        function applyFilters() {
+            const searchTerm = document.getElementById('searchInput').value.toLowerCase();
+            const selectedTopicFilter = document.getElementById('topicFilter').value;
+            const selectedAIMethod = document.getElementById('aiMethodFilter').value;
+
+            filteredPapers = dashboardData.paper_details.filter(paper => {
+                // Search filter
+                const matchesSearch = !searchTerm || 
+                    paper.title.toLowerCase().includes(searchTerm) ||
+                    paper.authors.toLowerCase().includes(searchTerm) ||
+                    (paper.abstract && paper.abstract.toLowerCase().includes(searchTerm));
+
+                // Topic filter
+                const matchesTopic = !selectedTopicFilter || paper.topic_label === selectedTopicFilter;
+
+                // AI method filter
+                const matchesAIMethod = !selectedAIMethod || paper.ai_method === selectedAIMethod;
+
+                return matchesSearch && matchesTopic && matchesAIMethod;
+            });
+
+            currentPage = 1;
+            displayPapers();
+            updatePagination();
+
+            // Update current filter status
+            let filterText = 'All';
+            if (selectedTopicFilter || selectedAIMethod || searchTerm) {
+                const filters = [];
+                if (selectedTopicFilter) filters.push(selectedTopicFilter);
+                if (selectedAIMethod) filters.push(selectedAIMethod);
+                if (searchTerm) filters.push(`"${searchTerm}"`);
+                filterText = filters.join(' + ');
+            }
+            document.getElementById('currentFilter').textContent = filterText;
+        }
+
+        // Clear filters
+        function clearFilters() {
+            document.getElementById('searchInput').value = '';
+            document.getElementById('topicFilter').value = '';
+            document.getElementById('aiMethodFilter').value = '';
+            document.getElementById('currentFilter').textContent = 'All';
+            
+            filteredPapers = dashboardData.paper_details;
+            currentPage = 1;
+            displayPapers();
+            updatePagination();
+        }
+
+        // Display papers
+        function displayPapers() {
+            const container = document.getElementById('papersContainer');
+            const startIndex = (currentPage - 1) * papersPerPage;
+            const endIndex = startIndex + papersPerPage;
+            const papersToShow = filteredPapers.slice(startIndex, endIndex);
+
+            if (papersToShow.length === 0) {
+                container.innerHTML = `
+                    <div class="text-center p-4">
+                        <i class="fas fa-search fa-3x text-muted mb-3"></i>
+                        <h5>No Papers Found</h5>
+                        <p class="text-muted">Try adjusting your search terms or filters.</p>
+                    </div>
+                `;
+                return;
+            }
+
+            container.innerHTML = papersToShow.map(paper => `
+                <div class="paper-card">
+                    <div class="paper-title">${highlightSearchTerm(paper.title)}</div>
+                    <div class="paper-meta">
+                        <strong>Authors:</strong> ${highlightSearchTerm(paper.authors)} | 
+                        <strong>Year:</strong> ${paper.year} | 
+                        <strong>Journal:</strong> ${paper.journal}
+                    </div>
+                    <div class="mb-2">
+                        <span class="badge topic-badge badge-custom me-1">${paper.topic_label}</span>
+                        ${paper.ai_method ? `<span class="badge ai-method-badge badge-custom me-1">${paper.ai_method}</span>` : ''}
+                        ${paper.design_task ? `<span class="badge design-task-badge badge-custom me-1">${paper.design_task}</span>` : ''}
+                    </div>
+                    <p class="mb-2"><strong>Abstract:</strong> ${highlightSearchTerm(paper.abstract)}</p>
+                    <div class="d-flex justify-content-between align-items-center">
+                        <small class="text-muted">DOI: ${paper.doi}</small>
+                        <a href="${paper.doi}" target="_blank" class="btn btn-sm btn-outline-primary">
+                            <i class="fas fa-external-link-alt"></i> View Paper
+                        </a>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        // Highlight search terms
+        function highlightSearchTerm(text) {
+            const searchTerm = document.getElementById('searchInput').value.trim();
+            if (!searchTerm || !text) return text;
+            
+            const regex = new RegExp(`(${searchTerm})`, 'gi');
+            return text.replace(regex, '<span class="search-highlight">$1</span>');
+        }
+
+        // Update pagination
+        function updatePagination() {
+            const totalPages = Math.ceil(filteredPapers.length / papersPerPage);
+            const pagination = document.getElementById('pagination');
+
+            if (totalPages <= 1) {
+                pagination.innerHTML = '';
+                return;
+            }
+
+            let paginationHTML = '';
+            
+            // Previous page
+            paginationHTML += `
+                <li class="page-item ${currentPage === 1 ? 'disabled' : ''}">
+                    <a class="page-link" href="#" onclick="changePage(${currentPage - 1})">Previous</a>
+                </li>
+            `;
+
+            // Page numbers
+            const maxVisible = 5;
+            const startPage = Math.max(1, currentPage - Math.floor(maxVisible / 2));
+            const endPage = Math.min(totalPages, startPage + maxVisible - 1);
+
+            for (let i = startPage; i <= endPage; i++) {
+                paginationHTML += `
+                    <li class="page-item ${i === currentPage ? 'active' : ''}">
+                        <a class="page-link" href="#" onclick="changePage(${i})">${i}</a>
+                    </li>
+                `;
+            }
+
+            // Next page
+            paginationHTML += `
+                <li class="page-item ${currentPage === totalPages ? 'disabled' : ''}">
+                    <a class="page-link" href="#" onclick="changePage(${currentPage + 1})">Next</a>
+                </li>
+            `;
+
+            pagination.innerHTML = paginationHTML;
+        }
+
+        // Change page
+        function changePage(page) {
+            const totalPages = Math.ceil(filteredPapers.length / papersPerPage);
+            if (page < 1 || page > totalPages) return;
+
+            currentPage = page;
+            displayPapers();
+            updatePagination();
+
+            // Scroll to top of papers section
+            document.getElementById('papers').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        // Show error
+        function showError(message) {
+            document.body.innerHTML = `
+                <div class="container mt-5">
+                    <div class="alert alert-danger" role="alert">
+                        <h4 class="alert-heading">Error Occurred</h4>
+                        <p>${message}</p>
+                        <hr>
+                        <p class="mb-0">Please contact the administrator if the problem persists.</p>
+                    </div>
+                </div>
+            `;
+        }
+
+        // Smooth scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth' });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
