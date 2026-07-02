@@ -27,6 +27,65 @@
       font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
       letter-spacing: 0;
     }
+    .top-bar {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      background: rgba(255, 255, 255, 0.96);
+      border-bottom: 1px solid var(--line);
+      box-shadow: 0 1px 8px rgba(15, 23, 42, 0.06);
+      backdrop-filter: blur(10px);
+    }
+    .top-bar-inner {
+      max-width: 1480px;
+      margin: 0 auto;
+      padding: 10px 28px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+    }
+    .nav-title {
+      min-width: 0;
+      color: var(--ink);
+      font-size: 13px;
+      font-weight: 800;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .nav-links {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 3px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: #f8fafc;
+    }
+    .nav-link {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 82px;
+      height: 32px;
+      padding: 0 12px;
+      border-radius: 6px;
+      color: var(--muted);
+      font-size: 13px;
+      font-weight: 760;
+      text-decoration: none;
+    }
+    .nav-link:hover,
+    .nav-link:focus {
+      color: var(--blue);
+      outline: none;
+    }
+    .nav-link.active {
+      background: var(--blue);
+      color: #fff;
+      box-shadow: 0 1px 2px rgba(39, 84, 197, 0.24);
+    }
     .shell {
       max-width: 1480px;
       margin: 0 auto;
@@ -85,6 +144,10 @@
       border: 1px solid var(--line);
       border-radius: 8px;
       background: #fff;
+      display: none;
+    }
+    .scope-section.active-page {
+      display: block;
     }
     .scope-section.filtered-zone {
       border-top: 5px solid #22c55e;
@@ -93,6 +156,14 @@
     .scope-section.global-zone {
       border-top: 5px solid #64748b;
       background: #fbfcff;
+    }
+    .scope-section.dataset-zone {
+      border-top: 5px solid #2754c5;
+      background: #fbfdff;
+    }
+    .scope-section.stage-zone {
+      border-top: 5px solid #7c3aed;
+      background: #fdfbff;
     }
     .section-head {
       display: grid;
@@ -194,6 +265,26 @@
       width: 100%;
       height: 430px;
     }
+    .insight-box {
+      margin: 0;
+      padding: 12px 16px 14px;
+      border-top: 1px solid var(--line);
+      background: #fbfcff;
+    }
+    .insight-title {
+      margin: 0 0 6px;
+      color: var(--ink);
+      font-size: 12px;
+      font-weight: 850;
+      text-transform: uppercase;
+      letter-spacing: .3px;
+    }
+    .insight-text {
+      margin: 0;
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.48;
+    }
     .wide {
       grid-column: 1 / -1;
     }
@@ -208,6 +299,144 @@
     }
     .discipline-dimension-wide .chart {
       height: 760px;
+    }
+    .stage-matrix-chart {
+      height: 430px;
+    }
+    .stage-category-chart {
+      height: 430px;
+    }
+    .stage-selection {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin: 0 0 12px;
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.4;
+    }
+    .stage-pill {
+      display: inline-flex;
+      align-items: center;
+      min-height: 24px;
+      padding: 2px 8px;
+      border: 1px solid #ddd6fe;
+      border-radius: 999px;
+      background: #fff;
+      color: var(--ink);
+      font-weight: 700;
+    }
+    .phase-domain-map-wrap {
+      padding: 14px;
+      overflow: auto;
+      background: #fff;
+    }
+    .phase-domain-map {
+      width: 100%;
+      min-width: 1040px;
+      border-collapse: separate;
+      border-spacing: 0;
+      font-size: 12px;
+    }
+    .phase-domain-map th,
+    .phase-domain-map td {
+      border-bottom: 1px solid #e6ebf3;
+      border-right: 1px solid #eef2f7;
+      padding: 8px 10px;
+      text-align: left;
+      vertical-align: middle;
+      white-space: normal;
+    }
+    .phase-domain-map th {
+      position: sticky;
+      top: 0;
+      z-index: 2;
+      color: var(--muted);
+      font-size: 11px;
+      font-weight: 850;
+      text-transform: uppercase;
+      background: #fbfcff;
+    }
+    .phase-domain-map th.phase-column {
+      text-align: center;
+      color: var(--ink);
+      font-size: 12px;
+    }
+    .dimension-cell {
+      width: 210px;
+      min-width: 210px;
+      font-weight: 850;
+      color: var(--ink);
+      background: #fbfcff;
+      border-left: 5px solid #94a3b8;
+    }
+    .dimension-cell.dim-background { border-left-color: #2563eb; }
+    .dimension-cell.dim-ideation { border-left-color: #16a34a; }
+    .dimension-cell.dim-evaluation { border-left-color: #dc2626; }
+    .dimension-cell.dim-planning { border-left-color: #d97706; }
+    .category-cell {
+      width: 250px;
+      min-width: 250px;
+      color: var(--ink);
+      font-weight: 720;
+    }
+    .phase-domain-cell {
+      min-width: 148px;
+      background: #fff;
+    }
+    .phase-domain-cell.hot {
+      background: #f8fafc;
+    }
+    .domain-bubbles {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 4px;
+      align-items: center;
+      justify-items: center;
+      min-height: 30px;
+    }
+    .domain-bubble {
+      width: var(--s);
+      height: var(--s);
+      min-width: 7px;
+      min-height: 7px;
+      border-radius: 999px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      color: #fff;
+      font-size: 9px;
+      font-weight: 850;
+      line-height: 1;
+    }
+    .domain-bubble.normalized {
+      font-size: 8px;
+    }
+    .domain-bubble.empty {
+      width: 6px;
+      height: 6px;
+      background: #d7dee8;
+    }
+    .domain-ed { background: #2563eb; }
+    .domain-sd { background: #ea580c; }
+    .domain-uiux { background: #7c3aed; }
+    .phase-domain-legend {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      align-items: center;
+      padding: 0 14px 14px;
+      color: var(--muted);
+      font-size: 12px;
+      font-weight: 700;
+    }
+    .legend-dot {
+      width: 9px;
+      height: 9px;
+      border-radius: 999px;
+      display: inline-block;
+      margin-right: 4px;
+      vertical-align: -1px;
     }
     .fingerprint-grid {
       padding: 16px;
@@ -317,11 +546,92 @@
       max-height: 430px;
       overflow: auto;
     }
+    .dataset-toolbar {
+      display: grid;
+      grid-template-columns: minmax(260px, 1fr) repeat(3, minmax(180px, 220px));
+      gap: 8px;
+      align-items: center;
+      margin-bottom: 12px;
+    }
+    .dataset-search {
+      width: 100%;
+      height: 34px;
+      border-radius: 6px;
+      border: 1px solid #cfd6e3;
+      background: #fff;
+      color: var(--ink);
+      padding: 0 10px;
+      font: inherit;
+      font-size: 13px;
+    }
+    .dataset-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin: 0 0 12px;
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.4;
+    }
+    .dataset-pill {
+      display: inline-flex;
+      align-items: center;
+      min-height: 24px;
+      padding: 2px 8px;
+      border: 1px solid #dbe3ee;
+      border-radius: 999px;
+      background: #fff;
+      color: var(--ink);
+      font-weight: 700;
+    }
+    .dataset-table-wrap {
+      max-height: calc(100vh - 290px);
+      min-height: 460px;
+      overflow: auto;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: #fff;
+    }
+    .dataset-table {
+      min-width: 1780px;
+      font-size: 12px;
+    }
+    .dataset-table th {
+      position: sticky;
+      top: 0;
+      z-index: 2;
+    }
+    .dataset-table td,
+    .dataset-table th {
+      vertical-align: top;
+      white-space: normal;
+    }
+    .dataset-table td.compact {
+      white-space: nowrap;
+    }
+    .status-pill {
+      display: inline-flex;
+      align-items: center;
+      min-height: 22px;
+      padding: 2px 7px;
+      border-radius: 999px;
+      font-size: 11px;
+      font-weight: 800;
+    }
+    .status-pill.included {
+      background: var(--green-soft);
+      color: var(--green);
+    }
+    .status-pill.excluded {
+      background: var(--red-soft);
+      color: var(--red);
+    }
     .pos { color: var(--green); font-weight: 700; }
     .neg { color: var(--red); font-weight: 700; }
     @media (max-width: 1050px) {
       .section-head, .grid, .cards { grid-template-columns: 1fr; }
       .toolbar { align-items: stretch; flex-direction: column; }
+      .dataset-toolbar { grid-template-columns: 1fr; }
       select, button { width: 100%; }
       .chart, .wide .chart { height: 390px; }
       .matrix-wide .chart { height: 840px; }
@@ -329,25 +639,47 @@
       .discipline-dimension-wide .chart { height: 760px; }
     }
     @media (max-width: 720px) {
+      .top-bar-inner {
+        padding: 9px 16px;
+        align-items: stretch;
+        flex-direction: column;
+        gap: 8px;
+      }
+      .nav-title {
+        white-space: normal;
+      }
+      .nav-links {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        width: 100%;
+      }
+      .nav-link {
+        min-width: 0;
+        width: 100%;
+      }
       .fingerprint-grid { grid-template-columns: 1fr; }
     }
   </style>
 </head>
 <body>
-  <div class="shell">
-    <header>
-      <div>
-        <h1>Enhanced vs Impaired Value Comparison</h1>
-        <p class="sub">Interactive dashboard generated from <strong>00_Final.xlsx</strong>. Enhanced Value 1/2 and Impaired Value 1/2 are normalized into shared value buckets, then compared across value dimensions and aggregated design dimensions.</p>
+  <nav class="top-bar" aria-label="Dashboard sections">
+    <div class="top-bar-inner">
+      <div class="nav-title">Enhanced vs Impaired Value Comparison</div>
+      <div class="nav-links">
+        <a class="nav-link active" href="#dataset" data-target="datasetSection">Dataset</a>
+        <a class="nav-link" href="#phase" data-target="stageSection">Phase View</a>
+        <a class="nav-link" href="#dimension" data-target="filterSection">Dimension View</a>
+        <a class="nav-link" href="#overall" data-target="globalSection">Overall View</a>
       </div>
-    </header>
-
-    <section class="scope-section filtered-zone">
+    </div>
+  </nav>
+  <div class="shell">
+    <section class="scope-section filtered-zone" id="filterSection">
       <div class="section-head">
         <div>
-          <p class="section-kicker">Filter-controlled area</p>
-          <h2 class="section-title">Views that change with the dimension filter</h2>
-          <p class="section-note">Use this area to compare enhanced and impaired values within one selected design dimension.</p>
+          <p class="section-kicker">Dimension view</p>
+          <h2 class="section-title">Enhanced and impaired values by design dimension</h2>
+          <p class="section-note">This view isolates one aggregated design dimension and shows which value types are most enhanced or impaired inside that subset.</p>
         </div>
         <div class="toolbar">
           <select id="dimensionFilter" aria-label="Dimension filter">
@@ -361,24 +693,36 @@
       <section class="panel wide">
         <div class="panel-head"><h2 class="panel-title">Diverging Value Balance</h2><div class="panel-caption">Changes with dimension filter</div></div>
         <div id="divergingChart" class="chart"></div>
+        <div class="insight-box">
+          <p class="insight-title">Insight</p>
+          <p class="insight-text">The value profile shows a productivity-risk split: efficiency, feasibility, and scalability are mostly enhanced, while accuracy, context appropriateness, trust, and authenticity are mostly impaired. Learning and creativity remain mixed, so they are better framed as conditional benefits rather than universal gains.</p>
+        </div>
       </section>
       <section class="panel">
         <div class="panel-head"><h2 class="panel-title">Trade-off Scatter</h2><div class="panel-caption">Changes with dimension filter</div></div>
         <div id="scatterChart" class="chart"></div>
+        <div class="insight-box">
+          <p class="insight-title">Insight</p>
+          <p class="insight-text">Efficiency is the clearest high-volume benefit, while accuracy and context appropriateness form the main high-volume risks. Values near the diagonal, such as learning, creativity, and user-centredness, indicate areas where AI use produces contested or domain-dependent effects.</p>
+        </div>
       </section>
       <section class="panel">
         <div class="panel-head"><h2 class="panel-title">Value Summary Table</h2><div class="panel-caption">Changes with dimension filter</div></div>
         <div class="table-wrap"><table id="summaryTable"></table></div>
+        <div class="insight-box">
+          <p class="insight-title">Insight</p>
+          <p class="insight-text">Use this table as the evidence base for value claims. Efficiency has the strongest enhanced share, while authenticity, trust, context appropriateness, and accuracy are the most impaired value profiles.</p>
+        </div>
       </section>
       </div>
     </section>
 
-    <section class="scope-section global-zone">
+    <section class="scope-section global-zone" id="globalSection">
       <div class="section-head">
         <div>
-          <p class="section-kicker">Global reference area</p>
-          <h2 class="section-title">Views that stay fixed across the full dataset</h2>
-          <p class="section-note">These stay unchanged when the filter changes, so they remain the whole-dataset baseline.</p>
+          <p class="section-kicker">Overall view</p>
+          <h2 class="section-title">Whole-dataset value baseline</h2>
+          <p class="section-note">This view summarizes the full dataset, so it works as the baseline for comparing dimensions, disciplines, and value trade-offs.</p>
         </div>
       </div>
       <section class="cards">
@@ -387,26 +731,126 @@
         <div class="card"><div class="label">Impaired Counts</div><div class="metric red" id="impairedTotal"></div><div class="note">Negative value mentions</div></div>
         <div class="card"><div class="label">Net Balance</div><div class="metric" id="netTotal"></div><div class="note">Enhanced minus impaired</div></div>
       </section>
+      <div class="insight-box">
+        <p class="insight-title">Overall Insight</p>
+        <p class="insight-text">Across 270 coded cases, value mentions are slightly more enhanced than impaired. The positive baseline is driven mainly by efficiency, while accuracy and context appropriateness provide the main counterweight.</p>
+      </div>
       <div class="grid global-grid">
         <section class="panel wide matrix-wide">
-          <div class="panel-head"><h2 class="panel-title">Global Dimension x Value Balance</h2><div class="panel-caption">Four dimension rows; green rises above the row baseline, red drops below it</div></div>
+          <div class="panel-head"><h2 class="panel-title">Overall Dimension x Value Balance</h2><div class="panel-caption">Four dimension rows; green rises above the row baseline, red drops below it</div></div>
           <div id="globalBalanceChart" class="chart"></div>
+          <div class="insight-box">
+            <p class="insight-title">Insight</p>
+            <p class="insight-text">Background research is the largest value arena, but its benefits are mixed: efficiency rises while accuracy, context appropriateness, and trust are impaired. Planning and coordination show the strongest positive balance, suggesting that AI is especially valuable for speeding and coordinating design work.</p>
+          </div>
         </section>
         <section class="panel wide discipline-value-wide">
           <div class="panel-head"><h2 class="panel-title">Discipline Divergence by Value</h2><div class="panel-caption">Sorted by SD/ED/UIUX disagreement; x-axis is normalized net score</div></div>
           <div id="disciplineValueChart" class="chart"></div>
+          <div class="insight-box">
+            <p class="insight-title">Insight</p>
+            <p class="insight-text">The disciplines look similar in aggregate, but diverge by value. Creativity is impaired in ED, neutral in SD, and strongly enhanced in UIUX, while context appropriateness is most impaired in SD and accuracy is most impaired in ED and UIUX.</p>
+          </div>
         </section>
         <section class="panel wide discipline-dimension-wide">
           <div class="panel-head"><h2 class="panel-title">Value Fingerprint Cards</h2><div class="panel-caption">Card = value; row = discipline; four cells = design dimensions; green/red = net balance</div></div>
           <div id="disciplineDimensionChart" class="fingerprint-grid"></div>
+          <div class="insight-box">
+            <p class="insight-title">Insight</p>
+            <p class="insight-text">Domain effects depend on design dimension rather than discipline alone. ED gains are concentrated in background research and planning but turn negative in ideation, while SD and UIUX show clearer gains in planning and coordination.</p>
+          </div>
         </section>
         <section class="panel">
           <div class="panel-head"><h2 class="panel-title">Difference Heatmap</h2><div class="panel-caption">Fixed: all dimensions, enhanced - impaired</div></div>
           <div id="heatmapChart" class="chart"></div>
+          <div class="insight-box">
+            <p class="insight-title">Insight</p>
+            <p class="insight-text">Efficiency is positive in every design dimension, while context appropriateness is negative throughout. This suggests that AI support is strongest for speed and coordination, but weakest where situated judgment and contextual fit are central.</p>
+          </div>
         </section>
         <section class="panel">
           <div class="panel-head"><h2 class="panel-title">Design Dimension Totals</h2><div class="panel-caption">Fixed: whole-dataset context</div></div>
           <div id="dimensionChart" class="chart"></div>
+          <div class="insight-box">
+            <p class="insight-title">Insight</p>
+            <p class="insight-text">Value mentions concentrate most strongly in background research, followed by planning and ideation. Planning has the clearest positive profile, while ideation is the main dimension where impaired mentions slightly exceed enhanced mentions.</p>
+          </div>
+        </section>
+      </div>
+    </section>
+
+    <section class="scope-section dataset-zone active-page" id="datasetSection">
+      <div class="section-head">
+        <div>
+          <p class="section-kicker">Source dataset</p>
+          <h2 class="section-title">Original coded cases</h2>
+          <p class="section-note">This view shows the row-level coding data behind the dashboard, including discipline, phase, category, values, tools, and mitigation notes.</p>
+        </div>
+      </div>
+      <div class="dataset-toolbar">
+        <input id="datasetSearch" class="dataset-search" type="search" placeholder="Search row, case, category, value, tool, mitigation..." />
+        <select id="datasetDiscipline" aria-label="Dataset discipline filter">
+          <option value="All">All disciplines</option>
+        </select>
+        <select id="datasetDimension" aria-label="Dataset dimension filter">
+          <option value="All">All dimensions</option>
+        </select>
+        <select id="datasetValue" aria-label="Dataset value filter">
+          <option value="All">All values</option>
+        </select>
+      </div>
+      <div class="dataset-meta">
+        <span class="dataset-pill" id="datasetVisibleCount">Loading rows...</span>
+        <span class="dataset-pill" id="datasetEligibleCount"></span>
+        <span class="dataset-pill">Source: 00_Final.xlsx / LLM1 Validation June 25 (FINAL)</span>
+      </div>
+      <div class="dataset-table-wrap">
+        <table id="datasetTable" class="dataset-table"></table>
+      </div>
+    </section>
+
+    <section class="scope-section stage-zone" id="stageSection">
+      <div class="section-head">
+        <div>
+          <p class="section-kicker">Phase view</p>
+          <h2 class="section-title">Design phase patterns by discipline</h2>
+          <p class="section-note">This view compares design phases against aggregated dimensions and 2nd-order categories, with ED, SD, and UIUX shown inside each cell as domain bubbles.</p>
+        </div>
+      </div>
+      <section class="panel wide">
+        <div class="panel-head"><h2 class="panel-title">Phase x 2nd-Order Category by Domain</h2><div class="panel-caption">Rows are grouped by aggregated dimension; bubble color shows domain</div></div>
+        <div id="phaseDomainMap" class="phase-domain-map-wrap"></div>
+        <div class="phase-domain-legend">
+          <span><span class="legend-dot domain-ed"></span>ED</span>
+          <span><span class="legend-dot domain-sd"></span>SD</span>
+          <span><span class="legend-dot domain-uiux"></span>UIUX</span>
+          <span id="phaseDomainNormalizationNote">Bubble size = share within each domain total.</span>
+        </div>
+        <div class="insight-box">
+          <p class="insight-title">Insight</p>
+          <p class="insight-text">AI use is not evenly distributed across design domains. ED is front-loaded into Discover and Define, suggesting AI as a technical and market sensemaking aid; UIUX concentrates more in Develop and downstream categories, suggesting AI as a production, prototyping, and evaluation aid; SD spreads more evenly across the lifecycle, with a stronger delivery and documentation tail.</p>
+        </div>
+      </section>
+      <div class="stage-selection">
+        <span class="stage-pill" id="stageSelectedLabel">Loading phase view...</span>
+        <span class="stage-pill" id="stageSelectedMeta"></span>
+      </div>
+      <div class="grid">
+        <section class="panel">
+          <div class="panel-head"><h2 class="panel-title">Discipline x Design Phase</h2><div class="panel-caption">Cell count; click a cell to inspect categories</div></div>
+          <div id="stageMatrixChart" class="chart stage-matrix-chart"></div>
+          <div class="insight-box">
+            <p class="insight-title">Insight</p>
+            <p class="insight-text">ED is the most upstream-oriented domain, with roughly two thirds of cases in Discover or Define. UIUX is the most development-oriented, with its largest share in Develop, while SD maintains a more even lifecycle distribution and the clearest Deliver presence.</p>
+          </div>
+        </section>
+        <section class="panel">
+          <div class="panel-head"><h2 class="panel-title">Category Breakdown</h2><div class="panel-caption">For the selected discipline and phase</div></div>
+          <div id="stageCategoryChart" class="chart stage-category-chart"></div>
+          <div class="insight-box">
+            <p class="insight-title">Insight</p>
+            <p class="insight-text">The selected cell reveals which concrete design activity drives each phase-domain concentration. Use it to distinguish broad lifecycle placement from the specific practices behind it, such as knowledge gathering, prototyping, documentation, critique, or outcome testing.</p>
+          </div>
         </section>
       </div>
     </section>
@@ -429,7 +873,9 @@
       disciplineValue: echarts.init(document.getElementById('disciplineValueChart')),
       heatmap: echarts.init(document.getElementById('heatmapChart')),
       scatter: echarts.init(document.getElementById('scatterChart')),
-      dimension: echarts.init(document.getElementById('dimensionChart'))
+      dimension: echarts.init(document.getElementById('dimensionChart')),
+      stageMatrix: echarts.init(document.getElementById('stageMatrixChart')),
+      stageCategory: echarts.init(document.getElementById('stageCategoryChart'))
     };
     const DIM_LABELS = {
       'Background Research & Sensemaking': 'Background Research',
@@ -963,6 +1409,473 @@
       table.innerHTML = `<thead><tr><th>Value</th><th>Enhanced</th><th>Impaired</th><th>Total</th><th>Net</th><th>Enhanced Share</th></tr></thead><tbody>${rows}</tbody>`;
     }
 
+    let datasetRows = [];
+    const datasetSearch = document.getElementById('datasetSearch');
+    const datasetDiscipline = document.getElementById('datasetDiscipline');
+    const datasetDimension = document.getElementById('datasetDimension');
+    const datasetValue = document.getElementById('datasetValue');
+    const datasetTable = document.getElementById('datasetTable');
+    const datasetVisibleCount = document.getElementById('datasetVisibleCount');
+    const datasetEligibleCount = document.getElementById('datasetEligibleCount');
+    const stageSelectedLabel = document.getElementById('stageSelectedLabel');
+    const stageSelectedMeta = document.getElementById('stageSelectedMeta');
+    const phaseDomainMap = document.getElementById('phaseDomainMap');
+    const phaseDomainNormalizationNote = document.getElementById('phaseDomainNormalizationNote');
+    const STAGE_ORDER = ['Discover', 'Define', 'Develop', 'Deliver'];
+    const DISCIPLINE_ORDER = ['ED', 'SD', 'UIUX'];
+    const CATEGORY_GROUPS = [
+      {
+        dimension: 'Background Research & Sensemaking',
+        className: 'dim-background',
+        categories: [
+          'Domain, Technical, & Market Knowledge Gathering',
+          'Business Direction & Strategy Planning',
+          'User/Customer Need Research'
+        ]
+      },
+      {
+        dimension: 'Ideation & Design Generation',
+        className: 'dim-ideation',
+        categories: [
+          'Concept Exploration & Development',
+          'Prototype Generation',
+          'Scenario Creation'
+        ]
+      },
+      {
+        dimension: 'Design & Process Evaluation',
+        className: 'dim-evaluation',
+        categories: [
+          'Design Critique & Assessment',
+          'Outcome Testing & Prediction',
+          'Design Process Evaluation'
+        ]
+      },
+      {
+        dimension: 'Planning, Coordination & Management',
+        className: 'dim-planning',
+        categories: [
+          'Project Planning & Workflow Management',
+          'Documentation & Communication Support',
+          'Design Systems Management'
+        ]
+      }
+    ];
+    const CATEGORY_ALIASES = {
+      'Domain & Technical Knowledge Gathering': 'Domain, Technical, & Market Knowledge Gathering',
+      'Project Planning & Workflow Management (BL)': 'Project Planning & Workflow Management'
+    };
+    let selectedStageCell = null;
+
+    function escapeHtml(value) {
+      return String(value ?? '')
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;')
+        .replace(/'/g, '&#39;');
+    }
+
+    function uniqueSorted(values) {
+      return [...new Set(values.filter(Boolean))].sort((a, b) => a.localeCompare(b));
+    }
+
+    function rowValues(row) {
+      return [row.enhanced1, row.enhanced2, row.impaired1, row.impaired2].filter(Boolean);
+    }
+
+    function eligibleDatasetRows() {
+      return datasetRows.filter(row => row.eligible);
+    }
+
+    function cleanCategoryName(value) {
+      const cleaned = String(value || 'Uncoded / Unknown')
+        .replace(/\u00a0/g, ' ')
+        .replace(/\s+/g, ' ')
+        .trim();
+      if (!cleaned || cleaned === 'Unknown') return 'Uncoded / Unknown';
+      return CATEGORY_ALIASES[cleaned] || cleaned;
+    }
+
+    function cleanDimensionName(value) {
+      return String(value || 'Unknown')
+        .replace(/\u00a0/g, ' ')
+        .replace(/\s+/g, ' ')
+        .trim();
+    }
+
+    function renderDomainBubble(discipline, count, disciplineTotal, maxShare) {
+      if (!count || !disciplineTotal) return `<span class="domain-bubble empty" title="${discipline}: 0"></span>`;
+      const share = count / disciplineTotal;
+      const size = Math.round(8 + Math.sqrt(share / maxShare) * 18);
+      const percent = Math.round(share * 100);
+      const label = percent >= 4 ? `${percent}%` : '';
+      return `<span class="domain-bubble normalized domain-${discipline.toLowerCase()}" style="--s:${size}px" title="${discipline}: ${count} / ${disciplineTotal} (${percent}%)">${label}</span>`;
+    }
+
+    function phaseDomainGroups() {
+      const rows = eligibleDatasetRows();
+      const known = new Set(CATEGORY_GROUPS.flatMap(group => group.categories.map(category => `${group.dimension}::${category}`)));
+      const extrasByDimension = new Map();
+      rows.forEach(row => {
+        const dimension = cleanDimensionName(row.dimension);
+        const category = cleanCategoryName(row.category);
+        const key = `${dimension}::${category}`;
+        if (!known.has(key)) {
+          if (!extrasByDimension.has(dimension)) extrasByDimension.set(dimension, new Set());
+          extrasByDimension.get(dimension).add(category);
+        }
+      });
+      return CATEGORY_GROUPS.map(group => ({
+        ...group,
+        categories: [
+          ...group.categories,
+          ...[...(extrasByDimension.get(group.dimension) || [])].sort((a, b) => a.localeCompare(b))
+        ]
+      })).filter(group => group.categories.length);
+    }
+
+    function phaseDomainCounts() {
+      const counts = {};
+      const disciplineTotals = Object.fromEntries(DISCIPLINE_ORDER.map(discipline => [discipline, 0]));
+      eligibleDatasetRows().forEach(row => {
+        const dimension = cleanDimensionName(row.dimension);
+        const category = cleanCategoryName(row.category);
+        const phase = row.phase || 'Unknown';
+        const discipline = row.discipline || 'Unknown';
+        if (disciplineTotals[discipline] !== undefined) {
+          disciplineTotals[discipline] += 1;
+        }
+        counts[dimension] ??= {};
+        counts[dimension][category] ??= {};
+        counts[dimension][category][phase] ??= {};
+        counts[dimension][category][phase][discipline] = (counts[dimension][category][phase][discipline] || 0) + 1;
+      });
+      let maxShare = 0.01;
+      Object.values(counts).forEach(categories => {
+        Object.values(categories).forEach(phases => {
+          Object.values(phases).forEach(byDiscipline => {
+            DISCIPLINE_ORDER.forEach(discipline => {
+              const total = disciplineTotals[discipline] || 0;
+              if (!total) return;
+              maxShare = Math.max(maxShare, (byDiscipline[discipline] || 0) / total);
+            });
+          });
+        });
+      });
+      return { counts, disciplineTotals, maxShare };
+    }
+
+    function renderPhaseDomainMap() {
+      if (!datasetRows.length) {
+        phaseDomainMap.innerHTML = '<div class="section-note">Loading phase-category domain map...</div>';
+        return;
+      }
+      const groups = phaseDomainGroups();
+      const { counts, disciplineTotals, maxShare } = phaseDomainCounts();
+      const totalsText = DISCIPLINE_ORDER.map(discipline => `${discipline} n=${format.format(disciplineTotals[discipline] || 0)}`).join(', ');
+      phaseDomainNormalizationNote.textContent = `Bubble size = share within each domain total. ${totalsText}.`;
+      const header = `
+        <thead>
+          <tr>
+            <th>Aggregated Dimension</th>
+            <th>2nd-Order Category</th>
+            ${STAGE_ORDER.map(phase => `<th class="phase-column">${phase}</th>`).join('')}
+          </tr>
+        </thead>`;
+      const body = groups.map(group => {
+        return group.categories.map((category, index) => {
+          const dimensionCell = index === 0
+            ? `<td class="dimension-cell ${group.className}" rowspan="${group.categories.length}">${escapeHtml(group.dimension)}</td>`
+            : '';
+          const cells = STAGE_ORDER.map(phase => {
+            const byDiscipline = counts[group.dimension]?.[category]?.[phase] || {};
+            const total = DISCIPLINE_ORDER.reduce((sum, discipline) => sum + (byDiscipline[discipline] || 0), 0);
+            const hot = total >= 8 ? ' hot' : '';
+      const title = `${group.dimension} / ${category} / ${phase}\nNormalized within each domain (${totalsText})\n${DISCIPLINE_ORDER.map(discipline => {
+        const count = byDiscipline[discipline] || 0;
+        const denominator = disciplineTotals[discipline] || 0;
+        const percent = denominator ? Math.round((count / denominator) * 100) : 0;
+        return `${discipline}: ${count}/${denominator} (${percent}%)`;
+      }).join('\n')}`;
+      return `<td class="phase-domain-cell${hot}" title="${escapeHtml(title)}">
+        <div class="domain-bubbles">
+          ${DISCIPLINE_ORDER.map(discipline => renderDomainBubble(discipline, byDiscipline[discipline] || 0, disciplineTotals[discipline] || 0, maxShare)).join('')}
+        </div>
+      </td>`;
+          }).join('');
+          return `<tr>${dimensionCell}<td class="category-cell">${escapeHtml(category)}</td>${cells}</tr>`;
+        }).join('');
+      }).join('');
+      phaseDomainMap.innerHTML = `<table class="phase-domain-map">${header}<tbody>${body}</tbody></table>`;
+    }
+
+    function countByCategory(rows, limit = 12) {
+      const counts = new Map();
+      rows.forEach(row => {
+        const category = cleanCategoryName(row.category);
+        counts.set(category, (counts.get(category) || 0) + 1);
+      });
+      return [...counts.entries()]
+        .map(([category, count]) => ({ category, count }))
+        .sort((a, b) => b.count - a.count || a.category.localeCompare(b.category))
+        .slice(0, limit);
+    }
+
+    function rowsForStageCell(discipline, phase) {
+      return eligibleDatasetRows().filter(row => row.discipline === discipline && row.phase === phase);
+    }
+
+    function stageMatrixCells() {
+      const rows = eligibleDatasetRows();
+      let largest = null;
+      let maxCount = 1;
+      const cells = [];
+      DISCIPLINE_ORDER.forEach((discipline, y) => {
+        STAGE_ORDER.forEach((phase, x) => {
+          const cellRows = rows.filter(row => row.discipline === discipline && row.phase === phase);
+          const topCategories = countByCategory(cellRows, 4);
+          const cell = {
+            value: [x, y, cellRows.length],
+            discipline,
+            phase,
+            topCategories
+          };
+          cells.push(cell);
+          maxCount = Math.max(maxCount, cellRows.length);
+          if (!largest || cellRows.length > largest.value[2]) largest = cell;
+        });
+      });
+      return { cells, largest, maxCount };
+    }
+
+    function isSelectedStageCell(cell) {
+      return selectedStageCell
+        && selectedStageCell.discipline === cell.discipline
+        && selectedStageCell.phase === cell.phase;
+    }
+
+    function renderStageView() {
+      if (!datasetRows.length) {
+        stageSelectedLabel.textContent = 'Loading phase view...';
+        stageSelectedMeta.textContent = '';
+        renderPhaseDomainMap();
+        return;
+      }
+      renderPhaseDomainMap();
+      const { cells, largest, maxCount } = stageMatrixCells();
+      if (!selectedStageCell && largest) {
+        selectedStageCell = { discipline: largest.discipline, phase: largest.phase };
+      }
+      const data = cells.map(cell => ({
+        ...cell,
+        itemStyle: isSelectedStageCell(cell)
+          ? { borderColor: '#111827', borderWidth: 3 }
+          : { borderColor: '#ffffff', borderWidth: 1 }
+      }));
+
+      charts.stageMatrix.setOption({
+        animation: false,
+        grid: { left: 74, right: 30, top: 42, bottom: 82 },
+        tooltip: {
+          formatter: item => {
+            const top = item.data.topCategories.length
+              ? item.data.topCategories.map(entry => `${entry.category}: ${entry.count}`).join('<br/>')
+              : 'No category data';
+            return `<b>${item.data.discipline} x ${item.data.phase}</b><br/>Cases: ${item.value[2]}<br/><br/>${top}`;
+          }
+        },
+        xAxis: {
+          type: 'category',
+          data: STAGE_ORDER,
+          axisTick: { alignWithLabel: true },
+          axisLabel: { color: COLORS.text, fontWeight: 760 },
+          splitLine: { show: true, lineStyle: { color: '#eef2f7' } }
+        },
+        yAxis: {
+          type: 'category',
+          data: DISCIPLINE_ORDER,
+          inverse: true,
+          axisTick: { show: false },
+          axisLabel: { color: COLORS.text, fontWeight: 800 },
+          splitLine: { show: true, lineStyle: { color: '#eef2f7' } }
+        },
+        visualMap: {
+          min: 0,
+          max: maxCount,
+          calculable: true,
+          orient: 'horizontal',
+          left: 'center',
+          bottom: 12,
+          inRange: { color: ['#f5f3ff', '#c4b5fd', '#7c3aed'] }
+        },
+        series: [{
+          type: 'heatmap',
+          data,
+          label: { show: true, formatter: item => item.value[2], color: COLORS.text, fontWeight: 800 },
+          emphasis: { itemStyle: { borderColor: '#111827', borderWidth: 2 } }
+        }]
+      });
+      renderStageCategoryBreakdown();
+    }
+
+    function renderStageCategoryBreakdown() {
+      if (!selectedStageCell) return;
+      const rows = rowsForStageCell(selectedStageCell.discipline, selectedStageCell.phase);
+      const categories = countByCategory(rows, 12);
+      const total = rows.length;
+      stageSelectedLabel.textContent = `${selectedStageCell.discipline} x ${selectedStageCell.phase}`;
+      stageSelectedMeta.textContent = `${format.format(total)} cases / ${format.format(categories.length)} shown categories`;
+
+      if (!categories.length) {
+        charts.stageCategory.setOption({
+          title: { text: 'No category data', left: 'center', top: 'middle', textStyle: { color: COLORS.muted, fontSize: 13 } },
+          xAxis: { show: false },
+          yAxis: { show: false },
+          series: []
+        }, true);
+        return;
+      }
+
+      charts.stageCategory.setOption({
+        animation: false,
+        grid: { left: 240, right: 42, top: 24, bottom: 30 },
+        tooltip: {
+          formatter: item => `<b>${item.name}</b><br/>${selectedStageCell.discipline} x ${selectedStageCell.phase}<br/>Cases: ${item.value}`
+        },
+        xAxis: {
+          type: 'value',
+          splitLine: { lineStyle: { color: '#eef2f7' } },
+          axisLabel: { color: COLORS.muted }
+        },
+        yAxis: {
+          type: 'category',
+          data: categories.map(item => item.category),
+          inverse: true,
+          axisTick: { show: false },
+          axisLine: { show: false },
+          axisLabel: { color: COLORS.text, width: 210, overflow: 'truncate' }
+        },
+        series: [{
+          type: 'bar',
+          data: categories.map(item => item.count),
+          barWidth: 16,
+          itemStyle: { color: '#7c3aed', borderRadius: [0, 6, 6, 0] },
+          label: { show: true, position: 'right', color: COLORS.text, fontWeight: 760 }
+        }]
+      }, true);
+    }
+
+    function fillSelect(select, values) {
+      values.forEach(value => {
+        const option = document.createElement('option');
+        option.value = value;
+        option.textContent = value;
+        select.appendChild(option);
+      });
+    }
+
+    function filteredDatasetRows() {
+      const query = datasetSearch.value.trim().toLowerCase();
+      const discipline = datasetDiscipline.value;
+      const dimension = datasetDimension.value;
+      const value = datasetValue.value;
+      return datasetRows.filter(row => {
+        if (discipline !== 'All' && row.discipline !== discipline) return false;
+        if (dimension !== 'All' && row.dimension !== dimension) return false;
+        if (value !== 'All' && !rowValues(row).includes(value)) return false;
+        if (!query) return true;
+        const haystack = [
+          row.rowNumber,
+          row.cohort,
+          row.discipline,
+          row.phase,
+          row.assistanceType,
+          row.practice,
+          row.caseDescription,
+          row.category,
+          row.dimension,
+          row.tools,
+          row.enhanced1,
+          row.enhanced2,
+          row.impaired1,
+          row.impaired2,
+          row.mitigation
+        ].join(' ').toLowerCase();
+        return haystack.includes(query);
+      });
+    }
+
+    function renderDatasetTable() {
+      const rows = filteredDatasetRows();
+      const eligible = rows.filter(row => row.eligible).length;
+      datasetVisibleCount.textContent = `${format.format(rows.length)} visible rows`;
+      datasetEligibleCount.textContent = `${format.format(eligible)} included / ${format.format(rows.length - eligible)} excluded`;
+
+      const body = rows.map(row => `
+        <tr>
+          <td class="compact">${row.rowNumber}</td>
+          <td class="compact"><span class="status-pill ${row.eligible ? 'included' : 'excluded'}">${row.eligible ? 'Included' : 'Excluded'}</span></td>
+          <td class="compact">${escapeHtml(row.cohort)}</td>
+          <td class="compact">${escapeHtml(row.discipline)}</td>
+          <td class="compact">${escapeHtml(row.phase)}</td>
+          <td>${escapeHtml(row.assistanceType)}</td>
+          <td>${escapeHtml(row.practice)}</td>
+          <td>${escapeHtml(row.caseDescription)}</td>
+          <td>${escapeHtml(row.category)}</td>
+          <td>${escapeHtml(row.dimension)}</td>
+          <td>${escapeHtml(row.tools)}</td>
+          <td>${escapeHtml(row.enhanced1)}</td>
+          <td>${escapeHtml(row.enhanced2)}</td>
+          <td>${escapeHtml(row.impaired1)}</td>
+          <td>${escapeHtml(row.impaired2)}</td>
+          <td>${escapeHtml(row.mitigation)}</td>
+        </tr>
+      `).join('');
+
+      datasetTable.innerHTML = `
+        <thead>
+          <tr>
+            <th>Row</th>
+            <th>Status</th>
+            <th>Cohort</th>
+            <th>Discipline</th>
+            <th>Phase</th>
+            <th>AI Assistance Type</th>
+            <th>Design Practice</th>
+            <th>Case Description</th>
+            <th>Refined Category</th>
+            <th>Aggregated Dimension</th>
+            <th>AI Tools</th>
+            <th>Enhanced 1</th>
+            <th>Enhanced 2</th>
+            <th>Impaired 1</th>
+            <th>Impaired 2</th>
+            <th>Mitigation</th>
+          </tr>
+        </thead>
+        <tbody>${body || '<tr><td colspan="16">No rows match the current filters.</td></tr>'}</tbody>
+      `;
+    }
+
+    async function loadDatasetRows() {
+      try {
+        const response = await fetch('dataset_rows.json');
+        datasetRows = await response.json();
+        fillSelect(datasetDiscipline, uniqueSorted(datasetRows.map(row => row.discipline)));
+        fillSelect(datasetDimension, uniqueSorted(datasetRows.map(row => row.dimension)));
+        fillSelect(datasetValue, uniqueSorted(datasetRows.flatMap(rowValues)));
+        renderDatasetTable();
+        renderStageView();
+      } catch (error) {
+        datasetVisibleCount.textContent = 'Dataset failed to load';
+        datasetTable.innerHTML = '<tbody><tr><td>Could not load dataset_rows.json.</td></tr></tbody>';
+        stageSelectedLabel.textContent = 'Phase view failed to load';
+        stageSelectedMeta.textContent = '';
+        phaseDomainMap.innerHTML = '<div class="section-note">Could not load dataset_rows.json.</div>';
+      }
+    }
+
     function renderAll() {
       const values = currentValues();
       renderDiverging(values);
@@ -973,6 +1886,7 @@
       renderScatter(values);
       renderDimensionTotals();
       renderTable(values);
+      renderStageView();
     }
 
     filter.addEventListener('change', renderAll);
@@ -980,8 +1894,66 @@
       filter.value = 'All';
       renderAll();
     });
+    charts.stageMatrix.on('click', params => {
+      if (!params.data || !params.data.discipline || !params.data.phase) return;
+      selectedStageCell = { discipline: params.data.discipline, phase: params.data.phase };
+      renderStageView();
+    });
+    const navLinks = Array.from(document.querySelectorAll('.nav-link'));
+    const navTargets = navLinks
+      .map(link => document.getElementById(link.dataset.target))
+      .filter(Boolean);
+
+    function setActiveNav(targetId) {
+      navLinks.forEach(link => {
+        link.classList.toggle('active', link.dataset.target === targetId);
+      });
+    }
+
+    function hashForPage(targetId) {
+      if (targetId === 'globalSection') return '#overall';
+      if (targetId === 'stageSection') return '#phase';
+      if (targetId === 'datasetSection') return '#dataset';
+      return '#dimension';
+    }
+
+    function pageFromHash() {
+      if (location.hash === '#overall' || location.hash === '#global' || location.hash === '#globalSection') return 'globalSection';
+      if (location.hash === '#phase' || location.hash === '#phaseSection' || location.hash === '#stage' || location.hash === '#stageSection') return 'stageSection';
+      if (location.hash === '#dimension' || location.hash === '#filter' || location.hash === '#filterSection') return 'filterSection';
+      return 'datasetSection';
+    }
+
+    function showPage(targetId, updateHash = true) {
+      setActiveNav(targetId);
+      navTargets.forEach(target => {
+        target.classList.toggle('active-page', target.id === targetId);
+      });
+      if (updateHash) {
+        history.replaceState(null, '', hashForPage(targetId));
+      }
+      window.scrollTo({ top: 0, behavior: 'auto' });
+      window.requestAnimationFrame(() => {
+        renderAll();
+        Object.values(charts).forEach(chart => chart.resize());
+      });
+    }
+
+    navLinks.forEach(link => {
+      link.addEventListener('click', event => {
+        event.preventDefault();
+        showPage(link.dataset.target);
+      });
+    });
+    [datasetSearch, datasetDiscipline, datasetDimension, datasetValue].forEach(control => {
+      control.addEventListener('input', renderDatasetTable);
+      control.addEventListener('change', renderDatasetTable);
+    });
+    window.addEventListener('hashchange', () => showPage(pageFromHash(), false));
     window.addEventListener('resize', () => Object.values(charts).forEach(chart => chart.resize()));
     renderAll();
+    loadDatasetRows();
+    showPage(pageFromHash());
   </script>
 </body>
 </html>
