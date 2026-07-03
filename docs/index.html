@@ -2157,7 +2157,7 @@
 
     async function loadArchetypeClusters() {
       try {
-        const response = await fetch('ai_use_archetype_clusters.json?v=tsne-1');
+        const response = await fetch('ai_use_archetype_clusters.json?v=tsne-2');
         if (!response.ok) throw new Error(`HTTP ${response.status}`);
         archetypeClusterData = await response.json();
         renderArchetypeClusters();
