@@ -438,6 +438,156 @@
       margin-right: 4px;
       vertical-align: -1px;
     }
+    .archetype-wrap {
+      padding: 14px;
+      display: grid;
+      grid-template-columns: minmax(420px, 1fr) minmax(340px, .72fr);
+      gap: 14px;
+      background: #fff;
+    }
+    .archetype-plot-card,
+    .archetype-side {
+      min-width: 0;
+    }
+    .archetype-svg {
+      width: 100%;
+      height: auto;
+      display: block;
+      border: 1px solid #edf1f7;
+      border-radius: 8px;
+      background:
+        linear-gradient(#f1f4f9 1px, transparent 1px),
+        linear-gradient(90deg, #f1f4f9 1px, transparent 1px),
+        #fff;
+      background-size: 32px 32px;
+    }
+    .archetype-point {
+      cursor: pointer;
+    }
+    .archetype-label {
+      fill: var(--ink);
+      font-size: 12px;
+      font-weight: 850;
+      paint-order: stroke;
+      stroke: #fff;
+      stroke-width: 4px;
+    }
+    .archetype-legend {
+      display: grid;
+      gap: 5px;
+      margin-top: 10px;
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.35;
+    }
+    .archetype-side {
+      display: grid;
+      gap: 10px;
+      align-content: start;
+      max-height: 560px;
+      overflow-y: auto;
+      overflow-x: hidden;
+      padding-right: 2px;
+    }
+    .archetype-card {
+      min-width: 0;
+      padding: 12px;
+      border: 1px solid #e3e9f3;
+      border-radius: 8px;
+      background: #fff;
+      cursor: pointer;
+    }
+    .archetype-card.active {
+      border-color: var(--blue);
+      outline: 3px solid rgba(39, 84, 197, .16);
+    }
+    .archetype-card-head {
+      min-width: 0;
+      display: flex;
+      justify-content: space-between;
+      gap: 10px;
+      align-items: flex-start;
+    }
+    .archetype-name {
+      min-width: 0;
+      margin: 0;
+      color: var(--ink);
+      font-size: 14px;
+      font-weight: 850;
+      line-height: 1.25;
+      text-transform: capitalize;
+    }
+    .archetype-badge {
+      flex: 0 0 auto;
+      display: inline-flex;
+      align-items: center;
+      min-height: 22px;
+      padding: 2px 7px;
+      border-radius: 999px;
+      color: #064e3b;
+      background: #dff4e8;
+      font-size: 12px;
+      font-weight: 850;
+      white-space: nowrap;
+    }
+    .archetype-path {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-top: 10px;
+    }
+    .archetype-path span,
+    .archetype-feature {
+      display: inline-flex;
+      max-width: 100%;
+      min-height: 24px;
+      align-items: center;
+      padding: 3px 7px;
+      border: 1px solid #e4e9f2;
+      border-radius: 6px;
+      background: #f8fafc;
+      color: #344054;
+      font-size: 11px;
+      font-weight: 760;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+    .archetype-profile {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 8px;
+      margin-top: 10px;
+    }
+    .archetype-profile-box {
+      min-width: 0;
+      padding: 8px;
+      border: 1px solid #edf1f7;
+      border-radius: 7px;
+      background: #fbfcff;
+    }
+    .archetype-profile-box b {
+      display: block;
+      margin-bottom: 4px;
+      color: var(--muted);
+      font-size: 10px;
+      text-transform: uppercase;
+    }
+    .archetype-profile-box span {
+      display: block;
+      overflow: hidden;
+      color: var(--ink);
+      font-size: 12px;
+      font-weight: 750;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+    .archetype-feature-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-top: 10px;
+    }
     .fingerprint-grid {
       padding: 16px;
       display: grid;
@@ -630,6 +780,7 @@
     .neg { color: var(--red); font-weight: 700; }
     @media (max-width: 1050px) {
       .section-head, .grid, .cards { grid-template-columns: 1fr; }
+      .archetype-wrap { grid-template-columns: 1fr; }
       .toolbar { align-items: stretch; flex-direction: column; }
       .dataset-toolbar { grid-template-columns: 1fr; }
       select, button { width: 100%; }
@@ -853,6 +1004,19 @@
           </div>
         </section>
       </div>
+      <section class="panel wide">
+        <div class="panel-head">
+          <h2 class="panel-title">AI-use archetype clustering</h2>
+          <div class="panel-caption" id="archetypeClusterMeta">Loading item-level clusters...</div>
+        </div>
+        <div id="archetypeClusterView" class="archetype-wrap">
+          <div class="section-note">Loading ai_use_archetype_clusters.json...</div>
+        </div>
+        <div class="insight-box">
+          <p class="insight-title">Insight</p>
+          <p class="insight-text">This view shifts from counting phase-category frequencies to discovering item-level usage archetypes. Each cluster groups coded AI-use items with similar phase, category, AI role, and value-signature profiles; the labels are interpretive summaries of those discovered patterns.</p>
+        </div>
+      </section>
     </section>
   </div>
   <script>
@@ -1421,6 +1585,9 @@
     const stageSelectedMeta = document.getElementById('stageSelectedMeta');
     const phaseDomainMap = document.getElementById('phaseDomainMap');
     const phaseDomainNormalizationNote = document.getElementById('phaseDomainNormalizationNote');
+    const archetypeClusterView = document.getElementById('archetypeClusterView');
+    const archetypeClusterMeta = document.getElementById('archetypeClusterMeta');
+    const ARCHETYPE_COLORS = ['#2754c5', '#087c7a', '#a75c00', '#7c3aed', '#b42318', '#475467', '#1f8a4c', '#c2410c'];
     const STAGE_ORDER = ['Discover', 'Define', 'Develop', 'Deliver'];
     const DISCIPLINE_ORDER = ['ED', 'SD', 'UIUX'];
     const CATEGORY_GROUPS = [
@@ -1466,6 +1633,8 @@
       'Project Planning & Workflow Management (BL)': 'Project Planning & Workflow Management'
     };
     let selectedStageCell = null;
+    let archetypeClusterData = null;
+    let activeArchetypeCluster = 0;
 
     function escapeHtml(value) {
       return String(value ?? '')
@@ -1474,6 +1643,116 @@
         .replace(/>/g, '&gt;')
         .replace(/"/g, '&quot;')
         .replace(/'/g, '&#39;');
+    }
+
+    function archetypeColor(rank) {
+      return ARCHETYPE_COLORS[rank % ARCHETYPE_COLORS.length];
+    }
+
+    function archetypePct(value) {
+      return `${Math.round(value * 100)}%`;
+    }
+
+    function archetypeShort(value, limit = 42) {
+      const text = String(value || '');
+      return text.length > limit ? `${text.slice(0, limit - 1)}...` : text;
+    }
+
+    function archetypeTopValue(list) {
+      return list?.[0]?.value || 'Mixed';
+    }
+
+    function clusterByRank(rank) {
+      return archetypeClusterData?.clusters.find(cluster => cluster.rank === rank);
+    }
+
+    function archetypeCentroids() {
+      const groups = {};
+      archetypeClusterData.items.forEach(item => {
+        groups[item.clusterRank] ??= [];
+        groups[item.clusterRank].push(item);
+      });
+      return Object.fromEntries(Object.entries(groups).map(([rank, items]) => {
+        const x = items.reduce((sum, item) => sum + item.x, 0) / items.length;
+        const y = items.reduce((sum, item) => sum + item.y, 0) / items.length;
+        return [rank, { x, y }];
+      }));
+    }
+
+    function renderArchetypeScatter() {
+      const centroids = archetypeCentroids();
+      const points = archetypeClusterData.items.map(item => `
+        <g class="archetype-point" data-cluster="${item.clusterRank}">
+          <circle cx="${item.x}" cy="${item.y}" r="${item.clusterRank === activeArchetypeCluster ? 5.7 : 4.1}" fill="${archetypeColor(item.clusterRank)}" opacity="${item.clusterRank === activeArchetypeCluster ? '.9' : '.34'}" stroke="#fff" stroke-width="1.4"></circle>
+        </g>
+      `).join('');
+      const labels = Object.entries(centroids).map(([rank, point]) => `
+        <text class="archetype-label" x="${point.x}" y="${point.y - 17}" text-anchor="middle">${escapeHtml(clusterByRank(Number(rank)).label)}</text>
+      `).join('');
+      return `
+        <svg class="archetype-svg" viewBox="0 0 1000 700" role="img" aria-label="AI-use archetype cluster embedding">
+          <line x1="60" y1="350" x2="940" y2="350" stroke="#98a2b3" stroke-width="1.2" stroke-dasharray="5 6"></line>
+          <line x1="500" y1="70" x2="500" y2="610" stroke="#98a2b3" stroke-width="1.2" stroke-dasharray="5 6"></line>
+          ${points}
+          ${labels}
+        </svg>
+      `;
+    }
+
+    function renderArchetypeCard(cluster) {
+      return `
+        <article class="archetype-card ${cluster.rank === activeArchetypeCluster ? 'active' : ''}" data-cluster="${cluster.rank}">
+          <div class="archetype-card-head">
+            <h3 class="archetype-name"><span style="color:${archetypeColor(cluster.rank)}">${escapeHtml(cluster.label)}</span> ${escapeHtml(cluster.name)}</h3>
+            <span class="archetype-badge">${format.format(cluster.size)} items</span>
+          </div>
+          <div class="archetype-path">
+            ${cluster.representativePath.map(step => `<span title="${escapeHtml(step)}">${escapeHtml(archetypeShort(step))}</span>`).join('')}
+          </div>
+          <div class="archetype-profile">
+            <div class="archetype-profile-box"><b>Phase</b><span>${escapeHtml(archetypeTopValue(cluster.profile.phase))}</span></div>
+            <div class="archetype-profile-box"><b>Category</b><span>${escapeHtml(archetypeTopValue(cluster.profile.category))}</span></div>
+            <div class="archetype-profile-box"><b>AI role</b><span>${escapeHtml(archetypeTopValue(cluster.profile.assistance))}</span></div>
+            <div class="archetype-profile-box"><b>Value signature</b><span>+${escapeHtml(archetypeTopValue(cluster.profile.enhanced))} / -${escapeHtml(archetypeTopValue(cluster.profile.impaired))}</span></div>
+          </div>
+          <div class="archetype-feature-list">
+            ${cluster.topFeatures.slice(0, 5).map(feature => `<span class="archetype-feature" title="${escapeHtml(feature.kind)}: ${escapeHtml(feature.value)}">${escapeHtml(feature.kind)}: ${escapeHtml(archetypeShort(feature.value, 30))} ${Number(feature.lift).toFixed(1)}x</span>`).join('')}
+          </div>
+          <div class="note">${archetypePct(cluster.share)} of clustered items.</div>
+        </article>
+      `;
+    }
+
+    function renderArchetypeClusters() {
+      if (!archetypeClusterData) {
+        archetypeClusterView.innerHTML = '<div class="section-note">Loading ai_use_archetype_clusters.json...</div>';
+        return;
+      }
+      const best = archetypeClusterData.metadata.kScores.reduce((a, b) => a.silhouette > b.silhouette ? a : b);
+      archetypeClusterMeta.textContent = `${format.format(archetypeClusterData.metadata.includedItems)} items / ${format.format(archetypeClusterData.metadata.featureCount)} feature states / ${format.format(archetypeClusterData.metadata.clusterCount)} archetypes / ${archetypeClusterData.metadata.visualization || 'SVD'} view / silhouette ${Number(best.silhouette).toFixed(2)}`;
+      archetypeClusterView.innerHTML = `
+        <div class="archetype-plot-card">
+          ${renderArchetypeScatter()}
+          <div class="archetype-legend">
+            ${archetypeClusterData.clusters.map(cluster => `<span><i class="legend-dot" style="background:${archetypeColor(cluster.rank)}"></i>${escapeHtml(cluster.label)} ${escapeHtml(cluster.name)}</span>`).join('')}
+          </div>
+        </div>
+        <div class="archetype-side">
+          ${archetypeClusterData.clusters.map(renderArchetypeCard).join('')}
+        </div>
+      `;
+      archetypeClusterView.querySelectorAll('.archetype-card[data-cluster]').forEach(card => {
+        card.addEventListener('click', () => {
+          activeArchetypeCluster = Number(card.dataset.cluster);
+          renderArchetypeClusters();
+        });
+      });
+      archetypeClusterView.querySelectorAll('.archetype-point').forEach(point => {
+        point.addEventListener('click', () => {
+          activeArchetypeCluster = Number(point.dataset.cluster);
+          renderArchetypeClusters();
+        });
+      });
     }
 
     function uniqueSorted(values) {
@@ -1876,6 +2155,18 @@
       }
     }
 
+    async function loadArchetypeClusters() {
+      try {
+        const response = await fetch('ai_use_archetype_clusters.json?v=tsne-1');
+        if (!response.ok) throw new Error(`HTTP ${response.status}`);
+        archetypeClusterData = await response.json();
+        renderArchetypeClusters();
+      } catch (error) {
+        archetypeClusterMeta.textContent = 'Cluster data failed to load';
+        archetypeClusterView.innerHTML = '<div class="section-note">Could not load ai_use_archetype_clusters.json.</div>';
+      }
+    }
+
     function renderAll() {
       const values = currentValues();
       renderDiverging(values);
@@ -1953,6 +2244,7 @@
     window.addEventListener('resize', () => Object.values(charts).forEach(chart => chart.resize()));
     renderAll();
     loadDatasetRows();
+    loadArchetypeClusters();
     showPage(pageFromHash());
   </script>
 </body>
