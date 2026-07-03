@@ -300,6 +300,42 @@
     .discipline-dimension-wide .chart {
       height: 760px;
     }
+    .ml-polarity-wide .chart {
+      height: 540px;
+    }
+    .ml-metrics {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 10px;
+      padding: 14px 16px 0;
+      background: #fff;
+    }
+    .ml-metric-card {
+      min-width: 0;
+      border: 1px solid #e4e9f2;
+      border-radius: 8px;
+      padding: 10px 12px;
+      background: #fbfcff;
+    }
+    .ml-metric-card b {
+      display: block;
+      color: var(--ink);
+      font-size: 20px;
+      line-height: 1;
+      margin-top: 5px;
+    }
+    .ml-metric-card span {
+      color: var(--muted);
+      font-size: 11px;
+      font-weight: 800;
+      text-transform: uppercase;
+    }
+    .ml-table-wrap {
+      max-height: 360px;
+      margin: 0 16px 14px;
+      border: 1px solid #edf0f5;
+      border-radius: 8px;
+    }
     .stage-matrix-chart {
       height: 430px;
     }
@@ -788,6 +824,7 @@
       .matrix-wide .chart { height: 840px; }
       .discipline-value-wide .chart { height: 560px; }
       .discipline-dimension-wide .chart { height: 760px; }
+      .ml-metrics { grid-template-columns: 1fr; }
     }
     @media (max-width: 720px) {
       .top-bar-inner {
@@ -927,6 +964,19 @@
             <p class="insight-text">Value mentions concentrate most strongly in background research, followed by planning and ideation. Planning has the clearest positive profile, while ideation is the main dimension where impaired mentions slightly exceed enhanced mentions.</p>
           </div>
         </section>
+        <section class="panel wide ml-polarity-wide">
+          <div class="panel-head">
+            <h2 class="panel-title">Value Ambivalence</h2>
+            <div class="panel-caption" id="mlPolarityMeta">How often each value appears on both enhanced and impaired sides</div>
+          </div>
+          <div id="mlPolarityMetrics" class="ml-metrics"></div>
+          <div id="mlPolarityChart" class="chart"></div>
+          <div class="table-wrap ml-table-wrap"><table id="mlPolarityTable"></table></div>
+          <div class="insight-box">
+            <p class="insight-title">Insight</p>
+            <p class="insight-text">This model-free score captures whether positive and negative implications coexist for the same value. Low ambivalence means the value is mostly one-sided and stable; high ambivalence means it is frequently reported as both enhanced and impaired.</p>
+          </div>
+        </section>
       </div>
     </section>
 
@@ -1036,6 +1086,7 @@
       globalBalance: echarts.init(document.getElementById('globalBalanceChart')),
       disciplineValue: echarts.init(document.getElementById('disciplineValueChart')),
       heatmap: echarts.init(document.getElementById('heatmapChart')),
+      mlPolarity: echarts.init(document.getElementById('mlPolarityChart')),
       scatter: echarts.init(document.getElementById('scatterChart')),
       dimension: echarts.init(document.getElementById('dimensionChart')),
       stageMatrix: echarts.init(document.getElementById('stageMatrixChart')),
@@ -1581,6 +1632,9 @@
     const datasetTable = document.getElementById('datasetTable');
     const datasetVisibleCount = document.getElementById('datasetVisibleCount');
     const datasetEligibleCount = document.getElementById('datasetEligibleCount');
+    const mlPolarityMeta = document.getElementById('mlPolarityMeta');
+    const mlPolarityMetrics = document.getElementById('mlPolarityMetrics');
+    const mlPolarityTable = document.getElementById('mlPolarityTable');
     const stageSelectedLabel = document.getElementById('stageSelectedLabel');
     const stageSelectedMeta = document.getElementById('stageSelectedMeta');
     const phaseDomainMap = document.getElementById('phaseDomainMap');
@@ -1643,6 +1697,176 @@
         .replace(/>/g, '&gt;')
         .replace(/"/g, '&quot;')
         .replace(/'/g, '&#39;');
+    }
+
+    function percent(value, digits = 0) {
+      return `${(Number(value || 0) * 100).toFixed(digits)}%`;
+    }
+
+    function valuePolarityRows() {
+      return DATA.values
+        .filter(row => Number(row.total || 0) > 0)
+        .map(row => {
+          const enhanced = Number(row.enhanced || 0);
+          const impaired = Number(row.impaired || 0);
+          const total = enhanced + impaired;
+          const enhancedShare = total ? enhanced / total : 0;
+          const impairedShare = total ? impaired / total : 0;
+          const minorityShare = total ? Math.min(enhanced, impaired) / total : 0;
+          const splitIndex = minorityShare * 2;
+          const dominant = enhanced === impaired ? 'Balanced' : enhanced > impaired ? 'Enhanced' : 'Impaired';
+          const dominantShare = Math.max(enhancedShare, impairedShare);
+          let ambivalenceLevel = 'Stable';
+          if (splitIndex >= 0.8) ambivalenceLevel = 'High ambivalence';
+          else if (splitIndex >= 0.55) ambivalenceLevel = 'Moderate ambivalence';
+          else if (splitIndex >= 0.25) ambivalenceLevel = 'Low ambivalence';
+          const lowSupport = total < 10;
+          return {
+            ...row,
+            enhanced,
+            impaired,
+            total,
+            enhancedShare,
+            impairedShare,
+            minorityShare,
+            splitIndex,
+            dominant,
+            dominantShare,
+            ambivalenceLevel,
+            lowSupport
+          };
+        });
+    }
+
+    function polarityRead(row) {
+      const side = row.dominant === 'Balanced' ? 'balanced' : row.dominant.toLowerCase();
+      const support = row.lowSupport ? ' / low support' : '';
+      if (row.ambivalenceLevel === 'High ambivalence' || row.ambivalenceLevel === 'Moderate ambivalence') {
+        return `${row.ambivalenceLevel} (${side} tilt${support})`;
+      }
+      return `${row.ambivalenceLevel} ${side}${support}`;
+    }
+
+    function renderMlValuePolarity() {
+      const rows = valuePolarityRows();
+      const chartRows = [...rows].sort((a, b) => b.splitIndex - a.splitIndex || b.total - a.total);
+      const tableRows = [...chartRows];
+      const supportedRows = rows.filter(row => !row.lowSupport);
+      const mostAmbivalent = [...supportedRows].sort((a, b) => b.splitIndex - a.splitIndex || b.total - a.total)[0] || chartRows[0];
+      const stableEnhanced = [...supportedRows]
+        .filter(row => row.dominant === 'Enhanced')
+        .sort((a, b) => a.splitIndex - b.splitIndex || b.total - a.total)[0];
+      const stableImpaired = [...supportedRows]
+        .filter(row => row.dominant === 'Impaired')
+        .sort((a, b) => a.splitIndex - b.splitIndex || b.total - a.total)[0];
+
+      mlPolarityMeta.textContent = `${format.format(DATA.combinedTotal)} value mentions / ambivalence score = minority-side share x 2`;
+      mlPolarityMetrics.innerHTML = `
+        <div class="ml-metric-card"><span>Events</span><b>${format.format(DATA.combinedTotal)}</b><div class="note">${format.format(DATA.eligibleRows)} coded cases</div></div>
+        <div class="ml-metric-card"><span>Highest Ambivalence</span><b>${escapeHtml(mostAmbivalent.value)}</b><div class="note">${percent(mostAmbivalent.splitIndex, 0)} score; ${mostAmbivalent.enhanced}/${mostAmbivalent.impaired}</div></div>
+        <div class="ml-metric-card"><span>Stable Enhanced</span><b>${escapeHtml(stableEnhanced?.value || 'None')}</b><div class="note">${stableEnhanced ? `${percent(stableEnhanced.splitIndex, 0)} score; ${stableEnhanced.enhanced}/${stableEnhanced.impaired}` : 'No supported value'}</div></div>
+        <div class="ml-metric-card"><span>Stable Impaired</span><b>${escapeHtml(stableImpaired?.value || 'None')}</b><div class="note">${stableImpaired ? `${percent(stableImpaired.splitIndex, 0)} score; ${stableImpaired.enhanced}/${stableImpaired.impaired}` : 'No supported value'}</div></div>
+      `;
+
+      charts.mlPolarity.setOption({
+        animation: false,
+        grid: { left: 210, right: 88, top: 34, bottom: 58 },
+        tooltip: {
+          formatter: item => {
+            const row = item?.data?.raw;
+            if (!row) return '';
+            const support = row.lowSupport ? '<br/><b>Low support:</b> interpret cautiously' : '';
+            return `<b>${escapeHtml(row.value)}</b><br/>Ambivalence score: ${percent(row.splitIndex, 0)}<br/>Dominant side: ${escapeHtml(row.dominant)} (${percent(row.dominantShare, 0)})<br/>Observed: ${row.enhanced} enhanced / ${row.impaired} impaired<br/>0% = one-sided stable; 100% = evenly split${support}`;
+          }
+        },
+        xAxis: {
+          type: 'value',
+          min: 0,
+          max: 100,
+          name: 'Ambivalence score (%)',
+          nameLocation: 'middle',
+          nameGap: 36,
+          nameTextStyle: { color: COLORS.muted, fontWeight: 760 },
+          axisLabel: { color: COLORS.muted, formatter: value => `${value}%` },
+          splitLine: { lineStyle: { color: '#eef2f7' } }
+        },
+        yAxis: {
+          type: 'category',
+          inverse: true,
+          data: chartRows.map(row => row.value),
+          axisTick: { show: false },
+          axisLine: { show: false },
+          axisLabel: { color: COLORS.text, fontWeight: 760 }
+        },
+        series: [
+          {
+            name: 'Ambivalence score',
+            type: 'bar',
+            data: chartRows.map(row => ({
+              value: Number(row.splitIndex) * 100,
+              raw: row,
+              itemStyle: {
+                color: row.dominant === 'Enhanced' ? COLORS.green : row.dominant === 'Impaired' ? COLORS.red : COLORS.muted,
+                opacity: row.lowSupport ? 0.45 : 0.92
+              }
+            })),
+            barWidth: 17,
+            label: {
+              show: true,
+              position: 'right',
+              formatter: item => `${Math.round(item.data.raw.splitIndex * 100)}%${item.data.raw.lowSupport ? ' *' : ''}`,
+              color: COLORS.text,
+              fontSize: 11,
+              fontWeight: 760
+            },
+            markLine: {
+              symbol: 'none',
+              label: {
+                show: false,
+                color: COLORS.muted,
+                position: 'insideEndTop',
+                distance: 8,
+                backgroundColor: '#ffffff',
+                borderColor: '#e4e9f2',
+                borderWidth: 1,
+                borderRadius: 4,
+                padding: [2, 5],
+                formatter: item => item.name
+              },
+              lineStyle: { color: '#94a3b8', width: 1.2, type: 'dashed' },
+              data: [
+                { xAxis: 25, name: 'stable' },
+                { xAxis: 80, name: 'high ambivalence' }
+              ]
+            }
+          }
+        ]
+      });
+
+      mlPolarityTable.innerHTML = `
+        <thead>
+          <tr>
+            <th>Value</th>
+            <th>Enhanced / Impaired</th>
+            <th>Enhanced Share</th>
+            <th>Ambivalence Score</th>
+            <th>Dominant Side</th>
+            <th>Read</th>
+          </tr>
+        </thead>
+        <tbody>
+          ${tableRows.map(row => `
+            <tr>
+              <td>${escapeHtml(row.value)}${row.lowSupport ? ' *' : ''}</td>
+              <td><span class="pos">${row.enhanced}</span> / <span class="neg">${row.impaired}</span></td>
+              <td>${percent(row.enhancedShare, 0)}</td>
+              <td>${percent(row.splitIndex, 0)}</td>
+              <td class="${row.dominant === 'Enhanced' ? 'pos' : row.dominant === 'Impaired' ? 'neg' : ''}">${escapeHtml(row.dominant)} <span class="note">${percent(row.dominantShare, 0)}</span></td>
+              <td>${escapeHtml(polarityRead(row))}</td>
+            </tr>
+          `).join('')}
+        </tbody>
+      `;
     }
 
     function archetypeColor(rank) {
@@ -2174,6 +2398,7 @@
       renderDisciplineValue();
       renderDisciplineDimension();
       renderHeatmap();
+      renderMlValuePolarity();
       renderScatter(values);
       renderDimensionTotals();
       renderTable(values);
