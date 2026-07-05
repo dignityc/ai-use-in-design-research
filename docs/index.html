@@ -932,6 +932,14 @@
             <p class="insight-text">Background research is the largest value arena, but its benefits are mixed: efficiency rises while accuracy, context appropriateness, and trust are impaired. Planning and coordination show the strongest positive balance, suggesting that AI is especially valuable for speeding and coordinating design work.</p>
           </div>
         </section>
+        <section class="panel wide matrix-wide">
+          <div class="panel-head"><h2 class="panel-title">Overall Phase x Value Balance</h2><div class="panel-caption">Four design phase rows; green rises above the row baseline, red drops below it</div></div>
+          <div id="phaseValueBalanceChart" class="chart"></div>
+          <div class="insight-box">
+            <p class="insight-title">Insight</p>
+            <p class="insight-text">Design phases show different value trade-off profiles. Discover and Define carry the strongest efficiency gains but also accuracy and context risks, while Develop concentrates creativity, feasibility, and scalability gains alongside trust and authenticity concerns.</p>
+          </div>
+        </section>
         <section class="panel wide discipline-value-wide">
           <div class="panel-head"><h2 class="panel-title">Discipline Divergence by Value</h2><div class="panel-caption">Sorted by SD/ED/UIUX disagreement; x-axis is normalized net score</div></div>
           <div id="disciplineValueChart" class="chart"></div>
@@ -1038,7 +1046,7 @@
       </div>
       <div class="grid">
         <section class="panel">
-          <div class="panel-head"><h2 class="panel-title">Discipline x Design Phase</h2><div class="panel-caption">Cell count; click a cell to inspect categories</div></div>
+          <div class="panel-head"><h2 class="panel-title">Discipline x Design Phase</h2><div class="panel-caption">Percent within each discipline; click a cell to inspect categories</div></div>
           <div id="stageMatrixChart" class="chart stage-matrix-chart"></div>
           <div class="insight-box">
             <p class="insight-title">Insight</p>
@@ -1084,6 +1092,7 @@
     const charts = {
       diverging: echarts.init(document.getElementById('divergingChart')),
       globalBalance: echarts.init(document.getElementById('globalBalanceChart')),
+      phaseValueBalance: echarts.init(document.getElementById('phaseValueBalanceChart')),
       disciplineValue: echarts.init(document.getElementById('disciplineValueChart')),
       heatmap: echarts.init(document.getElementById('heatmapChart')),
       mlPolarity: echarts.init(document.getElementById('mlPolarityChart')),
@@ -1372,6 +1381,214 @@
           }
         ]
       });
+    }
+
+    function createEmptyValueMatrix(rows) {
+      return Object.fromEntries(rows.map(row => [
+        row,
+        Object.fromEntries(DATA.valueOrder.map(value => [
+          value,
+          { enhanced: 0, impaired: 0, net: 0, total: 0 }
+        ]))
+      ]));
+    }
+
+    function buildPhaseValueMatrix() {
+      const matrix = createEmptyValueMatrix(STAGE_ORDER);
+      eligibleDatasetRows().forEach(row => {
+        const phase = row.phase;
+        if (!matrix[phase]) return;
+        [row.enhanced1, row.enhanced2].forEach(raw => {
+          const value = normalizeValueName(raw);
+          if (!value || !matrix[phase][value]) return;
+          matrix[phase][value].enhanced += 1;
+          matrix[phase][value].total += 1;
+        });
+        [row.impaired1, row.impaired2].forEach(raw => {
+          const value = normalizeValueName(raw);
+          if (!value || !matrix[phase][value]) return;
+          matrix[phase][value].impaired += 1;
+          matrix[phase][value].total += 1;
+        });
+      });
+      STAGE_ORDER.forEach(phase => {
+        DATA.valueOrder.forEach(value => {
+          const cell = matrix[phase][value];
+          cell.net = cell.enhanced - cell.impaired;
+        });
+      });
+      return matrix;
+    }
+
+    function renderPhaseValueBalance() {
+      if (!datasetRows.length) {
+        charts.phaseValueBalance.setOption({
+          title: { text: 'Loading phase value baseline...', left: 'center', top: 'middle', textStyle: { color: COLORS.muted, fontSize: 13 } },
+          xAxis: { show: false },
+          yAxis: { show: false },
+          series: []
+        }, true);
+        return;
+      }
+
+      const phaseValue = buildPhaseValueMatrix();
+      const values = DATA.valueOrder;
+      const points = [];
+      const baselines = STAGE_ORDER.map((phase, phaseIndex) => [0, phaseIndex, phase]);
+      let maxCount = 1;
+      STAGE_ORDER.forEach((phase, phaseIndex) => {
+        values.forEach((value, x) => {
+          const d = phaseValue[phase][value];
+          maxCount = Math.max(maxCount, d.enhanced, d.impaired);
+          points.push([x, phaseIndex, d.enhanced, d.impaired, d.net, d.total, value, phase]);
+        });
+      });
+      charts.phaseValueBalance.setOption({
+        animation: false,
+        grid: { left: 120, right: 34, top: 210, bottom: 70 },
+        tooltip: {
+          formatter: item => {
+            const d = item.value;
+            return `<b>${d[6]}</b><br/>${d[7]}<br/>Enhanced: ${d[2]}<br/>Impaired: ${d[3]}<br/>Net: ${d[4] >= 0 ? '+' : ''}${d[4]}`;
+          }
+        },
+        legend: {
+          top: 16,
+          right: 18,
+          data: ['Enhanced', 'Impaired']
+        },
+        xAxis: {
+          type: 'category',
+          position: 'top',
+          data: values,
+          axisTick: { alignWithLabel: true },
+          axisLabel: {
+            rotate: 50,
+            interval: 0,
+            color: COLORS.text,
+            fontWeight: 700,
+            margin: 18
+          },
+          axisLine: { lineStyle: { color: '#cbd5e1' } },
+          splitLine: { show: true, lineStyle: { color: '#eef2f7' } }
+        },
+        yAxis: {
+          type: 'category',
+          data: STAGE_ORDER,
+          inverse: true,
+          axisTick: { show: false },
+          axisLine: { show: false },
+          axisLabel: {
+            color: COLORS.text,
+            fontSize: 14,
+            fontWeight: 760,
+            margin: 22
+          },
+          splitLine: { show: false }
+        },
+        series: [
+          {
+            name: 'Enhanced',
+            type: 'bar',
+            data: [],
+            itemStyle: { color: COLORS.green }
+          },
+          {
+            name: 'Impaired',
+            type: 'bar',
+            data: [],
+            itemStyle: { color: COLORS.red }
+          },
+          {
+            name: 'Row baseline',
+            type: 'custom',
+            coordinateSystem: 'cartesian2d',
+            silent: true,
+            z: 1,
+            data: baselines,
+            renderItem: (params, api) => {
+              const y = api.value(1);
+              const first = api.coord([0, y]);
+              const last = api.coord([values.length - 1, y]);
+              const categoryWidth = api.size([1, 0])[0];
+              return {
+                type: 'line',
+                shape: {
+                  x1: first[0] - categoryWidth * 0.46,
+                  y1: first[1],
+                  x2: last[0] + categoryWidth * 0.46,
+                  y2: last[1]
+                },
+                style: { stroke: '#aeb9c9', lineWidth: 1.8 }
+              };
+            }
+          },
+          {
+            name: 'Phase value balance',
+            type: 'custom',
+            coordinateSystem: 'cartesian2d',
+            z: 3,
+            data: points,
+            renderItem: (params, api) => {
+              const x = api.value(0);
+              const y = api.value(1);
+              const enhanced = api.value(2);
+              const impaired = api.value(3);
+              const net = api.value(4);
+              const total = api.value(5);
+              const coord = api.coord([x, y]);
+              const categoryWidth = api.size([1, 0])[0];
+              const bandHeight = api.size([0, 1])[1];
+              const scale = (bandHeight * 0.50) / maxCount;
+              const barWidth = Math.max(12, Math.min(28, categoryWidth * 0.32));
+              const enhancedHeight = enhanced * scale;
+              const impairedHeight = impaired * scale;
+              const netText = total ? `${net >= 0 ? '+' : ''}${net}` : '';
+              const netColor = net >= 0 ? COLORS.green : COLORS.red;
+              const children = [];
+              if (enhancedHeight > 0) {
+                children.push({
+                  type: 'rect',
+                  shape: {
+                    x: coord[0] - barWidth / 2,
+                    y: coord[1] - enhancedHeight,
+                    width: barWidth,
+                    height: enhancedHeight,
+                    r: [7, 7, 0, 0]
+                  },
+                  style: { fill: COLORS.green }
+                });
+              }
+              if (impairedHeight > 0) {
+                children.push({
+                  type: 'rect',
+                  shape: {
+                    x: coord[0] - barWidth / 2,
+                    y: coord[1],
+                    width: barWidth,
+                    height: impairedHeight,
+                    r: [0, 0, 7, 7]
+                  },
+                  style: { fill: COLORS.red }
+                });
+              }
+              children.push({
+                type: 'text',
+                style: {
+                  x: coord[0],
+                  y: coord[1] + bandHeight * 0.60,
+                  text: netText,
+                  fill: netColor,
+                  align: 'center',
+                  verticalAlign: 'middle',
+                  font: '700 12px Inter, sans-serif'
+                }
+              });
+              return { type: 'group', children };
+            }
+          }
+        ]
+      }, true);
     }
 
     function renderDisciplineValue() {
@@ -1983,6 +2200,39 @@
       return [...new Set(values.filter(Boolean))].sort((a, b) => a.localeCompare(b));
     }
 
+    const VALUE_ALIASES = {
+      'Efficiency': 'Efficiency',
+      'Accuracy': 'Accuracy',
+      'Creativity': 'Creativity',
+      'Learning': 'Learning/Skills development',
+      'Skills Development': 'Learning/Skills development',
+      'Skills development': 'Learning/Skills development',
+      'Learning / Skills Development': 'Learning/Skills development',
+      'Learning (Gaining insigts)': 'Learning/Skills development',
+      'Context awareness': 'Context appropriateness',
+      'Context Awareness': 'Context appropriateness',
+      'Context Appropriateness': 'Context appropriateness',
+      'Collaboration': 'Collaboration',
+      'Feasibility': 'Feasibility',
+      'Feasibiltiy': 'Feasibility',
+      'Controllability': 'Controllability',
+      'Scalability': 'Scalability',
+      'Human-cnetredness': 'User-centredness',
+      'User-centeredness': 'User-centredness',
+      'Empathy': 'User-centredness',
+      'Empathy (Human-centredness)': 'User-centredness',
+      'AI-Literacy (Trust)': 'AI-Literacy (Trust)',
+      'Trust': 'AI-Literacy (Trust)',
+      'Authenticity': 'Authenticity',
+      'Affordability': 'Affordability',
+      'Intuition': 'Other'
+    };
+
+    function normalizeValueName(value) {
+      const cleaned = String(value || '').replace(/\u00a0/g, ' ').trim();
+      return VALUE_ALIASES[cleaned] || cleaned;
+    }
+
     function rowValues(row) {
       return [row.enhanced1, row.enhanced2, row.impaired1, row.impaired2].filter(Boolean);
     }
@@ -2132,24 +2382,34 @@
     function stageMatrixCells() {
       const rows = eligibleDatasetRows();
       let largest = null;
-      let maxCount = 1;
+      let maxShare = 0.01;
+      const disciplineTotals = Object.fromEntries(DISCIPLINE_ORDER.map(discipline => [
+        discipline,
+        rows.filter(row => row.discipline === discipline).length
+      ]));
       const cells = [];
       DISCIPLINE_ORDER.forEach((discipline, y) => {
         STAGE_ORDER.forEach((phase, x) => {
           const cellRows = rows.filter(row => row.discipline === discipline && row.phase === phase);
           const topCategories = countByCategory(cellRows, 4);
+          const denominator = disciplineTotals[discipline] || 0;
+          const share = denominator ? cellRows.length / denominator : 0;
+          const sharePercent = share * 100;
           const cell = {
-            value: [x, y, cellRows.length],
+            value: [x, y, sharePercent],
             discipline,
             phase,
+            count: cellRows.length,
+            denominator,
+            share,
             topCategories
           };
           cells.push(cell);
-          maxCount = Math.max(maxCount, cellRows.length);
-          if (!largest || cellRows.length > largest.value[2]) largest = cell;
+          maxShare = Math.max(maxShare, share);
+          if (!largest || share > largest.share) largest = cell;
         });
       });
-      return { cells, largest, maxCount };
+      return { cells, largest, maxSharePercent: maxShare * 100 };
     }
 
     function isSelectedStageCell(cell) {
@@ -2166,7 +2426,7 @@
         return;
       }
       renderPhaseDomainMap();
-      const { cells, largest, maxCount } = stageMatrixCells();
+      const { cells, largest, maxSharePercent } = stageMatrixCells();
       if (!selectedStageCell && largest) {
         selectedStageCell = { discipline: largest.discipline, phase: largest.phase };
       }
@@ -2185,7 +2445,7 @@
             const top = item.data.topCategories.length
               ? item.data.topCategories.map(entry => `${entry.category}: ${entry.count}`).join('<br/>')
               : 'No category data';
-            return `<b>${item.data.discipline} x ${item.data.phase}</b><br/>Cases: ${item.value[2]}<br/><br/>${top}`;
+            return `<b>${item.data.discipline} x ${item.data.phase}</b><br/>Share: ${item.value[2].toFixed(1)}%<br/>Cases: ${item.data.count} / ${item.data.denominator}<br/><br/>${top}`;
           }
         },
         xAxis: {
@@ -2205,17 +2465,18 @@
         },
         visualMap: {
           min: 0,
-          max: maxCount,
+          max: maxSharePercent,
           calculable: true,
           orient: 'horizontal',
           left: 'center',
           bottom: 12,
+          formatter: value => `${Math.round(value)}%`,
           inRange: { color: ['#f5f3ff', '#c4b5fd', '#7c3aed'] }
         },
         series: [{
           type: 'heatmap',
           data,
-          label: { show: true, formatter: item => item.value[2], color: COLORS.text, fontWeight: 800 },
+          label: { show: true, formatter: item => `${item.value[2].toFixed(0)}%`, color: COLORS.text, fontWeight: 800 },
           emphasis: { itemStyle: { borderColor: '#111827', borderWidth: 2 } }
         }]
       });
@@ -2369,6 +2630,7 @@
         fillSelect(datasetDimension, uniqueSorted(datasetRows.map(row => row.dimension)));
         fillSelect(datasetValue, uniqueSorted(datasetRows.flatMap(rowValues)));
         renderDatasetTable();
+        renderPhaseValueBalance();
         renderStageView();
       } catch (error) {
         datasetVisibleCount.textContent = 'Dataset failed to load';
@@ -2395,6 +2657,7 @@
       const values = currentValues();
       renderDiverging(values);
       renderGlobalBalance();
+      renderPhaseValueBalance();
       renderDisciplineValue();
       renderDisciplineDimension();
       renderHeatmap();
