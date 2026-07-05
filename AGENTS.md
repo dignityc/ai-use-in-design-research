@@ -8,7 +8,7 @@ This project provides an automated workflow for analyzing academic papers in the
 
 ### Key Features
 - **Analysis Workflow**: BERTopic topic modeling, semantic network analysis, interactive dashboard
-- **Coding Workflow**: Google Sheets integration, PDF auto-classification using Claude API
+- **Coding Workflow**: Google Sheets integration, PDF auto-classification using Codex API
 - **4D Cross-dimensional Analysis**: Topics × AI Methods × Data Modality × Design Practice
 
 ### Quick Start
@@ -25,7 +25,7 @@ cd coding_work/scripts && python3 pdf_analyzer.py 5
 
 ---
 
-## Claude Code 자동 승인 설정
+## Codex 자동 승인 설정
 다음 명령어들은 사용자 승인 없이 자동 실행됩니다:
 - `nohup python*`: 백그라운드 Python 스크립트 실행
 - `tail -f`: 로그 파일 실시간 모니터링
@@ -74,7 +74,7 @@ paper_review_with_llm/
 │   │   ├── paper_tracking.py           # 논문 추적 (Inclusion='Y' → Mark='M')
 │   │   ├── pdf_title_fixer.py          # PDF 파일명 자동 정리
 │   │   ├── pdf_upload_checker.py       # PDF 업로드 상태 자동 마킹 ⭐
-│   │   ├── pdf_analyzer.py             # PDF 내용 분석 및 Claude 매칭 ⭐⭐⭐
+│   │   ├── pdf_analyzer.py             # PDF 내용 분석 및 Codex 매칭 ⭐⭐⭐
 │   │   ├── upload_to_sheets.py         # PDF 분석 결과 업로드 ⭐⭐
 │   │   ├── debug_single_pdf.py         # PDF 단건 디버깅
 │   │   └── analyze_sheets_structure.py # Google Sheets 구조 분석
@@ -89,7 +89,7 @@ paper_review_with_llm/
 ├── venv/                              # Python 가상환경
 ├── requirements.txt                   # Python 의존성 (통합)
 ├── research_report.md                 # AI 방법론 진화 분석 에세이
-└── CLAUDE.md                          # 이 문서 (README.md와 동일)
+└── AGENTS.md                          # 이 문서 (README.md와 동일)
 ```
 
 ## 📈 분석 워크플로우 (7-13단계)
@@ -314,7 +314,7 @@ Google Sheets API를 통한 논문 분류 작업 자동화 시스템입니다. "
 ### 👥 담당자별 작업 방식
 | 담당자 | 논문 수 | 작업 방식 | 결과물 |
 |--------|---------|----------|--------|
-| **J (Jongmo)** | 110개 | Claude Code 자동화 (코딩결과 + 노트) | Google Sheets 직접 업로드 |
+| **J (Jongmo)** | 110개 | Codex 자동화 (코딩결과 + 노트) | Google Sheets 직접 업로드 |
 | **M (Manxin)** | 79개 | 수동 코딩 | Excel 파일 → Google Sheets 통합 |
 
 ### 📁 로컬 데이터 파일
@@ -357,7 +357,7 @@ python coding_work/scripts/test_connection.py
 ### 코딩워크 스크립트 목록
 | 스크립트 | 용도 | 실행 |
 |----------|------|------|
-| `pdf_analyzer.py` ⭐ | PDF 자동 분류 (Claude API, 7개 기준) | `python3 pdf_analyzer.py 5` |
+| `pdf_analyzer.py` ⭐ | PDF 자동 분류 (Codex API, 7개 기준) | `python3 pdf_analyzer.py 5` |
 | `upload_to_sheets.py` ⭐ | 분류 결과 Google Sheets 업로드 | `python3 upload_to_sheets.py` |
 | `pdf_upload_checker.py` | PDF 업로드 상태 마킹 | `python3 pdf_upload_checker.py` |
 | `pdf_title_fixer.py` | PDF 파일명 정리 (`{index}_{title}.pdf`) | `python3 pdf_title_fixer.py` |

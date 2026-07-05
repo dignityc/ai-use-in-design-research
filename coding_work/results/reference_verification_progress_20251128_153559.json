@@ -1,0 +1,16 @@
+{
+  "total_tasks": 7,
+  "completed": 7,
+  "failed": 0,
+  "in_progress": [],
+  "completed_tasks": [
+    "45_Design Practice/Task",
+    "45_Design Phase",
+    "45_Data Modality",
+    "45_AI Assistance Types (Lee and Kim, 2025)",
+    "45_AI methods",
+    "45_Design Discipline",
+    "45_Data About"
+  ],
+  "failed_tasks": {}
+}

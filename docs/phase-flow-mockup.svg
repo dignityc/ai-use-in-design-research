@@ -1,0 +1,147 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1440" height="860" viewBox="0 0 1440 860">
+  <defs>
+    <style>
+      .bg { fill: #f5f7fb; }
+      .panel { fill: #ffffff; stroke: #d8dee9; stroke-width: 1; }
+      .title { font: 800 30px Inter, Arial, sans-serif; fill: #172033; }
+      .subtitle { font: 500 15px Inter, Arial, sans-serif; fill: #667085; }
+      .axis { font: 800 13px Inter, Arial, sans-serif; fill: #667085; letter-spacing: .5px; }
+      .node-title { font: 800 15px Inter, Arial, sans-serif; fill: #172033; }
+      .node-meta { font: 700 12px Inter, Arial, sans-serif; fill: #667085; }
+      .small { font: 700 11px Inter, Arial, sans-serif; fill: #667085; }
+      .flow { fill: none; stroke-linecap: round; opacity: .46; }
+      .flow-strong { fill: none; stroke-linecap: round; opacity: .72; }
+      .ed { stroke: #2563eb; }
+      .sd { stroke: #ea580c; }
+      .uiux { stroke: #7c3aed; }
+      .node { rx: 8; }
+      .ed-fill { fill: #dbeafe; stroke: #93c5fd; }
+      .sd-fill { fill: #ffedd5; stroke: #fdba74; }
+      .uiux-fill { fill: #ede9fe; stroke: #c4b5fd; }
+      .phase-fill { fill: #eef2ff; stroke: #c7d2fe; }
+      .category-fill { fill: #f8fafc; stroke: #d8dee9; }
+      .legend-label { font: 700 12px Inter, Arial, sans-serif; fill: #172033; }
+    </style>
+  </defs>
+
+  <rect class="bg" width="1440" height="860"/>
+  <rect class="panel" x="40" y="34" width="1360" height="792" rx="12"/>
+
+  <text class="title" x="78" y="88">Domain - Phase - Category Flow</text>
+  <text class="subtitle" x="78" y="116">A parallel-sets style view for mixing three categorical variables: design domain, design phase, and refined category.</text>
+  <text class="subtitle" x="78" y="140">Category side should use Top 8-10 categories plus Others to keep the flow readable.</text>
+
+  <g transform="translate(78 178)">
+    <circle cx="0" cy="0" r="6" fill="#2563eb"/>
+    <text class="legend-label" x="12" y="4">ED</text>
+    <circle cx="62" cy="0" r="6" fill="#ea580c"/>
+    <text class="legend-label" x="74" y="4">SD</text>
+    <circle cx="124" cy="0" r="6" fill="#7c3aed"/>
+    <text class="legend-label" x="136" y="4">UIUX</text>
+    <text class="small" x="220" y="4">Band thickness represents case count. Hover in the real dashboard would show exact counts.</text>
+  </g>
+
+  <text class="axis" x="86" y="236">DOMAIN</text>
+  <text class="axis" x="508" y="236">DESIGN PHASE</text>
+  <text class="axis" x="930" y="236">REFINED CATEGORY</text>
+
+  <!-- Flow layer: domain to phase -->
+  <path class="flow-strong ed" stroke-width="23" d="M 238 306 C 350 306, 382 296, 494 296"/>
+  <path class="flow-strong ed" stroke-width="24" d="M 238 306 C 350 324, 382 380, 494 380"/>
+  <path class="flow-strong ed" stroke-width="20" d="M 238 306 C 350 350, 382 466, 494 466"/>
+  <path class="flow ed" stroke-width="6" d="M 238 306 C 350 374, 382 548, 494 548"/>
+
+  <path class="flow-strong sd" stroke-width="33" d="M 238 424 C 350 392, 382 312, 494 312"/>
+  <path class="flow-strong sd" stroke-width="25" d="M 238 424 C 350 416, 382 394, 494 394"/>
+  <path class="flow-strong sd" stroke-width="32" d="M 238 424 C 350 442, 382 478, 494 478"/>
+  <path class="flow-strong sd" stroke-width="20" d="M 238 424 C 350 468, 382 560, 494 560"/>
+
+  <path class="flow-strong uiux" stroke-width="18" d="M 238 542 C 350 476, 382 326, 494 326"/>
+  <path class="flow-strong uiux" stroke-width="20" d="M 238 542 C 350 500, 382 406, 494 406"/>
+  <path class="flow-strong uiux" stroke-width="36" d="M 238 542 C 350 530, 382 492, 494 492"/>
+  <path class="flow-strong uiux" stroke-width="15" d="M 238 542 C 350 570, 382 574, 494 574"/>
+
+  <!-- Flow layer: phase to category -->
+  <path class="flow-strong sd" stroke-width="38" d="M 690 306 C 806 300, 814 292, 930 292"/>
+  <path class="flow-strong ed" stroke-width="24" d="M 690 306 C 806 308, 814 302, 930 302"/>
+  <path class="flow-strong uiux" stroke-width="18" d="M 690 306 C 806 316, 814 314, 930 314"/>
+
+  <path class="flow ed" stroke-width="13" d="M 690 390 C 806 392, 814 374, 930 374"/>
+  <path class="flow-strong sd" stroke-width="19" d="M 690 390 C 806 402, 814 388, 930 388"/>
+  <path class="flow uiux" stroke-width="17" d="M 690 390 C 806 414, 814 402, 930 402"/>
+
+  <path class="flow-strong ed" stroke-width="20" d="M 690 480 C 806 480, 814 466, 930 466"/>
+  <path class="flow-strong sd" stroke-width="26" d="M 690 480 C 806 492, 814 480, 930 480"/>
+  <path class="flow-strong uiux" stroke-width="36" d="M 690 480 C 806 506, 814 494, 930 494"/>
+
+  <path class="flow sd" stroke-width="16" d="M 690 562 C 806 568, 814 552, 930 552"/>
+  <path class="flow uiux" stroke-width="14" d="M 690 562 C 806 582, 814 566, 930 566"/>
+  <path class="flow ed" stroke-width="4" d="M 690 562 C 806 596, 814 580, 930 580"/>
+
+  <path class="flow" stroke="#94a3b8" stroke-width="18" d="M 690 512 C 806 550, 814 638, 930 638"/>
+  <path class="flow" stroke="#94a3b8" stroke-width="15" d="M 690 410 C 806 446, 814 684, 930 684"/>
+
+  <!-- Domain nodes -->
+  <g>
+    <rect class="node ed-fill" x="86" y="268" width="152" height="76" rx="8"/>
+    <text class="node-title" x="108" y="300">ED</text>
+    <text class="node-meta" x="108" y="324">71 cases</text>
+
+    <rect class="node sd-fill" x="86" y="386" width="152" height="76" rx="8"/>
+    <text class="node-title" x="108" y="418">SD</text>
+    <text class="node-meta" x="108" y="442">110 cases</text>
+
+    <rect class="node uiux-fill" x="86" y="504" width="152" height="76" rx="8"/>
+    <text class="node-title" x="108" y="536">UIUX</text>
+    <text class="node-meta" x="108" y="560">89 cases</text>
+  </g>
+
+  <!-- Phase nodes -->
+  <g>
+    <rect class="node phase-fill" x="494" y="264" width="196" height="64" rx="8"/>
+    <text class="node-title" x="516" y="292">Discover</text>
+    <text class="node-meta" x="516" y="314">74 cases</text>
+
+    <rect class="node phase-fill" x="494" y="348" width="196" height="64" rx="8"/>
+    <text class="node-title" x="516" y="376">Define</text>
+    <text class="node-meta" x="516" y="398">69 cases</text>
+
+    <rect class="node phase-fill" x="494" y="434" width="196" height="64" rx="8"/>
+    <text class="node-title" x="516" y="462">Develop</text>
+    <text class="node-meta" x="516" y="484">88 cases</text>
+
+    <rect class="node phase-fill" x="494" y="520" width="196" height="64" rx="8"/>
+    <text class="node-title" x="516" y="548">Deliver</text>
+    <text class="node-meta" x="516" y="570">39 cases</text>
+  </g>
+
+  <!-- Category nodes -->
+  <g>
+    <rect class="node category-fill" x="930" y="260" width="378" height="54" rx="8"/>
+    <text class="node-title" x="952" y="284">Domain, Technical, and Market Knowledge</text>
+    <text class="node-meta" x="952" y="304">Mostly Discover</text>
+
+    <rect class="node category-fill" x="930" y="344" width="378" height="54" rx="8"/>
+    <text class="node-title" x="952" y="368">User / Customer Need Research</text>
+    <text class="node-meta" x="952" y="388">Mostly Define</text>
+
+    <rect class="node category-fill" x="930" y="430" width="378" height="54" rx="8"/>
+    <text class="node-title" x="952" y="454">Concept Exploration and Development</text>
+    <text class="node-meta" x="952" y="474">Mostly Develop</text>
+
+    <rect class="node category-fill" x="930" y="516" width="378" height="54" rx="8"/>
+    <text class="node-title" x="952" y="540">Documentation and Communication Support</text>
+    <text class="node-meta" x="952" y="560">Develop and Deliver</text>
+
+    <rect class="node category-fill" x="930" y="602" width="378" height="54" rx="8"/>
+    <text class="node-title" x="952" y="626">Design Critique and Assessment</text>
+    <text class="node-meta" x="952" y="646">Across Define and Develop</text>
+
+    <rect class="node category-fill" x="930" y="688" width="378" height="54" rx="8"/>
+    <text class="node-title" x="952" y="712">Others</text>
+    <text class="node-meta" x="952" y="732">Remaining lower-count categories</text>
+  </g>
+
+  <rect x="78" y="772" width="1232" height="34" rx="8" fill="#f8fafc" stroke="#d8dee9"/>
+  <text class="small" x="96" y="794">Interaction idea: click a domain, phase, or category node to highlight related bands; keep the current bar chart as a detail panel for the selected path.</text>
+</svg>

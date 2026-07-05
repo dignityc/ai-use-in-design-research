@@ -1,0 +1,22 @@
+Index,Article_Title,Category,Reference_Text_Preview,Found,Page_Numbers,Match_Confidence,Verification_Method,Issue_Type,Full_Reference_Text,Notes,Timestamp
+45,Machine Learning Algorithms for Improved Product Design User Experience,Design Discipline,"Manxin Chen:
+The core focus is enhancing product design user experience (UX) through algorithmic int...",Y,CANDIDATES,80,PARAPHRASE,PARAPHRASE,"Manxin Chen:
+The core focus is enhancing product design user experience (UX) through algorithmic intelligence. The methodologies are applied in the context of consumer product interfaces.",,2025-11-28T15:08:20.060462
+45,Machine Learning Algorithms for Improved Product Design User Experience,Data About,"Manxin Chen:
+The dataset is primarily composed of user interaction logs, clickstream data, and time-...",N,CANDIDATES,25,SEMANTIC,HALLUCINATION,"Manxin Chen:
+The dataset is primarily composed of user interaction logs, clickstream data, and time-on-task metrics collected from product prototypes. This captures explicit behavioral data indicative of user engagement and frustration.",,2025-11-28T15:08:46.373843
+45,Machine Learning Algorithms for Improved Product Design User Experience,Data Modality,"Manxin Chen:
+The data includes quantitative metrics such as conversion rates, task completion time, ...",Y,CANDIDATES,85,PARAPHRASE,NONE,"Manxin Chen:
+The data includes quantitative metrics such as conversion rates, task completion time, and error frequencies.",,2025-11-28T15:09:10.783180
+45,Machine Learning Algorithms for Improved Product Design User Experience,AI methods,"Manxin Chen:
+The proposed framework extensively uses clustering algorithms (e.g., K-means) to segmen...",Y,CANDIDATES,45,SEMANTIC,PARAPHRASE,"Manxin Chen:
+The proposed framework extensively uses clustering algorithms (e.g., K-means) to segment users by behavior, and classification models (e.g., Random Forest, SVM) to predict dissatisfaction.",,2025-11-28T15:09:38.515568
+45,Machine Learning Algorithms for Improved Product Design User Experience,"AI Assistance Types (Lee and Kim, 2025)","Manxin Chen:
+The primary goal is to predict potential user dissatisfaction (UX flaws) before widespr...",Y,CANDIDATES,72,PARAPHRASE,PARAPHRASE,"Manxin Chen:
+The primary goal is to predict potential user dissatisfaction (UX flaws) before widespread product deployment, acting as a proactive warning system.",,2025-11-28T15:10:08.707463
+45,Machine Learning Algorithms for Improved Product Design User Experience,Design Phase,"Manxin Chen:
+The insights generated directly inform the iterative refinement and optimization of the...",Y,CANDIDATES,88,PARAPHRASE,PARAPHRASE,"Manxin Chen:
+The insights generated directly inform the iterative refinement and optimization of the product interface design.",,2025-11-28T15:10:27.705271
+45,Machine Learning Algorithms for Improved Product Design User Experience,Design Practice/Task,"Manxin Chen:
+Machine Learning Algorithms for Improved Product Design User Experience.",Y,CANDIDATES,100,EXACT,NONE,"Manxin Chen:
+Machine Learning Algorithms for Improved Product Design User Experience.",,2025-11-28T15:10:52.666383

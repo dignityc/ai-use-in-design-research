@@ -1,0 +1,2 @@
+[mcp_servers.serena]
+command = "uvx --from git+https://github.com/oraios/serena serena-mcp-server --enable-web-dashboard false"

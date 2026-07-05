@@ -1,0 +1,534 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>State Factor Map - PCA/SVD Style</title>
+  <style>
+    :root {
+      --ink: #172033;
+      --muted: #667085;
+      --line: #d8dee9;
+      --page: #f5f7fb;
+      --panel: #ffffff;
+      --blue: #2754c5;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      background: var(--page);
+      color: var(--ink);
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      letter-spacing: 0;
+    }
+    .shell {
+      max-width: 1460px;
+      margin: 0 auto;
+      padding: 28px;
+    }
+    .top {
+      display: flex;
+      align-items: end;
+      justify-content: space-between;
+      gap: 18px;
+      margin-bottom: 16px;
+    }
+    h1 {
+      margin: 0;
+      font-size: 26px;
+      line-height: 1.15;
+    }
+    .sub {
+      max-width: 980px;
+      margin: 8px 0 0;
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.5;
+    }
+    .back {
+      flex: 0 0 auto;
+      display: inline-flex;
+      align-items: center;
+      height: 34px;
+      padding: 0 12px;
+      border: 1px solid var(--line);
+      border-radius: 6px;
+      color: var(--blue);
+      background: #fff;
+      font-size: 13px;
+      font-weight: 750;
+      text-decoration: none;
+    }
+    .toolbar {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      align-items: center;
+      margin-bottom: 14px;
+    }
+    button, select {
+      height: 34px;
+      padding: 0 12px;
+      border: 1px solid var(--line);
+      border-radius: 6px;
+      background: #fff;
+      color: var(--muted);
+      font: inherit;
+      font-size: 13px;
+      font-weight: 800;
+    }
+    button { cursor: pointer; }
+    button.active {
+      border-color: var(--blue);
+      background: var(--blue);
+      color: #fff;
+    }
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+      gap: 12px;
+      margin-bottom: 14px;
+    }
+    .stat, .panel {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+    }
+    .stat { padding: 12px 14px; }
+    .label {
+      color: var(--muted);
+      font-size: 11px;
+      font-weight: 850;
+      text-transform: uppercase;
+    }
+    .metric {
+      margin-top: 6px;
+      font-size: 22px;
+      font-weight: 850;
+      line-height: 1;
+    }
+    .note {
+      margin-top: 5px;
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.3;
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(420px, .72fr);
+      gap: 14px;
+    }
+    .panel { overflow: hidden; }
+    .panel-head {
+      padding: 14px 16px;
+      border-bottom: 1px solid var(--line);
+      background: #fbfcff;
+    }
+    .panel-title {
+      margin: 0;
+      font-size: 15px;
+      font-weight: 800;
+    }
+    .panel-caption {
+      margin-top: 4px;
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.35;
+    }
+    .plot-wrap {
+      padding: 12px;
+      background: #fff;
+    }
+    .plot-svg {
+      width: 100%;
+      height: auto;
+      display: block;
+      border: 1px solid #edf1f7;
+      border-radius: 8px;
+      background:
+        linear-gradient(#f1f4f9 1px, transparent 1px),
+        linear-gradient(90deg, #f1f4f9 1px, transparent 1px),
+        #fff;
+      background-size: 32px 32px;
+    }
+    .state-point { cursor: pointer; }
+    .state-point circle {
+      stroke: #fff;
+      stroke-width: 2.5;
+    }
+    .state-point.active circle {
+      stroke: #172033;
+      stroke-width: 4;
+    }
+    .state-point text {
+      pointer-events: none;
+      user-select: none;
+      paint-order: stroke;
+      stroke: #fff;
+      stroke-width: 4px;
+      stroke-linejoin: round;
+    }
+    .side {
+      display: grid;
+      gap: 14px;
+      align-content: start;
+    }
+    .list {
+      padding: 12px 14px 14px;
+      max-height: 410px;
+      overflow: auto;
+    }
+    .card {
+      padding: 11px 12px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: #fff;
+    }
+    .card + .card { margin-top: 9px; }
+    .card-top {
+      display: flex;
+      justify-content: space-between;
+      gap: 10px;
+      align-items: start;
+    }
+    .card-title {
+      margin: 0;
+      font-size: 13px;
+      font-weight: 850;
+      line-height: 1.25;
+    }
+    .badge {
+      flex: 0 0 auto;
+      display: inline-flex;
+      align-items: center;
+      min-height: 22px;
+      padding: 2px 7px;
+      border-radius: 999px;
+      color: #064e3b;
+      background: #dff4e8;
+      font-size: 12px;
+      font-weight: 850;
+      white-space: nowrap;
+    }
+    .loading-row {
+      display: grid;
+      grid-template-columns: minmax(145px, .9fr) minmax(0, 1fr) 58px;
+      gap: 8px;
+      align-items: center;
+      margin-top: 8px;
+      font-size: 12px;
+    }
+    .loading-label {
+      min-width: 0;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+    .track {
+      height: 9px;
+      border-radius: 999px;
+      background: #edf1f7;
+      overflow: hidden;
+    }
+    .fill {
+      height: 100%;
+      border-radius: 999px;
+    }
+    .legend {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px 12px;
+      padding: 12px 14px;
+      border-top: 1px solid var(--line);
+      background: #fbfcff;
+      color: var(--muted);
+      font-size: 12px;
+    }
+    .legend-dot {
+      display: inline-block;
+      width: 9px;
+      height: 9px;
+      border-radius: 999px;
+      margin-right: 5px;
+      vertical-align: -1px;
+    }
+    .insight {
+      padding: 13px 16px 14px;
+      border-top: 1px solid var(--line);
+      background: #fbfcff;
+    }
+    .insight-title {
+      margin: 0 0 6px;
+      font-size: 12px;
+      font-weight: 850;
+      text-transform: uppercase;
+    }
+    .insight p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.5;
+    }
+    .section { margin-top: 14px; }
+    .error {
+      padding: 18px;
+      color: #b42318;
+      background: #fff;
+      border: 1px solid #f4b8b8;
+      border-radius: 8px;
+    }
+    @media (max-width: 980px) {
+      .grid { grid-template-columns: 1fr; }
+      .top { align-items: start; flex-direction: column; }
+    }
+  </style>
+</head>
+<body>
+  <main class="shell">
+    <div class="top">
+      <div>
+        <h1>State Factor Map</h1>
+        <p class="sub">Centered one-hot PCA view for state-level categorical patterns. Axis interpretation is not assigned upfront; it is derived from the component loading lists.</p>
+      </div>
+      <a class="back" href="./#phase">Back to Phase View</a>
+    </div>
+    <div id="app"><div class="error">Loading phase_state_level_analysis.json...</div></div>
+  </main>
+
+  <script>
+    const colors = {
+      Phase: '#2754c5',
+      Discipline: '#7c3aed',
+      Dimension: '#087c7a',
+      Category: '#a75c00',
+      Assistance: '#475467',
+      Outcome: '#b42318'
+    };
+    const phases = ['Discover', 'Define', 'Develop', 'Deliver'];
+    let data;
+    let activePhase = 'Discover';
+    let activeVariable = 'All';
+    let selectedNodeId = 'Phase=Discover';
+
+    function fmt(number, digits = 2) {
+      return Number(number).toLocaleString(undefined, { maximumFractionDigits: digits, minimumFractionDigits: digits });
+    }
+    function pct(number) {
+      return `${Math.round(number * 100)}%`;
+    }
+    function shortLabel(label, n = 26) {
+      const text = String(label || '');
+      return text.length > n ? `${text.slice(0, n - 1)}...` : text;
+    }
+    function visibleNodes() {
+      return data.factorMap.nodes.filter(node => activeVariable === 'All' || node.variable === activeVariable || node.variable === 'Phase');
+    }
+    function nodeRadius(node) {
+      if (node.variable === 'Phase') return node.label === activePhase ? 18 : 13;
+      return 6 + Math.min(11, Math.sqrt(node.count) * .75);
+    }
+    function distance(a, b) {
+      const dx = a.component1 - b.component1;
+      const dy = a.component2 - b.component2;
+      return Math.sqrt(dx * dx + dy * dy);
+    }
+    function nearestToPhase() {
+      const nodes = data.factorMap.nodes;
+      const phase = nodes.find(node => node.id === `Phase=${activePhase}`);
+      if (!phase) return [];
+      return nodes
+        .filter(node => node.id !== phase.id && node.variable !== 'Phase')
+        .map(node => ({ ...node, distance: distance(phase, node) }))
+        .sort((a, b) => a.distance - b.distance)
+        .slice(0, 10);
+    }
+    function component(componentNumber) {
+      return data.factorMap.componentLoadings.find(item => item.component === componentNumber);
+    }
+    function renderToolbar() {
+      return `
+        <div class="toolbar">
+          ${phases.map(phase => `<button class="${phase === activePhase ? 'active' : ''}" data-phase="${phase}">${phase}</button>`).join('')}
+          <select id="variableFilter">
+            ${['All', 'Dimension', 'Category', 'Assistance', 'Outcome', 'Discipline'].map(v => `<option value="${v}" ${v === activeVariable ? 'selected' : ''}>${v === 'All' ? 'All state types' : v}</option>`).join('')}
+          </select>
+        </div>
+      `;
+    }
+    function renderStats() {
+      const evr = data.factorMap.explainedVarianceRatio;
+      return `
+        <div class="stats">
+          <div class="stat"><div class="label">Method</div><div class="metric">PCA</div><div class="note">Centered one-hot matrix</div></div>
+          <div class="stat"><div class="label">State nodes</div><div class="metric">${data.factorMap.nodes.length}</div><div class="note">Observed categorical states</div></div>
+          <div class="stat"><div class="label">Component 1</div><div class="metric">${pct(evr[0])}</div><div class="note">Explained variance</div></div>
+          <div class="stat"><div class="label">Component 2</div><div class="metric">${pct(evr[1])}</div><div class="note">Explained variance</div></div>
+          <div class="stat"><div class="label">Shown states</div><div class="metric">${visibleNodes().length}</div><div class="note">After filter</div></div>
+        </div>
+      `;
+    }
+    function renderPlot() {
+      const evr = data.factorMap.explainedVarianceRatio;
+      const nodes = visibleNodes();
+      const pointMarkup = nodes.map(node => {
+        const active = node.id === selectedNodeId;
+        const r = nodeRadius(node);
+        return `
+          <g class="state-point ${active ? 'active' : ''}" data-node="${node.id}">
+            <circle cx="${node.x}" cy="${node.y}" r="${r}" fill="${node.color}" opacity=".92"></circle>
+            <text x="${node.x}" y="${node.y + r + 14}" text-anchor="middle" fill="#172033" font-size="${node.variable === 'Phase' ? 12 : 10}" font-weight="${node.variable === 'Phase' ? 850 : 700}">${shortLabel(node.label, node.variable === 'Phase' ? 16 : 22)}</text>
+          </g>
+        `;
+      }).join('');
+      return `
+        <svg class="plot-svg" viewBox="0 0 1000 700" role="img" aria-label="PCA factor map">
+          <line x1="60" y1="340" x2="940" y2="340" stroke="#98a2b3" stroke-width="1.2" stroke-dasharray="5 6"></line>
+          <line x1="500" y1="60" x2="500" y2="620" stroke="#98a2b3" stroke-width="1.2" stroke-dasharray="5 6"></line>
+          <text x="500" y="664" text-anchor="middle" fill="#172033" font-size="13" font-weight="850">Component 1 (${pct(evr[0])} explained variance)</text>
+          <text x="24" y="340" transform="rotate(-90 24 340)" text-anchor="middle" fill="#172033" font-size="13" font-weight="850">Component 2 (${pct(evr[1])} explained variance)</text>
+          ${pointMarkup}
+        </svg>
+      `;
+    }
+    function renderLegend() {
+      return `
+        <div class="legend">
+          ${Object.entries(colors).map(([variable, color]) => `<span><i class="legend-dot" style="background:${color};"></i>${variable}</span>`).join('')}
+        </div>
+      `;
+    }
+    function renderNodeCard(node) {
+      return `
+        <article class="card">
+          <div class="card-top">
+            <h3 class="card-title">${node.variable}: ${node.label}</h3>
+            <span class="badge">${node.count}</span>
+          </div>
+          <div class="note">C1 ${fmt(node.component1, 3)} / C2 ${fmt(node.component2, 3)}; appears in ${pct(node.share)} of value-events.</div>
+        </article>
+      `;
+    }
+    function loadingRows(items, side) {
+      const max = Math.max(...items.map(item => Math.abs(item.loading)), 0.001);
+      return items.slice(0, 8).map(item => `
+        <div class="loading-row" title="${item.variable}: ${item.label}">
+          <div class="loading-label">${item.variable}: ${shortLabel(item.label, 28)}</div>
+          <div class="track"><div class="fill" style="width:${Math.max(3, Math.abs(item.loading) / max * 100)}%; background:${side === 'positive' ? '#2754c5' : '#b42318'};"></div></div>
+          <div>${fmt(item.loading, 3)}</div>
+        </div>
+      `).join('');
+    }
+    function renderComponentCard(componentNumber) {
+      const comp = component(componentNumber);
+      return `
+        <section class="panel">
+          <div class="panel-head">
+            <h2 class="panel-title">Component ${componentNumber} loadings</h2>
+            <div class="panel-caption">Axis meaning should be inferred from these actual positive and negative loading states.</div>
+          </div>
+          <div class="list">
+            <article class="card">
+              <div class="card-top"><h3 class="card-title">Positive side</h3><span class="badge">+ loading</span></div>
+              ${loadingRows(comp.positive, 'positive')}
+            </article>
+            <article class="card">
+              <div class="card-top"><h3 class="card-title">Negative side</h3><span class="badge">- loading</span></div>
+              ${loadingRows(comp.negative, 'negative')}
+            </article>
+          </div>
+        </section>
+      `;
+    }
+    function renderSide() {
+      const nodes = data.factorMap.nodes;
+      const selected = nodes.find(node => node.id === selectedNodeId) || nodes.find(node => node.id === `Phase=${activePhase}`);
+      const nearest = nearestToPhase();
+      return `
+        <div class="side">
+          <section class="panel">
+            <div class="panel-head">
+              <h2 class="panel-title">Selected state</h2>
+              <div class="panel-caption">Click a point in the biplot.</div>
+            </div>
+            <div class="list">${selected ? renderNodeCard(selected) : '<div class="note">No state selected.</div>'}</div>
+          </section>
+          <section class="panel">
+            <div class="panel-head">
+              <h2 class="panel-title">${activePhase}: nearest states</h2>
+              <div class="panel-caption">Nearest by Component 1/2 position in the factor map.</div>
+            </div>
+            <div class="list">
+              ${nearest.map(node => `
+                <article class="card">
+                  <div class="card-top">
+                    <h3 class="card-title">${node.variable}: ${node.label}</h3>
+                    <span class="badge">${fmt(node.distance, 2)}</span>
+                  </div>
+                </article>
+              `).join('')}
+            </div>
+          </section>
+        </div>
+      `;
+    }
+    function renderApp() {
+      if (!selectedNodeId || !data.factorMap.nodes.some(node => node.id === selectedNodeId)) {
+        selectedNodeId = `Phase=${activePhase}`;
+      }
+      document.getElementById('app').innerHTML = `
+        ${renderToolbar()}
+        ${renderStats()}
+        <div class="grid">
+          <section class="panel">
+            <div class="panel-head">
+              <h2 class="panel-title">State biplot</h2>
+              <div class="panel-caption">Points are observed states. Labels for Component 1/2 are intentionally not pre-named; use the loading panels below.</div>
+            </div>
+            <div class="plot-wrap">${renderPlot()}</div>
+            ${renderLegend()}
+            <div class="insight">
+              <p class="insight-title">Interpretation rule</p>
+              <p>Do not name the axes from intuition. First inspect the positive and negative loading states for each component, then assign a cautious interpretation.</p>
+            </div>
+          </section>
+          ${renderSide()}
+        </div>
+        <div class="grid section">
+          ${renderComponentCard(1)}
+          ${renderComponentCard(2)}
+        </div>
+      `;
+      document.querySelectorAll('button[data-phase]').forEach(button => {
+        button.addEventListener('click', () => {
+          activePhase = button.dataset.phase;
+          selectedNodeId = `Phase=${activePhase}`;
+          renderApp();
+        });
+      });
+      document.getElementById('variableFilter').addEventListener('change', event => {
+        activeVariable = event.target.value;
+        renderApp();
+      });
+      document.querySelectorAll('.state-point').forEach(point => {
+        point.addEventListener('click', () => {
+          selectedNodeId = point.dataset.node;
+          renderApp();
+        });
+      });
+    }
+
+    fetch('phase_state_level_analysis.json')
+      .then(response => {
+        if (!response.ok) throw new Error(`HTTP ${response.status}`);
+        return response.json();
+      })
+      .then(json => {
+        data = json;
+        renderApp();
+      })
+      .catch(error => {
+        document.getElementById('app').innerHTML = `<div class="error">Could not load phase_state_level_analysis.json: ${error.message}</div>`;
+      });
+  </script>
+</body>
+</html>

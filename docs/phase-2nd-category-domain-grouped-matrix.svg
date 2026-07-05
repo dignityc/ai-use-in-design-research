@@ -1,0 +1,332 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="1120" viewBox="0 0 1600 1120">
+  <defs>
+    <style>
+      .bg { fill: #f5f7fb; }
+      .panel { fill: #fff; stroke: #d8dee9; }
+      .title { font: 800 30px Inter, Arial, sans-serif; fill: #172033; }
+      .subtitle { font: 500 15px Inter, Arial, sans-serif; fill: #667085; }
+      .axis { font: 800 13px Inter, Arial, sans-serif; fill: #667085; letter-spacing: .4px; }
+      .phase { font: 800 15px Inter, Arial, sans-serif; fill: #172033; text-anchor: middle; }
+      .dimension { font: 800 13px Inter, Arial, sans-serif; fill: #172033; }
+      .category { font: 720 12px Inter, Arial, sans-serif; fill: #334155; }
+      .small { font: 700 11px Inter, Arial, sans-serif; fill: #667085; }
+      .legend { font: 700 12px Inter, Arial, sans-serif; fill: #172033; }
+      .cell { fill: #ffffff; stroke: #e5eaf2; }
+      .cell-alt { fill: #fbfcff; stroke: #e5eaf2; }
+      .group-bg-a { fill: #f8fafc; }
+      .group-bg-b { fill: #fdfcff; }
+      .br { fill: #dbeafe; }
+      .ig { fill: #dcfce7; }
+      .de { fill: #fee2e2; }
+      .pm { fill: #fef3c7; }
+      .ed { fill: #2563eb; }
+      .sd { fill: #ea580c; }
+      .uiux { fill: #7c3aed; }
+      .empty { fill: #e2e8f0; }
+      .total { font: 800 11px Inter, Arial, sans-serif; fill: #334155; text-anchor: middle; }
+      .cell-label { font: 800 9px Inter, Arial, sans-serif; fill: #ffffff; text-anchor: middle; dominant-baseline: central; }
+      .note { fill: #fbfcff; stroke: #d8dee9; }
+    </style>
+  </defs>
+
+  <rect class="bg" width="1600" height="1120"/>
+  <rect class="panel" x="40" y="34" width="1520" height="1048" rx="12"/>
+
+  <text class="title" x="78" y="88">Phase x 2nd-Order Category by Domain</text>
+  <text class="subtitle" x="78" y="116">A grouped matrix that includes both category levels: Aggregated Dimension as row groups, 2nd-order category as rows.</text>
+  <text class="subtitle" x="78" y="140">Domain is encoded inside each cell with colored bubbles, so the axes stay focused on phase and category structure.</text>
+
+  <g transform="translate(78 180)">
+    <circle cx="7" cy="-2" r="7" class="ed"/>
+    <text class="legend" x="22" y="2">ED</text>
+    <circle cx="72" cy="-2" r="7" class="sd"/>
+    <text class="legend" x="88" y="2">SD</text>
+    <circle cx="142" cy="-2" r="7" class="uiux"/>
+    <text class="legend" x="158" y="2">UIUX</text>
+    <text class="small" x="240" y="2">Bubble size = case count in that domain. Cell total appears at right.</text>
+  </g>
+
+  <text class="axis" x="78" y="244">AGGREGATED DIMENSION</text>
+  <text class="axis" x="336" y="244">2ND-ORDER CATEGORY</text>
+  <text class="phase" x="724" y="244">Discover</text>
+  <text class="phase" x="922" y="244">Define</text>
+  <text class="phase" x="1120" y="244">Develop</text>
+  <text class="phase" x="1318" y="244">Deliver</text>
+
+  <!-- Group 1 -->
+  <rect class="group-bg-a" x="66" y="266" width="1430" height="186" rx="10"/>
+  <rect class="br" x="78" y="282" width="14" height="152" rx="7"/>
+  <text class="dimension" x="106" y="318">Background Research</text>
+  <text class="dimension" x="106" y="338">&amp; Sensemaking</text>
+
+  <text class="category" x="336" y="304">Domain, Technical, &amp; Market Knowledge</text>
+  <text class="category" x="336" y="326">Business Direction &amp; Strategy Planning</text>
+  <text class="category" x="336" y="348">User / Customer Need Research</text>
+
+  <!-- BR row 1 cells -->
+  <g transform="translate(650 282)">
+    <rect class="cell-alt" width="148" height="40" rx="8"/>
+    <circle class="ed" cx="42" cy="20" r="13"/><circle class="sd" cx="74" cy="20" r="19"/><circle class="uiux" cx="110" cy="20" r="11"/>
+    <text class="total" x="132" y="24">48</text>
+  </g>
+  <g transform="translate(848 282)">
+    <rect class="cell" width="148" height="40" rx="8"/>
+    <circle class="ed" cx="42" cy="20" r="7"/><circle class="sd" cx="74" cy="20" r="8"/><circle class="uiux" cx="110" cy="20" r="6"/>
+    <text class="total" x="132" y="24">11</text>
+  </g>
+  <g transform="translate(1046 282)">
+    <rect class="cell" width="148" height="40" rx="8"/>
+    <circle class="empty" cx="42" cy="20" r="4"/><circle class="sd" cx="74" cy="20" r="6"/><circle class="uiux" cx="110" cy="20" r="5"/>
+    <text class="total" x="132" y="24">4</text>
+  </g>
+  <g transform="translate(1244 282)">
+    <rect class="cell" width="148" height="40" rx="8"/>
+    <circle class="empty" cx="42" cy="20" r="4"/><circle class="sd" cx="74" cy="20" r="5"/><circle class="empty" cx="110" cy="20" r="4"/>
+    <text class="total" x="132" y="24">2</text>
+  </g>
+
+  <!-- BR row 2 cells -->
+  <g transform="translate(650 330)">
+    <rect class="cell" width="148" height="40" rx="8"/>
+    <circle class="empty" cx="42" cy="20" r="4"/><circle class="sd" cx="74" cy="20" r="6"/><circle class="uiux" cx="110" cy="20" r="5"/>
+    <text class="total" x="132" y="24">3</text>
+  </g>
+  <g transform="translate(848 330)">
+    <rect class="cell-alt" width="148" height="40" rx="8"/>
+    <circle class="ed" cx="42" cy="20" r="9"/><circle class="sd" cx="74" cy="20" r="10"/><circle class="uiux" cx="110" cy="20" r="8"/>
+    <text class="total" x="132" y="24">6</text>
+  </g>
+  <g transform="translate(1046 330)">
+    <rect class="cell" width="148" height="40" rx="8"/>
+    <circle class="ed" cx="42" cy="20" r="8"/><circle class="sd" cx="74" cy="20" r="8"/><circle class="uiux" cx="110" cy="20" r="7"/>
+    <text class="total" x="132" y="24">4</text>
+  </g>
+  <g transform="translate(1244 330)">
+    <rect class="cell" width="148" height="40" rx="8"/>
+    <circle class="empty" cx="42" cy="20" r="4"/><circle class="sd" cx="74" cy="20" r="5"/><circle class="empty" cx="110" cy="20" r="4"/>
+    <text class="total" x="132" y="24">1</text>
+  </g>
+
+  <!-- BR row 3 cells -->
+  <g transform="translate(650 378)">
+    <rect class="cell" width="148" height="40" rx="8"/>
+    <circle class="ed" cx="42" cy="20" r="8"/><circle class="sd" cx="74" cy="20" r="9"/><circle class="uiux" cx="110" cy="20" r="7"/>
+    <text class="total" x="132" y="24">8</text>
+  </g>
+  <g transform="translate(848 378)">
+    <rect class="cell-alt" width="148" height="40" rx="8"/>
+    <circle class="ed" cx="42" cy="20" r="14"/><circle class="sd" cx="74" cy="20" r="15"/><circle class="uiux" cx="110" cy="20" r="11"/>
+    <text class="total" x="132" y="24">19</text>
+  </g>
+  <g transform="translate(1046 378)">
+    <rect class="cell" width="148" height="40" rx="8"/>
+    <circle class="ed" cx="42" cy="20" r="7"/><circle class="sd" cx="74" cy="20" r="8"/><circle class="uiux" cx="110" cy="20" r="6"/>
+    <text class="total" x="132" y="24">5</text>
+  </g>
+  <g transform="translate(1244 378)">
+    <rect class="cell" width="148" height="40" rx="8"/>
+    <circle class="empty" cx="42" cy="20" r="4"/><circle class="sd" cx="74" cy="20" r="5"/><circle class="empty" cx="110" cy="20" r="4"/>
+    <text class="total" x="132" y="24">1</text>
+  </g>
+
+  <!-- Group 2 -->
+  <rect class="group-bg-b" x="66" y="466" width="1430" height="186" rx="10"/>
+  <rect class="ig" x="78" y="482" width="14" height="152" rx="7"/>
+  <text class="dimension" x="106" y="518">Ideation &amp; Design</text>
+  <text class="dimension" x="106" y="538">Generation</text>
+
+  <text class="category" x="336" y="504">Concept Exploration &amp; Development</text>
+  <text class="category" x="336" y="526">Prototype Generation</text>
+  <text class="category" x="336" y="548">Scenario Creation</text>
+
+  <g transform="translate(650 482)">
+    <rect class="cell" width="148" height="40" rx="8"/>
+    <circle class="ed" cx="42" cy="20" r="5"/><circle class="sd" cx="74" cy="20" r="6"/><circle class="uiux" cx="110" cy="20" r="6"/>
+    <text class="total" x="132" y="24">2</text>
+  </g>
+  <g transform="translate(848 482)">
+    <rect class="cell" width="148" height="40" rx="8"/>
+    <circle class="ed" cx="42" cy="20" r="7"/><circle class="sd" cx="74" cy="20" r="8"/><circle class="uiux" cx="110" cy="20" r="7"/>
+    <text class="total" x="132" y="24">5</text>
+  </g>
+  <g transform="translate(1046 482)">
+    <rect class="cell-alt" width="148" height="40" rx="8"/>
+    <circle class="ed" cx="42" cy="20" r="14"/><circle class="sd" cx="74" cy="20" r="17"/><circle class="uiux" cx="110" cy="20" r="20"/>
+    <text class="total" x="132" y="24">26</text>
+  </g>
+  <g transform="translate(1244 482)">
+    <rect class="cell" width="148" height="40" rx="8"/>
+    <circle class="empty" cx="42" cy="20" r="4"/><circle class="sd" cx="74" cy="20" r="5"/><circle class="empty" cx="110" cy="20" r="4"/>
+    <text class="total" x="132" y="24">1</text>
+  </g>
+
+  <g transform="translate(650 530)">
+    <rect class="cell" width="148" height="40" rx="8"/>
+    <circle class="empty" cx="42" cy="20" r="4"/><circle class="empty" cx="74" cy="20" r="4"/><circle class="uiux" cx="110" cy="20" r="5"/>
+    <text class="total" x="132" y="24">0</text>
+  </g>
+  <g transform="translate(848 530)">
+    <rect class="cell" width="148" height="40" rx="8"/>
+    <circle class="ed" cx="42" cy="20" r="6"/><circle class="sd" cx="74" cy="20" r="6"/><circle class="uiux" cx="110" cy="20" r="5"/>
+    <text class="total" x="132" y="24">3</text>
+  </g>
+  <g transform="translate(1046 530)">
+    <rect class="cell-alt" width="148" height="40" rx="8"/>
+    <circle class="ed" cx="42" cy="20" r="9"/><circle class="sd" cx="74" cy="20" r="10"/><circle class="uiux" cx="110" cy="20" r="9"/>
+    <text class="total" x="132" y="24">8</text>
+  </g>
+  <g transform="translate(1244 530)">
+    <rect class="cell" width="148" height="40" rx="8"/>
+    <circle class="ed" cx="42" cy="20" r="5"/><circle class="sd" cx="74" cy="20" r="5"/><circle class="uiux" cx="110" cy="20" r="4"/>
+    <text class="total" x="132" y="24">1</text>
+  </g>
+
+  <g transform="translate(650 578)">
+    <rect class="cell" width="148" height="40" rx="8"/>
+    <circle class="empty" cx="42" cy="20" r="4"/><circle class="empty" cx="74" cy="20" r="4"/><circle class="empty" cx="110" cy="20" r="4"/>
+    <text class="total" x="132" y="24">0</text>
+  </g>
+  <g transform="translate(848 578)">
+    <rect class="cell" width="148" height="40" rx="8"/>
+    <circle class="empty" cx="42" cy="20" r="4"/><circle class="sd" cx="74" cy="20" r="5"/><circle class="uiux" cx="110" cy="20" r="5"/>
+    <text class="total" x="132" y="24">2</text>
+  </g>
+  <g transform="translate(1046 578)">
+    <rect class="cell-alt" width="148" height="40" rx="8"/>
+    <circle class="ed" cx="42" cy="20" r="7"/><circle class="sd" cx="74" cy="20" r="8"/><circle class="uiux" cx="110" cy="20" r="7"/>
+    <text class="total" x="132" y="24">6</text>
+  </g>
+  <g transform="translate(1244 578)">
+    <rect class="cell" width="148" height="40" rx="8"/>
+    <circle class="empty" cx="42" cy="20" r="4"/><circle class="sd" cx="74" cy="20" r="6"/><circle class="uiux" cx="110" cy="20" r="5"/>
+    <text class="total" x="132" y="24">2</text>
+  </g>
+
+  <!-- Group 3 -->
+  <rect class="group-bg-a" x="66" y="666" width="1430" height="186" rx="10"/>
+  <rect class="de" x="78" y="682" width="14" height="152" rx="7"/>
+  <text class="dimension" x="106" y="718">Design &amp; Process</text>
+  <text class="dimension" x="106" y="738">Evaluation</text>
+
+  <text class="category" x="336" y="704">Design Critique &amp; Assessment</text>
+  <text class="category" x="336" y="726">Outcome Testing &amp; Prediction</text>
+  <text class="category" x="336" y="748">Design Process Evaluation</text>
+
+  <g transform="translate(650 682)">
+    <rect class="cell" width="148" height="40" rx="8"/>
+    <circle class="empty" cx="42" cy="20" r="4"/><circle class="sd" cx="74" cy="20" r="5"/><circle class="uiux" cx="110" cy="20" r="5"/>
+    <text class="total" x="132" y="24">1</text>
+  </g>
+  <g transform="translate(848 682)">
+    <rect class="cell-alt" width="148" height="40" rx="8"/>
+    <circle class="ed" cx="42" cy="20" r="10"/><circle class="sd" cx="74" cy="20" r="12"/><circle class="uiux" cx="110" cy="20" r="10"/>
+    <text class="total" x="132" y="24">10</text>
+  </g>
+  <g transform="translate(1046 682)">
+    <rect class="cell-alt" width="148" height="40" rx="8"/>
+    <circle class="ed" cx="42" cy="20" r="10"/><circle class="sd" cx="74" cy="20" r="11"/><circle class="uiux" cx="110" cy="20" r="10"/>
+    <text class="total" x="132" y="24">10</text>
+  </g>
+  <g transform="translate(1244 682)">
+    <rect class="cell" width="148" height="40" rx="8"/>
+    <circle class="ed" cx="42" cy="20" r="5"/><circle class="sd" cx="74" cy="20" r="6"/><circle class="uiux" cx="110" cy="20" r="5"/>
+    <text class="total" x="132" y="24">4</text>
+  </g>
+
+  <g transform="translate(650 730)">
+    <rect class="cell" width="148" height="40" rx="8"/>
+    <circle class="empty" cx="42" cy="20" r="4"/><circle class="empty" cx="74" cy="20" r="4"/><circle class="empty" cx="110" cy="20" r="4"/>
+    <text class="total" x="132" y="24">0</text>
+  </g>
+  <g transform="translate(848 730)">
+    <rect class="cell" width="148" height="40" rx="8"/>
+    <circle class="ed" cx="42" cy="20" r="6"/><circle class="sd" cx="74" cy="20" r="6"/><circle class="uiux" cx="110" cy="20" r="5"/>
+    <text class="total" x="132" y="24">3</text>
+  </g>
+  <g transform="translate(1046 730)">
+    <rect class="cell-alt" width="148" height="40" rx="8"/>
+    <circle class="ed" cx="42" cy="20" r="9"/><circle class="sd" cx="74" cy="20" r="10"/><circle class="uiux" cx="110" cy="20" r="9"/>
+    <text class="total" x="132" y="24">11</text>
+  </g>
+  <g transform="translate(1244 730)">
+    <rect class="cell" width="148" height="40" rx="8"/>
+    <circle class="ed" cx="42" cy="20" r="6"/><circle class="sd" cx="74" cy="20" r="7"/><circle class="uiux" cx="110" cy="20" r="6"/>
+    <text class="total" x="132" y="24">7</text>
+  </g>
+
+  <g transform="translate(650 778)">
+    <rect class="cell" width="148" height="40" rx="8"/>
+    <circle class="empty" cx="42" cy="20" r="4"/><circle class="empty" cx="74" cy="20" r="4"/><circle class="empty" cx="110" cy="20" r="4"/>
+    <text class="total" x="132" y="24">0</text>
+  </g>
+  <g transform="translate(848 778)">
+    <rect class="cell" width="148" height="40" rx="8"/>
+    <circle class="empty" cx="42" cy="20" r="4"/><circle class="sd" cx="74" cy="20" r="5"/><circle class="empty" cx="110" cy="20" r="4"/>
+    <text class="total" x="132" y="24">1</text>
+  </g>
+  <g transform="translate(1046 778)">
+    <rect class="cell" width="148" height="40" rx="8"/>
+    <circle class="ed" cx="42" cy="20" r="6"/><circle class="sd" cx="74" cy="20" r="6"/><circle class="uiux" cx="110" cy="20" r="6"/>
+    <text class="total" x="132" y="24">4</text>
+  </g>
+  <g transform="translate(1244 778)">
+    <rect class="cell" width="148" height="40" rx="8"/>
+    <circle class="empty" cx="42" cy="20" r="4"/><circle class="empty" cx="74" cy="20" r="4"/><circle class="empty" cx="110" cy="20" r="4"/>
+    <text class="total" x="132" y="24">0</text>
+  </g>
+
+  <!-- Group 4 -->
+  <rect class="group-bg-b" x="66" y="866" width="1430" height="144" rx="10"/>
+  <rect class="pm" x="78" y="882" width="14" height="110" rx="7"/>
+  <text class="dimension" x="106" y="918">Planning, Coordination</text>
+  <text class="dimension" x="106" y="938">&amp; Management</text>
+
+  <text class="category" x="336" y="904">Project Planning &amp; Workflow Management</text>
+  <text class="category" x="336" y="926">Documentation &amp; Communication Support</text>
+  <text class="category" x="336" y="948">Design Systems Management</text>
+
+  <g transform="translate(650 882)">
+    <rect class="cell" width="148" height="40" rx="8"/>
+    <circle class="ed" cx="42" cy="20" r="7"/><circle class="sd" cx="74" cy="20" r="8"/><circle class="uiux" cx="110" cy="20" r="7"/>
+    <text class="total" x="132" y="24">6</text>
+  </g>
+  <g transform="translate(848 882)">
+    <rect class="cell" width="148" height="40" rx="8"/>
+    <circle class="ed" cx="42" cy="20" r="8"/><circle class="sd" cx="74" cy="20" r="8"/><circle class="uiux" cx="110" cy="20" r="7"/>
+    <text class="total" x="132" y="24">6</text>
+  </g>
+  <g transform="translate(1046 882)">
+    <rect class="cell" width="148" height="40" rx="8"/>
+    <circle class="ed" cx="42" cy="20" r="6"/><circle class="sd" cx="74" cy="20" r="7"/><circle class="uiux" cx="110" cy="20" r="6"/>
+    <text class="total" x="132" y="24">4</text>
+  </g>
+  <g transform="translate(1244 882)">
+    <rect class="cell" width="148" height="40" rx="8"/>
+    <circle class="ed" cx="42" cy="20" r="5"/><circle class="sd" cx="74" cy="20" r="6"/><circle class="uiux" cx="110" cy="20" r="5"/>
+    <text class="total" x="132" y="24">3</text>
+  </g>
+
+  <g transform="translate(650 930)">
+    <rect class="cell" width="148" height="40" rx="8"/>
+    <circle class="ed" cx="42" cy="20" r="6"/><circle class="sd" cx="74" cy="20" r="7"/><circle class="uiux" cx="110" cy="20" r="6"/>
+    <text class="total" x="132" y="24">4</text>
+  </g>
+  <g transform="translate(848 930)">
+    <rect class="cell" width="148" height="40" rx="8"/>
+    <circle class="ed" cx="42" cy="20" r="8"/><circle class="sd" cx="74" cy="20" r="8"/><circle class="uiux" cx="110" cy="20" r="7"/>
+    <text class="total" x="132" y="24">6</text>
+  </g>
+  <g transform="translate(1046 930)">
+    <rect class="cell-alt" width="148" height="40" rx="8"/>
+    <circle class="ed" cx="42" cy="20" r="12"/><circle class="sd" cx="74" cy="20" r="12"/><circle class="uiux" cx="110" cy="20" r="11"/>
+    <text class="total" x="132" y="24">11</text>
+  </g>
+  <g transform="translate(1244 930)">
+    <rect class="cell-alt" width="148" height="40" rx="8"/>
+    <circle class="ed" cx="42" cy="20" r="8"/><circle class="sd" cx="74" cy="20" r="15"/><circle class="uiux" cx="110" cy="20" r="11"/>
+    <text class="total" x="132" y="24">16</text>
+  </g>
+
+  <rect class="note" x="78" y="1030" width="1320" height="34" rx="8"/>
+  <text class="small" x="100" y="1052">Design logic: large row groups show Aggregated Dimensions; subrows show 2nd-order categories; columns show phases; colored bubbles show domain distribution.</text>
+</svg>

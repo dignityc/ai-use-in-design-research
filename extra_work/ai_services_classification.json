@@ -1,0 +1,473 @@
+{
+  "metadata": {
+    "title": "AI Services Classification Dataset",
+    "description": "AI 서비스들을 입출력 모달리티 기준으로 분류하기 위한 데이터셋",
+    "created_at": "2025-12-04",
+    "last_updated": "2025-12-04",
+    "total_services": 38,
+    "classified_count": 36,
+    "unclassified_count": 2,
+    "reclassification_note": "2025-12-04 One-by-One 이터레이션으로 전체 재분류 완료. 2025년 최신 기능 반영",
+    "verification_note": "2025-12-04 Perplexity+GPT-4o-mini 검증 완료. 21개 서비스 업데이트 (7 needs_upgrade + 14 partial). 제외: no_detection 2개(Basecamp, Malirang), mismatch 1개(UX Pilot)"
+  },
+  "categories": [
+    {
+      "id": "T2I",
+      "name": "Text-to-Image",
+      "description": "텍스트 입력으로 이미지 생성"
+    },
+    {
+      "id": "T23D",
+      "name": "Text-to-3D",
+      "description": "텍스트 입력으로 3D 모델 생성"
+    },
+    {
+      "id": "I2T",
+      "name": "Image-to-Text",
+      "description": "이미지 입력으로 텍스트 생성 (이미지 캡셔닝, 분석)"
+    },
+    {
+      "id": "T2V",
+      "name": "Text-to-Video",
+      "description": "텍스트 입력으로 비디오 생성"
+    },
+    {
+      "id": "T2A",
+      "name": "Text-to-Audio",
+      "description": "텍스트 입력으로 오디오 생성 (음성, 음악)"
+    },
+    {
+      "id": "A2T",
+      "name": "Audio-to-Text",
+      "description": "오디오 입력으로 텍스트 생성 (STT, 음성 인식)"
+    },
+    {
+      "id": "T2T",
+      "name": "Text-to-Text",
+      "description": "텍스트 입력으로 텍스트 생성 (LLM, 챗봇)"
+    },
+    {
+      "id": "T2C",
+      "name": "Text-to-Code",
+      "description": "텍스트 입력으로 코드 생성"
+    },
+    {
+      "id": "T2S",
+      "name": "Text-to-Science",
+      "description": "텍스트 입력으로 과학적 결과물 생성"
+    },
+    {
+      "id": "OTHER",
+      "name": "Other Models",
+      "description": "기타 특수 목적 모델"
+    },
+    {
+      "id": "MULTI",
+      "name": "Multimodal",
+      "description": "여러 입출력 모달리티를 지원하는 복합 모델",
+      "modality_options": ["T2T", "T2I", "T2V", "T2A", "T2C", "T23D", "I2T", "A2T", "V2T"]
+    }
+  ],
+  "services": [
+    {
+      "id": 1,
+      "name": "Gemini",
+      "original_category": "NL-NL",
+      "is_classified": true,
+      "classification": "MULTI",
+      "modalities": ["T2T", "T2I", "T2V", "T2A", "A2T", "I2T", "V2T", "T2C"],
+      "source": "https://deepmind.google/models/gemini/",
+      "reasoning": "Google의 네이티브 멀티모달 AI. Gemini 2.5/3.0은 텍스트/이미지/비디오/오디오 입출력 모두 지원. Veo로 비디오 생성, Gemini Live로 실시간 음성 대화, Jules/CLI로 코드 생성. 1M 토큰 컨텍스트로 전체 비디오 분석 가능"
+    },
+    {
+      "id": 2,
+      "name": "Deepseek",
+      "original_category": "NL-NL",
+      "is_classified": true,
+      "classification": "MULTI",
+      "modalities": ["T2T", "T2C", "I2T", "T2I"],
+      "source": "https://www.deepseek.com/",
+      "reasoning": "중국 AI 기업의 LLM 플랫폼. V3/R1(텍스트), Coder(코드), VL2(이미지 분석), Janus-Pro(이미지 생성) 등 다양한 모델 제공. MIT 라이선스 오픈소스. 음성 기능은 VL 2.0에서 예정"
+    },
+    {
+      "id": 3,
+      "name": "ChatGPT",
+      "original_category": "NL-NL",
+      "is_classified": true,
+      "classification": "MULTI",
+      "modalities": ["T2T", "T2I", "I2T", "T2A", "A2T", "T2C"],
+      "source": "https://openai.com/index/hello-gpt-4o/",
+      "reasoning": "OpenAI의 GPT-4o 기반 멀티모달 AI. 텍스트/이미지/오디오를 단일 모델에서 통합 처리. 2025년 3월 네이티브 이미지 생성, Advanced Voice Mode로 실시간 음성 대화, 50+ 언어 지원. 2025년 8월 GPT-5 출시"
+    },
+    {
+      "id": 4,
+      "name": "NotebookLM",
+      "original_category": "NL-NL",
+      "is_classified": true,
+      "classification": "MULTI",
+      "modalities": ["T2T", "T2A", "A2T", "V2T", "T2V", "I2T"],
+      "source": "https://blog.google/technology/google-labs/notebooklm-new-features-december-2024/",
+      "reasoning": "Google의 AI 리서치 어시스턴트. Gemini 기반. Audio Overviews(T2A), Video Overviews(T2V), YouTube/오디오 입력(V2T, A2T), PDF 내 이미지 분석(I2T). 50+ 언어"
+    },
+    {
+      "id": 5,
+      "name": "Apple Intelligence",
+      "original_category": "NL-NL",
+      "is_classified": true,
+      "classification": "MULTI",
+      "modalities": ["T2T", "T2I", "A2T", "I2T"],
+      "source": "https://www.apple.com/apple-intelligence/",
+      "reasoning": "iOS 18/macOS Sequoia 통합 AI 시스템. Writing Tools(T2T), Image Playground/Genmoji/Image Wand(T2I), Siri 음성(A2T), Visual Intelligence로 카메라 기반 분석(I2T). 온디바이스 + Private Cloud Compute. ChatGPT 선택적 통합"
+    },
+    {
+      "id": 6,
+      "name": "Granola",
+      "original_category": "NL-NL",
+      "is_classified": true,
+      "classification": "MULTI",
+      "modalities": ["A2T", "T2T"],
+      "source": "https://www.granola.ai/",
+      "reasoning": "AI 회의 노트 앱. 봇 없이 디바이스 오디오 직접 캡처(A2T), GPT-4로 노트 보강/요약(T2T). Mac/Windows/iOS 지원, Zoom/Meet/Teams/Slack 연동. 2025년 5월 $40M Series B ($250M 밸류)"
+    },
+    {
+      "id": 7,
+      "name": "Copilot",
+      "original_category": "NL-NL",
+      "is_classified": true,
+      "classification": "MULTI",
+      "modalities": ["T2T", "T2I", "I2T", "T2A", "A2T", "T2C"],
+      "source": "https://en.wikipedia.org/wiki/Microsoft_Copilot",
+      "reasoning": "Microsoft의 GPT-4/5 기반 AI 어시스턴트. Designer로 이미지 생성(T2I), Copilot Vision으로 이미지 분석(I2T), Voice로 음성 대화(T2A, A2T), GitHub Copilot으로 코드 생성(T2C). M365 앱 통합, 2025년 무제한 이미지 생성"
+    },
+    {
+      "id": 8,
+      "name": "Grok",
+      "original_category": "NL-NL",
+      "is_classified": true,
+      "classification": "MULTI",
+      "modalities": ["T2T", "T2I", "I2T", "T2V", "T2A", "T2C"],
+      "source": "https://x.ai/grok/",
+      "reasoning": "xAI의 AI 챗봇. Aurora 이미지(T2I), Grok Imagine 비디오+음성(T2V, T2A), 코드 생성(T2C). X 플랫폼 통합"
+    },
+    {
+      "id": 9,
+      "name": "Grammarly",
+      "original_category": "NL-NL",
+      "is_classified": true,
+      "classification": "MULTI",
+      "modalities": ["T2T", "T2A"],
+      "source": "https://www.grammarly.com/ai",
+      "reasoning": "AI 글쓰기 어시스턴트. Compose/Rewrite/Ideate/Reply(T2T). 2025년 Coda 인수. Speechify 통합으로 TTS 기능(T2A). AI grader/proofreader/citation finder"
+    },
+    {
+      "id": 10,
+      "name": "Craft",
+      "original_category": "NL-NL",
+      "is_classified": true,
+      "classification": "T2T",
+      "modalities": null,
+      "source": "https://support.craft.do/hc/en-us/articles/8104602502557-About-Craft-AI-Assistant",
+      "reasoning": "문서 작성 앱의 AI 어시스턴트. GPT-4o mini/GPT-4o 기반. 2025년 DeepSeek R1 오프라인 모델, Apple Foundation Models(온디바이스 AI), Apple Writing Tools 지원 추가. 텍스트 생성/요약/번역/브레인스토밍 T2T 특화"
+    },
+    {
+      "id": 11,
+      "name": "Perplexity",
+      "original_category": "NL-NL",
+      "is_classified": true,
+      "classification": "MULTI",
+      "modalities": ["T2T", "I2T", "T2I", "A2T", "T2V", "T2A"],
+      "source": "https://www.perplexity.ai/changelog/april-11th-2025-product-update",
+      "reasoning": "AI 검색 엔진 → 멀티모달 플랫폼. 이미지/비디오 생성(T2I, T2V), 음성 입출력(A2T, T2A), 카메라 분석. GPT-4o/Claude/Gemini 지원"
+    },
+    {
+      "id": 12,
+      "name": "Claude",
+      "original_category": "NL-NL",
+      "is_classified": true,
+      "classification": "MULTI",
+      "modalities": ["T2T", "I2T", "T2C", "A2T", "T2A"],
+      "source": "https://techcrunch.com/2025/05/27/anthropic-launches-a-voice-mode-for-claude/",
+      "reasoning": "Anthropic의 AI 어시스턴트. Claude Opus 4/Sonnet 4. 2025년 5월 Voice Mode 출시(A2T, T2A) - 5가지 음성, Google Workspace 통합. 이미지 분석(I2T), 코드 생성(T2C), Computer Use"
+    },
+    {
+      "id": 13,
+      "name": "Claude Code",
+      "original_category": "NL-NL",
+      "is_classified": true,
+      "classification": "MULTI",
+      "modalities": ["T2T", "T2C"],
+      "source": "https://www.anthropic.com/claude-code",
+      "reasoning": "Anthropic의 에이전틱 코딩 도구. 자연어 지시사항으로 구현 계획 생성(T2T), 코드 생성/편집/테스트(T2C). Subagents/Hooks/Background tasks, Claude Agent SDK",
+      "parent_service": "Claude"
+    },
+    {
+      "id": 14,
+      "name": "Miro AI",
+      "original_category": "Visual Platform",
+      "is_classified": true,
+      "classification": "MULTI",
+      "modalities": ["T2T", "T2I", "I2I"],
+      "source": "https://miro.com/intelligent-canvas/",
+      "reasoning": "Intelligent Canvas 기반. 텍스트→다이어그램(T2I), AI Sidekicks(T2T), 이미지→다이어그램 변환(I2I). 2025년 AI Prototyping",
+      "parent_service": "Miro"
+    },
+    {
+      "id": 15,
+      "name": "Whimsical AI",
+      "original_category": "Visual Platform",
+      "is_classified": true,
+      "classification": "MULTI",
+      "modalities": ["T2I", "T2T"],
+      "source": "https://whimsical.com/ai",
+      "reasoning": "텍스트→다이어그램(플로우차트/마인드맵/시퀀스/스티키노트) 자동 생성(T2I), 요약 기능(T2T). ChatGPT 통합, Notion/Jira/Slack 연동. ChatGPT에서 Whimsical Diagrams GPT로 직접 생성 가능",
+      "parent_service": "Whimsical"
+    },
+    {
+      "id": 16,
+      "name": "Figma AI",
+      "original_category": "Visual Platform",
+      "is_classified": true,
+      "classification": "MULTI",
+      "modalities": ["T2I", "T2T", "I2T", "I2I"],
+      "source": "https://www.figma.com/ai/",
+      "reasoning": "First Draft 텍스트→디자인(T2I), Text improvements(T2T), Visual Search(I2T), 이미지 배경 제거(I2I). Figma Make 프로토타입",
+      "parent_service": "Figma"
+    },
+    {
+      "id": 17,
+      "name": "Adobe Firefly",
+      "original_category": "NL-Visual",
+      "is_classified": true,
+      "classification": "MULTI",
+      "modalities": ["T2I", "T2V", "T2A", "T23D", "I2I", "T2C"],
+      "source": "https://news.adobe.com/news/2025/10/adobe-max-2025-firefly",
+      "reasoning": "올인원 크리에이티브 AI. Image Model 5(T2I), 이미지 편집(I2I), Video/Audio Model(T2V, T2A), 3D(T23D), 벡터 그래픽 변환(T2C)",
+      "parent_service": "Adobe"
+    },
+    {
+      "id": 18,
+      "name": "Midjourney",
+      "original_category": "NL-Visual",
+      "is_classified": true,
+      "classification": "MULTI",
+      "modalities": ["T2I", "T2V", "I2I", "T2A"],
+      "source": "https://updates.midjourney.com/introducing-our-v1-video-model/",
+      "reasoning": "고품질 이미지 생성. 텍스트→이미지(T2I), 이미지 스타일 참조(I2I), V1 Video(T2V), Draft Mode 음성입력(T2A)"
+    },
+    {
+      "id": 19,
+      "name": "DALL-E",
+      "original_category": "NL-Visual",
+      "is_classified": true,
+      "classification": "MULTI",
+      "modalities": ["T2I", "I2I"],
+      "source": "https://openai.com/index/dall-e/",
+      "reasoning": "OpenAI 이미지 생성 모델. 텍스트→이미지(T2I), 이미지 변형/편집(I2I). 2025년 GPT-4o 네이티브 이미지 생성으로 통합",
+      "note": "2025년 3월부터 GPT-4o에 통합"
+    },
+    {
+      "id": 20,
+      "name": "Canva Magic Studio",
+      "original_category": "NL-Visual",
+      "is_classified": true,
+      "classification": "MULTI",
+      "modalities": ["T2I", "T2V", "T2T", "T2A", "I2I"],
+      "source": "https://www.canva.com/magic/",
+      "reasoning": "올인원 디자인. Magic Media 이미지(T2I), 스타일 참조(I2I), 비디오(T2V), AI Voice(T2A), Magic Write(T2T)",
+      "parent_service": "Canva"
+    },
+    {
+      "id": 21,
+      "name": "VIZcom",
+      "original_category": "NL-Visual",
+      "is_classified": true,
+      "classification": "MULTI",
+      "modalities": ["T2I", "I2I", "T23D"],
+      "source": "https://docs.vizcom.ai/2d-to-3d-feature",
+      "reasoning": "산업 디자인 AI 플랫폼(Ford, New Balance 사용). 스케치→렌더링(I2I), 텍스트→이미지(T2I), 2D→3D 변환(T23D, USDZ/AR 내보내기). Fall 2025: Make 3D, Variate, Adjust. Palettes로 개인화 스타일",
+      "note": "I2I = Image-to-Image (스케치→렌더링), $26M 펀딩"
+    },
+    {
+      "id": 22,
+      "name": "Kling",
+      "original_category": "NL-Visual",
+      "is_classified": true,
+      "classification": "MULTI",
+      "modalities": ["T2V", "T2I", "I2V", "I2I", "T2T", "T2A"],
+      "source": "https://www.prnewswire.com/news-releases/kling-o1-launches-as-the-worlds-first-unified-multimodal-video-model-302630630.html",
+      "reasoning": "통합 멀티모달 AI. Kling O1 비디오(T2V), 이미지(T2I), 스타일 전송(I2I), 프롬프트(T2T), 오디오 생성(T2A), I2V",
+      "note": "I2V = Image-to-Video"
+    },
+    {
+      "id": 23,
+      "name": "Basecamp",
+      "original_category": "Documentation/Collaboration",
+      "is_classified": true,
+      "classification": "OTHER",
+      "modalities": null,
+      "source": "https://basecamp.com/extras",
+      "reasoning": "프로젝트 관리 도구. 2025년에도 네이티브 AI 기능 없음. Sembly AI(회의록 전사), Relevance AI, Lindy AI 등 서드파티 AI 에이전트 통합으로만 AI 기능 사용 가능",
+      "note": "네이티브 AI 없음 - 서드파티 통합만 (Basecamp Research는 별도 회사)"
+    },
+    {
+      "id": 24,
+      "name": "Notion AI",
+      "original_category": "Documentation/Collaboration",
+      "is_classified": true,
+      "classification": "MULTI",
+      "modalities": ["T2T", "A2T", "I2T"],
+      "source": "https://www.notion.com/product/ai",
+      "reasoning": "GPT-5/Claude Opus 4.1/o3 기반. 텍스트 생성/요약(T2T), 시스템 오디오 녹음 전사(A2T, Zoom/Meet/Teams 봇 없이), PDF/이미지 분석(I2T). 2025년 9월 Notion 3.0 AI Agents 출시. Business($20) 이상 필요",
+      "parent_service": "Notion"
+    },
+    {
+      "id": 25,
+      "name": "Confluence AI",
+      "original_category": "Documentation/Collaboration",
+      "is_classified": true,
+      "classification": "MULTI",
+      "modalities": ["T2T", "T2C"],
+      "source": "https://www.atlassian.com/software/confluence/resources/guides/best-practices/atlassian-ai",
+      "reasoning": "Atlassian Intelligence 기반. 콘텐츠 생성/요약(T2T), 텍스트→Jira 작업 변환(T2C). 2025년 Rovo AI teammate 출시",
+      "parent_service": "Confluence"
+    },
+    {
+      "id": 26,
+      "name": "Monday.com AI",
+      "original_category": "Documentation/Collaboration",
+      "is_classified": true,
+      "classification": "T2T",
+      "modalities": null,
+      "source": "https://monday.com/w/ai",
+      "reasoning": "2025년 Elevate에서 monday magic/vibe/sidekick 정식 출시. monday agents - AI 스페셜리스트가 업무 end-to-end 실행. Agent Factory로 노코드 AI 에이전트 생성. 텍스트 요약/감정분석/번역/자동분류",
+      "parent_service": "Monday.com"
+    },
+    {
+      "id": 27,
+      "name": "Slack AI",
+      "original_category": "Documentation/Collaboration",
+      "is_classified": true,
+      "classification": "MULTI",
+      "modalities": ["T2T", "A2T", "T2A"],
+      "source": "https://slack.com/features/ai",
+      "reasoning": "메시지 요약/검색(T2T), Huddles 전사(A2T), Canvas AI 작성 지원(T2A). Agentforce in Slack, 서드파티 AI 통합",
+      "parent_service": "Slack"
+    },
+    {
+      "id": 28,
+      "name": "AI Studio",
+      "original_category": "NL-App",
+      "is_classified": true,
+      "classification": "MULTI",
+      "modalities": ["T2T", "T2C", "I2T", "V2T", "A2T", "T2I", "T2V", "T2A"],
+      "source": "https://ai.google.dev/aistudio",
+      "reasoning": "Google AI Studio(Gemini 프로토타이핑 플랫폼). 2025년 'Vibe Coding' - 프롬프트→앱 생성, Cloud Run 원클릭 배포. Gemini 멀티모달(텍스트/이미지/비디오/음성 입출력), 이미지/비디오/오디오 생성(T2I, T2V, T2A), Function Calling",
+      "note": "Google AI Studio로 추정. Azure AI Studio일 경우 재분류 필요"
+    },
+    {
+      "id": 29,
+      "name": "String",
+      "original_category": "NL-Code",
+      "is_classified": true,
+      "classification": "MULTI",
+      "modalities": ["T2T", "T2C"],
+      "source": "https://string.com/",
+      "reasoning": "자연어로 AI 에이전트 생성 플랫폼. 자연어 요구사항 설명(T2T), 코드 자동 생성/배포(T2C). 2,500+ 앱/API 연동"
+    },
+    {
+      "id": 30,
+      "name": "Replit AI",
+      "original_category": "NL-Code",
+      "is_classified": true,
+      "classification": "MULTI",
+      "modalities": ["T2C", "T2I", "T2T"],
+      "source": "https://replit.com/agent3",
+      "reasoning": "2025년 9월 Agent 3 출시 - 200분 자율 실행, 10배 자율성, 자가 테스트/디버깅 루프. 자연어 대화(T2T)→앱/에이전트 생성. 2025년 8월 AI 이미지 생성 추가(아이콘/플레이스홀더). Slack/Notion/Outlook 통합"
+    },
+    {
+      "id": 31,
+      "name": "Cursor",
+      "original_category": "NL-Code",
+      "is_classified": true,
+      "classification": "MULTI",
+      "modalities": ["T2C", "I2T", "T2T"],
+      "source": "https://cursor.com/features",
+      "reasoning": "2025년 Cursor 2.0 출시($9.9B 밸류). Agent Mode - 8개 병렬 실행, Background Agent(자율 원격). 자연어 대화(T2T)로 코드 지시, Composer 모델(30초 완료). Browser Agent로 스크린샷/UI 분석(I2T). OpenAI/Anthropic/Gemini/xAI 지원"
+    },
+    {
+      "id": 32,
+      "name": "CX Agents",
+      "original_category": "Customised AI",
+      "is_classified": false,
+      "classification": null,
+      "modalities": null,
+      "source": null,
+      "reasoning": null,
+      "note": "특정 서비스 아님 - 'Customer Experience AI Agents' 일반 카테고리. 2025년 CX 분야 Agentic AI 급성장 중 (Forethought, NICE CXone, SAP Joule, Salesforce Agentforce 등)"
+    },
+    {
+      "id": 33,
+      "name": "Power Automate AI",
+      "original_category": "Uncategorized",
+      "is_classified": true,
+      "classification": "MULTI",
+      "modalities": ["T2T", "T2A"],
+      "source": "https://learn.microsoft.com/en-us/power-automate/",
+      "reasoning": "자연어로 플로우 생성/수정(T2T), 문서/커뮤니케이션 요약 자동 생성(T2A). Copilot for Power Automate, AI Builder",
+      "parent_service": "Microsoft Power Platform"
+    },
+    {
+      "id": 34,
+      "name": "ClovaNote",
+      "original_category": "Uncategorized",
+      "is_classified": true,
+      "classification": "MULTI",
+      "modalities": ["A2T", "T2T"],
+      "source": "https://help.worksmobile.com/en/use-guides/clovanote/overview/",
+      "reasoning": "Naver의 AI 회의록 서비스. 음성 전사(A2T, 한/영/일/중), 요약/주제/액션아이템 추출(T2T), 화자 분리. NAVER WORKS ClovaNote 기업용 - 커스텀 AI 모델, 2단계 인증. 감정 인식 업데이트 예정"
+    },
+    {
+      "id": 35,
+      "name": "Malirang",
+      "original_category": "Uncategorized",
+      "is_classified": true,
+      "classification": "T2T",
+      "modalities": null,
+      "source": null,
+      "reasoning": "Wings의 AI 서비스. 한국 기업용 AI 어시스턴트로 추정되나 상세 정보 제한적",
+      "note": "by Wings - 정보 제한적"
+    },
+    {
+      "id": 36,
+      "name": "Stitch",
+      "original_category": "Uncategorized",
+      "is_classified": true,
+      "classification": "MULTI",
+      "modalities": ["T2I", "I2I", "T2C", "T2T"],
+      "source": "https://developers.googleblog.com/en/stitch-a-new-way-to-design-uis/",
+      "reasoning": "Google Labs의 AI UI 디자인 도구 (I/O 2025 발표, Galileo AI 인수). 자연어 대화(T2T)로 디자인 지시, 텍스트/스케치/와이어프레임→UI 디자인(T2I, I2I), 프론트엔드 코드 생성(T2C). Gemini 2.5 Pro/Flash, Figma 내보내기",
+      "note": "stitch.withgoogle.com"
+    },
+    {
+      "id": 37,
+      "name": "UX Pilot",
+      "original_category": "Uncategorized",
+      "is_classified": true,
+      "classification": "MULTI",
+      "modalities": ["T2I", "I2T", "T2C"],
+      "source": "https://uxpilot.ai/",
+      "reasoning": "AI UX/UI 디자인 도구+Figma 플러그인. 텍스트→UI/와이어프레임(T2I), Predictive Heatmap(사용자 시선 예측, I2T), HTML/CSS/React 코드 내보내기(T2C). Image-to-Design, 디자인 리뷰(접근성/사용성). 디자인 시간 80% 단축"
+    },
+    {
+      "id": 38,
+      "name": "LLMs (General)",
+      "original_category": "NL-NL",
+      "is_classified": true,
+      "classification": "MULTI",
+      "modalities": ["T2T", "T2I", "T2A", "T2V"],
+      "source": null,
+      "reasoning": "2025년 주요 LLM들은 멀티모달 지원. 텍스트(T2T), 이미지 생성(T2I, Grok 4), 오디오 출력(T2A, Gemini), 비디오 생성(T2V, Gemini)",
+      "note": "일반적인 LLM 카테고리 - 2025년 멀티모달 표준화"
+    }
+  ]
+}

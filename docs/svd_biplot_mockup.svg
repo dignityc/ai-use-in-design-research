@@ -1,0 +1,171 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1440" height="920" viewBox="0 0 1440 920">
+  <defs>
+    <style>
+      .bg { fill: #f5f7fb; }
+      .panel { fill: #fff; stroke: #d8dee9; stroke-width: 1; }
+      .muted { fill: #667085; font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; }
+      .ink { fill: #172033; font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; }
+      .title { font-size: 28px; font-weight: 850; }
+      .subtitle { font-size: 14px; }
+      .panel-title { font-size: 16px; font-weight: 850; }
+      .small { font-size: 12px; }
+      .tiny { font-size: 11px; }
+      .axis { stroke: #98a2b3; stroke-width: 1.4; stroke-dasharray: 5 6; }
+      .grid { stroke: #edf1f7; stroke-width: 1; }
+      .phase { fill: #2754c5; stroke: #fff; stroke-width: 3; }
+      .dimension { fill: #087c7a; stroke: #fff; stroke-width: 2; }
+      .category { fill: #a75c00; stroke: #fff; stroke-width: 2; }
+      .assist { fill: #475467; stroke: #fff; stroke-width: 2; }
+      .benefit { fill: #1f8a4c; stroke: #fff; stroke-width: 2; }
+      .risk { fill: #b42318; stroke: #fff; stroke-width: 2; }
+      .discipline { fill: #7c3aed; stroke: #fff; stroke-width: 2; }
+      .label { fill: #172033; font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; font-size: 12px; font-weight: 760; paint-order: stroke; stroke: #fff; stroke-width: 4; stroke-linejoin: round; }
+      .bar-pos { fill: #2754c5; }
+      .bar-neg { fill: #b42318; }
+      .chip { fill: #fbfcff; stroke: #d8dee9; }
+    </style>
+  </defs>
+
+  <rect class="bg" width="1440" height="920"/>
+
+  <text class="ink title" x="40" y="54">SVD State Biplot Concept</text>
+  <text class="muted subtitle" x="40" y="82">Matrix decomposition view: actual observed states are projected into a 2D latent space from the one-hot transaction matrix.</text>
+
+  <rect class="panel" x="40" y="116" width="870" height="740" rx="10"/>
+  <text class="ink panel-title" x="64" y="150">State biplot: Phase states and nearby activity/value states</text>
+  <text class="muted small" x="64" y="172">Points close together have similar co-occurrence profiles across value-mention events. Phase states are emphasized.</text>
+
+  <g transform="translate(80 205)">
+    <rect fill="#fff" stroke="#edf1f7" x="0" y="0" width="790" height="590" rx="8"/>
+    <g>
+      <line class="grid" x1="0" y1="98" x2="790" y2="98"/>
+      <line class="grid" x1="0" y1="196" x2="790" y2="196"/>
+      <line class="grid" x1="0" y1="294" x2="790" y2="294"/>
+      <line class="grid" x1="0" y1="392" x2="790" y2="392"/>
+      <line class="grid" x1="0" y1="490" x2="790" y2="490"/>
+      <line class="grid" x1="132" y1="0" x2="132" y2="590"/>
+      <line class="grid" x1="264" y1="0" x2="264" y2="590"/>
+      <line class="grid" x1="396" y1="0" x2="396" y2="590"/>
+      <line class="grid" x1="528" y1="0" x2="528" y2="590"/>
+      <line class="grid" x1="660" y1="0" x2="660" y2="590"/>
+    </g>
+
+    <line class="axis" x1="395" y1="0" x2="395" y2="590"/>
+    <line class="axis" x1="0" y1="295" x2="790" y2="295"/>
+    <text class="muted small" x="342" y="624">Component 1: research / sensemaking  →  generation / prototyping</text>
+    <text class="muted small" transform="rotate(-90)" x="-432" y="-42">Component 2: benefit-oriented  →  risk / trade-off-oriented</text>
+
+    <rect class="chip" x="22" y="18" width="235" height="42" rx="8"/>
+    <text class="muted tiny" x="36" y="35">Draft axis interpretation</text>
+    <text class="ink small" x="36" y="52">labels come from top component loadings</text>
+
+    <!-- Discover cluster -->
+    <circle class="phase" cx="230" cy="230" r="19"/>
+    <text class="label" x="230" y="263" text-anchor="middle">Discover</text>
+    <circle class="assist" cx="180" cy="190" r="12"/>
+    <text class="label" x="180" y="173" text-anchor="middle">Knowledge augmentation</text>
+    <circle class="category" cx="145" cy="250" r="12"/>
+    <text class="label" x="145" y="282" text-anchor="middle">Domain/technical gathering</text>
+    <circle class="dimension" cx="252" cy="180" r="13"/>
+    <text class="label" x="252" y="160" text-anchor="middle">Background research</text>
+    <circle class="benefit" cx="292" cy="242" r="10"/>
+    <text class="label" x="292" y="271" text-anchor="middle">Enhanced: Learning</text>
+    <circle class="risk" cx="198" cy="300" r="10"/>
+    <text class="label" x="198" y="330" text-anchor="middle">Impaired: Accuracy</text>
+
+    <!-- Define cluster -->
+    <circle class="phase" cx="332" cy="360" r="17"/>
+    <text class="label" x="332" y="392" text-anchor="middle">Define</text>
+    <circle class="category" cx="272" cy="398" r="11"/>
+    <text class="label" x="272" y="428" text-anchor="middle">User/customer need</text>
+    <circle class="assist" cx="378" cy="404" r="11"/>
+    <text class="label" x="378" y="433" text-anchor="middle">Knowledge generation</text>
+    <circle class="risk" cx="335" cy="448" r="10"/>
+    <text class="label" x="335" y="477" text-anchor="middle">Context awareness risk</text>
+
+    <!-- Develop cluster -->
+    <circle class="phase" cx="590" cy="270" r="19"/>
+    <text class="label" x="590" y="303" text-anchor="middle">Develop</text>
+    <circle class="assist" cx="648" cy="230" r="12"/>
+    <text class="label" x="648" y="213" text-anchor="middle">Design generation</text>
+    <circle class="dimension" cx="555" cy="208" r="13"/>
+    <text class="label" x="555" y="190" text-anchor="middle">Ideation/generation</text>
+    <circle class="category" cx="620" cy="330" r="12"/>
+    <text class="label" x="620" y="362" text-anchor="middle">Concept exploration</text>
+    <circle class="benefit" cx="700" cy="285" r="10"/>
+    <text class="label" x="700" y="315" text-anchor="middle">Enhanced: Creativity</text>
+    <circle class="risk" cx="666" cy="352" r="10"/>
+    <text class="label" x="666" y="382" text-anchor="middle">Impaired: Creativity</text>
+
+    <!-- Deliver cluster -->
+    <circle class="phase" cx="540" cy="480" r="17"/>
+    <text class="label" x="540" y="512" text-anchor="middle">Deliver</text>
+    <circle class="category" cx="482" cy="520" r="11"/>
+    <text class="label" x="482" y="550" text-anchor="middle">Documentation support</text>
+    <circle class="assist" cx="600" cy="522" r="11"/>
+    <text class="label" x="600" y="552" text-anchor="middle">Co-ordination</text>
+    <circle class="benefit" cx="530" cy="432" r="10"/>
+    <text class="label" x="530" y="418" text-anchor="middle">Enhanced: Accuracy</text>
+
+    <!-- Disciplines -->
+    <circle class="discipline" cx="90" cy="355" r="10"/>
+    <text class="label" x="90" y="384" text-anchor="middle">ED</text>
+    <circle class="discipline" cx="450" cy="522" r="10"/>
+    <text class="label" x="450" y="552" text-anchor="middle">SD</text>
+    <circle class="discipline" cx="716" cy="188" r="10"/>
+    <text class="label" x="716" y="171" text-anchor="middle">UIUX</text>
+  </g>
+
+  <g transform="translate(64 810)">
+    <circle class="phase" cx="0" cy="-4" r="7"/><text class="muted tiny" x="14" y="0">Phase</text>
+    <circle class="dimension" cx="78" cy="-4" r="7"/><text class="muted tiny" x="92" y="0">Dimension</text>
+    <circle class="category" cx="178" cy="-4" r="7"/><text class="muted tiny" x="192" y="0">Category</text>
+    <circle class="assist" cx="272" cy="-4" r="7"/><text class="muted tiny" x="286" y="0">Assistance</text>
+    <circle class="benefit" cx="378" cy="-4" r="7"/><text class="muted tiny" x="392" y="0">Enhanced value</text>
+    <circle class="risk" cx="502" cy="-4" r="7"/><text class="muted tiny" x="516" y="0">Impaired value</text>
+    <circle class="discipline" cx="628" cy="-4" r="7"/><text class="muted tiny" x="642" y="0">Discipline</text>
+  </g>
+
+  <rect class="panel" x="940" y="116" width="460" height="360" rx="10"/>
+  <text class="ink panel-title" x="964" y="150">Selected phase: Discover</text>
+  <text class="muted small" x="964" y="172">Nearest states in SVD space</text>
+
+  <g transform="translate(964 205)">
+    <rect class="chip" x="0" y="0" width="410" height="42" rx="8"/>
+    <text class="ink small" x="14" y="25">1. Knowledge augmentation</text>
+    <text class="muted tiny" x="330" y="25">sim .82</text>
+    <rect class="chip" x="0" y="52" width="410" height="42" rx="8"/>
+    <text class="ink small" x="14" y="77">2. Domain/technical gathering</text>
+    <text class="muted tiny" x="330" y="77">sim .78</text>
+    <rect class="chip" x="0" y="104" width="410" height="42" rx="8"/>
+    <text class="ink small" x="14" y="129">3. Background research &amp; sensemaking</text>
+    <text class="muted tiny" x="330" y="129">sim .74</text>
+    <rect class="chip" x="0" y="156" width="410" height="42" rx="8"/>
+    <text class="ink small" x="14" y="181">4. Enhanced: Learning / Skills Development</text>
+    <text class="muted tiny" x="330" y="181">sim .61</text>
+    <rect class="chip" x="0" y="208" width="410" height="42" rx="8"/>
+    <text class="ink small" x="14" y="233">5. Impaired: Accuracy</text>
+    <text class="muted tiny" x="330" y="233">sim .49</text>
+  </g>
+
+  <rect class="panel" x="940" y="500" width="460" height="356" rx="10"/>
+  <text class="ink panel-title" x="964" y="534">Component loading interpretation</text>
+  <text class="muted small" x="964" y="556">Use top positive/negative loadings to name the axes.</text>
+
+  <g transform="translate(964 588)">
+    <text class="ink small" x="0" y="0" font-weight="850">Component 1</text>
+    <text class="muted tiny" x="0" y="20">Negative side</text>
+    <rect class="bar-neg" x="0" y="30" width="172" height="12" rx="6"/><text class="ink tiny" x="184" y="41">Discover, knowledge gathering</text>
+    <rect class="bar-neg" x="0" y="52" width="148" height="12" rx="6"/><text class="ink tiny" x="184" y="63">Background research</text>
+    <text class="muted tiny" x="0" y="90">Positive side</text>
+    <rect class="bar-pos" x="0" y="100" width="188" height="12" rx="6"/><text class="ink tiny" x="200" y="111">Develop, design generation</text>
+    <rect class="bar-pos" x="0" y="122" width="160" height="12" rx="6"/><text class="ink tiny" x="200" y="133">Concept exploration</text>
+
+    <text class="ink small" x="0" y="178" font-weight="850">Component 2</text>
+    <text class="muted tiny" x="0" y="198">Negative side</text>
+    <rect class="bar-neg" x="0" y="208" width="150" height="12" rx="6"/><text class="ink tiny" x="164" y="219">Efficiency / learning benefit</text>
+    <text class="muted tiny" x="0" y="246">Positive side</text>
+    <rect class="bar-pos" x="0" y="256" width="174" height="12" rx="6"/><text class="ink tiny" x="188" y="267">Accuracy / context risk</text>
+    <rect class="bar-pos" x="0" y="278" width="142" height="12" rx="6"/><text class="ink tiny" x="188" y="289">Creativity trade-off</text>
+  </g>
+</svg>

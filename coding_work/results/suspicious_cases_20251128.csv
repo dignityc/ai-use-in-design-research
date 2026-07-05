@@ -1,0 +1,107 @@
+Index,Article_Title,Category,Full_Reference_Text,Notes
+104,Topology Optimization of Industrial Equipment: A Deep Learning Approach and Software Implement,Data About,"Equipment product design is a crucial task in modern engineering, its performance and effectiveness directly affect the quality, efficiency and safety of industrial production. Topology-optimization design aims to improve the structural strength, reduce the weight, and optimize the overall performance and reliability of a product by optimizing the material distribution and structural form.",
+1,DeepMorpher: deep learning-based design space dimensionality reduction for shape optimisation,Design Phase,"Manxin Chen:
+AI evaluates design options against specific criteria… Bayesian approach to explore the solution space efficiently",
+4,ARCHIE: AN AUTOMATED DATA COLLECTION METHOD FOR PHYSICAL PROTOTYPING EFFORTS IN AUTHENTIC DESIGN SITUATIONS,Data About,"Manxin Chen:
+Our system captures detailed behavioral data, including how users manipulate prototypes, the sequence of interactions, and the duration of each action.",
+4,ARCHIE: AN AUTOMATED DATA COLLECTION METHOD FOR PHYSICAL PROTOTYPING EFFORTS IN AUTHENTIC DESIGN SITUATIONS,AI methods,"Manxin Chen:
+We employ a computer vision model to automatically detect and track the position of the prototype as well as the user’s hands in each video frame.
+
+Deep-learning–based pose estimation enables the system to robustly capture complex manipulation behaviors without requiring markers.",
+4,ARCHIE: AN AUTOMATED DATA COLLECTION METHOD FOR PHYSICAL PROTOTYPING EFFORTS IN AUTHENTIC DESIGN SITUATIONS,"AI Assistance Types (Lee and Kim, 2025)","Manxin Chen:
+ARCHIE helps researchers make sense of prototyping sessions by providing quantitative data about user interactions that would otherwise be difficult to capture.
+The system augments designers’ understanding of the prototyping process by revealing patterns in how users interact with early-stage designs.",
+4,ARCHIE: AN AUTOMATED DATA COLLECTION METHOD FOR PHYSICAL PROTOTYPING EFFORTS IN AUTHENTIC DESIGN SITUATIONS,Data Modality,"Manxin Chen:
+The system uses overhead video capture to track user–prototype interactions throughout the task. 
+ARCHIE records timestamped sequences of actions, producing time-series data that can be analyzed to understand design behavior.",
+4,ARCHIE: AN AUTOMATED DATA COLLECTION METHOD FOR PHYSICAL PROTOTYPING EFFORTS IN AUTHENTIC DESIGN SITUATIONS,Design Phase,"Manxin Chen:
+Design teams can use the data collected in early prototyping stages to discover opportunities for improving usability and functionality.",
+7,Research on Product Conceptual Design Scheme Configurations from a Designer-User Conflict Perspective,AI methods,"Manxin Chen:
+A rough set–based attribute reduction method was used to analyze the relationship between designer requirements and user preferences.",
+10,A smart conflict resolution model using multi-layer knowledge graph for conceptual design,Data About,"Manxin Chen:
+Users’ perceptual knowledge and designers’ technical knowledge often conflict during conceptual design.
+The knowledge graph integrates product attributes, functional requirements, and technical constraints.",
+26,The application of artificial intelligence-assisted technology in cultural and creative product design,AI methods,"Manxin Chen:
+A Generative Adversarial Network (GAN) architecture is utilized for the creation of novel design schemes inspired by traditional culture. The model uses a combination of CNN for image feature extraction and a custom semantic embedding layer for abstract concept representation.",
+19,Data-driven design and morphological analysis of conical six-fold origami structures,Design Discipline,"Manxin Chen:
+In engineering design, origami structures are frequently characterized by their geometry-shifting behavior, mechanical properties, lightness, and appealing aesthetic qualities. Origami structures are gradually emerging at the frontier of scientific and technological innovations.",
+26,The application of artificial intelligence-assisted technology in cultural and creative product design,Design Practice/Task,"Manxin Chen:
+The core of the research is the design and implementation of an AI-assisted technology for cultural and creative product design.",
+26,The application of artificial intelligence-assisted technology in cultural and creative product design,Data Modality,"Manxin Chen:
+The data includes textual descriptions (cultural context, symbolic meaning) and image data (patterns, artifact shapes) for comprehensive feature learning.",
+26,The application of artificial intelligence-assisted technology in cultural and creative product design,"AI Assistance Types (Lee and Kim, 2025)","Manxin Chen:
+The main application is the automatic generation of preliminary design concepts and color schemes based on user-defined cultural themes. The GAN model is designed to create novel design patterns that maintain the core aesthetic features of the input cultural heritage.",
+26,The application of artificial intelligence-assisted technology in cultural and creative product design,Data About,"Manxin Chen:
+The methodology involves collecting and structuring data from traditional cultural patterns and creative product specifications. Design elements such as color palettes, symbolic meanings, and geometric shapes derived from cultural artifacts are used as input.",
+30,Fostering creativity in engineering design through constructive dialogues with generative artificial intelligence,Design Phase,"Manxin Chen:
+The research focuses on assisting designers during the ideation and conceptualization phase (early design stage). The primary goal is to stimulate divergent thinking and expand the solution space.",
+30,Fostering creativity in engineering design through constructive dialogues with generative artificial intelligence,Design Discipline,"Manxin Chen:
+The study investigates how generative artificial intelligence (AI) can enhance creativity in engineering design. The participants were given a challenge to design a novel household product.",
+30,Fostering creativity in engineering design through constructive dialogues with generative artificial intelligence,Data About,"Manxin Chen:
+The dataset captures the dialogue transcripts between human designers and the generative AI tool (ChatGPT). Analysis focuses on dialogic strategies and creative outcomes (novelty, variety, quality of generated ideas) from the design sessions.",
+30,Fostering creativity in engineering design through constructive dialogues with generative artificial intelligence,Design Practice/Task,"Manxin Chen:
+Fostering creativity in engineering design through constructive dialogues with generative artificial intelligence.",
+38,Applying Natural Language Processing and TRIZ Evolutionary Trends to Patent Recommendations for Product Design,Design Phase,"Manxin Chen:
+The application targets the early-stage idea generation and conceptualization phase of product design. The recommendations facilitate the expansion of the solution space and identification of technical opportunities.",
+49,Digital-Twin-Aided Product Design Framework For IoT Platforms,AI methods,"Manxin Chen:
+Predictive analytics also incorporate Regression and Classification models for pattern detection and anomaly identification from live data streams.
+
+The core of the framework utilizes Machine Learning (ML) algorithms, including Recurrent Neural Networks (RNNs), for predictive modeling of future product failure or performance",
+50,Combining Deep Learning with Knowledge Graph for Design Knowledge Acquisition in Conceptual Product Design,Data About,"Manxin Chen:
+The input data consists of patent texts, which contain formalized knowledge about product components, functions, and inventions. The focus is extracting knowledge related to product entities and their relationships.",
+52,PROPOSAL OF SUPPORT METHOD FOR DIRECTING EXPLORATION AND EXPLOITATION IN ENGINEERING DESIGN,Data Modality,"Manxin Chen:
+The search process is managed as a sequence of iterative design evaluations, where the next action depends on the history of previous search steps.",
+52,PROPOSAL OF SUPPORT METHOD FOR DIRECTING EXPLORATION AND EXPLOITATION IN ENGINEERING DESIGN,Design Phase,"Manxin Chen:
+The core activity is refining and optimizing design solutions within a known solution space, which is characteristic of the Develop phase.",
+55,Knowledge graph with machine learning for product design,Data Modality,"Manxin Chen:
+The main input stream consists of raw text documents that are processed through a knowledge extraction pipeline.",No similar sentences found
+52,PROPOSAL OF SUPPORT METHOD FOR DIRECTING EXPLORATION AND EXPLOITATION IN ENGINEERING DESIGN,Design Practice/Task,"Manxin Chen:
+Proposal of Support Method for Directing Exploration and Exploitation in engineering design.",
+52,PROPOSAL OF SUPPORT METHOD FOR DIRECTING EXPLORATION AND EXPLOITATION IN ENGINEERING DESIGN,AI methods,"Manxin Chen:
+The proposed support method integrates meta-heuristic optimization algorithms. The core control logic uses statistical models (e.g., probability distribution functions) derived from past samples to inform the exploration/exploitation balance.",
+52,PROPOSAL OF SUPPORT METHOD FOR DIRECTING EXPLORATION AND EXPLOITATION IN ENGINEERING DESIGN,Data About,"Manxin Chen:
+The data consists of parameters and performance metrics from simulated design solutions. The core data tracks the geometry and fitness values of design artifacts",
+53,Optimizing Product Design Using Genetic Algorithms and Artificial Intelligence Techniques,Design Practice/Task,"Manxin Chen:
+Optimizing Product Design Using Genetic Algorithms and Artificial Intelligence Techniques.",
+55,Knowledge graph with machine learning for product design,AI methods,"Manxin Chen:
+Machine learning (ML) techniques, including Natural Language Processing (NLP) models, are used for entity and relation extraction from the text. Deep learning architectures are employed for advanced semantic parsing.",
+53,Optimizing Product Design Using Genetic Algorithms and Artificial Intelligence Techniques,AI methods,"Manxin Chen:
+The primary algorithm used for optimization is the Genetic Algorithm (GA). The framework also utilizes clustering and regression techniques for model refinement.",
+55,Knowledge graph with machine learning for product design,Design Phase,"Manxin Chen:
+The application is primarily aimed at the conceptual design phase, assisting in initial knowledge exploration and problem definition.",
+56,Research on the Decision Model of Product Design Based on a Deep Residual Network,Data About,"Manxin Chen:
+The model relies on analyzing user emotional preferences (e.g., aesthetic appeal, Kansei value) in response to product images.",
+58,Computer Vision Interaction Design in Sustainable Urban Development: A Case Study of Roof Garden Landscape Plants in Marine Cities,AI methods,"Manxin Chen:
+image classification and content recognition,"" and ""image semantic segmentation",
+56,Research on the Decision Model of Product Design Based on a Deep Residual Network,Design Practice/Task,"Manxin Chen:
+The goal is to quantify user emotional responses (Kansei) to visual product features and integrate this metric into the design selection process.",
+60,Promoting knowledge recommendation in innovative engineering design: a BERT-GAT-based patent representation learning approach,Design Practice/Task,"Manxin Chen:
+Promoting knowledge recommendation in innovative engineering design: a BERT-GAT-based patent representation learning approach.",
+59,Automated Extraction and Classification of Product Design Elements Based on Image Recognition,Design Phase,"Manxin Chen:
+The extracted and classified design elements are used to inform initial concept generation and quickly identify aesthetic trends in existing products.",
+64,A User Review Analysis Tool Empowering Iterative Product Design,Design Practice/Task,"Manxin Chen:
+A User Review Analysis Tool Empowering Iterative Product Design.",
+65,The Exploration of Integrating the Midjourney Artificial Intelligence Generated Content Tool into Design Systems to Direct Designers towards Future-Oriented Innovation,Data About,"Manxin Chen:
+The study implicitly captures designer feedback and creative outcomes derived from the interaction with the generative AI tool. The analysis is focused on the qualitative impact of AI-generated imagery on human ideation and perspective.",
+69,Dynamical mining of ever-changing user requirements: A product design and improvement perspective,AI methods,"Manxin Chen:
+The dynamic mining relies on Deep Learning models, specifically Recurrent Neural Networks (RNNs) or similar NLP architectures capable of processing sequential, time-series text data for trend analysis.",
+70,A Product Styling Design Evaluation Method Based on Multilayer Perceptron Genetic Algorithm Neural Network Algorithm,Design Phase,"Manxin Chen:
+The evaluation model helps guide the conceptual design phase by providing immediate feedback on styling decisions and refining the initial set of promising concepts.",
+70,A Product Styling Design Evaluation Method Based on Multilayer Perceptron Genetic Algorithm Neural Network Algorithm,Design Practice/Task,"Manxin Chen:
+The goal is developing a robust, quantitative model to link objective styling features to subjective user aesthetic preference (Perception).",
+70,A Product Styling Design Evaluation Method Based on Multilayer Perceptron Genetic Algorithm Neural Network Algorithm,Data About,"Manxin Chen:
+The evaluation model relies on user preference and aesthetic perception data collected via questionnaires or psychometric scales. The model quantifies subjective information about design styles.",
+73,Discrete Bidirectional Associative Memory Neural Networks of the Cohen-Grossberg Type for Engineering Design Symmetry Related Problems: Practical Stability of Sets Analysis,Data About,"Manxin Chen:
+The primary data relates to design parameters and constraints defining the symmetry properties of technical artifacts. The model handles quantifiable geometric relationships.",
+13,Analysis of Cleaner Production Performance in Manufacturing Companies Employing Artificial Neural Networks,AI methods,"Manxin Chen:
+.a fully connected feed-forward multi-layer perceptron to model the relation... / For our case, we adopted a swallow feed-forward regressor, operating in supervised mode",
+184,Interaction Design With Multi-Objective Bayesian Optimization,Data Modality,"Minimum duration time of the vibration [50 ms, 950ms]. Number of discrete vibration duration levels {1,2,3,4}. Minimum amplitude of vibration [0g, 1.45g]. Number of discrete amplitude levels {1,2,3,4}.",
+168,Empirical Evidence on Conversational Control of GUI in Semantic Automation,"AI Assistance Types (Lee and Kim, 2025)","We augment the UI with our conversational engine and propose In-situ Prompt Engineering and learn from Human Feedback to smoothen the interaction and manipulation of UI through natural language commands. semantically enriched table with auto-generated caption, description, tags and estimated primary key, as well as column descriptions and glossary concept mappings. The model is objected to implicitly perform three tasks in a single pass: (1) intent recognition, (2) entity extraction and (3) response generation.",
+62,Using Deep Learning to Support the User Interface Design of Mobile Applications with App Inventor,Design Phase,"Manxin Chen:
+The model helps identify successful and preferred design patterns within the large dataset, informing the conceptual start of a new design.",
+62,Using Deep Learning to Support the User Interface Design of Mobile Applications with App Inventor,"AI Assistance Types (Lee and Kim, 2025)","Manxin Chen:
+The primary role is to predict user acceptance or quality scores for a given mobile application UI layout.",
+62,Using Deep Learning to Support the User Interface Design of Mobile Applications with App Inventor,Data About,"Manxin Chen:
+The training data consists of historical mobile application designs along with user interaction patterns and design feedback associated with those designs. The data reflects user acceptance and behavior metrics related to the interface layout.",
+45,Machine Learning Algorithms for Improved Product Design User Experience,Data About,"Manxin Chen:
+The dataset is primarily composed of user interaction logs, clickstream data, and time-on-task metrics collected from product prototypes. This captures explicit behavioral data indicative of user engagement and frustration.",

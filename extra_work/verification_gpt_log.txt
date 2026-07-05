@@ -1,0 +1,358 @@
+2025-12-04 17:18:31,624 - INFO - 진행 상황 초기화됨
+2025-12-04 17:18:31,625 - INFO - ============================================================
+2025-12-04 17:18:31,625 - INFO - AI 서비스 분류 검증 시작
+2025-12-04 17:18:31,625 - INFO - 전체 서비스: 38개
+2025-12-04 17:18:31,625 - INFO - 검증 대상: 0번 ~ 37번 (38개)
+2025-12-04 17:18:31,625 - INFO - ============================================================
+2025-12-04 17:18:31,625 - INFO - 
+[진행] 1/38 (2.6%)
+2025-12-04 17:18:31,625 - INFO - [1] Gemini 검증 시작...
+2025-12-04 17:18:31,625 - INFO - 동시 쿼리 검색 시작: 1개 쿼리 (최대 5개)
+2025-12-04 17:18:49,566 - INFO - HTTP Request: POST https://api.perplexity.ai/chat/completions "HTTP/1.1 200 OK"
+2025-12-04 17:18:49,575 - INFO - Perplexity 검색 성공: Gemini AI service features input output modalities...
+2025-12-04 17:18:49,575 - INFO - 쿼리 검색 완료: 1개 성공, 0개 실패
+2025-12-04 17:18:54,110 - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-12-04 17:18:54,117 - INFO - [1] Gemini ✅ match: 검출된 모달리티가 현재 분류에 포함됨
+2025-12-04 17:18:56,120 - INFO - 
+[진행] 2/38 (5.3%)
+2025-12-04 17:18:56,121 - INFO - [2] Deepseek 검증 시작...
+2025-12-04 17:18:56,121 - INFO - 동시 쿼리 검색 시작: 1개 쿼리 (최대 5개)
+2025-12-04 17:19:13,993 - INFO - HTTP Request: POST https://api.perplexity.ai/chat/completions "HTTP/1.1 200 OK"
+2025-12-04 17:19:13,995 - INFO - Perplexity 검색 성공: Deepseek AI service features input output modaliti...
+2025-12-04 17:19:13,996 - INFO - 쿼리 검색 완료: 1개 성공, 0개 실패
+2025-12-04 17:19:17,231 - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-12-04 17:19:17,233 - INFO - [2] Deepseek ✅ match: 검출된 모달리티가 현재 분류에 포함됨
+2025-12-04 17:19:19,235 - INFO - 
+[진행] 3/38 (7.9%)
+2025-12-04 17:19:19,235 - INFO - [3] ChatGPT 검증 시작...
+2025-12-04 17:19:19,235 - INFO - 동시 쿼리 검색 시작: 1개 쿼리 (최대 5개)
+2025-12-04 17:19:36,167 - INFO - HTTP Request: POST https://api.perplexity.ai/chat/completions "HTTP/1.1 200 OK"
+2025-12-04 17:19:36,174 - INFO - Perplexity 검색 성공: ChatGPT AI service features input output modalitie...
+2025-12-04 17:19:36,174 - INFO - 쿼리 검색 완료: 1개 성공, 0개 실패
+2025-12-04 17:19:39,216 - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-12-04 17:19:39,217 - INFO - [3] ChatGPT ✅ match: 검출된 모달리티가 현재 분류에 포함됨
+2025-12-04 17:19:41,220 - INFO - 
+[진행] 4/38 (10.5%)
+2025-12-04 17:19:41,220 - INFO - [4] NotebookLM 검증 시작...
+2025-12-04 17:19:41,220 - INFO - 동시 쿼리 검색 시작: 1개 쿼리 (최대 5개)
+2025-12-04 17:19:59,323 - INFO - HTTP Request: POST https://api.perplexity.ai/chat/completions "HTTP/1.1 200 OK"
+2025-12-04 17:19:59,325 - INFO - Perplexity 검색 성공: NotebookLM AI service features input output modali...
+2025-12-04 17:19:59,325 - INFO - 쿼리 검색 완료: 1개 성공, 0개 실패
+2025-12-04 17:20:04,483 - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-12-04 17:20:04,487 - INFO - [4] NotebookLM ⚠️ partial: 일부 모달리티 불일치
+2025-12-04 17:20:06,490 - INFO - 
+[진행] 5/38 (13.2%)
+2025-12-04 17:20:06,490 - INFO - [5] Apple Intelligence 검증 시작...
+2025-12-04 17:20:06,490 - INFO - 동시 쿼리 검색 시작: 1개 쿼리 (최대 5개)
+2025-12-04 17:20:24,301 - INFO - HTTP Request: POST https://api.perplexity.ai/chat/completions "HTTP/1.1 200 OK"
+2025-12-04 17:20:24,302 - INFO - Perplexity 검색 성공: Apple Intelligence AI service features input outpu...
+2025-12-04 17:20:24,302 - INFO - 쿼리 검색 완료: 1개 성공, 0개 실패
+2025-12-04 17:20:29,750 - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-12-04 17:20:29,752 - INFO - [5] Apple Intelligence ✅ match: 검출된 모달리티가 현재 분류에 포함됨
+2025-12-04 17:20:31,754 - INFO - 
+[진행] 6/38 (15.8%)
+2025-12-04 17:20:31,754 - INFO - [6] Granola 검증 시작...
+2025-12-04 17:20:31,754 - INFO - 동시 쿼리 검색 시작: 1개 쿼리 (최대 5개)
+2025-12-04 17:20:46,724 - INFO - HTTP Request: POST https://api.perplexity.ai/chat/completions "HTTP/1.1 200 OK"
+2025-12-04 17:20:46,725 - INFO - Perplexity 검색 성공: Granola AI service features input output modalitie...
+2025-12-04 17:20:46,725 - INFO - 쿼리 검색 완료: 1개 성공, 0개 실패
+2025-12-04 17:20:50,434 - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-12-04 17:20:50,445 - INFO - [6] Granola ✅ match: 검출된 모달리티가 현재 분류에 포함됨
+2025-12-04 17:20:52,447 - INFO - 
+[진행] 7/38 (18.4%)
+2025-12-04 17:20:52,447 - INFO - [7] Copilot 검증 시작...
+2025-12-04 17:20:52,447 - INFO - 동시 쿼리 검색 시작: 1개 쿼리 (최대 5개)
+2025-12-04 17:21:08,448 - INFO - HTTP Request: POST https://api.perplexity.ai/chat/completions "HTTP/1.1 200 OK"
+2025-12-04 17:21:08,451 - INFO - Perplexity 검색 성공: Copilot AI service features input output modalitie...
+2025-12-04 17:21:08,451 - INFO - 쿼리 검색 완료: 1개 성공, 0개 실패
+2025-12-04 17:21:10,165 - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-12-04 17:21:10,216 - INFO - [7] Copilot ✅ match: 검출된 모달리티가 현재 분류에 포함됨
+2025-12-04 17:21:12,222 - INFO - 
+[진행] 8/38 (21.1%)
+2025-12-04 17:21:12,223 - INFO - [8] Grok 검증 시작...
+2025-12-04 17:21:12,223 - INFO - 동시 쿼리 검색 시작: 1개 쿼리 (최대 5개)
+2025-12-04 17:21:28,349 - INFO - HTTP Request: POST https://api.perplexity.ai/chat/completions "HTTP/1.1 200 OK"
+2025-12-04 17:21:28,351 - INFO - Perplexity 검색 성공: Grok AI service features input output modalities c...
+2025-12-04 17:21:28,351 - INFO - 쿼리 검색 완료: 1개 성공, 0개 실패
+2025-12-04 17:21:32,917 - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-12-04 17:21:32,925 - INFO - [8] Grok ⚠️ partial: 일부 모달리티 불일치
+2025-12-04 17:21:34,928 - INFO - 
+[진행] 9/38 (23.7%)
+2025-12-04 17:21:34,928 - INFO - [9] Grammarly 검증 시작...
+2025-12-04 17:21:34,928 - INFO - 동시 쿼리 검색 시작: 1개 쿼리 (최대 5개)
+2025-12-04 17:21:49,554 - INFO - HTTP Request: POST https://api.perplexity.ai/chat/completions "HTTP/1.1 200 OK"
+2025-12-04 17:21:49,556 - INFO - Perplexity 검색 성공: Grammarly AI service features input output modalit...
+2025-12-04 17:21:49,556 - INFO - 쿼리 검색 완료: 1개 성공, 0개 실패
+2025-12-04 17:21:52,922 - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-12-04 17:21:52,927 - INFO - [9] Grammarly 🔄 needs_upgrade: 현재 T2T이지만 MULTI로 업그레이드 필요할 수 있음
+2025-12-04 17:21:54,929 - INFO - 
+[진행] 10/38 (26.3%)
+2025-12-04 17:21:54,929 - INFO - [10] Craft 검증 시작...
+2025-12-04 17:21:54,929 - INFO - 동시 쿼리 검색 시작: 1개 쿼리 (최대 5개)
+2025-12-04 17:22:09,751 - INFO - HTTP Request: POST https://api.perplexity.ai/chat/completions "HTTP/1.1 200 OK"
+2025-12-04 17:22:09,753 - INFO - Perplexity 검색 성공: Craft AI service features input output modalities ...
+2025-12-04 17:22:09,754 - INFO - 쿼리 검색 완료: 1개 성공, 0개 실패
+2025-12-04 17:22:11,807 - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-12-04 17:22:11,808 - INFO - [10] Craft ✅ match: 분류 일치
+2025-12-04 17:22:13,811 - INFO - 
+[진행] 11/38 (28.9%)
+2025-12-04 17:22:13,812 - INFO - [11] Perplexity 검증 시작...
+2025-12-04 17:22:13,812 - INFO - 동시 쿼리 검색 시작: 1개 쿼리 (최대 5개)
+2025-12-04 17:22:31,826 - INFO - HTTP Request: POST https://api.perplexity.ai/chat/completions "HTTP/1.1 200 OK"
+2025-12-04 17:22:31,827 - INFO - Perplexity 검색 성공: Perplexity AI service features input output modali...
+2025-12-04 17:22:31,827 - INFO - 쿼리 검색 완료: 1개 성공, 0개 실패
+2025-12-04 17:22:35,393 - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-12-04 17:22:35,400 - INFO - [11] Perplexity ⚠️ partial: 일부 모달리티 불일치
+2025-12-04 17:22:37,403 - INFO - 
+[진행] 12/38 (31.6%)
+2025-12-04 17:22:37,403 - INFO - [12] Claude 검증 시작...
+2025-12-04 17:22:37,403 - INFO - 동시 쿼리 검색 시작: 1개 쿼리 (최대 5개)
+2025-12-04 17:22:53,993 - INFO - HTTP Request: POST https://api.perplexity.ai/chat/completions "HTTP/1.1 200 OK"
+2025-12-04 17:22:53,994 - INFO - Perplexity 검색 성공: Claude AI service features input output modalities...
+2025-12-04 17:22:53,995 - INFO - 쿼리 검색 완료: 1개 성공, 0개 실패
+2025-12-04 17:22:56,969 - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-12-04 17:22:56,979 - INFO - [12] Claude ✅ match: 검출된 모달리티가 현재 분류에 포함됨
+2025-12-04 17:22:58,981 - INFO - 
+[진행] 13/38 (34.2%)
+2025-12-04 17:22:58,982 - INFO - [13] Claude Code 검증 시작...
+2025-12-04 17:22:58,982 - INFO - 동시 쿼리 검색 시작: 1개 쿼리 (최대 5개)
+2025-12-04 17:23:12,740 - INFO - HTTP Request: POST https://api.perplexity.ai/chat/completions "HTTP/1.1 200 OK"
+2025-12-04 17:23:12,742 - INFO - Perplexity 검색 성공: Claude Code AI service features input output modal...
+2025-12-04 17:23:12,742 - INFO - 쿼리 검색 완료: 1개 성공, 0개 실패
+2025-12-04 17:23:16,030 - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-12-04 17:23:16,042 - INFO - [13] Claude Code 🔄 needs_upgrade: 현재 T2C이지만 MULTI로 업그레이드 필요할 수 있음
+2025-12-04 17:23:18,046 - INFO - 
+[진행] 14/38 (36.8%)
+2025-12-04 17:23:18,046 - INFO - [14] Miro AI 검증 시작...
+2025-12-04 17:23:18,046 - INFO - 동시 쿼리 검색 시작: 1개 쿼리 (최대 5개)
+2025-12-04 17:23:34,415 - INFO - HTTP Request: POST https://api.perplexity.ai/chat/completions "HTTP/1.1 200 OK"
+2025-12-04 17:23:34,417 - INFO - Perplexity 검색 성공: Miro AI AI service features input output modalitie...
+2025-12-04 17:23:34,418 - INFO - 쿼리 검색 완료: 1개 성공, 0개 실패
+2025-12-04 17:23:36,702 - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-12-04 17:23:36,714 - INFO - [14] Miro AI ⚠️ partial: 일부 모달리티 불일치
+2025-12-04 17:23:38,717 - INFO - 
+[진행] 15/38 (39.5%)
+2025-12-04 17:23:38,717 - INFO - [15] Whimsical AI 검증 시작...
+2025-12-04 17:23:38,717 - INFO - 동시 쿼리 검색 시작: 1개 쿼리 (최대 5개)
+2025-12-04 17:23:53,002 - INFO - HTTP Request: POST https://api.perplexity.ai/chat/completions "HTTP/1.1 200 OK"
+2025-12-04 17:23:53,003 - INFO - Perplexity 검색 성공: Whimsical AI AI service features input output moda...
+2025-12-04 17:23:53,003 - INFO - 쿼리 검색 완료: 1개 성공, 0개 실패
+2025-12-04 17:23:55,152 - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-12-04 17:23:55,152 - INFO - [15] Whimsical AI ✅ match: 검출된 모달리티가 현재 분류에 포함됨
+2025-12-04 17:23:57,154 - INFO - 
+[진행] 16/38 (42.1%)
+2025-12-04 17:23:57,154 - INFO - [16] Figma AI 검증 시작...
+2025-12-04 17:23:57,154 - INFO - 동시 쿼리 검색 시작: 1개 쿼리 (최대 5개)
+2025-12-04 17:24:13,596 - INFO - HTTP Request: POST https://api.perplexity.ai/chat/completions "HTTP/1.1 200 OK"
+2025-12-04 17:24:13,598 - INFO - Perplexity 검색 성공: Figma AI AI service features input output modaliti...
+2025-12-04 17:24:13,598 - INFO - 쿼리 검색 완료: 1개 성공, 0개 실패
+2025-12-04 17:24:16,152 - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-12-04 17:24:16,154 - INFO - [16] Figma AI ⚠️ partial: 일부 모달리티 불일치
+2025-12-04 17:24:18,157 - INFO - 
+[진행] 17/38 (44.7%)
+2025-12-04 17:24:18,157 - INFO - [17] Adobe Firefly 검증 시작...
+2025-12-04 17:24:18,157 - INFO - 동시 쿼리 검색 시작: 1개 쿼리 (최대 5개)
+2025-12-04 17:24:37,670 - INFO - HTTP Request: POST https://api.perplexity.ai/chat/completions "HTTP/1.1 200 OK"
+2025-12-04 17:24:37,673 - INFO - Perplexity 검색 성공: Adobe Firefly AI service features input output mod...
+2025-12-04 17:24:37,673 - INFO - 쿼리 검색 완료: 1개 성공, 0개 실패
+2025-12-04 17:24:41,067 - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-12-04 17:24:41,070 - INFO - [17] Adobe Firefly ⚠️ partial: 일부 모달리티 불일치
+2025-12-04 17:24:43,072 - INFO - 
+[진행] 18/38 (47.4%)
+2025-12-04 17:24:43,072 - INFO - [18] Midjourney 검증 시작...
+2025-12-04 17:24:43,072 - INFO - 동시 쿼리 검색 시작: 1개 쿼리 (최대 5개)
+2025-12-04 17:25:01,681 - INFO - HTTP Request: POST https://api.perplexity.ai/chat/completions "HTTP/1.1 200 OK"
+2025-12-04 17:25:01,683 - INFO - Perplexity 검색 성공: Midjourney AI service features input output modali...
+2025-12-04 17:25:01,684 - INFO - 쿼리 검색 완료: 1개 성공, 0개 실패
+2025-12-04 17:25:05,195 - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-12-04 17:25:05,198 - INFO - [18] Midjourney ⚠️ partial: 일부 모달리티 불일치
+2025-12-04 17:25:07,201 - INFO - 
+[진행] 19/38 (50.0%)
+2025-12-04 17:25:07,201 - INFO - [19] DALL-E 검증 시작...
+2025-12-04 17:25:07,201 - INFO - 동시 쿼리 검색 시작: 1개 쿼리 (최대 5개)
+2025-12-04 17:25:22,888 - INFO - HTTP Request: POST https://api.perplexity.ai/chat/completions "HTTP/1.1 200 OK"
+2025-12-04 17:25:22,890 - INFO - Perplexity 검색 성공: DALL-E AI service features input output modalities...
+2025-12-04 17:25:22,890 - INFO - 쿼리 검색 완료: 1개 성공, 0개 실패
+2025-12-04 17:25:25,753 - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-12-04 17:25:25,770 - INFO - [19] DALL-E 🔄 needs_upgrade: 현재 T2I이지만 MULTI로 업그레이드 필요할 수 있음
+2025-12-04 17:25:27,772 - INFO - 
+[진행] 20/38 (52.6%)
+2025-12-04 17:25:27,772 - INFO - [20] Canva Magic Studio 검증 시작...
+2025-12-04 17:25:27,772 - INFO - 동시 쿼리 검색 시작: 1개 쿼리 (최대 5개)
+2025-12-04 17:25:46,847 - INFO - HTTP Request: POST https://api.perplexity.ai/chat/completions "HTTP/1.1 200 OK"
+2025-12-04 17:25:46,848 - INFO - Perplexity 검색 성공: Canva Magic Studio AI service features input outpu...
+2025-12-04 17:25:46,848 - INFO - 쿼리 검색 완료: 1개 성공, 0개 실패
+2025-12-04 17:25:50,563 - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-12-04 17:25:50,566 - INFO - [20] Canva Magic Studio ⚠️ partial: 일부 모달리티 불일치
+2025-12-04 17:25:52,568 - INFO - 
+[진행] 21/38 (55.3%)
+2025-12-04 17:25:52,569 - INFO - [21] VIZcom 검증 시작...
+2025-12-04 17:25:52,569 - INFO - 동시 쿼리 검색 시작: 1개 쿼리 (최대 5개)
+2025-12-04 17:26:03,439 - INFO - HTTP Request: POST https://api.perplexity.ai/chat/completions "HTTP/1.1 200 OK"
+2025-12-04 17:26:03,442 - INFO - Perplexity 검색 성공: VIZcom AI service features input output modalities...
+2025-12-04 17:26:03,442 - INFO - 쿼리 검색 완료: 1개 성공, 0개 실패
+2025-12-04 17:26:06,358 - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-12-04 17:26:06,359 - INFO - [21] VIZcom ✅ match: 검출된 모달리티가 현재 분류에 포함됨
+2025-12-04 17:26:08,364 - INFO - 
+[진행] 22/38 (57.9%)
+2025-12-04 17:26:08,364 - INFO - [22] Kling 검증 시작...
+2025-12-04 17:26:08,364 - INFO - 동시 쿼리 검색 시작: 1개 쿼리 (최대 5개)
+2025-12-04 17:26:29,168 - INFO - HTTP Request: POST https://api.perplexity.ai/chat/completions "HTTP/1.1 200 OK"
+2025-12-04 17:26:29,172 - INFO - Perplexity 검색 성공: Kling AI service features input output modalities ...
+2025-12-04 17:26:29,172 - INFO - 쿼리 검색 완료: 1개 성공, 0개 실패
+2025-12-04 17:26:36,062 - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-12-04 17:26:36,074 - INFO - [22] Kling ⚠️ partial: 일부 모달리티 불일치
+2025-12-04 17:26:38,079 - INFO - 
+[진행] 23/38 (60.5%)
+2025-12-04 17:26:38,079 - INFO - [23] Basecamp 검증 시작...
+2025-12-04 17:26:38,079 - INFO - 동시 쿼리 검색 시작: 1개 쿼리 (최대 5개)
+2025-12-04 17:26:44,081 - INFO - HTTP Request: POST https://api.perplexity.ai/chat/completions "HTTP/1.1 200 OK"
+2025-12-04 17:26:44,082 - INFO - Perplexity 검색 성공: Basecamp AI service features input output modaliti...
+2025-12-04 17:26:44,082 - INFO - 쿼리 검색 완료: 1개 성공, 0개 실패
+2025-12-04 17:26:45,337 - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-12-04 17:26:45,340 - INFO - [23] Basecamp ❓ no_detection: 모달리티 검출 실패 - 수동 확인 필요
+2025-12-04 17:26:47,344 - INFO - 
+[진행] 24/38 (63.2%)
+2025-12-04 17:26:47,344 - INFO - [24] Notion AI 검증 시작...
+2025-12-04 17:26:47,344 - INFO - 동시 쿼리 검색 시작: 1개 쿼리 (최대 5개)
+2025-12-04 17:27:04,352 - INFO - HTTP Request: POST https://api.perplexity.ai/chat/completions "HTTP/1.1 200 OK"
+2025-12-04 17:27:04,354 - INFO - Perplexity 검색 성공: Notion AI AI service features input output modalit...
+2025-12-04 17:27:04,355 - INFO - 쿼리 검색 완료: 1개 성공, 0개 실패
+2025-12-04 17:27:07,756 - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-12-04 17:27:07,781 - INFO - [24] Notion AI ✅ match: 검출된 모달리티가 현재 분류에 포함됨
+2025-12-04 17:27:09,784 - INFO - 
+[진행] 25/38 (65.8%)
+2025-12-04 17:27:09,784 - INFO - [25] Confluence AI 검증 시작...
+2025-12-04 17:27:09,784 - INFO - 동시 쿼리 검색 시작: 1개 쿼리 (최대 5개)
+2025-12-04 17:27:25,566 - INFO - HTTP Request: POST https://api.perplexity.ai/chat/completions "HTTP/1.1 200 OK"
+2025-12-04 17:27:25,566 - INFO - Perplexity 검색 성공: Confluence AI AI service features input output mod...
+2025-12-04 17:27:25,567 - INFO - 쿼리 검색 완료: 1개 성공, 0개 실패
+2025-12-04 17:27:28,621 - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-12-04 17:27:28,623 - INFO - [25] Confluence AI 🔄 needs_upgrade: 현재 T2T이지만 MULTI로 업그레이드 필요할 수 있음
+2025-12-04 17:27:30,628 - INFO - 
+[진행] 26/38 (68.4%)
+2025-12-04 17:27:30,628 - INFO - [26] Monday.com AI 검증 시작...
+2025-12-04 17:27:30,628 - INFO - 동시 쿼리 검색 시작: 1개 쿼리 (최대 5개)
+2025-12-04 17:27:45,005 - INFO - HTTP Request: POST https://api.perplexity.ai/chat/completions "HTTP/1.1 200 OK"
+2025-12-04 17:27:45,007 - INFO - Perplexity 검색 성공: Monday.com AI AI service features input output mod...
+2025-12-04 17:27:45,007 - INFO - 쿼리 검색 완료: 1개 성공, 0개 실패
+2025-12-04 17:27:47,269 - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-12-04 17:27:47,290 - INFO - [26] Monday.com AI ✅ match: 분류 일치
+2025-12-04 17:27:49,293 - INFO - 
+[진행] 27/38 (71.1%)
+2025-12-04 17:27:49,294 - INFO - [27] Slack AI 검증 시작...
+2025-12-04 17:27:49,294 - INFO - 동시 쿼리 검색 시작: 1개 쿼리 (최대 5개)
+2025-12-04 17:28:06,335 - INFO - HTTP Request: POST https://api.perplexity.ai/chat/completions "HTTP/1.1 200 OK"
+2025-12-04 17:28:06,336 - INFO - Perplexity 검색 성공: Slack AI AI service features input output modaliti...
+2025-12-04 17:28:06,336 - INFO - 쿼리 검색 완료: 1개 성공, 0개 실패
+2025-12-04 17:28:08,326 - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-12-04 17:28:08,335 - INFO - [27] Slack AI ⚠️ partial: 일부 모달리티 불일치
+2025-12-04 17:28:10,340 - INFO - 
+[진행] 28/38 (73.7%)
+2025-12-04 17:28:10,340 - INFO - [28] AI Studio 검증 시작...
+2025-12-04 17:28:10,340 - INFO - 동시 쿼리 검색 시작: 1개 쿼리 (최대 5개)
+2025-12-04 17:28:24,309 - INFO - HTTP Request: POST https://api.perplexity.ai/chat/completions "HTTP/1.1 200 OK"
+2025-12-04 17:28:24,311 - INFO - Perplexity 검색 성공: AI Studio AI service features input output modalit...
+2025-12-04 17:28:24,311 - INFO - 쿼리 검색 완료: 1개 성공, 0개 실패
+2025-12-04 17:28:28,179 - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-12-04 17:28:28,180 - INFO - [28] AI Studio ⚠️ partial: 일부 모달리티 불일치
+2025-12-04 17:28:30,183 - INFO - 
+[진행] 29/38 (76.3%)
+2025-12-04 17:28:30,183 - INFO - [29] String 검증 시작...
+2025-12-04 17:28:30,183 - INFO - 동시 쿼리 검색 시작: 1개 쿼리 (최대 5개)
+2025-12-04 17:28:42,721 - INFO - HTTP Request: POST https://api.perplexity.ai/chat/completions "HTTP/1.1 200 OK"
+2025-12-04 17:28:42,723 - INFO - Perplexity 검색 성공: String AI service features input output modalities...
+2025-12-04 17:28:42,723 - INFO - 쿼리 검색 완료: 1개 성공, 0개 실패
+2025-12-04 17:28:45,579 - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-12-04 17:28:45,582 - INFO - [29] String 🔄 needs_upgrade: 현재 T2C이지만 MULTI로 업그레이드 필요할 수 있음
+2025-12-04 17:28:47,586 - INFO - 
+[진행] 30/38 (78.9%)
+2025-12-04 17:28:47,586 - INFO - [30] Replit AI 검증 시작...
+2025-12-04 17:28:47,586 - INFO - 동시 쿼리 검색 시작: 1개 쿼리 (최대 5개)
+2025-12-04 17:29:07,761 - INFO - HTTP Request: POST https://api.perplexity.ai/chat/completions "HTTP/1.1 200 OK"
+2025-12-04 17:29:07,763 - INFO - Perplexity 검색 성공: Replit AI AI service features input output modalit...
+2025-12-04 17:29:07,763 - INFO - 쿼리 검색 완료: 1개 성공, 0개 실패
+2025-12-04 17:29:10,132 - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-12-04 17:29:10,134 - INFO - [30] Replit AI ⚠️ partial: 일부 모달리티 불일치
+2025-12-04 17:29:12,136 - INFO - 
+[진행] 31/38 (81.6%)
+2025-12-04 17:29:12,136 - INFO - [31] Cursor 검증 시작...
+2025-12-04 17:29:12,136 - INFO - 동시 쿼리 검색 시작: 1개 쿼리 (최대 5개)
+2025-12-04 17:29:32,339 - INFO - HTTP Request: POST https://api.perplexity.ai/chat/completions "HTTP/1.1 200 OK"
+2025-12-04 17:29:32,341 - INFO - Perplexity 검색 성공: Cursor AI service features input output modalities...
+2025-12-04 17:29:32,341 - INFO - 쿼리 검색 완료: 1개 성공, 0개 실패
+2025-12-04 17:29:34,340 - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-12-04 17:29:34,354 - INFO - [31] Cursor ⚠️ partial: 일부 모달리티 불일치
+2025-12-04 17:29:36,365 - INFO - 
+[진행] 32/38 (84.2%)
+2025-12-04 17:29:36,365 - INFO - [32] CX Agents 검증 시작...
+2025-12-04 17:29:36,365 - INFO - [32] CX Agents - 미분류 상태, 스킵
+2025-12-04 17:29:36,368 - INFO - 
+[진행] 33/38 (86.8%)
+2025-12-04 17:29:36,368 - INFO - [33] Power Automate AI 검증 시작...
+2025-12-04 17:29:36,368 - INFO - 동시 쿼리 검색 시작: 1개 쿼리 (최대 5개)
+2025-12-04 17:29:53,657 - INFO - HTTP Request: POST https://api.perplexity.ai/chat/completions "HTTP/1.1 200 OK"
+2025-12-04 17:29:53,660 - INFO - Perplexity 검색 성공: Power Automate AI AI service features input output...
+2025-12-04 17:29:53,660 - INFO - 쿼리 검색 완료: 1개 성공, 0개 실패
+2025-12-04 17:29:55,832 - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-12-04 17:29:55,837 - INFO - [33] Power Automate AI 🔄 needs_upgrade: 현재 T2T이지만 MULTI로 업그레이드 필요할 수 있음
+2025-12-04 17:29:57,842 - INFO - 
+[진행] 34/38 (89.5%)
+2025-12-04 17:29:57,842 - INFO - [34] ClovaNote 검증 시작...
+2025-12-04 17:29:57,842 - INFO - 동시 쿼리 검색 시작: 1개 쿼리 (최대 5개)
+2025-12-04 17:30:07,779 - INFO - HTTP Request: POST https://api.perplexity.ai/chat/completions "HTTP/1.1 200 OK"
+2025-12-04 17:30:07,780 - INFO - Perplexity 검색 성공: ClovaNote AI service features input output modalit...
+2025-12-04 17:30:07,780 - INFO - 쿼리 검색 완료: 1개 성공, 0개 실패
+2025-12-04 17:30:11,007 - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-12-04 17:30:11,020 - INFO - [34] ClovaNote ✅ match: 검출된 모달리티가 현재 분류에 포함됨
+2025-12-04 17:30:13,026 - INFO - 
+[진행] 35/38 (92.1%)
+2025-12-04 17:30:13,026 - INFO - [35] Malirang 검증 시작...
+2025-12-04 17:30:13,026 - INFO - 동시 쿼리 검색 시작: 1개 쿼리 (최대 5개)
+2025-12-04 17:30:19,387 - INFO - HTTP Request: POST https://api.perplexity.ai/chat/completions "HTTP/1.1 200 OK"
+2025-12-04 17:30:19,388 - INFO - Perplexity 검색 성공: Malirang AI service features input output modaliti...
+2025-12-04 17:30:19,388 - INFO - 쿼리 검색 완료: 1개 성공, 0개 실패
+2025-12-04 17:30:20,386 - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-12-04 17:30:20,394 - INFO - [35] Malirang ❓ no_detection: 모달리티 검출 실패 - 수동 확인 필요
+2025-12-04 17:30:22,397 - INFO - 
+[진행] 36/38 (94.7%)
+2025-12-04 17:30:22,398 - INFO - [36] Stitch 검증 시작...
+2025-12-04 17:30:22,398 - INFO - 동시 쿼리 검색 시작: 1개 쿼리 (최대 5개)
+2025-12-04 17:30:38,088 - INFO - HTTP Request: POST https://api.perplexity.ai/chat/completions "HTTP/1.1 200 OK"
+2025-12-04 17:30:38,090 - INFO - Perplexity 검색 성공: Stitch AI service features input output modalities...
+2025-12-04 17:30:38,090 - INFO - 쿼리 검색 완료: 1개 성공, 0개 실패
+2025-12-04 17:30:41,016 - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-12-04 17:30:41,020 - INFO - [36] Stitch ⚠️ partial: 일부 모달리티 불일치
+2025-12-04 17:30:43,025 - INFO - 
+[진행] 37/38 (97.4%)
+2025-12-04 17:30:43,025 - INFO - [37] UX Pilot 검증 시작...
+2025-12-04 17:30:43,025 - INFO - 동시 쿼리 검색 시작: 1개 쿼리 (최대 5개)
+2025-12-04 17:31:02,010 - INFO - HTTP Request: POST https://api.perplexity.ai/chat/completions "HTTP/1.1 200 OK"
+2025-12-04 17:31:02,013 - INFO - Perplexity 검색 성공: UX Pilot AI service features input output modaliti...
+2025-12-04 17:31:02,013 - INFO - 쿼리 검색 완료: 1개 성공, 0개 실패
+2025-12-04 17:31:07,002 - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-12-04 17:31:07,004 - INFO - [37] UX Pilot ❌ mismatch: 모달리티 완전 불일치
+2025-12-04 17:31:09,012 - INFO - 
+[진행] 38/38 (100.0%)
+2025-12-04 17:31:09,012 - INFO - [38] LLMs (General) 검증 시작...
+2025-12-04 17:31:09,012 - INFO - 동시 쿼리 검색 시작: 1개 쿼리 (최대 5개)
+2025-12-04 17:31:29,742 - INFO - HTTP Request: POST https://api.perplexity.ai/chat/completions "HTTP/1.1 200 OK"
+2025-12-04 17:31:29,743 - INFO - Perplexity 검색 성공: LLMs (General) AI service features input output mo...
+2025-12-04 17:31:29,743 - INFO - 쿼리 검색 완료: 1개 성공, 0개 실패
+2025-12-04 17:31:34,718 - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-12-04 17:31:34,720 - INFO - [38] LLMs (General) 🔄 needs_upgrade: 현재 T2T이지만 MULTI로 업그레이드 필요할 수 있음
+2025-12-04 17:31:36,727 - INFO - 검증 결과 저장됨: /Users/outcode.jongmokim/Documents/paper_review_with_llm/extra_work/verification_results.json
+2025-12-04 17:31:36,727 - INFO - 
+============================================================
+2025-12-04 17:31:36,727 - INFO - 검증 완료 요약
+2025-12-04 17:31:36,727 - INFO - ============================================================
+2025-12-04 17:31:36,727 - INFO - 처리 상태:
+2025-12-04 17:31:36,727 - INFO -   - verified: 37개
+2025-12-04 17:31:36,727 - INFO -   - skipped: 1개
+2025-12-04 17:31:36,727 - INFO - 
+일치 상태 (verified 중):
+2025-12-04 17:31:36,727 - INFO -   - ✅ match: 13개
+2025-12-04 17:31:36,727 - INFO -   - ⚠️ partial: 14개
+2025-12-04 17:31:36,727 - INFO -   - 🔄 needs_upgrade: 7개
+2025-12-04 17:31:36,727 - INFO -   - ❓ no_detection: 2개
+2025-12-04 17:31:36,727 - INFO -   - ❌ mismatch: 1개

@@ -1,0 +1,156 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1440" height="900" viewBox="0 0 1440 900">
+  <defs>
+    <style>
+      .bg { fill: #f5f7fb; }
+      .panel { fill: #fff; stroke: #d8dee9; }
+      .title { font: 800 30px Inter, Arial, sans-serif; fill: #172033; }
+      .subtitle { font: 500 15px Inter, Arial, sans-serif; fill: #667085; }
+      .axis { font: 800 13px Inter, Arial, sans-serif; fill: #667085; letter-spacing: .4px; }
+      .category { font: 760 13px Inter, Arial, sans-serif; fill: #172033; }
+      .phase { font: 800 15px Inter, Arial, sans-serif; fill: #172033; }
+      .small { font: 700 11px Inter, Arial, sans-serif; fill: #667085; }
+      .cell { fill: #ffffff; stroke: #e5eaf2; }
+      .cell-alt { fill: #fbfcff; stroke: #e5eaf2; }
+      .ed { fill: #2563eb; }
+      .sd { fill: #ea580c; }
+      .uiux { fill: #7c3aed; }
+      .empty { fill: #e2e8f0; }
+      .legend { font: 700 12px Inter, Arial, sans-serif; fill: #172033; }
+      .total { font: 800 12px Inter, Arial, sans-serif; fill: #334155; }
+      .cell-label { font: 800 10px Inter, Arial, sans-serif; fill: #ffffff; text-anchor: middle; dominant-baseline: central; }
+    </style>
+  </defs>
+  <rect class="bg" width="1440" height="900"/>
+  <rect class="panel" x="40" y="34" width="1360" height="820" rx="12"/>
+
+  <text class="title" x="78" y="88">Phase - Category Domain Map: Bubble Matrix</text>
+  <text class="subtitle" x="78" y="116">Rows are refined categories, columns are design phases, and each cell contains three domain bubbles.</text>
+  <text class="subtitle" x="78" y="140">Compared with mini bars, bubbles are less exact but often easier to scan visually.</text>
+
+  <g transform="translate(78 178)">
+    <circle cx="6" cy="-2" r="7" class="ed"/>
+    <text class="legend" x="20" y="2">ED</text>
+    <circle cx="70" cy="-2" r="7" class="sd"/>
+    <text class="legend" x="84" y="2">SD</text>
+    <circle cx="136" cy="-2" r="7" class="uiux"/>
+    <text class="legend" x="150" y="2">UIUX</text>
+    <text class="small" x="230" y="2">Bubble size = case count. Label inside larger bubbles = domain count.</text>
+  </g>
+
+  <text class="axis" x="78" y="240">REFINED CATEGORY</text>
+  <text class="phase" x="480" y="240">Discover</text>
+  <text class="phase" x="700" y="240">Define</text>
+  <text class="phase" x="914" y="240">Develop</text>
+  <text class="phase" x="1144" y="240">Deliver</text>
+
+  <!-- Row 1 -->
+  <g>
+    <text class="category" x="78" y="307">Domain, Technical, and Market Knowledge</text>
+    <rect class="cell-alt" x="420" y="270" width="190" height="64" rx="8"/>
+    <circle class="ed" cx="490" cy="302" r="16"/><text class="cell-label" x="490" y="302">14</text>
+    <circle class="sd" cx="526" cy="302" r="22"/><text class="cell-label" x="526" y="302">25</text>
+    <circle class="uiux" cx="570" cy="302" r="14"/><text class="cell-label" x="570" y="302">9</text>
+    <text class="total" x="580" y="326">48</text>
+    <rect class="cell" x="640" y="270" width="190" height="64" rx="8"/>
+    <circle class="ed" cx="710" cy="302" r="10"/><circle class="sd" cx="742" cy="302" r="11"/><circle class="uiux" cx="774" cy="302" r="8"/>
+    <text class="total" x="800" y="326">11</text>
+    <rect class="cell" x="860" y="270" width="190" height="64" rx="8"/>
+    <circle class="empty" cx="930" cy="302" r="5"/><circle class="sd" cx="962" cy="302" r="7"/><circle class="uiux" cx="994" cy="302" r="5"/>
+    <text class="total" x="1020" y="326">4</text>
+    <rect class="cell" x="1080" y="270" width="190" height="64" rx="8"/>
+    <circle class="empty" cx="1150" cy="302" r="4"/><circle class="sd" cx="1182" cy="302" r="6"/><circle class="empty" cx="1214" cy="302" r="4"/>
+    <text class="total" x="1240" y="326">2</text>
+  </g>
+
+  <!-- Row 2 -->
+  <g>
+    <text class="category" x="78" y="387">User / Customer Need Research</text>
+    <rect class="cell" x="420" y="350" width="190" height="64" rx="8"/>
+    <circle class="ed" cx="490" cy="382" r="9"/><circle class="sd" cx="526" cy="382" r="10"/><circle class="uiux" cx="570" cy="382" r="8"/>
+    <text class="total" x="580" y="406">8</text>
+    <rect class="cell-alt" x="640" y="350" width="190" height="64" rx="8"/>
+    <circle class="ed" cx="710" cy="382" r="15"/><text class="cell-label" x="710" y="382">7</text>
+    <circle class="sd" cx="746" cy="382" r="16"/><text class="cell-label" x="746" y="382">8</text>
+    <circle class="uiux" cx="786" cy="382" r="12"/>
+    <text class="total" x="800" y="406">19</text>
+    <rect class="cell" x="860" y="350" width="190" height="64" rx="8"/>
+    <circle class="ed" cx="930" cy="382" r="8"/><circle class="sd" cx="962" cy="382" r="10"/><circle class="uiux" cx="994" cy="382" r="7"/>
+    <text class="total" x="1020" y="406">5</text>
+    <rect class="cell" x="1080" y="350" width="190" height="64" rx="8"/>
+    <circle class="empty" cx="1150" cy="382" r="4"/><circle class="sd" cx="1182" cy="382" r="5"/><circle class="empty" cx="1214" cy="382" r="4"/>
+    <text class="total" x="1240" y="406">1</text>
+  </g>
+
+  <!-- Row 3 -->
+  <g>
+    <text class="category" x="78" y="467">Concept Exploration and Development</text>
+    <rect class="cell" x="420" y="430" width="190" height="64" rx="8"/>
+    <circle class="ed" cx="490" cy="462" r="6"/><circle class="sd" cx="526" cy="462" r="6"/><circle class="uiux" cx="570" cy="462" r="7"/>
+    <text class="total" x="580" y="486">2</text>
+    <rect class="cell" x="640" y="430" width="190" height="64" rx="8"/>
+    <circle class="ed" cx="710" cy="462" r="8"/><circle class="sd" cx="746" cy="462" r="10"/><circle class="uiux" cx="786" cy="462" r="8"/>
+    <text class="total" x="800" y="486">5</text>
+    <rect class="cell-alt" x="860" y="430" width="190" height="64" rx="8"/>
+    <circle class="ed" cx="930" cy="462" r="15"/><text class="cell-label" x="930" y="462">7</text>
+    <circle class="sd" cx="966" cy="462" r="18"/><text class="cell-label" x="966" y="462">10</text>
+    <circle class="uiux" cx="1010" cy="462" r="21"/><text class="cell-label" x="1010" y="462">13</text>
+    <text class="total" x="1020" y="486">26</text>
+    <rect class="cell" x="1080" y="430" width="190" height="64" rx="8"/>
+    <circle class="empty" cx="1150" cy="462" r="4"/><circle class="sd" cx="1182" cy="462" r="6"/><circle class="empty" cx="1214" cy="462" r="4"/>
+    <text class="total" x="1240" y="486">1</text>
+  </g>
+
+  <!-- Row 4 -->
+  <g>
+    <text class="category" x="78" y="547">Documentation and Communication Support</text>
+    <rect class="cell" x="420" y="510" width="190" height="64" rx="8"/>
+    <circle class="ed" cx="490" cy="542" r="6"/><circle class="sd" cx="526" cy="542" r="7"/><circle class="uiux" cx="570" cy="542" r="6"/>
+    <text class="total" x="580" y="566">4</text>
+    <rect class="cell" x="640" y="510" width="190" height="64" rx="8"/>
+    <circle class="ed" cx="710" cy="542" r="9"/><circle class="sd" cx="746" cy="542" r="10"/><circle class="uiux" cx="786" cy="542" r="8"/>
+    <text class="total" x="800" y="566">6</text>
+    <rect class="cell-alt" x="860" y="510" width="190" height="64" rx="8"/>
+    <circle class="ed" cx="930" cy="542" r="13"/><circle class="sd" cx="966" cy="542" r="14"/><circle class="uiux" cx="1010" cy="542" r="15"/>
+    <text class="total" x="1020" y="566">11</text>
+    <rect class="cell-alt" x="1080" y="510" width="190" height="64" rx="8"/>
+    <circle class="ed" cx="1150" cy="542" r="8"/><circle class="sd" cx="1182" cy="542" r="18"/><text class="cell-label" x="1182" y="542">9</text><circle class="uiux" cx="1226" cy="542" r="14"/>
+    <text class="total" x="1240" y="566">16</text>
+  </g>
+
+  <!-- Row 5 -->
+  <g>
+    <text class="category" x="78" y="627">Design Critique and Assessment</text>
+    <rect class="cell" x="420" y="590" width="190" height="64" rx="8"/>
+    <circle class="empty" cx="490" cy="622" r="4"/><circle class="sd" cx="526" cy="622" r="5"/><circle class="uiux" cx="570" cy="622" r="5"/>
+    <text class="total" x="580" y="646">1</text>
+    <rect class="cell-alt" x="640" y="590" width="190" height="64" rx="8"/>
+    <circle class="ed" cx="710" cy="622" r="12"/><circle class="sd" cx="746" cy="622" r="14"/><circle class="uiux" cx="786" cy="622" r="11"/>
+    <text class="total" x="800" y="646">10</text>
+    <rect class="cell-alt" x="860" y="590" width="190" height="64" rx="8"/>
+    <circle class="ed" cx="930" cy="622" r="11"/><circle class="sd" cx="966" cy="622" r="13"/><circle class="uiux" cx="1010" cy="622" r="12"/>
+    <text class="total" x="1020" y="646">10</text>
+    <rect class="cell" x="1080" y="590" width="190" height="64" rx="8"/>
+    <circle class="ed" cx="1150" cy="622" r="5"/><circle class="sd" cx="1182" cy="622" r="6"/><circle class="uiux" cx="1214" cy="622" r="5"/>
+    <text class="total" x="1240" y="646">4</text>
+  </g>
+
+  <!-- Row 6 -->
+  <g>
+    <text class="category" x="78" y="707">Others</text>
+    <rect class="cell" x="420" y="670" width="190" height="64" rx="8"/>
+    <circle class="ed" cx="490" cy="702" r="12"/><circle class="sd" cx="526" cy="702" r="15"/><circle class="uiux" cx="570" cy="702" r="11"/>
+    <text class="total" x="580" y="726">11</text>
+    <rect class="cell" x="640" y="670" width="190" height="64" rx="8"/>
+    <circle class="ed" cx="710" cy="702" r="15"/><circle class="sd" cx="746" cy="702" r="14"/><circle class="uiux" cx="786" cy="702" r="13"/>
+    <text class="total" x="800" y="726">17</text>
+    <rect class="cell" x="860" y="670" width="190" height="64" rx="8"/>
+    <circle class="ed" cx="930" cy="702" r="17"/><circle class="sd" cx="966" cy="702" r="21"/><text class="cell-label" x="966" y="702">13</text><circle class="uiux" cx="1010" cy="702" r="19"/>
+    <text class="total" x="1020" y="726">32</text>
+    <rect class="cell" x="1080" y="670" width="190" height="64" rx="8"/>
+    <circle class="ed" cx="1150" cy="702" r="7"/><circle class="sd" cx="1182" cy="702" r="12"/><circle class="uiux" cx="1214" cy="702" r="10"/>
+    <text class="total" x="1240" y="726">15</text>
+  </g>
+
+  <rect x="78" y="780" width="1220" height="42" rx="8" fill="#fbfcff" stroke="#d8dee9"/>
+  <text class="small" x="100" y="806">Best use: fast pattern recognition. Weakness: bubble areas are less precise than bars, but hover values in the live dashboard can solve that.</text>
+</svg>

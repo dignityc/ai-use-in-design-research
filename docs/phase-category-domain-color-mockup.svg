@@ -1,0 +1,123 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1440" height="860" viewBox="0 0 1440 860">
+  <defs>
+    <style>
+      .bg { fill: #f5f7fb; }
+      .panel { fill: #ffffff; stroke: #d8dee9; stroke-width: 1; }
+      .title { font: 800 30px Inter, Arial, sans-serif; fill: #172033; }
+      .subtitle { font: 500 15px Inter, Arial, sans-serif; fill: #667085; }
+      .axis { font: 800 13px Inter, Arial, sans-serif; fill: #667085; letter-spacing: .5px; }
+      .node-title { font: 800 15px Inter, Arial, sans-serif; fill: #172033; }
+      .node-meta { font: 700 12px Inter, Arial, sans-serif; fill: #667085; }
+      .small { font: 700 11px Inter, Arial, sans-serif; fill: #667085; }
+      .flow { fill: none; stroke-linecap: round; opacity: .56; }
+      .flow-strong { fill: none; stroke-linecap: round; opacity: .76; }
+      .ed { stroke: #2563eb; }
+      .sd { stroke: #ea580c; }
+      .uiux { stroke: #7c3aed; }
+      .phase-fill { fill: #eef2ff; stroke: #c7d2fe; }
+      .category-fill { fill: #f8fafc; stroke: #d8dee9; }
+      .node { rx: 8; }
+      .legend-label { font: 700 12px Inter, Arial, sans-serif; fill: #172033; }
+      .callout { fill: #fbfcff; stroke: #d8dee9; }
+    </style>
+  </defs>
+
+  <rect class="bg" width="1440" height="860"/>
+  <rect class="panel" x="40" y="34" width="1360" height="792" rx="12"/>
+
+  <text class="title" x="78" y="88">Phase - Category Flow by Domain</text>
+  <text class="subtitle" x="78" y="116">A two-axis flow view: phases on the left, categories on the right, and domain encoded by color.</text>
+  <text class="subtitle" x="78" y="140">This keeps ED, SD, and UIUX out of the axis structure while still showing domain differences inside each phase-category path.</text>
+
+  <g transform="translate(78 178)">
+    <circle cx="0" cy="0" r="6" fill="#2563eb"/>
+    <text class="legend-label" x="12" y="4">ED</text>
+    <circle cx="62" cy="0" r="6" fill="#ea580c"/>
+    <text class="legend-label" x="74" y="4">SD</text>
+    <circle cx="124" cy="0" r="6" fill="#7c3aed"/>
+    <text class="legend-label" x="136" y="4">UIUX</text>
+    <text class="small" x="220" y="4">Band thickness = case count. Band color = domain.</text>
+  </g>
+
+  <text class="axis" x="92" y="238">DESIGN PHASE</text>
+  <text class="axis" x="878" y="238">REFINED CATEGORY</text>
+
+  <!-- Flows from Discover -->
+  <path class="flow-strong sd" stroke-width="34" d="M 272 300 C 520 286, 608 282, 858 282"/>
+  <path class="flow ed" stroke-width="23" d="M 272 300 C 520 304, 608 300, 858 300"/>
+  <path class="flow uiux" stroke-width="18" d="M 272 300 C 520 320, 608 316, 858 316"/>
+  <path class="flow sd" stroke-width="8" d="M 272 316 C 520 374, 608 376, 858 376"/>
+  <path class="flow uiux" stroke-width="7" d="M 272 316 C 520 440, 608 462, 858 462"/>
+
+  <!-- Flows from Define -->
+  <path class="flow-strong ed" stroke-width="18" d="M 272 406 C 520 404, 608 372, 858 372"/>
+  <path class="flow-strong sd" stroke-width="19" d="M 272 406 C 520 416, 608 386, 858 386"/>
+  <path class="flow uiux" stroke-width="15" d="M 272 406 C 520 430, 608 400, 858 400"/>
+  <path class="flow sd" stroke-width="10" d="M 272 420 C 520 456, 608 550, 858 550"/>
+  <path class="flow ed" stroke-width="8" d="M 272 420 C 520 470, 608 640, 858 640"/>
+
+  <!-- Flows from Develop -->
+  <path class="flow-strong uiux" stroke-width="31" d="M 272 512 C 520 500, 608 464, 858 464"/>
+  <path class="flow-strong sd" stroke-width="24" d="M 272 512 C 520 518, 608 478, 858 478"/>
+  <path class="flow ed" stroke-width="19" d="M 272 512 C 520 536, 608 492, 858 492"/>
+  <path class="flow uiux" stroke-width="14" d="M 272 528 C 520 548, 608 552, 858 552"/>
+  <path class="flow sd" stroke-width="13" d="M 272 528 C 520 564, 608 620, 858 620"/>
+  <path class="flow ed" stroke-width="10" d="M 272 528 C 520 582, 608 696, 858 696"/>
+
+  <!-- Flows from Deliver -->
+  <path class="flow-strong sd" stroke-width="17" d="M 272 620 C 520 610, 608 550, 858 550"/>
+  <path class="flow uiux" stroke-width="14" d="M 272 620 C 520 628, 608 564, 858 564"/>
+  <path class="flow ed" stroke-width="4" d="M 272 620 C 520 644, 608 578, 858 578"/>
+  <path class="flow sd" stroke-width="7" d="M 272 634 C 520 658, 608 700, 858 700"/>
+  <path class="flow uiux" stroke-width="6" d="M 272 634 C 520 674, 608 716, 858 716"/>
+
+  <!-- Phase nodes -->
+  <g>
+    <rect class="node phase-fill" x="92" y="260" width="180" height="78" rx="8"/>
+    <text class="node-title" x="116" y="294">Discover</text>
+    <text class="node-meta" x="116" y="318">74 cases</text>
+
+    <rect class="node phase-fill" x="92" y="366" width="180" height="78" rx="8"/>
+    <text class="node-title" x="116" y="400">Define</text>
+    <text class="node-meta" x="116" y="424">69 cases</text>
+
+    <rect class="node phase-fill" x="92" y="472" width="180" height="78" rx="8"/>
+    <text class="node-title" x="116" y="506">Develop</text>
+    <text class="node-meta" x="116" y="530">88 cases</text>
+
+    <rect class="node phase-fill" x="92" y="578" width="180" height="78" rx="8"/>
+    <text class="node-title" x="116" y="612">Deliver</text>
+    <text class="node-meta" x="116" y="636">39 cases</text>
+  </g>
+
+  <!-- Category nodes -->
+  <g>
+    <rect class="node category-fill" x="858" y="252" width="430" height="62" rx="8"/>
+    <text class="node-title" x="882" y="280">Domain, Technical, and Market Knowledge</text>
+    <text class="node-meta" x="882" y="302">Dominant in Discover; visible SD concentration</text>
+
+    <rect class="node category-fill" x="858" y="344" width="430" height="62" rx="8"/>
+    <text class="node-title" x="882" y="372">User / Customer Need Research</text>
+    <text class="node-meta" x="882" y="394">Mostly Define, with ED and SD both visible</text>
+
+    <rect class="node category-fill" x="858" y="436" width="430" height="62" rx="8"/>
+    <text class="node-title" x="882" y="464">Concept Exploration and Development</text>
+    <text class="node-meta" x="882" y="486">Strongest in Develop; UIUX stands out</text>
+
+    <rect class="node category-fill" x="858" y="528" width="430" height="62" rx="8"/>
+    <text class="node-title" x="882" y="556">Documentation and Communication Support</text>
+    <text class="node-meta" x="882" y="578">Develop and Deliver distribution</text>
+
+    <rect class="node category-fill" x="858" y="620" width="430" height="62" rx="8"/>
+    <text class="node-title" x="882" y="648">Design Critique and Assessment</text>
+    <text class="node-meta" x="882" y="670">Spread across Define and Develop</text>
+
+    <rect class="node category-fill" x="858" y="712" width="430" height="62" rx="8"/>
+    <text class="node-title" x="882" y="740">Others</text>
+    <text class="node-meta" x="882" y="762">Remaining lower-count categories grouped</text>
+  </g>
+
+  <rect class="callout" x="78" y="730" width="660" height="72" rx="8"/>
+  <text class="node-title" x="100" y="760">Why this version may read better</text>
+  <text class="small" x="100" y="782">Only two axes are structural. Domain becomes a color encoding, so the viewer first reads phase-category patterns, then compares domain colors inside the paths.</text>
+</svg>

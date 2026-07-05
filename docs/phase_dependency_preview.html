@@ -1,0 +1,593 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Bayesian Network Results - Phase View</title>
+  <style>
+    :root {
+      --ink: #172033;
+      --muted: #667085;
+      --line: #d8dee9;
+      --page: #f5f7fb;
+      --panel: #ffffff;
+      --blue: #2754c5;
+      --teal: #087c7a;
+      --amber: #a75c00;
+      --slate: #475467;
+      --green: #1f8a4c;
+      --red: #b42318;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      background: var(--page);
+      color: var(--ink);
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      letter-spacing: 0;
+    }
+    .shell {
+      max-width: 1440px;
+      margin: 0 auto;
+      padding: 28px;
+    }
+    .top {
+      display: flex;
+      align-items: end;
+      justify-content: space-between;
+      gap: 18px;
+      margin-bottom: 16px;
+    }
+    h1 {
+      margin: 0;
+      font-size: 26px;
+      line-height: 1.15;
+    }
+    .sub {
+      max-width: 900px;
+      margin: 8px 0 0;
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.5;
+    }
+    .back {
+      flex: 0 0 auto;
+      display: inline-flex;
+      align-items: center;
+      height: 34px;
+      padding: 0 12px;
+      border: 1px solid var(--line);
+      border-radius: 6px;
+      color: var(--blue);
+      background: #fff;
+      font-size: 13px;
+      font-weight: 750;
+      text-decoration: none;
+    }
+    .controls {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 14px;
+    }
+    button {
+      height: 34px;
+      padding: 0 12px;
+      border: 1px solid var(--line);
+      border-radius: 6px;
+      background: #fff;
+      color: var(--muted);
+      font: inherit;
+      font-size: 13px;
+      font-weight: 800;
+      cursor: pointer;
+    }
+    button.active {
+      border-color: var(--blue);
+      background: var(--blue);
+      color: #fff;
+    }
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(135px, 1fr));
+      gap: 12px;
+      margin-bottom: 14px;
+    }
+    .stat, .panel {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+    }
+    .stat {
+      padding: 12px 14px;
+    }
+    .label {
+      color: var(--muted);
+      font-size: 11px;
+      font-weight: 850;
+      text-transform: uppercase;
+    }
+    .metric {
+      margin-top: 6px;
+      font-size: 22px;
+      font-weight: 850;
+      line-height: 1;
+    }
+    .note {
+      margin-top: 5px;
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.3;
+    }
+    .panel {
+      overflow: hidden;
+    }
+    .panel-head {
+      padding: 14px 16px;
+      border-bottom: 1px solid var(--line);
+      background: #fbfcff;
+    }
+    .panel-title {
+      margin: 0;
+      font-size: 15px;
+      font-weight: 800;
+    }
+    .panel-caption {
+      margin-top: 4px;
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.35;
+    }
+    .dag-shell {
+      padding: 14px;
+      background: #fff;
+    }
+    .dag-svg {
+      width: 100%;
+      height: auto;
+      display: block;
+      border: 1px solid #edf1f7;
+      border-radius: 8px;
+      background: #fff;
+    }
+    .svg-node {
+      cursor: pointer;
+    }
+    .svg-node rect {
+      fill: #fff;
+      stroke: #cfd6e3;
+      stroke-width: 1.4;
+    }
+    .svg-node .node-strip {
+      stroke: none;
+    }
+    .svg-node.active rect {
+      stroke: var(--blue);
+      stroke-width: 3;
+    }
+    .svg-node text {
+      user-select: none;
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(430px, .78fr);
+      gap: 14px;
+      margin-top: 14px;
+    }
+    .section {
+      margin-top: 14px;
+    }
+    .inspector {
+      padding: 14px 16px 16px;
+    }
+    .inspector-kv {
+      display: grid;
+      grid-template-columns: 90px minmax(0, 1fr);
+      gap: 8px;
+      margin: 0 0 14px;
+      font-size: 12px;
+    }
+    .inspector-kv dt {
+      color: var(--muted);
+      font-weight: 850;
+      text-transform: uppercase;
+    }
+    .inspector-kv dd {
+      margin: 0;
+      color: var(--ink);
+      font-weight: 700;
+    }
+    .dist-card {
+      padding: 13px 14px 14px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: #fff;
+    }
+    .dist-card + .dist-card {
+      margin-top: 10px;
+    }
+    .dist-title {
+      margin: 0 0 2px;
+      font-size: 14px;
+      font-weight: 850;
+    }
+    .dist-sub {
+      margin: 0 0 11px;
+      color: var(--muted);
+      font-size: 12px;
+    }
+    .bar-row {
+      display: grid;
+      grid-template-columns: minmax(140px, .9fr) minmax(0, 1.2fr) 44px;
+      gap: 8px;
+      align-items: center;
+      margin-top: 7px;
+      font-size: 12px;
+    }
+    .bar-label {
+      min-width: 0;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+    .bar-track {
+      height: 9px;
+      border-radius: 999px;
+      background: #edf1f7;
+      overflow: hidden;
+    }
+    .bar {
+      height: 100%;
+      border-radius: 999px;
+      background: var(--blue);
+    }
+    .cpt-list {
+      max-height: 560px;
+      overflow: auto;
+      padding-right: 4px;
+    }
+    .table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 12px;
+    }
+    .table th,
+    .table td {
+      padding: 9px 10px;
+      border-bottom: 1px solid var(--line);
+      text-align: left;
+      vertical-align: top;
+    }
+    .table th {
+      color: var(--muted);
+      font-size: 11px;
+      text-transform: uppercase;
+      background: #fbfcff;
+    }
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      min-height: 22px;
+      padding: 2px 7px;
+      border-radius: 999px;
+      font-weight: 850;
+      white-space: nowrap;
+    }
+    .badge.strong { color: #065f46; background: #dff4e8; }
+    .badge.medium { color: #854d0e; background: #fff1d6; }
+    .badge.weak { color: #8a251c; background: #f9dfdf; }
+    .score-table-wrap {
+      max-height: 340px;
+      overflow: auto;
+    }
+    .insight {
+      padding: 13px 16px 14px;
+      border-top: 1px solid var(--line);
+      background: #fbfcff;
+    }
+    .insight-title {
+      margin: 0 0 6px;
+      font-size: 12px;
+      font-weight: 850;
+      text-transform: uppercase;
+    }
+    .insight p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.5;
+    }
+    .error {
+      padding: 18px;
+      color: var(--red);
+      background: #fff;
+      border: 1px solid #f4b8b8;
+      border-radius: 8px;
+    }
+    @media (max-width: 980px) {
+      .grid {
+        grid-template-columns: 1fr;
+      }
+      .top {
+        align-items: start;
+        flex-direction: column;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main class="shell">
+    <div class="top">
+      <div>
+        <h1>Bayesian Network Analysis Results</h1>
+        <p class="sub">A structure-first Bayesian network view: the DAG shows learned conditional dependencies, while node probabilities and CPT slices are inspected separately.</p>
+      </div>
+      <a class="back" href="./#phase">Back to Phase View</a>
+    </div>
+    <div id="app"><div class="error">Loading phase_bayesian_network_results.json...</div></div>
+  </main>
+
+  <script>
+    const nodeMeta = {
+      Phase: { x: 70, y: 120, color: '#2754c5', title: 'Phase', sub: 'Lifecycle stage' },
+      Discipline: { x: 70, y: 250, color: '#7c3aed', title: 'Discipline', sub: 'Design domain' },
+      Dimension: { x: 280, y: 120, color: '#087c7a', title: 'Dimension', sub: 'Activity context' },
+      Category: { x: 490, y: 120, color: '#a75c00', title: 'Category', sub: '2nd-order task' },
+      AssistanceType: { x: 700, y: 120, color: '#475467', title: 'Assistance Type', sub: 'AI role' },
+      Polarity: { x: 700, y: 250, color: '#1f8a4c', title: 'Polarity', sub: 'Enhanced / Impaired' },
+      Value: { x: 880, y: 250, color: '#b42318', title: 'Value', sub: 'Value family' }
+    };
+
+    const nodeSize = { width: 150, height: 68 };
+    let results;
+    let currentCriterion = 'bic';
+    let selectedNode = 'Dimension';
+
+    function fmt(number, digits = 1) {
+      return Number(number).toLocaleString(undefined, { maximumFractionDigits: digits, minimumFractionDigits: digits });
+    }
+    function pct(number) {
+      return `${Math.round(number * 100)}%`;
+    }
+    function badgeClass(value) {
+      if (value >= 0.8) return 'strong';
+      if (value >= 0.35) return 'medium';
+      return 'weak';
+    }
+    function edgeKey(edge) {
+      return `${edge.source} -> ${edge.target}`;
+    }
+    function parentLabel(parents) {
+      return parents && parents.length ? parents.join(' + ') : 'No parents';
+    }
+    function shortLabel(value, length = 32) {
+      const text = String(value || '');
+      return text.length > length ? `${text.slice(0, length - 1)}...` : text;
+    }
+    function nodeCenter(variable) {
+      const node = nodeMeta[variable];
+      return { x: node.x + nodeSize.width / 2, y: node.y + nodeSize.height / 2 };
+    }
+    function edgePath(edge) {
+      const source = nodeCenter(edge.source);
+      const target = nodeCenter(edge.target);
+      const x1 = source.x + nodeSize.width / 2;
+      const x2 = target.x - nodeSize.width / 2;
+      const y1 = source.y;
+      const y2 = target.y;
+      const bend = edge.source === 'Discipline' ? 55 : edge.target === 'Value' && edge.source !== 'Polarity' ? -58 : 0;
+      return {
+        d: `M ${x1} ${y1} C ${x1 + 70} ${y1 + bend}, ${x2 - 70} ${y2 + bend}, ${x2} ${y2}`,
+        labelX: (x1 + x2) / 2,
+        labelY: (y1 + y2) / 2 + bend - 8
+      };
+    }
+    function renderDag(model) {
+      const edges = model.edges || [];
+      const edgeMarkup = edges.map(edge => {
+        const path = edgePath(edge);
+        const color = edge.stability >= 0.8 ? '#087c7a' : edge.stability >= 0.35 ? '#a75c00' : '#b42318';
+        const width = 1.5 + edge.stability * 4.5;
+        return `
+          <path d="${path.d}" fill="none" stroke="${color}" stroke-width="${width}" marker-end="url(#arrow)" opacity=".9"></path>
+          <text x="${path.labelX}" y="${path.labelY}" text-anchor="middle" fill="${color}" font-size="12" font-weight="800">${pct(edge.stability)}</text>
+        `;
+      }).join('');
+
+      const nodes = Object.entries(nodeMeta).map(([id, node]) => `
+        <g class="svg-node ${selectedNode === id ? 'active' : ''}" data-node="${id}">
+          <rect x="${node.x}" y="${node.y}" width="${nodeSize.width}" height="${nodeSize.height}" rx="8"></rect>
+          <rect class="node-strip" x="${node.x}" y="${node.y}" width="${nodeSize.width}" height="6" rx="4" fill="${node.color}"></rect>
+          <text x="${node.x + 14}" y="${node.y + 30}" fill="#172033" font-size="15" font-weight="850">${node.title}</text>
+          <text x="${node.x + 14}" y="${node.y + 50}" fill="#667085" font-size="11">${node.sub}; ${results.cardinality[id]} states</text>
+        </g>
+      `).join('');
+
+      return `
+        <svg class="dag-svg" viewBox="0 0 1060 390" role="img" aria-label="Learned Bayesian network DAG">
+          <defs>
+            <marker id="arrow" markerWidth="9" markerHeight="9" refX="8" refY="4.5" orient="auto" markerUnits="userSpaceOnUse">
+              <path d="M 0 0 L 9 4.5 L 0 9 z" fill="#475467"></path>
+            </marker>
+          </defs>
+          ${edgeMarkup}
+          ${nodes}
+        </svg>
+      `;
+    }
+    function incomingEdges(model, variable) {
+      return (model.edges || []).filter(edge => edge.target === variable);
+    }
+    function outgoingEdges(model, variable) {
+      return (model.edges || []).filter(edge => edge.source === variable);
+    }
+    function conditionalForNode(variable) {
+      if (variable === 'Dimension') return { title: 'P(Dimension | Phase)', data: results.conditionals.dimensionGivenPhase };
+      if (variable === 'Category') return { title: 'P(Category | Dimension)', data: results.conditionals.categoryGivenDimension };
+      if (variable === 'AssistanceType') return { title: 'P(AssistanceType | Category), n>=10', data: results.conditionals.assistanceGivenCategory };
+      if (variable === 'Polarity') return { title: 'P(Polarity | Phase, Dimension), n>=20', data: results.conditionals.polarityGivenPhaseDimension };
+      if (variable === 'Value') return { title: 'P(Value | Phase, Polarity)', data: results.conditionals.valueGivenPhasePolarity };
+      return { title: `P(${variable})`, data: [results.marginals[variable]] };
+    }
+    function renderDistributionCard(item, limit = 8) {
+      const title = item.group
+        ? Object.entries(item.group).map(([key, value]) => `${key}: ${value}`).join(' / ')
+        : item.variable;
+      const bars = item.distribution.slice(0, limit).map(row => `
+        <div class="bar-row" title="${row.value}: ${row.count} (${pct(row.share)})">
+          <div class="bar-label">${shortLabel(row.value, 38)}</div>
+          <div class="bar-track"><div class="bar" style="width:${Math.max(3, row.share * 100)}%;"></div></div>
+          <div>${pct(row.share)}</div>
+        </div>
+      `).join('');
+      return `
+        <article class="dist-card">
+          <h3 class="dist-title">${title}</h3>
+          <p class="dist-sub">n=${item.n}; ${item.target ? `target=${item.target}` : 'marginal distribution'}</p>
+          ${bars}
+        </article>
+      `;
+    }
+    function renderInspector(model) {
+      const meta = nodeMeta[selectedNode];
+      const inEdges = incomingEdges(model, selectedNode);
+      const outEdges = outgoingEdges(model, selectedNode);
+      const conditional = conditionalForNode(selectedNode);
+      const cptCards = conditional.data.slice(0, 6).map(item => renderDistributionCard(item, 7)).join('');
+      return `
+        <section class="panel">
+          <div class="panel-head">
+            <h2 class="panel-title">CPT inspector: ${meta.title}</h2>
+            <div class="panel-caption">Click a node in the DAG. The graph stays structural; probabilities are shown here.</div>
+          </div>
+          <div class="inspector">
+            <dl class="inspector-kv">
+              <dt>Variable</dt><dd>${selectedNode}</dd>
+              <dt>States</dt><dd>${results.cardinality[selectedNode]}</dd>
+              <dt>Parents</dt><dd>${inEdges.length ? inEdges.map(edgeKey).join('; ') : 'None in selected model'}</dd>
+              <dt>Children</dt><dd>${outEdges.length ? outEdges.map(edgeKey).join('; ') : 'None in selected model'}</dd>
+            </dl>
+            ${renderDistributionCard(results.marginals[selectedNode], 8)}
+          </div>
+        </section>
+        <section class="panel">
+          <div class="panel-head">
+            <h2 class="panel-title">${conditional.title}</h2>
+            <div class="panel-caption">Estimated local probability table slices from the value-mention event dataset.</div>
+          </div>
+          <div class="inspector cpt-list">${cptCards}</div>
+        </section>
+      `;
+    }
+    function renderEdges(model) {
+      const rows = model.edges.map(edge => `
+        <tr>
+          <td>${edgeKey(edge)}</td>
+          <td><span class="badge ${badgeClass(edge.stability)}">${pct(edge.stability)}</span></td>
+          <td>${fmt(edge.deltaScore)}</td>
+          <td>${edge.criterion}</td>
+        </tr>
+      `).join('');
+      return `
+        <table class="table">
+          <thead><tr><th>Learned edge</th><th>Bootstrap</th><th>Delta score</th><th>Model</th></tr></thead>
+          <tbody>${rows}</tbody>
+        </table>
+      `;
+    }
+    function renderParentSets(model) {
+      const targets = ['Dimension', 'Category', 'AssistanceType', 'Polarity', 'Value'];
+      const rows = targets.flatMap(target => model.topParentSets[target].slice(0, 4).map((item, index) => `
+        <tr>
+          <td>${target}</td>
+          <td>${index + 1}</td>
+          <td>${parentLabel(item.parents)}</td>
+          <td>${fmt(item.score)}</td>
+          <td>${fmt(item.logLikelihood)}</td>
+          <td>${item.parameters}</td>
+        </tr>
+      `)).join('');
+      return `
+        <div class="score-table-wrap">
+          <table class="table">
+            <thead><tr><th>Child</th><th>Rank</th><th>Parent set</th><th>Score</th><th>Log-likelihood</th><th>Params</th></tr></thead>
+            <tbody>${rows}</tbody>
+          </table>
+        </div>
+      `;
+    }
+    function renderApp() {
+      const model = results.models[currentCriterion];
+      const other = currentCriterion === 'bic' ? 'AIC' : 'BIC';
+      document.getElementById('app').innerHTML = `
+        <div class="controls">
+          <button class="${currentCriterion === 'bic' ? 'active' : ''}" data-model="bic">BIC conservative model</button>
+          <button class="${currentCriterion === 'aic' ? 'active' : ''}" data-model="aic">AIC exploratory model</button>
+        </div>
+        <div class="stats">
+          <div class="stat"><div class="label">Included cases</div><div class="metric">${results.metadata.includedCases}</div><div class="note">${results.metadata.sourceRows} source rows</div></div>
+          <div class="stat"><div class="label">Value events</div><div class="metric">${results.metadata.valueMentionEvents}</div><div class="note">Enhanced/impaired mentions</div></div>
+          <div class="stat"><div class="label">Variables</div><div class="metric">${results.metadata.variables.length}</div><div class="note">${results.metadata.variables.join(', ')}</div></div>
+          <div class="stat"><div class="label">Bootstrap</div><div class="metric">${results.metadata.bootstrapIterations}</div><div class="note">Resamples per model</div></div>
+          <div class="stat"><div class="label">Current model</div><div class="metric">${model.criterion}</div><div class="note">${other} available above</div></div>
+        </div>
+        <section class="panel">
+          <div class="panel-head">
+            <h2 class="panel-title">Learned DAG structure</h2>
+            <div class="panel-caption">Structure first: variables only. Edge thickness and labels encode bootstrap stability.</div>
+          </div>
+          <div class="dag-shell">${renderDag(model)}</div>
+          <div class="insight">
+            <p class="insight-title">How to read this</p>
+            <p>Nodes are random variables, not states. The selected node's marginal distribution and conditional probability table are shown below.</p>
+          </div>
+        </section>
+        <div class="grid">
+          ${renderInspector(model)}
+        </div>
+        <div class="grid">
+          <section class="panel">
+            <div class="panel-head">
+              <h2 class="panel-title">Selected edges</h2>
+              <div class="panel-caption">Delta score is the score drop when that parent is removed.</div>
+            </div>
+            ${renderEdges(model)}
+          </section>
+          <section class="panel">
+            <div class="panel-head">
+              <h2 class="panel-title">Parent-set score ranking</h2>
+              <div class="panel-caption">Top parent sets considered by the structure learner.</div>
+            </div>
+            ${renderParentSets(model)}
+          </section>
+        </div>
+      `;
+      document.querySelectorAll('button[data-model]').forEach(button => {
+        button.addEventListener('click', () => {
+          currentCriterion = button.dataset.model;
+          renderApp();
+        });
+      });
+      document.querySelectorAll('.svg-node').forEach(node => {
+        node.addEventListener('click', () => {
+          selectedNode = node.dataset.node;
+          renderApp();
+        });
+      });
+    }
+
+    fetch('phase_bayesian_network_results.json')
+      .then(response => {
+        if (!response.ok) throw new Error(`HTTP ${response.status}`);
+        return response.json();
+      })
+      .then(data => {
+        results = data;
+        renderApp();
+      })
+      .catch(error => {
+        document.getElementById('app').innerHTML = `<div class="error">Could not load phase_bayesian_network_results.json: ${error.message}</div>`;
+      });
+  </script>
+</body>
+</html>

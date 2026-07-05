@@ -1,0 +1,1409 @@
+{
+  "verification_date": "2025-12-04T17:31:36.725075",
+  "total_verified": 38,
+  "results": [
+    {
+      "id": 1,
+      "name": "Gemini",
+      "status": "verified",
+      "query": "Gemini AI service features input output modalities capabilities December 2025",
+      "perplexity_response": "[Gemini AI service features input output modalities capabilities December 2025]\n# Google Gemini AI Service: Features, Modalities, and Capabilities (December 2025)\n\nGoogle's Gemini AI service has undergone significant evolution through late 2025, introducing advanced reasoning capabilities, expanded multimodal support, and broader geographic availability. Here's a detailed breakdown of the current state of the platform.\n\n## Core Model Lineup and Performance\n\n**Gemini 3 Pro** represents Google's most advanced offering as of December 2025[4][6]. This model features state-of-the-art reasoning capabilities and has been rolled out to Google AI Pro and Ultra subscribers, accessible through the \"Thinking with 3 Pro\" option in AI Mode[4]. The Gemini 3 series also includes **Nano Banana Pro**, which has expanded to approximately 120 countries and territories for English language queries as of early December 2025[7].\n\n**Gemini 2.5 Deep Think** launched in August 2025 and became available to Googl...",
+      "detected": {
+        "detected_modalities": [
+          "T2T",
+          "I2T",
+          "T2I",
+          "A2T",
+          "V2T"
+        ],
+        "evidence": [
+          "T2T: 텍스트 기반 응답 기능 지원",
+          "I2T: 이미지 분석 및 객체 식별 기능 지원",
+          "T2I: 이미지 생성 기능 지원",
+          "A2T: 오디오 콘텐츠 이해 및 전사 기능 지원",
+          "V2T: 비디오 분석 및 전체 비디오 전사 처리 기능 지원"
+        ],
+        "confidence": "high",
+        "is_multimodal": true
+      },
+      "comparison": {
+        "current_classification": "MULTI",
+        "current_modalities": [
+          "T2T",
+          "T2I",
+          "T2V",
+          "T2A",
+          "A2T",
+          "I2T",
+          "V2T",
+          "T2C"
+        ],
+        "detected_modalities": [
+          "T2T",
+          "I2T",
+          "T2I",
+          "A2T",
+          "V2T"
+        ],
+        "match_status": "match",
+        "note": "검출된 모달리티가 현재 분류에 포함됨"
+      },
+      "verified_at": "2025-12-04T17:18:54.117534"
+    },
+    {
+      "id": 2,
+      "name": "Deepseek",
+      "status": "verified",
+      "query": "Deepseek AI service features input output modalities capabilities December 2025",
+      "perplexity_response": "[Deepseek AI service features input output modalities capabilities December 2025]\n# DeepSeek AI Service: Features, Capabilities, and Modalities (December 2025)\n\nDeepSeek has released two major model variants on December 4th, 2025, representing significant advances in open-source AI capabilities. These releases introduce sophisticated reasoning and tool-integration features that distinguish them in the current AI landscape.[1][3]\n\n## Model Variants and Their Positioning\n\n**DeepSeek-V3.2** serves as the primary production model, offering balanced performance across inference speed and context length. It is positioned at GPT-5 level performance and is currently available across web, mobile app, and API platforms with seamless platform-wide integration.[1][3] Users can access this model without any manual configuration changes—simply refreshing the page activates the upgrade.\n\n**DeepSeek-V3.2-Speciale** represents the specialized variant designed for maximum reasoning capabilities. This mo...",
+      "detected": {
+        "detected_modalities": [
+          "T2T",
+          "T2C"
+        ],
+        "evidence": [
+          "T2T: 텍스트 입력에 대한 응답 및 대화 기능 지원",
+          "T2C: 코드 생성 기능 지원"
+        ],
+        "confidence": "high",
+        "is_multimodal": true
+      },
+      "comparison": {
+        "current_classification": "MULTI",
+        "current_modalities": [
+          "T2T",
+          "T2C",
+          "I2T",
+          "T2I"
+        ],
+        "detected_modalities": [
+          "T2T",
+          "T2C"
+        ],
+        "match_status": "match",
+        "note": "검출된 모달리티가 현재 분류에 포함됨"
+      },
+      "verified_at": "2025-12-04T17:19:17.233748"
+    },
+    {
+      "id": 3,
+      "name": "ChatGPT",
+      "status": "verified",
+      "query": "ChatGPT AI service features input output modalities capabilities December 2025",
+      "perplexity_response": "[ChatGPT AI service features input output modalities capabilities December 2025]\n# ChatGPT Features and Capabilities in December 2025\n\nChatGPT has undergone significant evolution throughout 2025, with multiple feature additions and improvements rolling out across different user tiers. Here's a comprehensive overview of the current capabilities and recent updates as of December 2025.\n\n## Input and Output Modalities\n\n**Text-Based Interactions**\nChatGPT continues to support advanced text input and generation capabilities with improved reasoning models. GPT-5.1 has been released, introducing two specialized variants: Instant, designed for warm and conversational responses, and Thinking, which offers faster handling of simple tasks with more persistent complex reasoning.[3]\n\n**Image Generation and Editing**\nChatGPT has significantly upgraded its image generation capabilities, now utilizing the GPT-4o model to generate and edit images and photos directly within the platform.[3] This feature ...",
+      "detected": {
+        "detected_modalities": [
+          "T2T",
+          "T2I",
+          "T2A"
+        ],
+        "evidence": [
+          "T2T: ChatGPT는 고급 텍스트 입력 및 생성 기능을 지원합니다.",
+          "T2I: ChatGPT는 이미지 생성 및 편집 기능을 지원합니다.",
+          "T2A: OpenAI의 고급 음성 모드가 향상되어 음성 생성 기능을 지원합니다."
+        ],
+        "confidence": "high",
+        "is_multimodal": true
+      },
+      "comparison": {
+        "current_classification": "MULTI",
+        "current_modalities": [
+          "T2T",
+          "T2I",
+          "I2T",
+          "T2A",
+          "A2T",
+          "T2C"
+        ],
+        "detected_modalities": [
+          "T2T",
+          "T2I",
+          "T2A"
+        ],
+        "match_status": "match",
+        "note": "검출된 모달리티가 현재 분류에 포함됨"
+      },
+      "verified_at": "2025-12-04T17:19:39.217772"
+    },
+    {
+      "id": 4,
+      "name": "NotebookLM",
+      "status": "verified",
+      "query": "NotebookLM AI service features input output modalities capabilities December 2025",
+      "perplexity_response": "[NotebookLM AI service features input output modalities capabilities December 2025]\n# NotebookLM: Features, Input/Output Modalities, and Capabilities (December 2025)\n\nNotebookLM has evolved into a comprehensive AI-powered research and knowledge management platform with significant expansions in its capabilities and modalities as of December 2025[1][3]. The service now offers multiple ways to input information, process it, and output results tailored to different user needs and workflows.\n\n## Input Modalities\n\nNotebookLM supports a diverse range of input formats to accommodate various research and learning scenarios[1]:\n\n**Document and Content Sources** include PDFs with embedded images, Google Docs, websites and YouTube videos, and plain text inputs. The platform's source management has been substantially enhanced, with the source limit per notebook increased from 50 to 300, accommodating approximately 150 million words per project[1].\n\n**Intelligent Content Analysis** now features the...",
+      "detected": {
+        "detected_modalities": [
+          "T2T",
+          "T2A",
+          "I2T",
+          "T2V"
+        ],
+        "evidence": [
+          "T2T: Study Guides와 Briefing Docs 기능을 통해 텍스트 기반 출력 지원",
+          "T2A: Audio Overviews 기능을 통해 텍스트 입력에 대한 음성 출력 지원",
+          "I2T: Intelligent Content Analysis 기능을 통해 PDF 문서 내 이미지 분석 지원",
+          "T2V: AI Video Overviews 기능을 통해 텍스트 입력에 대한 비디오 출력 지원"
+        ],
+        "confidence": "high",
+        "is_multimodal": true
+      },
+      "comparison": {
+        "current_classification": "MULTI",
+        "current_modalities": [
+          "T2T",
+          "T2A",
+          "A2T",
+          "V2T",
+          "T2V"
+        ],
+        "detected_modalities": [
+          "T2T",
+          "T2A",
+          "I2T",
+          "T2V"
+        ],
+        "match_status": "partial",
+        "missing_in_current": [
+          "I2T"
+        ],
+        "extra_in_current": [
+          "V2T",
+          "A2T"
+        ],
+        "note": "일부 모달리티 불일치"
+      },
+      "verified_at": "2025-12-04T17:20:04.487383"
+    },
+    {
+      "id": 5,
+      "name": "Apple Intelligence",
+      "status": "verified",
+      "query": "Apple Intelligence AI service features input output modalities capabilities December 2025",
+      "perplexity_response": "[Apple Intelligence AI service features input output modalities capabilities December 2025]\n# Apple Intelligence: AI Service Features and Capabilities in December 2025\n\nApple Intelligence represents Apple's comprehensive on-device AI system that has been progressively rolling out across its ecosystem. Based on the most recent information available, here's a detailed breakdown of the features, modalities, and capabilities as of December 2025.\n\n## Core Input and Output Modalities\n\n**Text-Based Processing**\n\nApple Intelligence processes text across multiple contexts through Writing Tools, which allow users to refine, rewrite, and transform written content[4]. Users can now describe specific changes they want to apply to text, such as making a dinner party invitation read like a poem or adding dynamic action words to a résumé[4]. The system also enables natural language search in Photos, making it easier for users to find images or videos by simply describing them[3].\n\n**Audio Processing**...",
+      "detected": {
+        "detected_modalities": [
+          "T2T",
+          "A2T",
+          "I2T",
+          "T2I"
+        ],
+        "evidence": [
+          "T2T: 텍스트를 다루는 기능이 있으며, 사용자가 텍스트를 수정하고 변형할 수 있는 도구를 제공함.",
+          "A2T: 음성을 기록하고 전사하며 요약하는 기능이 있음.",
+          "I2T: 사용자가 화면에서 보는 내용을 기반으로 질문을 하고, 시각적 콘텐츠에 대한 정보를 제공하는 기능이 있음.",
+          "T2I: 사용자가 설명을 입력하여 이미지를 생성할 수 있는 기능이 있음."
+        ],
+        "confidence": "high",
+        "is_multimodal": true
+      },
+      "comparison": {
+        "current_classification": "MULTI",
+        "current_modalities": [
+          "T2T",
+          "T2I",
+          "A2T",
+          "I2T"
+        ],
+        "detected_modalities": [
+          "T2T",
+          "A2T",
+          "I2T",
+          "T2I"
+        ],
+        "match_status": "match",
+        "note": "검출된 모달리티가 현재 분류에 포함됨"
+      },
+      "verified_at": "2025-12-04T17:20:29.752357"
+    },
+    {
+      "id": 6,
+      "name": "Granola",
+      "status": "verified",
+      "query": "Granola AI service features input output modalities capabilities December 2025",
+      "perplexity_response": "[Granola AI service features input output modalities capabilities December 2025]\n# Granola AI Service: December 2025 Features and Capabilities\n\nGranola is an AI-powered meeting notepad that combines transcription, note enhancement, and team collaboration features. Based on the most recent information available, here's a comprehensive overview of its current capabilities as of December 2025.\n\n## Core Input/Output Modalities\n\n**Input Capabilities:**\nGranola processes audio from multiple sources through its privacy-first architecture[1]. Users can capture meeting notes via laptop microphone during in-person meetings, and the platform now supports phone call transcription as well[4]. The system accepts both automatic transcription and user-written notes, with AI enhancement applied to manual note-taking rather than replacing it[1].\n\n**Output Capabilities:**\nThe platform generates structured meeting notes, AI-enhanced summaries, and searchable conversation databases[1]. Users receive format...",
+      "detected": {
+        "detected_modalities": [
+          "A2T",
+          "T2T"
+        ],
+        "evidence": [
+          "A2T: Granola는 여러 소스에서 오디오를 처리하여 회의 내용을 기록하고 전사하는 기능을 지원합니다.",
+          "T2T: Granola는 구조화된 회의 노트, AI 강화 요약 및 검색 가능한 대화 데이터베이스를 생성합니다."
+        ],
+        "confidence": "high",
+        "is_multimodal": true
+      },
+      "comparison": {
+        "current_classification": "MULTI",
+        "current_modalities": [
+          "A2T",
+          "T2T"
+        ],
+        "detected_modalities": [
+          "A2T",
+          "T2T"
+        ],
+        "match_status": "match",
+        "note": "검출된 모달리티가 현재 분류에 포함됨"
+      },
+      "verified_at": "2025-12-04T17:20:50.445631"
+    },
+    {
+      "id": 7,
+      "name": "Copilot",
+      "status": "verified",
+      "query": "Copilot AI service features input output modalities capabilities December 2025",
+      "perplexity_response": "[Copilot AI service features input output modalities capabilities December 2025]\n# GitHub Copilot: Recent Features and Capabilities (December 2025)\n\nGitHub Copilot has undergone significant expansions in its capabilities over the past month, introducing new features that enhance code generation, review processes, and application modernization across multiple development environments.\n\n## AI Model Support and Multimodal Capabilities\n\nGitHub Copilot now supports multiple advanced AI models with varying strengths in speed, cost-efficiency, accuracy, and reasoning[3]. The platform has expanded its model offerings to include the latest generation models like GPT-5 and o-series models (o1-mini, o3, o3-mini, o4-mini), all released on October 23, 2025[3]. Notably, **Claude Opus 4.5 entered public preview on November 24, 2025**, with a promotional discount on premium requests multiplier set at 1 through Friday, December 5, 2025, after which the multiplier will change to 3[6][7].\n\nThe platform s...",
+      "detected": {
+        "detected_modalities": [
+          "T2T",
+          "T2C"
+        ],
+        "evidence": [
+          "T2T: 코드 생성 및 리뷰 기능 지원",
+          "T2C: 코드 생성 기능 지원"
+        ],
+        "confidence": "high",
+        "is_multimodal": true
+      },
+      "comparison": {
+        "current_classification": "MULTI",
+        "current_modalities": [
+          "T2T",
+          "T2I",
+          "I2T",
+          "T2A",
+          "A2T",
+          "T2C"
+        ],
+        "detected_modalities": [
+          "T2T",
+          "T2C"
+        ],
+        "match_status": "match",
+        "note": "검출된 모달리티가 현재 분류에 포함됨"
+      },
+      "verified_at": "2025-12-04T17:21:10.216837"
+    },
+    {
+      "id": 8,
+      "name": "Grok",
+      "status": "verified",
+      "query": "Grok AI service features input output modalities capabilities December 2025",
+      "perplexity_response": "[Grok AI service features input output modalities capabilities December 2025]\n# Grok AI Service: Features, Modalities, and Capabilities\n\nGrok AI is xAI's flagship artificial intelligence assistant developed by Elon Musk, positioned as a direct competitor to OpenAI's GPT-4o and Google's Gemini[1][3]. As of December 2025, Grok has evolved into a sophisticated multi-modal AI system with advanced reasoning capabilities and real-time data integration.\n\n## Input and Output Modalities\n\n**Text Processing**\nGrok accepts text-based queries as its primary input method and generates detailed text responses. The system is accessible through the Grok app on iOS and web platforms, as well as through the xAI API for enterprise applications[3].\n\n**Image Analysis and Generation**\nThe system supports image input for analysis and visual comprehension tasks[3]. On the output side, Grok can generate images through its Aurora model, converting text descriptions into visual content[1]. This multimodal capabil...",
+      "detected": {
+        "detected_modalities": [
+          "T2T",
+          "I2T",
+          "T2I",
+          "T2A",
+          "T2C"
+        ],
+        "evidence": [
+          "T2T: Grok은 텍스트 기반 쿼리를 입력으로 받아 상세한 텍스트 응답을 생성함.",
+          "I2T: Grok은 이미지 입력을 지원하여 분석 및 시각적 이해 작업을 수행함.",
+          "T2I: Grok은 텍스트 설명을 이미지로 변환하는 기능을 지원함.",
+          "T2A: Grok 앱에서 음성 출력을 위한 합성 음성 기능을 제공함.",
+          "T2C: Grok은 여러 프로그래밍 언어에서 코드 생성 및 디버깅 기능을 지원함."
+        ],
+        "confidence": "high",
+        "is_multimodal": true
+      },
+      "comparison": {
+        "current_classification": "MULTI",
+        "current_modalities": [
+          "T2T",
+          "T2I",
+          "I2T",
+          "T2V",
+          "T2A"
+        ],
+        "detected_modalities": [
+          "T2T",
+          "I2T",
+          "T2I",
+          "T2A",
+          "T2C"
+        ],
+        "match_status": "partial",
+        "missing_in_current": [
+          "T2C"
+        ],
+        "extra_in_current": [
+          "T2V"
+        ],
+        "note": "일부 모달리티 불일치"
+      },
+      "verified_at": "2025-12-04T17:21:32.925315"
+    },
+    {
+      "id": 9,
+      "name": "Grammarly",
+      "status": "verified",
+      "query": "Grammarly AI service features input output modalities capabilities December 2025",
+      "perplexity_response": "[Grammarly AI service features input output modalities capabilities December 2025]\n# Grammarly's Current AI Service: Features, Modalities, and Capabilities\n\nAs of December 2025, Grammarly has undergone a significant transformation, rebranding to **Superhuman** while maintaining its core AI writing assistance capabilities. The platform now functions as a comprehensive AI-enabled productivity suite with specialized agents and expanded modalities.\n\n## Core AI Agents and Writing Assistance\n\nGrammarly now features **eight specialized AI agents** designed to address specific writing challenges[2]:\n\n**Reader Reactions** - Predicts key takeaways, open questions, and potential confusion based on a target reader persona (professor, manager, or client), allowing users to adjust their writing based on specific audience feedback[2].\n\n**AI Grader** - Provides substantive feedback aligned to uploaded rubrics and course information, delivering tailored recommendations and estimated grades before submi...",
+      "detected": {
+        "detected_modalities": [
+          "T2T",
+          "T2A"
+        ],
+        "evidence": [
+          "T2T: AI Grader, Proofreader, Paraphraser, and other writing assistance features provide text-based feedback and suggestions.",
+          "T2A: Text-to-speech capabilities are available through integration with Speechify Inc."
+        ],
+        "confidence": "high",
+        "is_multimodal": true
+      },
+      "comparison": {
+        "current_classification": "T2T",
+        "current_modalities": [],
+        "detected_modalities": [
+          "T2T",
+          "T2A"
+        ],
+        "match_status": "needs_upgrade",
+        "note": "현재 T2T이지만 MULTI로 업그레이드 필요할 수 있음"
+      },
+      "verified_at": "2025-12-04T17:21:52.927304"
+    },
+    {
+      "id": 10,
+      "name": "Craft",
+      "status": "verified",
+      "query": "Craft AI service features input output modalities capabilities December 2025",
+      "perplexity_response": "[Craft AI service features input output modalities capabilities December 2025]\n# Craft AI Service: Features, Capabilities, and Modalities in December 2025\n\nCraft is a sophisticated productivity application that integrates AI capabilities to enhance document creation, note-taking, task management, and knowledge organization across iPhone, iPad, Mac, and web platforms[2]. The service has evolved significantly with advanced AI integration options and expanded functionality.\n\n## Core AI Assistant Capabilities\n\nThe Craft Assistant functions as a comprehensive thinking partner within the application[5]. Its primary capabilities include understanding content, exploring ideas, summarizing information, and navigating across user workspaces[5]. The assistant has progressed beyond single-document functionality to achieve space-level intelligence, allowing users to chat with their entire workspace across documents, folders, and collections[2][4].\n\nKey functional features of the Craft Assistant inc...",
+      "detected": {
+        "detected_modalities": [
+          "T2T"
+        ],
+        "evidence": [
+          "T2T: 텍스트 기반 입력을 통해 대화 기능을 지원하며, 텍스트 출력으로 재작성된 내용, 요약, 연구 통찰 등을 생성함."
+        ],
+        "confidence": "high",
+        "is_multimodal": false
+      },
+      "comparison": {
+        "current_classification": "T2T",
+        "current_modalities": [],
+        "detected_modalities": [
+          "T2T"
+        ],
+        "match_status": "match",
+        "note": "분류 일치"
+      },
+      "verified_at": "2025-12-04T17:22:11.808078"
+    },
+    {
+      "id": 11,
+      "name": "Perplexity",
+      "status": "verified",
+      "query": "Perplexity AI service features input output modalities capabilities December 2025",
+      "perplexity_response": "[Perplexity AI service features input output modalities capabilities December 2025]\n# Perplexity AI Service: Features, Modalities, and Capabilities (December 2025)\n\nPerplexity AI has undergone substantial expansion in recent months, positioning itself as a comprehensive AI assistant that extends far beyond traditional search functionality. As of December 2025, the platform demonstrates sophisticated multimodal capabilities and enterprise-grade features designed for both individual and organizational use.\n\n## Input Modalities\n\nPerplexity supports diverse input formats to accommodate various user needs and workflows. Users can interact with the platform through **text-based queries** using natural language processing, which allows for conversational questions rather than rigid keyword searches[3]. The platform accepts **image inputs**, enabling users to upload charts, screenshots, and visual content for analysis and explanation[3]. **PDF and document file uploads** are supported for comp...",
+      "detected": {
+        "detected_modalities": [
+          "T2T",
+          "I2T",
+          "T2A",
+          "T2I",
+          "T2V"
+        ],
+        "evidence": [
+          "T2T: 텍스트 기반 쿼리와 대화 형식의 응답 제공",
+          "I2T: 이미지 입력을 통한 분석 및 설명 기능 지원",
+          "T2A: 음성 입력을 통한 질문 기능 지원",
+          "T2I: 이미지 생성 기능 지원",
+          "T2V: 비디오 생성 기능 지원"
+        ],
+        "confidence": "high",
+        "is_multimodal": true
+      },
+      "comparison": {
+        "current_classification": "MULTI",
+        "current_modalities": [
+          "T2T",
+          "I2T",
+          "T2I",
+          "A2T",
+          "T2V"
+        ],
+        "detected_modalities": [
+          "T2T",
+          "I2T",
+          "T2A",
+          "T2I",
+          "T2V"
+        ],
+        "match_status": "partial",
+        "missing_in_current": [
+          "T2A"
+        ],
+        "extra_in_current": [
+          "A2T"
+        ],
+        "note": "일부 모달리티 불일치"
+      },
+      "verified_at": "2025-12-04T17:22:35.400652"
+    },
+    {
+      "id": 12,
+      "name": "Claude",
+      "status": "verified",
+      "query": "Claude AI service features input output modalities capabilities December 2025",
+      "perplexity_response": "[Claude AI service features input output modalities capabilities December 2025]\n# Claude AI Service Features, Modalities, and Capabilities in December 2025\n\nClaude AI represents a sophisticated artificial intelligence service developed by Anthropic that has evolved significantly through 2025. Here's a comprehensive overview of its current capabilities and features as of December 2025.\n\n## Core Architecture and Training Approach\n\nClaude is built on a foundation of **Constitutional AI (CAI)**[1], which distinguishes it from conventional AI models. Rather than relying solely on human feedback ranking, Claude is trained using explicit ethical principles embedded into its design. This approach results in more intentional behavior aligned with safety considerations while maintaining strong performance across professional tasks[1].\n\n## Input and Output Modalities\n\nClaude currently supports diverse input and output capabilities:\n\n**Input Modalities:**\n- Text-based queries and prompts\n- Image i...",
+      "detected": {
+        "detected_modalities": [
+          "T2T",
+          "I2T",
+          "T2C",
+          "T2A"
+        ],
+        "evidence": [
+          "T2T: 자연어 텍스트 응답 및 언어 작업(글쓰기, 요약, 번역 등) 지원",
+          "I2T: 이미지 이해 및 분석 기능 지원",
+          "T2C: 코드 생성 및 여러 프로그래밍 언어 간의 번역 지원",
+          "T2A: 스프레드시트 편집 및 수식 생성 기능 지원"
+        ],
+        "confidence": "high",
+        "is_multimodal": true
+      },
+      "comparison": {
+        "current_classification": "MULTI",
+        "current_modalities": [
+          "T2T",
+          "I2T",
+          "T2C",
+          "A2T",
+          "T2A"
+        ],
+        "detected_modalities": [
+          "T2T",
+          "I2T",
+          "T2C",
+          "T2A"
+        ],
+        "match_status": "match",
+        "note": "검출된 모달리티가 현재 분류에 포함됨"
+      },
+      "verified_at": "2025-12-04T17:22:56.979658"
+    },
+    {
+      "id": 13,
+      "name": "Claude Code",
+      "status": "verified",
+      "query": "Claude Code AI service features input output modalities capabilities December 2025",
+      "perplexity_response": "[Claude Code AI service features input output modalities capabilities December 2025]\n# Claude Code: Comprehensive Feature Overview for December 2025\n\nClaude Code represents a sophisticated AI-powered development agent with advanced capabilities for enterprise and individual developers. As of December 2025, the service has evolved significantly with enhanced autonomous functionality and integrated enterprise solutions.\n\n## Core Input/Output Modalities\n\nClaude Code operates with multiple input and output channels designed for seamless developer workflows. The service accepts natural language instructions, code snippets, and project context as inputs[2]. It outputs production-ready code, detailed implementation plans, multi-file edits, and integrated terminal commands. The system connects with external services like Playwright for automated testing, enabling a complete development loop where Claude writes tests, runs them, analyzes results, and fixes failing code with minimal human interv...",
+      "detected": {
+        "detected_modalities": [
+          "T2T",
+          "T2C"
+        ],
+        "evidence": [
+          "T2T: 자연어 지시사항을 입력으로 받아들여 텍스트 기반의 출력(상세 구현 계획 등)을 생성함.",
+          "T2C: 코드 스니펫을 입력으로 받아들여 생산 준비가 완료된 코드를 출력함."
+        ],
+        "confidence": "high",
+        "is_multimodal": true
+      },
+      "comparison": {
+        "current_classification": "T2C",
+        "current_modalities": [],
+        "detected_modalities": [
+          "T2T",
+          "T2C"
+        ],
+        "match_status": "needs_upgrade",
+        "note": "현재 T2C이지만 MULTI로 업그레이드 필요할 수 있음"
+      },
+      "verified_at": "2025-12-04T17:23:16.042443"
+    },
+    {
+      "id": 14,
+      "name": "Miro AI",
+      "status": "verified",
+      "query": "Miro AI AI service features input output modalities capabilities December 2025",
+      "perplexity_response": "[Miro AI AI service features input output modalities capabilities December 2025]\n# Miro AI Service: Features, Capabilities, and Modalities\n\nBased on the most recent updates from November 2025, Miro has significantly expanded its AI capabilities through the AI Innovation Workspace platform. Here's a comprehensive overview of the current AI service features and modalities:\n\n## Core AI Platform Architecture\n\n**AI Innovation Workspace** represents Miro's transformation into an AI-first platform where teams collaborate directly with AI on the canvas[3]. Unlike traditional AI tools that isolate users in individual chat interfaces, Miro's approach embeds agentic AI directly into the visual workspace, enabling **multiplayer AI collaboration** where cross-functional teams work with AI simultaneously on the same canvas while maintaining context and momentum[3].\n\n## Primary AI Components and Features\n\n**Sidekicks** are conversational AI agents specialized in specific tasks, jobs, or processes[3]....",
+      "detected": {
+        "detected_modalities": [
+          "T2T",
+          "I2I"
+        ],
+        "evidence": [
+          "T2T: 사용자가 Sidekicks와의 대화를 통해 텍스트 기반 프롬프트로 상호작용할 수 있음.",
+          "I2I: AI가 이미지를 처리하여 다이어그램과 시각적 요소를 생성할 수 있음."
+        ],
+        "confidence": "high",
+        "is_multimodal": true
+      },
+      "comparison": {
+        "current_classification": "MULTI",
+        "current_modalities": [
+          "T2T",
+          "T2I"
+        ],
+        "detected_modalities": [
+          "T2T",
+          "I2I"
+        ],
+        "match_status": "partial",
+        "missing_in_current": [
+          "I2I"
+        ],
+        "extra_in_current": [
+          "T2I"
+        ],
+        "note": "일부 모달리티 불일치"
+      },
+      "verified_at": "2025-12-04T17:23:36.714565"
+    },
+    {
+      "id": 15,
+      "name": "Whimsical AI",
+      "status": "verified",
+      "query": "Whimsical AI AI service features input output modalities capabilities December 2025",
+      "perplexity_response": "[Whimsical AI AI service features input output modalities capabilities December 2025]\n# Whimsical AI Features and Capabilities (December 2025)\n\n## Core AI Capabilities\n\nWhimsical AI is powered by the **o4-mini model** as of August 2025, representing a significant upgrade from the previously used GPT-3.5[1][2]. This AI system is designed to augment human tasks rather than replace them, integrating directly into the platform's core workflows.\n\nThe primary AI-powered features include:\n\n- **Text-to-Diagram Generation**: Users can enter simple text prompts to automatically generate complete flowcharts, mind maps, sequence diagrams, and other visual structures[1][6]\n- **Mind Map Generation**: AI assists in expanding and organizing ideas before refinement[6]\n- **Brainstorming Support**: The AI generates branches from a central idea, suggesting connections and solutions that users might not have considered[3]\n- **Summarization**: The system can condense and organize complex information[1]\n- **...",
+      "detected": {
+        "detected_modalities": [
+          "T2T",
+          "T2I"
+        ],
+        "evidence": [
+          "T2T: 사용자가 텍스트 프롬프트를 입력하여 플로우차트, 마인드맵, 시퀀스 다이어그램 등을 생성할 수 있음.",
+          "T2I: 텍스트 입력을 통해 다이어그램과 같은 시각적 구조를 자동으로 생성하는 기능이 있음."
+        ],
+        "confidence": "high",
+        "is_multimodal": true
+      },
+      "comparison": {
+        "current_classification": "MULTI",
+        "current_modalities": [
+          "T2I",
+          "T2T"
+        ],
+        "detected_modalities": [
+          "T2T",
+          "T2I"
+        ],
+        "match_status": "match",
+        "note": "검출된 모달리티가 현재 분류에 포함됨"
+      },
+      "verified_at": "2025-12-04T17:23:55.152620"
+    },
+    {
+      "id": 16,
+      "name": "Figma AI",
+      "status": "verified",
+      "query": "Figma AI AI service features input output modalities capabilities December 2025",
+      "perplexity_response": "[Figma AI AI service features input output modalities capabilities December 2025]\n# Figma AI: Features, Capabilities, and Modalities\n\nFigma AI is a comprehensive suite of artificial intelligence features integrated directly into Figma and FigJam, designed to streamline both creative and routine design tasks for UI/UX designers, developers, and marketing teams.[1][4] The platform enables users to work across multiple input and output modalities, supporting prompt-based, code-based, and design-based workflows.\n\n## Input Modalities\n\n**Prompt-Based Input**\nUsers can interact with Figma AI through natural language prompts using Figma Make, an AI-powered platform that generates interactive prototypes from descriptive text.[4] For example, users can describe what they want to build, such as \"a carousel of products for a pet supply store,\" and the system creates the complete interactive experience.[4] Prompts are accessible through the action button at the bottom of the Figma interface or by p...",
+      "detected": {
+        "detected_modalities": [
+          "T2T",
+          "T2I",
+          "I2I"
+        ],
+        "evidence": [
+          "T2T: 텍스트 콘텐츠 생성 및 편집 기능 지원, 블로그 포스트 생성 기능 포함",
+          "T2I: 이미지 생성 및 조작 기능 지원, OpenAI의 gpt-4-vision 및 Google Gemini 모델 사용",
+          "I2I: 이미지 배경 제거 기능 지원"
+        ],
+        "confidence": "high",
+        "is_multimodal": true
+      },
+      "comparison": {
+        "current_classification": "MULTI",
+        "current_modalities": [
+          "T2I",
+          "T2T",
+          "I2T"
+        ],
+        "detected_modalities": [
+          "T2T",
+          "T2I",
+          "I2I"
+        ],
+        "match_status": "partial",
+        "missing_in_current": [
+          "I2I"
+        ],
+        "extra_in_current": [
+          "I2T"
+        ],
+        "note": "일부 모달리티 불일치"
+      },
+      "verified_at": "2025-12-04T17:24:16.154000"
+    },
+    {
+      "id": 17,
+      "name": "Adobe Firefly",
+      "status": "verified",
+      "query": "Adobe Firefly AI service features input output modalities capabilities December 2025",
+      "perplexity_response": "[Adobe Firefly AI service features input output modalities capabilities December 2025]\n# Adobe Firefly AI Service: Features, Modalities, and Capabilities (December 2025)\n\nAdobe Firefly has undergone significant expansion as of late October 2025, introducing advanced AI capabilities across multiple creative domains. The platform now offers comprehensive tools for image generation and editing, video creation, audio production, and collaborative ideation.\n\n## Input and Output Modalities\n\n**Image Generation and Editing**\n\nAdobe Firefly's **Image Model 5**, currently in public beta, represents the most advanced iteration of the platform's image capabilities[1][4]. This model generates photorealistic images in native 4MP resolution without requiring upscaling, excelling at photorealistic details that capture lighting and texture with anatomical accuracy for portraits and complex multi-layered compositions[1][4]. The model supports prompt-based editing through the **Prompt to Edit** tool, all...",
+      "detected": {
+        "detected_modalities": [
+          "T2I",
+          "I2I",
+          "T2V",
+          "T2A",
+          "T2C"
+        ],
+        "evidence": [
+          "T2I: 텍스트 입력을 통해 포토리얼리스틱 이미지를 생성하는 기능 지원",
+          "I2I: 이미지 편집 및 프롬프트 기반 편집 기능 지원",
+          "T2V: 텍스트 입력을 통해 비디오 생성 및 편집 기능 지원",
+          "T2A: 전문 음성 생성 및 배경 음악 생성 기능 지원",
+          "T2C: 텍스트 설명을 벡터 그래픽으로 변환하는 기능 지원"
+        ],
+        "confidence": "high",
+        "is_multimodal": true
+      },
+      "comparison": {
+        "current_classification": "MULTI",
+        "current_modalities": [
+          "T2I",
+          "T2V",
+          "T2A",
+          "T23D"
+        ],
+        "detected_modalities": [
+          "T2I",
+          "I2I",
+          "T2V",
+          "T2A",
+          "T2C"
+        ],
+        "match_status": "partial",
+        "missing_in_current": [
+          "I2I",
+          "T2C"
+        ],
+        "extra_in_current": [
+          "T23D"
+        ],
+        "note": "일부 모달리티 불일치"
+      },
+      "verified_at": "2025-12-04T17:24:41.070353"
+    },
+    {
+      "id": 18,
+      "name": "Midjourney",
+      "status": "verified",
+      "query": "Midjourney AI service features input output modalities capabilities December 2025",
+      "perplexity_response": "[Midjourney AI service features input output modalities capabilities December 2025]\n# Midjourney AI Service: Features, Input/Output Modalities, and Capabilities (December 2025)\n\nMidjourney is a generative AI tool that creates images from user-generated text prompts, offering photorealistic, painterly, cinematic, and surrealistic styles.[2] As of December 2025, the platform has evolved significantly with version 7 as the standard model and several recent feature releases.\n\n## Input Modalities\n\n**Text Prompts**\n\nMidjourney's primary input method remains text-based prompting. The system uses a large language model to interpret text prompts by breaking them down into key concepts, which are then converted into latent vectors—numeric codes containing image details such as color palette, shape, and style.[2] Version 7 introduced noticeably more precise prompt processing compared to earlier versions.[7]\n\n**Image Prompts**\n\nThe platform supports image inputs alongside text prompts. Version 7 s...",
+      "detected": {
+        "detected_modalities": [
+          "T2I",
+          "I2I",
+          "T2A"
+        ],
+        "evidence": [
+          "T2I: Midjourney는 사용자 생성 텍스트 프롬프트로부터 이미지를 생성하는 기능을 지원합니다.",
+          "I2I: Midjourney는 이미지 프롬프트를 지원하여 기존 이미지의 시각적 스타일과 특성을 참조할 수 있습니다.",
+          "T2A: Draft Mode는 음성 입력 기능을 포함하여 사용자가 아이디어를 구두로 표현할 수 있게 합니다."
+        ],
+        "confidence": "high",
+        "is_multimodal": true
+      },
+      "comparison": {
+        "current_classification": "MULTI",
+        "current_modalities": [
+          "T2I",
+          "T2V"
+        ],
+        "detected_modalities": [
+          "T2I",
+          "I2I",
+          "T2A"
+        ],
+        "match_status": "partial",
+        "missing_in_current": [
+          "I2I",
+          "T2A"
+        ],
+        "extra_in_current": [
+          "T2V"
+        ],
+        "note": "일부 모달리티 불일치"
+      },
+      "verified_at": "2025-12-04T17:25:05.198315"
+    },
+    {
+      "id": 19,
+      "name": "DALL-E",
+      "status": "verified",
+      "query": "DALL-E AI service features input output modalities capabilities December 2025",
+      "perplexity_response": "[DALL-E AI service features input output modalities capabilities December 2025]\n# DALL-E AI Service: Features, Modalities, and Capabilities\n\nDALL-E is a **text-to-image AI model developed by OpenAI** that converts textual descriptions into visually compelling digital images[1]. The service has evolved through multiple versions, with DALL-E 3 representing the current state-of-the-art implementation.\n\n## Input and Output Modalities\n\n**Input Modality:** DALL-E operates primarily through **natural language text prompts**. Users provide detailed descriptions of what they want to generate, and the system interprets these prompts to create corresponding visuals[1][3]. DALL-E 3 specifically demonstrates enhanced capability in following complex prompts with greater accuracy and detail compared to earlier versions[1].\n\n**Output Modality:** The service generates **high-resolution digital images** in various formats and styles. DALL-E 3 produces exceptionally detailed outputs with sharper details,...",
+      "detected": {
+        "detected_modalities": [
+          "T2I",
+          "I2I"
+        ],
+        "evidence": [
+          "T2I: DALL-E는 자연어 텍스트 프롬프트를 입력받아 고해상도 디지털 이미지를 생성하는 기능을 지원합니다.",
+          "I2I: 사용자가 예시 이미지를 제공하면 여러 변형 이미지를 생성할 수 있는 기능을 지원합니다."
+        ],
+        "confidence": "high",
+        "is_multimodal": true
+      },
+      "comparison": {
+        "current_classification": "T2I",
+        "current_modalities": [],
+        "detected_modalities": [
+          "T2I",
+          "I2I"
+        ],
+        "match_status": "needs_upgrade",
+        "note": "현재 T2I이지만 MULTI로 업그레이드 필요할 수 있음"
+      },
+      "verified_at": "2025-12-04T17:25:25.770171"
+    },
+    {
+      "id": 20,
+      "name": "Canva Magic Studio",
+      "status": "verified",
+      "query": "Canva Magic Studio AI service features input output modalities capabilities December 2025",
+      "perplexity_response": "[Canva Magic Studio AI service features input output modalities capabilities December 2025]\n# Canva Magic Studio: AI Service Features and Capabilities\n\nCanva Magic Studio represents a comprehensive suite of AI-powered tools integrated directly into the Canva platform, designed to streamline creative workflows from concept to completion.[1][2] As of December 2025, the service has evolved significantly with recent announcements and feature expansions.\n\n## Core AI Capabilities and Input/Output Modalities\n\nMagic Studio operates with **multimodal input capabilities**, allowing users to interact with the platform through text prompts, image uploads, video files, and direct point-and-click interactions.[1][2][8] The system processes these diverse input formats and generates corresponding creative outputs.\n\n**Image Generation and Manipulation**\n\nMagic Studio includes several image-focused features. Magic Media enables text-to-image generation, where users write a text prompt and the AI generat...",
+      "detected": {
+        "detected_modalities": [
+          "T2I",
+          "I2I",
+          "T2V",
+          "T2A",
+          "T2T"
+        ],
+        "evidence": [
+          "T2I: Magic Media를 통해 텍스트 프롬프트로부터 이미지 생성 기능 지원",
+          "I2I: Style Reference 기능을 통해 사용자가 업로드한 스타일에 맞춰 이미지를 재구성하는 기능 지원",
+          "T2V: 텍스트 프롬프트로부터 비디오 클립을 생성하는 기능 지원",
+          "T2A: AI Voice 기능을 통해 스크립트로부터 음성 생성 기능 지원",
+          "T2T: Magic Write를 통해 AI 기반 글쓰기 지원 기능 제공"
+        ],
+        "confidence": "high",
+        "is_multimodal": true
+      },
+      "comparison": {
+        "current_classification": "MULTI",
+        "current_modalities": [
+          "T2I",
+          "T2V",
+          "T2T",
+          "T2A"
+        ],
+        "detected_modalities": [
+          "T2I",
+          "I2I",
+          "T2V",
+          "T2A",
+          "T2T"
+        ],
+        "match_status": "partial",
+        "missing_in_current": [
+          "I2I"
+        ],
+        "extra_in_current": [],
+        "note": "일부 모달리티 불일치"
+      },
+      "verified_at": "2025-12-04T17:25:50.566087"
+    },
+    {
+      "id": 21,
+      "name": "VIZcom",
+      "status": "verified",
+      "query": "VIZcom AI service features input output modalities capabilities December 2025",
+      "perplexity_response": "[VIZcom AI service features input output modalities capabilities December 2025]\n# VIZcom AI Service: Features, Modalities, and Capabilities\n\nVIZcom AI is a creative design platform designed for design and creative professionals that transforms sketches and design concepts into photorealistic renderings through advanced artificial intelligence[2][7].\n\n## Input and Output Modalities\n\n**Input Capabilities:**\nVIZcom accepts multiple forms of input to initiate the design process. Users can provide hand-drawn sketches, imported 3D models, text prompts, and design references[2]. The platform integrates seamlessly with existing 2D sketch workflows, allowing designers to work on an infinite canvas where they can combine manual sketching with AI-generated elements[2].\n\n**Output Capabilities:**\nThe platform generates high-quality, photorealistic 3D designs and renderings. The AI applies various rendering styles, textures, and lighting effects to create realistic visualizations[2]. For users worki...",
+      "detected": {
+        "detected_modalities": [
+          "T2I",
+          "I2I",
+          "T23D"
+        ],
+        "evidence": [
+          "T2I: 텍스트 프롬프트를 통해 새로운 비주얼을 생성하는 기능 지원",
+          "I2I: 2D 스케치를 3D 시각화로 변환하는 기능 지원",
+          "T23D: 2D 스케치를 3D 시각화로 변환하는 기능 지원"
+        ],
+        "confidence": "high",
+        "is_multimodal": true
+      },
+      "comparison": {
+        "current_classification": "MULTI",
+        "current_modalities": [
+          "T2I",
+          "I2I",
+          "T23D"
+        ],
+        "detected_modalities": [
+          "T2I",
+          "I2I",
+          "T23D"
+        ],
+        "match_status": "match",
+        "note": "검출된 모달리티가 현재 분류에 포함됨"
+      },
+      "verified_at": "2025-12-04T17:26:06.359907"
+    },
+    {
+      "id": 22,
+      "name": "Kling",
+      "status": "verified",
+      "query": "Kling AI service features input output modalities capabilities December 2025",
+      "perplexity_response": "[Kling AI service features input output modalities capabilities December 2025]\n# Kling AI Service: Features, Modalities, and Capabilities (December 2025)\n\nKling AI has undergone significant developments in recent weeks, introducing unified multimodal capabilities and advanced audio generation features that represent major shifts in the platform's architecture and functionality.\n\n## Latest Release: Kling O1 Models (December 2, 2025)\n\nOn December 2, 2025, Kling AI announced its most comprehensive update to date with the launch of Video O1 and Image O1 models[4]. These represent the industry's first unified multimodal video models, fundamentally changing how the platform operates by integrating generation, editing, and understanding capabilities into a single architecture[4].\n\n**Unified Architecture Advantage**: The O1 models eliminate the need to switch between multiple tools, enabling a seamless end-to-end workflow where creators can move from ideation to generation to modification all ...",
+      "detected": {
+        "detected_modalities": [
+          "T2T",
+          "T2I",
+          "I2I",
+          "T2V",
+          "T2A"
+        ],
+        "evidence": [
+          "T2T: 사용자가 비디오 및 이미지 생성을 위한 상세한 텍스트 프롬프트를 제공할 수 있음.",
+          "T2I: Image O1 모델이 이미지를 생성하는 기능을 지원함.",
+          "I2I: Image O1 모델이 최대 10개의 참조 이미지를 처리하여 요소를 재배치하거나 스타일을 전송하는 기능을 지원함.",
+          "T2V: Video O1 모델이 3초에서 10초 길이의 비디오를 생성하는 기능을 지원함.",
+          "T2A: Kling AI가 이중 언어 대화, 노래 및 동기화된 음향 효과를 지원하는 오디오 생성을 포함함."
+        ],
+        "confidence": "high",
+        "is_multimodal": true
+      },
+      "comparison": {
+        "current_classification": "MULTI",
+        "current_modalities": [
+          "T2V",
+          "T2I",
+          "I2V"
+        ],
+        "detected_modalities": [
+          "T2T",
+          "T2I",
+          "I2I",
+          "T2V",
+          "T2A"
+        ],
+        "match_status": "partial",
+        "missing_in_current": [
+          "I2I",
+          "T2T",
+          "T2A"
+        ],
+        "extra_in_current": [
+          "I2V"
+        ],
+        "note": "일부 모달리티 불일치"
+      },
+      "verified_at": "2025-12-04T17:26:36.073975"
+    },
+    {
+      "id": 23,
+      "name": "Basecamp",
+      "status": "verified",
+      "query": "Basecamp AI service features input output modalities capabilities December 2025",
+      "perplexity_response": "[Basecamp AI service features input output modalities capabilities December 2025]\nBased on the search results provided, I cannot find specific information about Basecamp's AI service features, input/output modalities, or capabilities as of December 2025.\n\nThe search results indicate that Basecamp currently **lacks native AI capabilities**[5]. In comparisons with other project management tools like Asana, Basecamp is noted as having \"No AI or native automation capabilities\" and can only automate using third-party integrations[5].\n\nThe recent Basecamp updates documented in the search results from December 2025 focus on other features rather than AI functionality. The new features launched include:\n\n- **Hill Charts and Hilltop View** for tracking progress[2]\n- **Project templates** with improved client visibility controls[2]\n- **Named Pings** with custom images for better communication organization[2]\n- **Timesheet add-on** for time tracking without leaving Basecamp[2]\n- **Reference linki...",
+      "detected": {
+        "detected_modalities": [],
+        "evidence": [],
+        "confidence": "low",
+        "is_multimodal": false
+      },
+      "comparison": {
+        "current_classification": "OTHER",
+        "current_modalities": [],
+        "detected_modalities": [],
+        "match_status": "no_detection",
+        "note": "모달리티 검출 실패 - 수동 확인 필요"
+      },
+      "verified_at": "2025-12-04T17:26:45.340460"
+    },
+    {
+      "id": 24,
+      "name": "Notion AI",
+      "status": "verified",
+      "query": "Notion AI AI service features input output modalities capabilities December 2025",
+      "perplexity_response": "[Notion AI AI service features input output modalities capabilities December 2025]\n# Notion AI Features and Capabilities as of December 2025\n\nNotion AI has evolved into a comprehensive AI-powered workspace solution that goes beyond simple text generation to provide sophisticated, context-aware assistance integrated deeply into the productivity platform[1]. The system leverages multiple advanced language models, including OpenAI's GPT-4 and Anthropic's Claude, with recent developments incorporating GPT-5 capabilities for enhanced agentic workflows[1][4].\n\n## Core AI Capabilities\n\n**Writing and Content Generation**\n\nNotion AI provides intelligent text generation and transformation features that understand your workspace's tone and formatting standards[1]. The system can create content from scratch—including blog post outlines, email drafts, and project descriptions—while also rewriting and enhancing existing text for clarity, tone, or length. The AI adapts output to be more professional,...",
+      "detected": {
+        "detected_modalities": [
+          "T2T"
+        ],
+        "evidence": [
+          "T2T: Notion AI는 텍스트 생성 및 변환 기능을 제공하며, 블로그 포스트 개요, 이메일 초안, 프로젝트 설명 등을 작성할 수 있음.",
+          "T2T: 회의 노트 및 문서화 기능을 통해 작성된 회의 노트를 구조화된 요약으로 변환할 수 있음."
+        ],
+        "confidence": "high",
+        "is_multimodal": false
+      },
+      "comparison": {
+        "current_classification": "MULTI",
+        "current_modalities": [
+          "T2T",
+          "A2T",
+          "I2T"
+        ],
+        "detected_modalities": [
+          "T2T"
+        ],
+        "match_status": "match",
+        "note": "검출된 모달리티가 현재 분류에 포함됨"
+      },
+      "verified_at": "2025-12-04T17:27:07.781848"
+    },
+    {
+      "id": 25,
+      "name": "Confluence AI",
+      "status": "verified",
+      "query": "Confluence AI AI service features input output modalities capabilities December 2025",
+      "perplexity_response": "[Confluence AI AI service features input output modalities capabilities December 2025]\n# Confluence AI Features and Capabilities as of December 2025\n\nBased on the latest information available, Confluence AI—powered by **Rovo**, Atlassian's new AI teammate—offers a comprehensive suite of features designed to enhance content creation, collaboration, and information discovery within the Confluence ecosystem.\n\n## Core AI Capabilities\n\n**Content Summarization and Transformation**[3][6]\n\nConfluence AI excels at processing large volumes of text and condensing information into digestible formats. Users can generate instant summaries of lengthy Confluence pages or extended comment threads without manually reading every word. A particularly useful feature is the **\"catch-up\" functionality**[3], which provides users with a summary of what has changed on a page since their last visit—ideal for team members returning from time off or working on fast-moving projects. Beyond summarization, the AI can...",
+      "detected": {
+        "detected_modalities": [
+          "T2T",
+          "T2C"
+        ],
+        "evidence": [
+          "T2T: 사용자가 텍스트 기반 설명과 프롬프트를 입력하여 AI와 상호작용할 수 있음.",
+          "T2C: 사용자가 Confluence 페이지에서 텍스트를 강조하여 Jira 작업으로 변환할 수 있음."
+        ],
+        "confidence": "high",
+        "is_multimodal": true
+      },
+      "comparison": {
+        "current_classification": "T2T",
+        "current_modalities": [],
+        "detected_modalities": [
+          "T2T",
+          "T2C"
+        ],
+        "match_status": "needs_upgrade",
+        "note": "현재 T2T이지만 MULTI로 업그레이드 필요할 수 있음"
+      },
+      "verified_at": "2025-12-04T17:27:28.623196"
+    },
+    {
+      "id": 26,
+      "name": "Monday.com AI",
+      "status": "verified",
+      "query": "Monday.com AI AI service features input output modalities capabilities December 2025",
+      "perplexity_response": "[Monday.com AI AI service features input output modalities capabilities December 2025]\n# Monday.com AI Features and Capabilities (December 2025)\n\nMonday.com has significantly expanded its AI capabilities as of December 2025, introducing multiple AI-powered tools and agents designed to automate workflows and enhance productivity across different modules of the platform.[1][2][3]\n\n## Core AI Features and Tools\n\n**Monday Magic** serves as a natural language interface that enables users to describe their business needs in plain text, and the system automatically builds solutions with embedded knowledge and expertise.[3] This feature democratizes AI access by allowing users without technical knowledge to create and customize AI tools within their workflows.[2]\n\n**Monday Sidekick** functions as a simple AI assistant accessible directly within existing workflows, supporting users across different organizational sizes—from small and medium-sized businesses (SMBs) to mid-market and enterprise c...",
+      "detected": {
+        "detected_modalities": [
+          "T2T"
+        ],
+        "evidence": [
+          "T2T: Monday Magic은 사용자가 비즈니스 요구를 자연어로 설명할 수 있게 하여 시스템이 자동으로 솔루션을 구축하는 기능을 지원함."
+        ],
+        "confidence": "high",
+        "is_multimodal": false
+      },
+      "comparison": {
+        "current_classification": "T2T",
+        "current_modalities": [],
+        "detected_modalities": [
+          "T2T"
+        ],
+        "match_status": "match",
+        "note": "분류 일치"
+      },
+      "verified_at": "2025-12-04T17:27:47.290275"
+    },
+    {
+      "id": 27,
+      "name": "Slack AI",
+      "status": "verified",
+      "query": "Slack AI AI service features input output modalities capabilities December 2025",
+      "perplexity_response": "[Slack AI AI service features input output modalities capabilities December 2025]\n# Slack AI Service Features and Capabilities (December 2025)\n\nSlack has developed a comprehensive AI service integrated directly into its collaboration platform with a robust set of features designed to enhance workplace productivity. Based on the most recent information available, here is a detailed breakdown of Slack AI's capabilities:\n\n## Core AI Features and Capabilities\n\n**Enterprise-Grade Search with Natural Language Processing**\n\nSlack's AI-powered search enables users to query information using everyday language rather than specific keywords[1]. This enterprise search functionality retrieves relevant information across Slack channels, conversations, files, and integrated third-party applications including Google Drive, Microsoft Teams, Confluence, GitHub, Salesforce, Box, and Jira[1][4]. The search results consolidate both structured and unstructured data, allowing users to quickly access summarie...",
+      "detected": {
+        "detected_modalities": [
+          "T2T",
+          "A2T",
+          "T2A"
+        ],
+        "evidence": [
+          "T2T: 메시지 스레드 및 채널 대화 요약 기능 지원",
+          "A2T: Slack Huddles에서 회의 자동 전사 기능 지원",
+          "T2A: Slack Canvas에서 AI가 작성 지원 기능 제공"
+        ],
+        "confidence": "high",
+        "is_multimodal": true
+      },
+      "comparison": {
+        "current_classification": "MULTI",
+        "current_modalities": [
+          "T2T",
+          "A2T"
+        ],
+        "detected_modalities": [
+          "T2T",
+          "A2T",
+          "T2A"
+        ],
+        "match_status": "partial",
+        "missing_in_current": [
+          "T2A"
+        ],
+        "extra_in_current": [],
+        "note": "일부 모달리티 불일치"
+      },
+      "verified_at": "2025-12-04T17:28:08.335409"
+    },
+    {
+      "id": 28,
+      "name": "AI Studio",
+      "status": "verified",
+      "query": "AI Studio AI service features input output modalities capabilities December 2025",
+      "perplexity_response": "[AI Studio AI service features input output modalities capabilities December 2025]\n# Google AI Studio: December 2025 Features and Capabilities\n\nGoogle AI Studio is a web-based integrated development environment developed by Google for prototyping applications using generative AI models, providing access to Google's Gemini family of models with comprehensive multimodal capabilities.[1]\n\n## Core Input and Output Modalities\n\n**Multimodal Processing Capabilities**\n\nAI Studio processes and generates across multiple media types:[1] The platform handles **video, audio, documents, and image inputs** for analysis and generation. For outputs, users can generate images through Imagen models, videos through Veo models, and audio through text-to-speech functionality.[1] The platform also supports **real-time streaming for screen sharing and live analysis**, enabling dynamic, continuous workflows.[1]\n\n**Unified Playground Interface**\n\nAs of the recent 2025 updates, Google has implemented a **single,...",
+      "detected": {
+        "detected_modalities": [
+          "T2I",
+          "T2V",
+          "T2A",
+          "I2T"
+        ],
+        "evidence": [
+          "T2I: 사용자가 Imagen 모델을 통해 이미지를 생성할 수 있음",
+          "T2V: 사용자가 Veo 모델을 통해 비디오를 생성할 수 있음",
+          "T2A: 텍스트-음성 변환 기능을 통해 오디오를 생성할 수 있음",
+          "I2T: 비디오, 오디오, 문서 및 이미지 입력을 처리하여 분석할 수 있음"
+        ],
+        "confidence": "high",
+        "is_multimodal": true
+      },
+      "comparison": {
+        "current_classification": "MULTI",
+        "current_modalities": [
+          "T2T",
+          "T2C",
+          "I2T",
+          "V2T",
+          "A2T"
+        ],
+        "detected_modalities": [
+          "T2I",
+          "T2V",
+          "T2A",
+          "I2T"
+        ],
+        "match_status": "partial",
+        "missing_in_current": [
+          "T2I",
+          "T2V",
+          "T2A"
+        ],
+        "extra_in_current": [
+          "A2T",
+          "V2T",
+          "T2T",
+          "T2C"
+        ],
+        "note": "일부 모달리티 불일치"
+      },
+      "verified_at": "2025-12-04T17:28:28.180087"
+    },
+    {
+      "id": 29,
+      "name": "String",
+      "status": "verified",
+      "query": "String AI service features input output modalities capabilities December 2025",
+      "perplexity_response": "[String AI service features input output modalities capabilities December 2025]\n# String AI Service: Features, Modalities, and Capabilities\n\nString is an AI automation platform designed to simplify the creation of AI agents and workflows through natural language processing, offering a more user-friendly alternative to traditional drag-and-drop automation tools[1][5].\n\n## Core Platform Features\n\n**Natural Language-Based Automation Creation**\n\nString allows users to build AI automations by simply describing their needs in natural language, similar to interacting with chatbots[1]. This eliminates the complexity associated with traditional automation platforms. After signing up, users can create complete automations by writing descriptions of what they want to accomplish, rather than manually configuring workflows through interfaces[1].\n\n**AI Agent Development**\n\nThe platform specializes in rapid AI agent creation, enabling users to \"initiate, execute, adjust, and launch AI agents within m...",
+      "detected": {
+        "detected_modalities": [
+          "T2T",
+          "T2C"
+        ],
+        "evidence": [
+          "T2T: 사용자가 자연어로 요구사항을 설명하여 AI 자동화를 생성할 수 있는 기능 지원",
+          "T2C: 복잡한 작업을 쉽게 처리할 수 있도록 코드 생성 기능 지원"
+        ],
+        "confidence": "high",
+        "is_multimodal": true
+      },
+      "comparison": {
+        "current_classification": "T2C",
+        "current_modalities": [],
+        "detected_modalities": [
+          "T2T",
+          "T2C"
+        ],
+        "match_status": "needs_upgrade",
+        "note": "현재 T2C이지만 MULTI로 업그레이드 필요할 수 있음"
+      },
+      "verified_at": "2025-12-04T17:28:45.582067"
+    },
+    {
+      "id": 30,
+      "name": "Replit AI",
+      "status": "verified",
+      "query": "Replit AI AI service features input output modalities capabilities December 2025",
+      "perplexity_response": "[Replit AI AI service features input output modalities capabilities December 2025]\n# Replit AI Service: Features, Capabilities, and Current Status in December 2025\n\nReplit AI has evolved into a comprehensive cloud-based development platform that goes far beyond simple code generation, offering an integrated suite of AI-powered development tools and capabilities[1][3]. As of December 2025, the platform serves over 20 million users globally and features advanced AI assistance across multiple dimensions of the development workflow[1].\n\n## Core AI Capabilities and Features\n\n**Natural Language Code Generation**\n\nReplit AI transforms plain text instructions into functional, working code through its Agent technology[1][4]. Developers can describe requirements in everyday language, and the system converts these descriptions into precise implementations without requiring manual coding from scratch[1]. The platform supports natural language to function-level code generation, enabling developers ...",
+      "detected": {
+        "detected_modalities": [
+          "T2T",
+          "T2C"
+        ],
+        "evidence": [
+          "T2T: 자연어 코드 생성 기능을 통해 텍스트 입력을 바탕으로 코드 출력을 지원",
+          "T2C: 텍스트 지시사항을 기능 수준의 코드로 변환하는 기능 지원"
+        ],
+        "confidence": "high",
+        "is_multimodal": true
+      },
+      "comparison": {
+        "current_classification": "MULTI",
+        "current_modalities": [
+          "T2C",
+          "T2I"
+        ],
+        "detected_modalities": [
+          "T2T",
+          "T2C"
+        ],
+        "match_status": "partial",
+        "missing_in_current": [
+          "T2T"
+        ],
+        "extra_in_current": [
+          "T2I"
+        ],
+        "note": "일부 모달리티 불일치"
+      },
+      "verified_at": "2025-12-04T17:29:10.134512"
+    },
+    {
+      "id": 31,
+      "name": "Cursor",
+      "status": "verified",
+      "query": "Cursor AI service features input output modalities capabilities December 2025",
+      "perplexity_response": "[Cursor AI service features input output modalities capabilities December 2025]\n# Cursor AI Service: Features, Input/Output Modalities, and Capabilities\n\n## Overview\n\nCursor is an AI-native integrated development environment (IDE) built from the ground up for AI-assisted coding, rather than a traditional code editor with AI features bolted on[4]. As of December 2025, Cursor has evolved significantly with the launch of version 2.0, introducing substantial architectural and functional improvements centered around multi-agent AI coding.\n\n## Core Input/Output Modalities\n\n**Natural Language Interaction**: Cursor enables developers to write, modify, and manage code through conversational natural language prompts[2]. The system accepts high-level instructions such as \"Refactor the user authentication flow to use a new JWT library and update the corresponding API endpoints\" and translates them into executable code changes[4].\n\n**Code-Based Inputs**: The platform supports direct code manipulati...",
+      "detected": {
+        "detected_modalities": [
+          "T2T",
+          "T2C"
+        ],
+        "evidence": [
+          "T2T: 자연어 상호작용을 통해 코드 작성 및 수정 가능",
+          "T2C: 코드 기반 입력을 통해 코드 조작 및 수정 지원"
+        ],
+        "confidence": "high",
+        "is_multimodal": true
+      },
+      "comparison": {
+        "current_classification": "MULTI",
+        "current_modalities": [
+          "T2C",
+          "I2T"
+        ],
+        "detected_modalities": [
+          "T2T",
+          "T2C"
+        ],
+        "match_status": "partial",
+        "missing_in_current": [
+          "T2T"
+        ],
+        "extra_in_current": [
+          "I2T"
+        ],
+        "note": "일부 모달리티 불일치"
+      },
+      "verified_at": "2025-12-04T17:29:34.354724"
+    },
+    {
+      "id": 32,
+      "name": "CX Agents",
+      "status": "skipped",
+      "reason": "미분류 서비스"
+    },
+    {
+      "id": 33,
+      "name": "Power Automate AI",
+      "status": "verified",
+      "query": "Power Automate AI AI service features input output modalities capabilities December 2025",
+      "perplexity_response": "[Power Automate AI AI service features input output modalities capabilities December 2025]\n# Power Automate AI Service Features and Capabilities (December 2025)\n\n## AI-Powered Automation and Expression Building\n\nPower Automate's AI capabilities have been significantly enhanced with Copilot integration, enabling users to work with natural language for automation creation and expression building[1][2][3]. The platform now allows makers to describe desired automations in plain language—such as \"send a summary email when a customer case is closed\"—and have complete cloud flows generated automatically, reducing development time by up to 70% compared to manual authoring[3].\n\nThe **Natural Language Expression Builder** feature enables users to describe logic in plain language, with Copilot automatically generating or fixing expressions without requiring manual code writing[2]. This functionality integrates directly into the expression pane, allowing makers to request complex operations such a...",
+      "detected": {
+        "detected_modalities": [
+          "T2T",
+          "T2A"
+        ],
+        "evidence": [
+          "T2T: 사용자가 자연어로 자동화 로직을 설명할 수 있으며, Copilot이 이를 해석하여 자동으로 흐름을 생성함.",
+          "T2A: AI가 문서나 커뮤니케이션의 요약을 자동으로 생성하는 기능을 지원함."
+        ],
+        "confidence": "high",
+        "is_multimodal": true
+      },
+      "comparison": {
+        "current_classification": "T2T",
+        "current_modalities": [],
+        "detected_modalities": [
+          "T2T",
+          "T2A"
+        ],
+        "match_status": "needs_upgrade",
+        "note": "현재 T2T이지만 MULTI로 업그레이드 필요할 수 있음"
+      },
+      "verified_at": "2025-12-04T17:29:55.837122"
+    },
+    {
+      "id": 34,
+      "name": "ClovaNote",
+      "status": "verified",
+      "query": "ClovaNote AI service features input output modalities capabilities December 2025",
+      "perplexity_response": "[ClovaNote AI service features input output modalities capabilities December 2025]\n# Clova Note: AI Service Features and Capabilities\n\nClova Note is an artificial intelligence-based voice recording and transcription service launched by Naver that converts speech into text with advanced processing capabilities[1]. The service has experienced significant growth, exceeding 1 million users[9].\n\n## Input and Output Modalities\n\n**Input Methods**\n\nClova Note accepts voice input through multiple channels[1]:\n- Direct voice recording via the mobile app\n- Upload of pre-recorded voice files\n- Support for audio files up to 90 minutes in duration\n\n**Output Formats**\n\nThe service generates conversation-styled text output that transforms spoken content into readable, formatted text documents. This includes meeting minutes, interview transcripts, and recorded notes[1][8].\n\n## Core Capabilities and Features\n\n**Speech-to-Text Processing**\n\nThe core functionality automatically converts voice files into t...",
+      "detected": {
+        "detected_modalities": [
+          "A2T",
+          "T2T"
+        ],
+        "evidence": [
+          "A2T: 음성 입력을 텍스트로 변환하는 기능 지원",
+          "T2T: 음성 내용을 읽기 쉬운 형식의 텍스트 문서로 변환하는 기능 지원"
+        ],
+        "confidence": "high",
+        "is_multimodal": true
+      },
+      "comparison": {
+        "current_classification": "MULTI",
+        "current_modalities": [
+          "A2T",
+          "T2T"
+        ],
+        "detected_modalities": [
+          "A2T",
+          "T2T"
+        ],
+        "match_status": "match",
+        "note": "검출된 모달리티가 현재 분류에 포함됨"
+      },
+      "verified_at": "2025-12-04T17:30:11.020745"
+    },
+    {
+      "id": 35,
+      "name": "Malirang",
+      "status": "verified",
+      "query": "Malirang AI service features input output modalities capabilities December 2025",
+      "perplexity_response": "[Malirang AI service features input output modalities capabilities December 2025]\nI don't have information available about a \"Malirang AI service\" in the provided search results or in my knowledge base. The search results provided cover various AI developments and launches from December 2025, including services like Ideagen Mazlan, Gemini 3, GPT-5.1, DeepSeek models, Claude Opus 4.5, and others, but there is no mention of Malirang AI.\n\nIt's possible that:\n\n1. **The service name may be spelled differently** - You might want to verify the exact spelling of \"Malirang\"\n2. **It may be a lesser-known or region-specific service** - It could be available in specific markets or not widely covered in major AI news publications\n3. **It may have been released very recently** - If it launched after early December 2025, it might not yet be widely documented in available sources\n\nTo help you find accurate information about this service, I would need:\n- Confirmation of the correct spelling\n- The compa...",
+      "detected": {
+        "detected_modalities": [],
+        "evidence": [],
+        "confidence": "low",
+        "is_multimodal": false
+      },
+      "comparison": {
+        "current_classification": "T2T",
+        "current_modalities": [],
+        "detected_modalities": [],
+        "match_status": "no_detection",
+        "note": "모달리티 검출 실패 - 수동 확인 필요"
+      },
+      "verified_at": "2025-12-04T17:30:20.394310"
+    },
+    {
+      "id": 36,
+      "name": "Stitch",
+      "status": "verified",
+      "query": "Stitch AI service features input output modalities capabilities December 2025",
+      "perplexity_response": "[Stitch AI service features input output modalities capabilities December 2025]\n# Google Stitch AI: Features, Input/Output Modalities, and Capabilities\n\nGoogle Stitch is an AI-powered UI design tool that fundamentally transforms how designers and developers approach interface creation[2][6]. Introduced at Google I/O 2025, Stitch leverages Google's Gemini 2.5 models to convert textual descriptions, sketches, wireframes, and screenshots into production-ready UI designs and frontend code[2][5].\n\n## Input Modalities\n\nStitch supports multiple input methods to accommodate different design workflows and user preferences:\n\n**Text-Based Design Generation**: Users can describe their desired interface using natural language prompts. For example, a designer might specify \"Create a website design for crypto platform home screen with a pre-sale widget, countdown timer, staking, and whitepaper in dark mode\"[3]. The system then generates a corresponding UI layout with visual elements and code.\n\n**Visu...",
+      "detected": {
+        "detected_modalities": [
+          "T2T",
+          "I2I",
+          "T2C"
+        ],
+        "evidence": [
+          "T2T: 사용자가 자연어 프롬프트를 통해 인터페이스를 설명할 수 있음.",
+          "I2I: 스케치, 손으로 그린 와이어프레임, 기존 스크린샷을 디자인 입력으로 받아들임.",
+          "T2C: 생성된 UI 디자인에 대해 HTML 및 CSS 마크업을 생성함."
+        ],
+        "confidence": "high",
+        "is_multimodal": true
+      },
+      "comparison": {
+        "current_classification": "MULTI",
+        "current_modalities": [
+          "T2I",
+          "I2I",
+          "T2C"
+        ],
+        "detected_modalities": [
+          "T2T",
+          "I2I",
+          "T2C"
+        ],
+        "match_status": "partial",
+        "missing_in_current": [
+          "T2T"
+        ],
+        "extra_in_current": [
+          "T2I"
+        ],
+        "note": "일부 모달리티 불일치"
+      },
+      "verified_at": "2025-12-04T17:30:41.020440"
+    },
+    {
+      "id": 37,
+      "name": "UX Pilot",
+      "status": "verified",
+      "query": "UX Pilot AI service features input output modalities capabilities December 2025",
+      "perplexity_response": "[UX Pilot AI service features input output modalities capabilities December 2025]\n# UX Pilot AI: Comprehensive Feature Analysis\n\nUX Pilot is an AI-powered UX/UI design assistant that has established itself as a prominent tool in the design workflow landscape[1][2]. As of December 2025, the platform offers a comprehensive suite of features designed to accelerate the design process while maintaining creative control and design quality.\n\n## Core Functionality and Output Modalities\n\n**Design Generation Capabilities**\n\nUX Pilot specializes in transforming various input formats into production-ready design outputs[2][4]. The platform can generate high-fidelity UI designs, pixel-perfect screens for both web and mobile applications, and marketing landing pages in seconds[4]. Beyond standard UI design, the tool extends to wireframe generation, allowing designers to explore concepts and brainstorm ideas rapidly using AI assistance[4].\n\nThe output modalities are remarkably diverse. Users can gene...",
+      "detected": {
+        "detected_modalities": [
+          "T2T",
+          "I2I"
+        ],
+        "evidence": [
+          "T2T: 텍스트 기반 프롬프트를 통해 UI 디자인, 와이어프레임, 다이어그램 등을 생성할 수 있음.",
+          "I2I: 디자인 영감을 위한 시각적 자산을 가져와 색상 팔레트를 추출하고 구현하는 기능이 있음."
+        ],
+        "confidence": "high",
+        "is_multimodal": true
+      },
+      "comparison": {
+        "current_classification": "MULTI",
+        "current_modalities": [
+          "T2I",
+          "I2T",
+          "T2C"
+        ],
+        "detected_modalities": [
+          "T2T",
+          "I2I"
+        ],
+        "match_status": "mismatch",
+        "note": "모달리티 완전 불일치"
+      },
+      "verified_at": "2025-12-04T17:31:07.004583"
+    },
+    {
+      "id": 38,
+      "name": "LLMs (General)",
+      "status": "verified",
+      "query": "LLMs (General) AI service features input output modalities capabilities December 2025",
+      "perplexity_response": "[LLMs (General) AI service features input output modalities capabilities December 2025]\n# Large Language Models: Features, Modalities, and Capabilities in December 2025\n\n## Overview of Leading LLM Services\n\nAs of December 2025, the landscape of large language models has evolved significantly with advanced multimodal capabilities, expanded context windows, and sophisticated reasoning approaches. The leading models represent a diverse ecosystem serving different use cases and deployment scenarios.\n\n## Core Input and Output Modalities\n\n**Text Processing**\nAll major LLMs maintain robust text input and output capabilities as their foundation[1]. Text remains the primary modality across all services, with models handling both single-turn and multi-turn conversational interactions.\n\n**Multimodal Input Support**\nThe most advanced models now support comprehensive multimodal inputs. GPT-5 and Gemini 2.5 Pro offer the most robust multimodal support, processing text, images, audio, and video withi...",
+      "detected": {
+        "detected_modalities": [
+          "T2T",
+          "T2I",
+          "T2A",
+          "T2V"
+        ],
+        "evidence": [
+          "T2T: 모든 주요 LLM은 텍스트 입력 및 출력 기능을 유지하며, 단일 및 다중 턴 대화 상호작용을 처리할 수 있음.",
+          "T2I: Grok 4는 통합된 이미지 생성 기능을 포함하고 있음.",
+          "T2A: Google's Gemini 2.5 Pro는 24개 이상의 언어로 표현력이 풍부한 오디오 출력을 제공함.",
+          "T2V: Gemini 2.5 Pro는 비디오 생성 기능을 지원하고 있음."
+        ],
+        "confidence": "high",
+        "is_multimodal": true
+      },
+      "comparison": {
+        "current_classification": "T2T",
+        "current_modalities": [],
+        "detected_modalities": [
+          "T2T",
+          "T2I",
+          "T2A",
+          "T2V"
+        ],
+        "match_status": "needs_upgrade",
+        "note": "현재 T2T이지만 MULTI로 업그레이드 필요할 수 있음"
+      },
+      "verified_at": "2025-12-04T17:31:34.719981"
+    }
+  ]
+}

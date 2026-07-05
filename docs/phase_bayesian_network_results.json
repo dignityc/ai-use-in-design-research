@@ -1,0 +1,3035 @@
+{
+  "metadata": {
+    "source": "docs/dataset_rows.json",
+    "includedCases": 270,
+    "sourceRows": 271,
+    "valueMentionEvents": 553,
+    "bootstrapIterations": 200,
+    "maxParents": 2,
+    "variables": [
+      "Phase",
+      "Discipline",
+      "Dimension",
+      "Category",
+      "AssistanceType",
+      "Polarity",
+      "Value"
+    ],
+    "method": "tier-constrained discrete Bayesian-network structure learning with BIC/AIC local scores"
+  },
+  "cardinality": {
+    "Phase": 4,
+    "Discipline": 3,
+    "Dimension": 4,
+    "Category": 13,
+    "AssistanceType": 6,
+    "Polarity": 2,
+    "Value": 16
+  },
+  "marginals": {
+    "Phase": {
+      "variable": "Phase",
+      "n": 553,
+      "distribution": [
+        {
+          "value": "Discover",
+          "count": 167,
+          "share": 0.30198915009041594
+        },
+        {
+          "value": "Develop",
+          "count": 167,
+          "share": 0.30198915009041594
+        },
+        {
+          "value": "Define",
+          "count": 149,
+          "share": 0.2694394213381555
+        },
+        {
+          "value": "Deliver",
+          "count": 70,
+          "share": 0.12658227848101267
+        }
+      ]
+    },
+    "Discipline": {
+      "variable": "Discipline",
+      "n": 553,
+      "distribution": [
+        {
+          "value": "SD",
+          "count": 202,
+          "share": 0.36528028933092227
+        },
+        {
+          "value": "UIUX",
+          "count": 193,
+          "share": 0.34900542495479203
+        },
+        {
+          "value": "ED",
+          "count": 158,
+          "share": 0.2857142857142857
+        }
+      ]
+    },
+    "Dimension": {
+      "variable": "Dimension",
+      "n": 553,
+      "distribution": [
+        {
+          "value": "Background Research & Sensemaking",
+          "count": 229,
+          "share": 0.4141048824593128
+        },
+        {
+          "value": "Planning, Coordination & Management",
+          "count": 129,
+          "share": 0.2332730560578662
+        },
+        {
+          "value": "Ideation & Design Generation",
+          "count": 127,
+          "share": 0.22965641952983726
+        },
+        {
+          "value": "Design & Process Evaluation",
+          "count": 68,
+          "share": 0.12296564195298372
+        }
+      ]
+    },
+    "Category": {
+      "variable": "Category",
+      "n": 553,
+      "distribution": [
+        {
+          "value": "Domain, Technical, & Market Knowledge Gathering",
+          "count": 135,
+          "share": 0.244122965641953
+        },
+        {
+          "value": "Concept Exploration & Development",
+          "count": 80,
+          "share": 0.14466546112115733
+        },
+        {
+          "value": "Documentation & Communication Support",
+          "count": 71,
+          "share": 0.12839059674502712
+        },
+        {
+          "value": "User/Customer Need Research",
+          "count": 69,
+          "share": 0.12477396021699819
+        },
+        {
+          "value": "Project Planning & Workflow Management",
+          "count": 41,
+          "share": 0.07414104882459313
+        },
+        {
+          "value": "Design Critique & Assessment",
+          "count": 36,
+          "share": 0.0650994575045208
+        },
+        {
+          "value": "Prototype Generation",
+          "count": 33,
+          "share": 0.059674502712477394
+        },
+        {
+          "value": "Outcome Testing & Prediction",
+          "count": 27,
+          "share": 0.048824593128390596
+        },
+        {
+          "value": "Business Direction & Strategy Planning",
+          "count": 25,
+          "share": 0.045207956600361664
+        },
+        {
+          "value": "Design Systems Management",
+          "count": 14,
+          "share": 0.02531645569620253
+        }
+      ]
+    },
+    "AssistanceType": {
+      "variable": "AssistanceType",
+      "n": 553,
+      "distribution": [
+        {
+          "value": "Knowledge generation",
+          "count": 154,
+          "share": 0.27848101265822783
+        },
+        {
+          "value": "Design generation",
+          "count": 115,
+          "share": 0.20795660036166366
+        },
+        {
+          "value": "Knowledge augmentation",
+          "count": 102,
+          "share": 0.1844484629294756
+        },
+        {
+          "value": "Co-ordination",
+          "count": 71,
+          "share": 0.12839059674502712
+        },
+        {
+          "value": "Decision making",
+          "count": 67,
+          "share": 0.12115732368896925
+        },
+        {
+          "value": "Prediction",
+          "count": 44,
+          "share": 0.07956600361663653
+        }
+      ]
+    },
+    "Polarity": {
+      "variable": "Polarity",
+      "n": 553,
+      "distribution": [
+        {
+          "value": "Enhanced",
+          "count": 302,
+          "share": 0.546112115732369
+        },
+        {
+          "value": "Impaired",
+          "count": 251,
+          "share": 0.4538878842676311
+        }
+      ]
+    },
+    "Value": {
+      "variable": "Value",
+      "n": 553,
+      "distribution": [
+        {
+          "value": "Efficiency",
+          "count": 96,
+          "share": 0.1735985533453888
+        },
+        {
+          "value": "Learning / Skills Development",
+          "count": 77,
+          "share": 0.13924050632911392
+        },
+        {
+          "value": "Accuracy",
+          "count": 70,
+          "share": 0.12658227848101267
+        },
+        {
+          "value": "Context Awareness",
+          "count": 59,
+          "share": 0.10669077757685352
+        },
+        {
+          "value": "Creativity",
+          "count": 55,
+          "share": 0.09945750452079566
+        },
+        {
+          "value": "Collaboration",
+          "count": 34,
+          "share": 0.06148282097649186
+        },
+        {
+          "value": "Feasibility",
+          "count": 32,
+          "share": 0.05786618444846293
+        },
+        {
+          "value": "Controllability",
+          "count": 28,
+          "share": 0.05063291139240506
+        },
+        {
+          "value": "Scalability",
+          "count": 24,
+          "share": 0.0433996383363472
+        },
+        {
+          "value": "Empathy / Human-centeredness",
+          "count": 23,
+          "share": 0.04159132007233273
+        }
+      ]
+    }
+  },
+  "models": {
+    "bic": {
+      "criterion": "BIC",
+      "selected": {
+        "Phase": {
+          "score": -749.4734119676098,
+          "logLikelihood": -740.0003749653263,
+          "parameters": 3,
+          "parents": []
+        },
+        "Discipline": {
+          "score": -610.8490362914264,
+          "logLikelihood": -604.5336782899041,
+          "parameters": 2,
+          "parents": []
+        },
+        "Dimension": {
+          "score": -578.0806393514757,
+          "logLikelihood": -540.1884913423418,
+          "parameters": 12,
+          "parents": [
+            "Phase"
+          ]
+        },
+        "Category": {
+          "score": -666.0231602861718,
+          "logLikelihood": -514.4545682496357,
+          "parameters": 48,
+          "parents": [
+            "Dimension"
+          ]
+        },
+        "AssistanceType": {
+          "score": -693.5931122320184,
+          "logLikelihood": -630.439532216795,
+          "parameters": 20,
+          "parents": [
+            "Dimension"
+          ]
+        },
+        "Polarity": {
+          "score": -384.1130068733239,
+          "logLikelihood": -380.95532787256275,
+          "parameters": 1,
+          "parents": []
+        },
+        "Value": {
+          "score": -1364.3087230049905,
+          "logLikelihood": -1269.5783529821554,
+          "parameters": 30,
+          "parents": [
+            "Polarity"
+          ]
+        }
+      },
+      "topParentSets": {
+        "Phase": [
+          {
+            "score": -749.4734119676098,
+            "logLikelihood": -740.0003749653263,
+            "parameters": 3,
+            "parents": []
+          }
+        ],
+        "Discipline": [
+          {
+            "score": -610.8490362914264,
+            "logLikelihood": -604.5336782899041,
+            "parameters": 2,
+            "parents": []
+          }
+        ],
+        "Dimension": [
+          {
+            "score": -578.0806393514757,
+            "logLikelihood": -540.1884913423418,
+            "parameters": 12,
+            "parents": [
+              "Phase"
+            ]
+          },
+          {
+            "score": -628.639431685146,
+            "logLikelihood": -514.962987657744,
+            "parameters": 36,
+            "parents": [
+              "Phase",
+              "Discipline"
+            ]
+          },
+          {
+            "score": -728.4895889353418,
+            "logLikelihood": -719.0165519330583,
+            "parameters": 3,
+            "parents": []
+          },
+          {
+            "score": -736.8800751054667,
+            "logLikelihood": -708.4609640986163,
+            "parameters": 9,
+            "parents": [
+              "Discipline"
+            ]
+          }
+        ],
+        "Category": [
+          {
+            "score": -666.0231602861718,
+            "logLikelihood": -514.4545682496357,
+            "parameters": 48,
+            "parents": [
+              "Dimension"
+            ]
+          },
+          {
+            "score": -923.4397809375541,
+            "logLikelihood": -468.734004827946,
+            "parameters": 144,
+            "parents": [
+              "Discipline",
+              "Dimension"
+            ]
+          },
+          {
+            "score": -1012.6132266727906,
+            "logLikelihood": -406.3388585266464,
+            "parameters": 192,
+            "parents": [
+              "Phase",
+              "Dimension"
+            ]
+          },
+          {
+            "score": -1098.0959419055243,
+            "logLikelihood": -946.5273498689883,
+            "parameters": 48,
+            "parents": [
+              "Phase"
+            ]
+          },
+          {
+            "score": -1271.363268191828,
+            "logLikelihood": -1233.471120182694,
+            "parameters": 12,
+            "parents": []
+          },
+          {
+            "score": -1290.8714129539646,
+            "logLikelihood": -1177.1949689265625,
+            "parameters": 36,
+            "parents": [
+              "Discipline"
+            ]
+          },
+          {
+            "score": -1293.5223553173773,
+            "logLikelihood": -838.8165792077691,
+            "parameters": 144,
+            "parents": [
+              "Phase",
+              "Discipline"
+            ]
+          }
+        ],
+        "AssistanceType": [
+          {
+            "score": -693.5931122320184,
+            "logLikelihood": -630.439532216795,
+            "parameters": 20,
+            "parents": [
+              "Dimension"
+            ]
+          },
+          {
+            "score": -699.4112073402077,
+            "logLikelihood": -494.1620722907319,
+            "parameters": 65,
+            "parents": [
+              "Category"
+            ]
+          },
+          {
+            "score": -733.453570067256,
+            "logLikelihood": -480.83925000636265,
+            "parameters": 80,
+            "parents": [
+              "Phase",
+              "Dimension"
+            ]
+          },
+          {
+            "score": -768.695026242586,
+            "logLikelihood": -579.234286196916,
+            "parameters": 60,
+            "parents": [
+              "Discipline",
+              "Dimension"
+            ]
+          },
+          {
+            "score": -782.8368274118617,
+            "logLikelihood": -719.6832473966383,
+            "parameters": 20,
+            "parents": [
+              "Phase"
+            ]
+          },
+          {
+            "score": -835.744318955445,
+            "logLikelihood": -646.283578909775,
+            "parameters": 60,
+            "parents": [
+              "Phase",
+              "Discipline"
+            ]
+          },
+          {
+            "score": -964.207226695657,
+            "logLikelihood": -948.4188316918512,
+            "parameters": 5,
+            "parents": []
+          },
+          {
+            "score": -970.3034623664221,
+            "logLikelihood": -922.9382773550046,
+            "parameters": 15,
+            "parents": [
+              "Discipline"
+            ]
+          }
+        ],
+        "Polarity": [
+          {
+            "score": -384.1130068733239,
+            "logLikelihood": -380.95532787256275,
+            "parameters": 1,
+            "parents": []
+          },
+          {
+            "score": -390.30845236432043,
+            "logLikelihood": -377.6777363612758,
+            "parameters": 4,
+            "parents": [
+              "Dimension"
+            ]
+          },
+          {
+            "score": -390.41919019504866,
+            "logLikelihood": -380.94615319276517,
+            "parameters": 3,
+            "parents": [
+              "Discipline"
+            ]
+          },
+          {
+            "score": -391.8399594701068,
+            "logLikelihood": -379.20924346706215,
+            "parameters": 4,
+            "parents": [
+              "Phase"
+            ]
+          },
+          {
+            "score": -396.5907473865237,
+            "logLikelihood": -377.6446733819567,
+            "parameters": 6,
+            "parents": [
+              "AssistanceType"
+            ]
+          },
+          {
+            "score": -413.6015195481318,
+            "logLikelihood": -375.7093715389978,
+            "parameters": 12,
+            "parents": [
+              "Phase",
+              "Discipline"
+            ]
+          },
+          {
+            "score": -414.17926274869393,
+            "logLikelihood": -376.2871147395599,
+            "parameters": 12,
+            "parents": [
+              "Discipline",
+              "Dimension"
+            ]
+          },
+          {
+            "score": -416.39322136322687,
+            "logLikelihood": -375.3433943533317,
+            "parameters": 13,
+            "parents": [
+              "Category"
+            ]
+          }
+        ],
+        "Value": [
+          {
+            "score": -1364.3087230049905,
+            "logLikelihood": -1269.5783529821554,
+            "parameters": 30,
+            "parents": [
+              "Polarity"
+            ]
+          },
+          {
+            "score": -1398.044217399155,
+            "logLikelihood": -1350.6790323877376,
+            "parameters": 15,
+            "parents": []
+          },
+          {
+            "score": -1454.8647229966632,
+            "logLikelihood": -1312.7691679624106,
+            "parameters": 45,
+            "parents": [
+              "Discipline"
+            ]
+          },
+          {
+            "score": -1463.6613573482691,
+            "logLikelihood": -1274.200617302599,
+            "parameters": 60,
+            "parents": [
+              "Dimension"
+            ]
+          },
+          {
+            "score": -1469.9324964323384,
+            "logLikelihood": -1280.4717563866684,
+            "parameters": 60,
+            "parents": [
+              "Phase"
+            ]
+          },
+          {
+            "score": -1486.2978423083227,
+            "logLikelihood": -1202.1067322398176,
+            "parameters": 90,
+            "parents": [
+              "Discipline",
+              "Polarity"
+            ]
+          },
+          {
+            "score": -1530.1875522223727,
+            "logLikelihood": -1245.9964421538677,
+            "parameters": 90,
+            "parents": [
+              "AssistanceType"
+            ]
+          },
+          {
+            "score": -1541.4235947617844,
+            "logLikelihood": -1162.5021146704444,
+            "parameters": 120,
+            "parents": [
+              "Phase",
+              "Polarity"
+            ]
+          }
+        ]
+      },
+      "edges": [
+        {
+          "source": "Phase",
+          "target": "Dimension",
+          "criterion": "BIC",
+          "deltaScore": 150.40894958386605,
+          "stability": 1.0
+        },
+        {
+          "source": "Dimension",
+          "target": "Category",
+          "criterion": "BIC",
+          "deltaScore": 605.3401079056562,
+          "stability": 1.0
+        },
+        {
+          "source": "Dimension",
+          "target": "AssistanceType",
+          "criterion": "BIC",
+          "deltaScore": 270.61411446363866,
+          "stability": 0.425
+        },
+        {
+          "source": "Polarity",
+          "target": "Value",
+          "criterion": "BIC",
+          "deltaScore": 33.73549439416456,
+          "stability": 1.0
+        }
+      ]
+    },
+    "aic": {
+      "criterion": "AIC",
+      "selected": {
+        "Phase": {
+          "score": -743.0003749653263,
+          "logLikelihood": -740.0003749653263,
+          "parameters": 3,
+          "parents": []
+        },
+        "Discipline": {
+          "score": -606.5336782899041,
+          "logLikelihood": -604.5336782899041,
+          "parameters": 2,
+          "parents": []
+        },
+        "Dimension": {
+          "score": -550.962987657744,
+          "logLikelihood": -514.962987657744,
+          "parameters": 36,
+          "parents": [
+            "Phase",
+            "Discipline"
+          ]
+        },
+        "Category": {
+          "score": -562.4545682496357,
+          "logLikelihood": -514.4545682496357,
+          "parameters": 48,
+          "parents": [
+            "Dimension"
+          ]
+        },
+        "AssistanceType": {
+          "score": -559.1620722907319,
+          "logLikelihood": -494.1620722907319,
+          "parameters": 65,
+          "parents": [
+            "Category"
+          ]
+        },
+        "Polarity": {
+          "score": -381.6777363612758,
+          "logLikelihood": -377.6777363612758,
+          "parameters": 4,
+          "parents": [
+            "Dimension"
+          ]
+        },
+        "Value": {
+          "score": -1282.5021146704444,
+          "logLikelihood": -1162.5021146704444,
+          "parameters": 120,
+          "parents": [
+            "Phase",
+            "Polarity"
+          ]
+        }
+      },
+      "topParentSets": {
+        "Phase": [
+          {
+            "score": -743.0003749653263,
+            "logLikelihood": -740.0003749653263,
+            "parameters": 3,
+            "parents": []
+          }
+        ],
+        "Discipline": [
+          {
+            "score": -606.5336782899041,
+            "logLikelihood": -604.5336782899041,
+            "parameters": 2,
+            "parents": []
+          }
+        ],
+        "Dimension": [
+          {
+            "score": -550.962987657744,
+            "logLikelihood": -514.962987657744,
+            "parameters": 36,
+            "parents": [
+              "Phase",
+              "Discipline"
+            ]
+          },
+          {
+            "score": -552.1884913423418,
+            "logLikelihood": -540.1884913423418,
+            "parameters": 12,
+            "parents": [
+              "Phase"
+            ]
+          },
+          {
+            "score": -717.4609640986163,
+            "logLikelihood": -708.4609640986163,
+            "parameters": 9,
+            "parents": [
+              "Discipline"
+            ]
+          },
+          {
+            "score": -722.0165519330583,
+            "logLikelihood": -719.0165519330583,
+            "parameters": 3,
+            "parents": []
+          }
+        ],
+        "Category": [
+          {
+            "score": -562.4545682496357,
+            "logLikelihood": -514.4545682496357,
+            "parameters": 48,
+            "parents": [
+              "Dimension"
+            ]
+          },
+          {
+            "score": -598.3388585266464,
+            "logLikelihood": -406.3388585266464,
+            "parameters": 192,
+            "parents": [
+              "Phase",
+              "Dimension"
+            ]
+          },
+          {
+            "score": -612.734004827946,
+            "logLikelihood": -468.734004827946,
+            "parameters": 144,
+            "parents": [
+              "Discipline",
+              "Dimension"
+            ]
+          },
+          {
+            "score": -982.8165792077691,
+            "logLikelihood": -838.8165792077691,
+            "parameters": 144,
+            "parents": [
+              "Phase",
+              "Discipline"
+            ]
+          },
+          {
+            "score": -994.5273498689883,
+            "logLikelihood": -946.5273498689883,
+            "parameters": 48,
+            "parents": [
+              "Phase"
+            ]
+          },
+          {
+            "score": -1213.1949689265625,
+            "logLikelihood": -1177.1949689265625,
+            "parameters": 36,
+            "parents": [
+              "Discipline"
+            ]
+          },
+          {
+            "score": -1245.471120182694,
+            "logLikelihood": -1233.471120182694,
+            "parameters": 12,
+            "parents": []
+          }
+        ],
+        "AssistanceType": [
+          {
+            "score": -559.1620722907319,
+            "logLikelihood": -494.1620722907319,
+            "parameters": 65,
+            "parents": [
+              "Category"
+            ]
+          },
+          {
+            "score": -560.8392500063626,
+            "logLikelihood": -480.83925000636265,
+            "parameters": 80,
+            "parents": [
+              "Phase",
+              "Dimension"
+            ]
+          },
+          {
+            "score": -611.9595726606533,
+            "logLikelihood": -416.95957266065335,
+            "parameters": 195,
+            "parents": [
+              "Discipline",
+              "Category"
+            ]
+          },
+          {
+            "score": -626.3821754613298,
+            "logLikelihood": -366.38217546132984,
+            "parameters": 260,
+            "parents": [
+              "Phase",
+              "Category"
+            ]
+          },
+          {
+            "score": -639.234286196916,
+            "logLikelihood": -579.234286196916,
+            "parameters": 60,
+            "parents": [
+              "Discipline",
+              "Dimension"
+            ]
+          },
+          {
+            "score": -650.439532216795,
+            "logLikelihood": -630.439532216795,
+            "parameters": 20,
+            "parents": [
+              "Dimension"
+            ]
+          },
+          {
+            "score": -706.283578909775,
+            "logLikelihood": -646.283578909775,
+            "parameters": 60,
+            "parents": [
+              "Phase",
+              "Discipline"
+            ]
+          },
+          {
+            "score": -739.6832473966383,
+            "logLikelihood": -719.6832473966383,
+            "parameters": 20,
+            "parents": [
+              "Phase"
+            ]
+          }
+        ],
+        "Polarity": [
+          {
+            "score": -381.6777363612758,
+            "logLikelihood": -377.6777363612758,
+            "parameters": 4,
+            "parents": [
+              "Dimension"
+            ]
+          },
+          {
+            "score": -381.95532787256275,
+            "logLikelihood": -380.95532787256275,
+            "parameters": 1,
+            "parents": []
+          },
+          {
+            "score": -383.20924346706215,
+            "logLikelihood": -379.20924346706215,
+            "parameters": 4,
+            "parents": [
+              "Phase"
+            ]
+          },
+          {
+            "score": -383.6446733819567,
+            "logLikelihood": -377.6446733819567,
+            "parameters": 6,
+            "parents": [
+              "AssistanceType"
+            ]
+          },
+          {
+            "score": -383.94615319276517,
+            "logLikelihood": -380.94615319276517,
+            "parameters": 3,
+            "parents": [
+              "Discipline"
+            ]
+          },
+          {
+            "score": -385.95015786062106,
+            "logLikelihood": -369.95015786062106,
+            "parameters": 16,
+            "parents": [
+              "Phase",
+              "Dimension"
+            ]
+          },
+          {
+            "score": -387.7093715389978,
+            "logLikelihood": -375.7093715389978,
+            "parameters": 12,
+            "parents": [
+              "Phase",
+              "Discipline"
+            ]
+          },
+          {
+            "score": -388.2871147395599,
+            "logLikelihood": -376.2871147395599,
+            "parameters": 12,
+            "parents": [
+              "Discipline",
+              "Dimension"
+            ]
+          }
+        ],
+        "Value": [
+          {
+            "score": -1282.5021146704444,
+            "logLikelihood": -1162.5021146704444,
+            "parameters": 120,
+            "parents": [
+              "Phase",
+              "Polarity"
+            ]
+          },
+          {
+            "score": -1282.9732802857836,
+            "logLikelihood": -1162.9732802857836,
+            "parameters": 120,
+            "parents": [
+              "Dimension",
+              "Polarity"
+            ]
+          },
+          {
+            "score": -1292.1067322398176,
+            "logLikelihood": -1202.1067322398176,
+            "parameters": 90,
+            "parents": [
+              "Discipline",
+              "Polarity"
+            ]
+          },
+          {
+            "score": -1299.5783529821554,
+            "logLikelihood": -1269.5783529821554,
+            "parameters": 30,
+            "parents": [
+              "Polarity"
+            ]
+          },
+          {
+            "score": -1301.2826755199114,
+            "logLikelihood": -1121.2826755199114,
+            "parameters": 180,
+            "parents": [
+              "AssistanceType",
+              "Polarity"
+            ]
+          },
+          {
+            "score": -1334.200617302599,
+            "logLikelihood": -1274.200617302599,
+            "parameters": 60,
+            "parents": [
+              "Dimension"
+            ]
+          },
+          {
+            "score": -1335.9964421538677,
+            "logLikelihood": -1245.9964421538677,
+            "parameters": 90,
+            "parents": [
+              "AssistanceType"
+            ]
+          },
+          {
+            "score": -1340.4717563866684,
+            "logLikelihood": -1280.4717563866684,
+            "parameters": 60,
+            "parents": [
+              "Phase"
+            ]
+          }
+        ]
+      },
+      "edges": [
+        {
+          "source": "Phase",
+          "target": "Dimension",
+          "criterion": "AIC",
+          "deltaScore": 166.49797644087232,
+          "stability": 1.0
+        },
+        {
+          "source": "Discipline",
+          "target": "Dimension",
+          "criterion": "AIC",
+          "deltaScore": 1.2255036845978111,
+          "stability": 0.99
+        },
+        {
+          "source": "Dimension",
+          "target": "Category",
+          "criterion": "AIC",
+          "deltaScore": 683.0165519330583,
+          "stability": 1.0
+        },
+        {
+          "source": "Category",
+          "target": "AssistanceType",
+          "criterion": "AIC",
+          "deltaScore": 394.2567594011193,
+          "stability": 0.54
+        },
+        {
+          "source": "Dimension",
+          "target": "Polarity",
+          "criterion": "AIC",
+          "deltaScore": 0.2775915112869711,
+          "stability": 0.595
+        },
+        {
+          "source": "Phase",
+          "target": "Value",
+          "criterion": "AIC",
+          "deltaScore": 17.076238311710995,
+          "stability": 0.29
+        },
+        {
+          "source": "Polarity",
+          "target": "Value",
+          "criterion": "AIC",
+          "deltaScore": 57.96964171622403,
+          "stability": 1.0
+        }
+      ]
+    }
+  },
+  "bootstrap": {
+    "bic": [
+      {
+        "source": "Phase",
+        "target": "Dimension",
+        "criterion": "BIC",
+        "stability": 1.0
+      },
+      {
+        "source": "Dimension",
+        "target": "Category",
+        "criterion": "BIC",
+        "stability": 1.0
+      },
+      {
+        "source": "Polarity",
+        "target": "Value",
+        "criterion": "BIC",
+        "stability": 1.0
+      },
+      {
+        "source": "Category",
+        "target": "AssistanceType",
+        "criterion": "BIC",
+        "stability": 0.575
+      },
+      {
+        "source": "Dimension",
+        "target": "AssistanceType",
+        "criterion": "BIC",
+        "stability": 0.425
+      },
+      {
+        "source": "Dimension",
+        "target": "Polarity",
+        "criterion": "BIC",
+        "stability": 0.05
+      },
+      {
+        "source": "Phase",
+        "target": "Polarity",
+        "criterion": "BIC",
+        "stability": 0.02
+      },
+      {
+        "source": "AssistanceType",
+        "target": "Polarity",
+        "criterion": "BIC",
+        "stability": 0.005
+      }
+    ],
+    "aic": [
+      {
+        "source": "Phase",
+        "target": "Dimension",
+        "criterion": "AIC",
+        "stability": 1.0
+      },
+      {
+        "source": "Dimension",
+        "target": "Category",
+        "criterion": "AIC",
+        "stability": 1.0
+      },
+      {
+        "source": "Polarity",
+        "target": "Value",
+        "criterion": "AIC",
+        "stability": 1.0
+      },
+      {
+        "source": "Discipline",
+        "target": "Dimension",
+        "criterion": "AIC",
+        "stability": 0.99
+      },
+      {
+        "source": "Phase",
+        "target": "Polarity",
+        "criterion": "AIC",
+        "stability": 0.64
+      },
+      {
+        "source": "Dimension",
+        "target": "Polarity",
+        "criterion": "AIC",
+        "stability": 0.595
+      },
+      {
+        "source": "Category",
+        "target": "AssistanceType",
+        "criterion": "AIC",
+        "stability": 0.54
+      },
+      {
+        "source": "Phase",
+        "target": "AssistanceType",
+        "criterion": "AIC",
+        "stability": 0.46
+      },
+      {
+        "source": "Dimension",
+        "target": "AssistanceType",
+        "criterion": "AIC",
+        "stability": 0.46
+      },
+      {
+        "source": "Dimension",
+        "target": "Value",
+        "criterion": "AIC",
+        "stability": 0.41
+      },
+      {
+        "source": "Phase",
+        "target": "Value",
+        "criterion": "AIC",
+        "stability": 0.29
+      },
+      {
+        "source": "AssistanceType",
+        "target": "Value",
+        "criterion": "AIC",
+        "stability": 0.26
+      },
+      {
+        "source": "AssistanceType",
+        "target": "Polarity",
+        "criterion": "AIC",
+        "stability": 0.22
+      },
+      {
+        "source": "Discipline",
+        "target": "Polarity",
+        "criterion": "AIC",
+        "stability": 0.17
+      },
+      {
+        "source": "Category",
+        "target": "Polarity",
+        "criterion": "AIC",
+        "stability": 0.055
+      },
+      {
+        "source": "Discipline",
+        "target": "Value",
+        "criterion": "AIC",
+        "stability": 0.04
+      },
+      {
+        "source": "Phase",
+        "target": "Category",
+        "criterion": "AIC",
+        "stability": 0.015
+      }
+    ]
+  },
+  "comparisons": {
+    "Polarity": [
+      {
+        "parents": [],
+        "bic": {
+          "score": -384.1130068733239,
+          "logLikelihood": -380.95532787256275,
+          "parameters": 1,
+          "parents": []
+        },
+        "aic": {
+          "score": -381.95532787256275,
+          "logLikelihood": -380.95532787256275,
+          "parameters": 1,
+          "parents": []
+        }
+      },
+      {
+        "parents": [
+          "Dimension"
+        ],
+        "bic": {
+          "score": -390.30845236432043,
+          "logLikelihood": -377.6777363612758,
+          "parameters": 4,
+          "parents": [
+            "Dimension"
+          ]
+        },
+        "aic": {
+          "score": -381.6777363612758,
+          "logLikelihood": -377.6777363612758,
+          "parameters": 4,
+          "parents": [
+            "Dimension"
+          ]
+        }
+      },
+      {
+        "parents": [
+          "Phase"
+        ],
+        "bic": {
+          "score": -391.8399594701068,
+          "logLikelihood": -379.20924346706215,
+          "parameters": 4,
+          "parents": [
+            "Phase"
+          ]
+        },
+        "aic": {
+          "score": -383.20924346706215,
+          "logLikelihood": -379.20924346706215,
+          "parameters": 4,
+          "parents": [
+            "Phase"
+          ]
+        }
+      },
+      {
+        "parents": [
+          "AssistanceType"
+        ],
+        "bic": {
+          "score": -396.5907473865237,
+          "logLikelihood": -377.6446733819567,
+          "parameters": 6,
+          "parents": [
+            "AssistanceType"
+          ]
+        },
+        "aic": {
+          "score": -383.6446733819567,
+          "logLikelihood": -377.6446733819567,
+          "parameters": 6,
+          "parents": [
+            "AssistanceType"
+          ]
+        }
+      },
+      {
+        "parents": [
+          "Category"
+        ],
+        "bic": {
+          "score": -416.39322136322687,
+          "logLikelihood": -375.3433943533317,
+          "parameters": 13,
+          "parents": [
+            "Category"
+          ]
+        },
+        "aic": {
+          "score": -388.3433943533317,
+          "logLikelihood": -375.3433943533317,
+          "parameters": 13,
+          "parents": [
+            "Category"
+          ]
+        }
+      }
+    ],
+    "Value": [
+      {
+        "parents": [],
+        "bic": {
+          "score": -1398.044217399155,
+          "logLikelihood": -1350.6790323877376,
+          "parameters": 15,
+          "parents": []
+        },
+        "aic": {
+          "score": -1365.6790323877376,
+          "logLikelihood": -1350.6790323877376,
+          "parameters": 15,
+          "parents": []
+        }
+      },
+      {
+        "parents": [
+          "Dimension"
+        ],
+        "bic": {
+          "score": -1463.6613573482691,
+          "logLikelihood": -1274.200617302599,
+          "parameters": 60,
+          "parents": [
+            "Dimension"
+          ]
+        },
+        "aic": {
+          "score": -1334.200617302599,
+          "logLikelihood": -1274.200617302599,
+          "parameters": 60,
+          "parents": [
+            "Dimension"
+          ]
+        }
+      },
+      {
+        "parents": [
+          "Phase"
+        ],
+        "bic": {
+          "score": -1469.9324964323384,
+          "logLikelihood": -1280.4717563866684,
+          "parameters": 60,
+          "parents": [
+            "Phase"
+          ]
+        },
+        "aic": {
+          "score": -1340.4717563866684,
+          "logLikelihood": -1280.4717563866684,
+          "parameters": 60,
+          "parents": [
+            "Phase"
+          ]
+        }
+      },
+      {
+        "parents": [
+          "AssistanceType"
+        ],
+        "bic": {
+          "score": -1530.1875522223727,
+          "logLikelihood": -1245.9964421538677,
+          "parameters": 90,
+          "parents": [
+            "AssistanceType"
+          ]
+        },
+        "aic": {
+          "score": -1335.9964421538677,
+          "logLikelihood": -1245.9964421538677,
+          "parameters": 90,
+          "parents": [
+            "AssistanceType"
+          ]
+        }
+      },
+      {
+        "parents": [
+          "Phase",
+          "Polarity"
+        ],
+        "bic": {
+          "score": -1541.4235947617844,
+          "logLikelihood": -1162.5021146704444,
+          "parameters": 120,
+          "parents": [
+            "Phase",
+            "Polarity"
+          ]
+        },
+        "aic": {
+          "score": -1282.5021146704444,
+          "logLikelihood": -1162.5021146704444,
+          "parameters": 120,
+          "parents": [
+            "Phase",
+            "Polarity"
+          ]
+        }
+      },
+      {
+        "parents": [
+          "Dimension",
+          "Polarity"
+        ],
+        "bic": {
+          "score": -1541.8947603771237,
+          "logLikelihood": -1162.9732802857836,
+          "parameters": 120,
+          "parents": [
+            "Dimension",
+            "Polarity"
+          ]
+        },
+        "aic": {
+          "score": -1282.9732802857836,
+          "logLikelihood": -1162.9732802857836,
+          "parameters": 120,
+          "parents": [
+            "Dimension",
+            "Polarity"
+          ]
+        }
+      },
+      {
+        "parents": [
+          "Category"
+        ],
+        "bic": {
+          "score": -1824.2985544940643,
+          "logLikelihood": -1208.5511493456365,
+          "parameters": 195,
+          "parents": [
+            "Category"
+          ]
+        },
+        "aic": {
+          "score": -1403.5511493456365,
+          "logLikelihood": -1208.5511493456365,
+          "parameters": 195,
+          "parents": [
+            "Category"
+          ]
+        }
+      }
+    ]
+  },
+  "conditionals": {
+    "dimensionGivenPhase": [
+      {
+        "group": {
+          "Phase": "Develop"
+        },
+        "n": 167,
+        "target": "Dimension",
+        "distribution": [
+          {
+            "value": "Ideation & Design Generation",
+            "count": 94,
+            "share": 0.562874251497006
+          },
+          {
+            "value": "Planning, Coordination & Management",
+            "count": 37,
+            "share": 0.2215568862275449
+          },
+          {
+            "value": "Design & Process Evaluation",
+            "count": 28,
+            "share": 0.16766467065868262
+          },
+          {
+            "value": "Background Research & Sensemaking",
+            "count": 8,
+            "share": 0.04790419161676647
+          }
+        ]
+      },
+      {
+        "group": {
+          "Phase": "Discover"
+        },
+        "n": 167,
+        "target": "Dimension",
+        "distribution": [
+          {
+            "value": "Background Research & Sensemaking",
+            "count": 137,
+            "share": 0.8203592814371258
+          },
+          {
+            "value": "Planning, Coordination & Management",
+            "count": 24,
+            "share": 0.1437125748502994
+          },
+          {
+            "value": "Ideation & Design Generation",
+            "count": 4,
+            "share": 0.023952095808383235
+          },
+          {
+            "value": "Design & Process Evaluation",
+            "count": 2,
+            "share": 0.011976047904191617
+          }
+        ]
+      },
+      {
+        "group": {
+          "Phase": "Define"
+        },
+        "n": 149,
+        "target": "Dimension",
+        "distribution": [
+          {
+            "value": "Background Research & Sensemaking",
+            "count": 78,
+            "share": 0.5234899328859061
+          },
+          {
+            "value": "Planning, Coordination & Management",
+            "count": 30,
+            "share": 0.20134228187919462
+          },
+          {
+            "value": "Ideation & Design Generation",
+            "count": 22,
+            "share": 0.1476510067114094
+          },
+          {
+            "value": "Design & Process Evaluation",
+            "count": 19,
+            "share": 0.12751677852348994
+          }
+        ]
+      },
+      {
+        "group": {
+          "Phase": "Deliver"
+        },
+        "n": 70,
+        "target": "Dimension",
+        "distribution": [
+          {
+            "value": "Planning, Coordination & Management",
+            "count": 38,
+            "share": 0.5428571428571428
+          },
+          {
+            "value": "Design & Process Evaluation",
+            "count": 19,
+            "share": 0.2714285714285714
+          },
+          {
+            "value": "Ideation & Design Generation",
+            "count": 7,
+            "share": 0.1
+          },
+          {
+            "value": "Background Research & Sensemaking",
+            "count": 6,
+            "share": 0.08571428571428572
+          }
+        ]
+      }
+    ],
+    "categoryGivenDimension": [
+      {
+        "group": {
+          "Dimension": "Background Research & Sensemaking"
+        },
+        "n": 229,
+        "target": "Category",
+        "distribution": [
+          {
+            "value": "Domain, Technical, & Market Knowledge Gathering",
+            "count": 135,
+            "share": 0.5895196506550219
+          },
+          {
+            "value": "User/Customer Need Research",
+            "count": 69,
+            "share": 0.30131004366812225
+          },
+          {
+            "value": "Business Direction & Strategy Planning",
+            "count": 25,
+            "share": 0.1091703056768559
+          }
+        ]
+      },
+      {
+        "group": {
+          "Dimension": "Planning, Coordination & Management"
+        },
+        "n": 129,
+        "target": "Category",
+        "distribution": [
+          {
+            "value": "Documentation & Communication Support",
+            "count": 71,
+            "share": 0.5503875968992248
+          },
+          {
+            "value": "Project Planning & Workflow Management",
+            "count": 41,
+            "share": 0.3178294573643411
+          },
+          {
+            "value": "Design Systems Management",
+            "count": 14,
+            "share": 0.10852713178294573
+          },
+          {
+            "value": "",
+            "count": 3,
+            "share": 0.023255813953488372
+          }
+        ]
+      },
+      {
+        "group": {
+          "Dimension": "Ideation & Design Generation"
+        },
+        "n": 127,
+        "target": "Category",
+        "distribution": [
+          {
+            "value": "Concept Exploration & Development",
+            "count": 80,
+            "share": 0.6299212598425197
+          },
+          {
+            "value": "Prototype Generation",
+            "count": 33,
+            "share": 0.25984251968503935
+          },
+          {
+            "value": "Scenario Creation",
+            "count": 14,
+            "share": 0.11023622047244094
+          }
+        ]
+      },
+      {
+        "group": {
+          "Dimension": "Design & Process Evaluation"
+        },
+        "n": 68,
+        "target": "Category",
+        "distribution": [
+          {
+            "value": "Design Critique & Assessment",
+            "count": 36,
+            "share": 0.5294117647058824
+          },
+          {
+            "value": "Outcome Testing & Prediction",
+            "count": 27,
+            "share": 0.39705882352941174
+          },
+          {
+            "value": "Design Process Evaluation",
+            "count": 5,
+            "share": 0.07352941176470588
+          }
+        ]
+      }
+    ],
+    "assistanceGivenCategory": [
+      {
+        "group": {
+          "Category": "Domain, Technical, & Market Knowledge Gathering"
+        },
+        "n": 135,
+        "target": "AssistanceType",
+        "distribution": [
+          {
+            "value": "Knowledge augmentation",
+            "count": 82,
+            "share": 0.6074074074074074
+          },
+          {
+            "value": "Knowledge generation",
+            "count": 38,
+            "share": 0.2814814814814815
+          },
+          {
+            "value": "Decision making",
+            "count": 10,
+            "share": 0.07407407407407407
+          },
+          {
+            "value": "Co-ordination",
+            "count": 3,
+            "share": 0.022222222222222223
+          },
+          {
+            "value": "Prediction",
+            "count": 2,
+            "share": 0.014814814814814815
+          }
+        ]
+      },
+      {
+        "group": {
+          "Category": "Concept Exploration & Development"
+        },
+        "n": 80,
+        "target": "AssistanceType",
+        "distribution": [
+          {
+            "value": "Design generation",
+            "count": 55,
+            "share": 0.6875
+          },
+          {
+            "value": "Knowledge generation",
+            "count": 13,
+            "share": 0.1625
+          },
+          {
+            "value": "Prediction",
+            "count": 7,
+            "share": 0.0875
+          },
+          {
+            "value": "Decision making",
+            "count": 5,
+            "share": 0.0625
+          }
+        ]
+      },
+      {
+        "group": {
+          "Category": "Documentation & Communication Support"
+        },
+        "n": 71,
+        "target": "AssistanceType",
+        "distribution": [
+          {
+            "value": "Co-ordination",
+            "count": 27,
+            "share": 0.38028169014084506
+          },
+          {
+            "value": "Knowledge generation",
+            "count": 21,
+            "share": 0.29577464788732394
+          },
+          {
+            "value": "Design generation",
+            "count": 17,
+            "share": 0.23943661971830985
+          },
+          {
+            "value": "Knowledge augmentation",
+            "count": 2,
+            "share": 0.028169014084507043
+          },
+          {
+            "value": "Prediction",
+            "count": 2,
+            "share": 0.028169014084507043
+          },
+          {
+            "value": "Decision making",
+            "count": 2,
+            "share": 0.028169014084507043
+          }
+        ]
+      },
+      {
+        "group": {
+          "Category": "User/Customer Need Research"
+        },
+        "n": 69,
+        "target": "AssistanceType",
+        "distribution": [
+          {
+            "value": "Knowledge generation",
+            "count": 53,
+            "share": 0.7681159420289855
+          },
+          {
+            "value": "Knowledge augmentation",
+            "count": 14,
+            "share": 0.2028985507246377
+          },
+          {
+            "value": "Decision making",
+            "count": 2,
+            "share": 0.028985507246376812
+          }
+        ]
+      },
+      {
+        "group": {
+          "Category": "Project Planning & Workflow Management"
+        },
+        "n": 41,
+        "target": "AssistanceType",
+        "distribution": [
+          {
+            "value": "Co-ordination",
+            "count": 30,
+            "share": 0.7317073170731707
+          },
+          {
+            "value": "Knowledge generation",
+            "count": 4,
+            "share": 0.0975609756097561
+          },
+          {
+            "value": "Knowledge augmentation",
+            "count": 4,
+            "share": 0.0975609756097561
+          },
+          {
+            "value": "Decision making",
+            "count": 3,
+            "share": 0.07317073170731707
+          }
+        ]
+      },
+      {
+        "group": {
+          "Category": "Design Critique & Assessment"
+        },
+        "n": 36,
+        "target": "AssistanceType",
+        "distribution": [
+          {
+            "value": "Decision making",
+            "count": 33,
+            "share": 0.9166666666666666
+          },
+          {
+            "value": "Knowledge generation",
+            "count": 3,
+            "share": 0.08333333333333333
+          }
+        ]
+      },
+      {
+        "group": {
+          "Category": "Prototype Generation"
+        },
+        "n": 33,
+        "target": "AssistanceType",
+        "distribution": [
+          {
+            "value": "Design generation",
+            "count": 27,
+            "share": 0.8181818181818182
+          },
+          {
+            "value": "Knowledge generation",
+            "count": 6,
+            "share": 0.18181818181818182
+          }
+        ]
+      },
+      {
+        "group": {
+          "Category": "Outcome Testing & Prediction"
+        },
+        "n": 27,
+        "target": "AssistanceType",
+        "distribution": [
+          {
+            "value": "Prediction",
+            "count": 23,
+            "share": 0.8518518518518519
+          },
+          {
+            "value": "Knowledge generation",
+            "count": 2,
+            "share": 0.07407407407407407
+          },
+          {
+            "value": "Decision making",
+            "count": 2,
+            "share": 0.07407407407407407
+          }
+        ]
+      },
+      {
+        "group": {
+          "Category": "Business Direction & Strategy Planning"
+        },
+        "n": 25,
+        "target": "AssistanceType",
+        "distribution": [
+          {
+            "value": "Knowledge generation",
+            "count": 8,
+            "share": 0.32
+          },
+          {
+            "value": "Prediction",
+            "count": 8,
+            "share": 0.32
+          },
+          {
+            "value": "Co-ordination",
+            "count": 5,
+            "share": 0.2
+          },
+          {
+            "value": "Decision making",
+            "count": 4,
+            "share": 0.16
+          }
+        ]
+      },
+      {
+        "group": {
+          "Category": "Design Systems Management"
+        },
+        "n": 14,
+        "target": "AssistanceType",
+        "distribution": [
+          {
+            "value": "Design generation",
+            "count": 10,
+            "share": 0.7142857142857143
+          },
+          {
+            "value": "Decision making",
+            "count": 2,
+            "share": 0.14285714285714285
+          },
+          {
+            "value": "Knowledge generation",
+            "count": 2,
+            "share": 0.14285714285714285
+          }
+        ]
+      },
+      {
+        "group": {
+          "Category": "Scenario Creation"
+        },
+        "n": 14,
+        "target": "AssistanceType",
+        "distribution": [
+          {
+            "value": "Design generation",
+            "count": 6,
+            "share": 0.42857142857142855
+          },
+          {
+            "value": "Knowledge generation",
+            "count": 4,
+            "share": 0.2857142857142857
+          },
+          {
+            "value": "Prediction",
+            "count": 2,
+            "share": 0.14285714285714285
+          },
+          {
+            "value": "Co-ordination",
+            "count": 1,
+            "share": 0.07142857142857142
+          },
+          {
+            "value": "Decision making",
+            "count": 1,
+            "share": 0.07142857142857142
+          }
+        ]
+      }
+    ],
+    "polarityGivenPhaseDimension": [
+      {
+        "group": {
+          "Phase": "Discover",
+          "Dimension": "Background Research & Sensemaking"
+        },
+        "n": 137,
+        "target": "Polarity",
+        "distribution": [
+          {
+            "value": "Enhanced",
+            "count": 78,
+            "share": 0.5693430656934306
+          },
+          {
+            "value": "Impaired",
+            "count": 59,
+            "share": 0.4306569343065693
+          }
+        ]
+      },
+      {
+        "group": {
+          "Phase": "Develop",
+          "Dimension": "Ideation & Design Generation"
+        },
+        "n": 94,
+        "target": "Polarity",
+        "distribution": [
+          {
+            "value": "Impaired",
+            "count": 49,
+            "share": 0.5212765957446809
+          },
+          {
+            "value": "Enhanced",
+            "count": 45,
+            "share": 0.4787234042553192
+          }
+        ]
+      },
+      {
+        "group": {
+          "Phase": "Define",
+          "Dimension": "Background Research & Sensemaking"
+        },
+        "n": 78,
+        "target": "Polarity",
+        "distribution": [
+          {
+            "value": "Impaired",
+            "count": 42,
+            "share": 0.5384615384615384
+          },
+          {
+            "value": "Enhanced",
+            "count": 36,
+            "share": 0.46153846153846156
+          }
+        ]
+      },
+      {
+        "group": {
+          "Phase": "Deliver",
+          "Dimension": "Planning, Coordination & Management"
+        },
+        "n": 38,
+        "target": "Polarity",
+        "distribution": [
+          {
+            "value": "Enhanced",
+            "count": 22,
+            "share": 0.5789473684210527
+          },
+          {
+            "value": "Impaired",
+            "count": 16,
+            "share": 0.42105263157894735
+          }
+        ]
+      },
+      {
+        "group": {
+          "Phase": "Develop",
+          "Dimension": "Planning, Coordination & Management"
+        },
+        "n": 37,
+        "target": "Polarity",
+        "distribution": [
+          {
+            "value": "Enhanced",
+            "count": 24,
+            "share": 0.6486486486486487
+          },
+          {
+            "value": "Impaired",
+            "count": 13,
+            "share": 0.35135135135135137
+          }
+        ]
+      },
+      {
+        "group": {
+          "Phase": "Define",
+          "Dimension": "Planning, Coordination & Management"
+        },
+        "n": 30,
+        "target": "Polarity",
+        "distribution": [
+          {
+            "value": "Enhanced",
+            "count": 20,
+            "share": 0.6666666666666666
+          },
+          {
+            "value": "Impaired",
+            "count": 10,
+            "share": 0.3333333333333333
+          }
+        ]
+      },
+      {
+        "group": {
+          "Phase": "Develop",
+          "Dimension": "Design & Process Evaluation"
+        },
+        "n": 28,
+        "target": "Polarity",
+        "distribution": [
+          {
+            "value": "Enhanced",
+            "count": 14,
+            "share": 0.5
+          },
+          {
+            "value": "Impaired",
+            "count": 14,
+            "share": 0.5
+          }
+        ]
+      },
+      {
+        "group": {
+          "Phase": "Discover",
+          "Dimension": "Planning, Coordination & Management"
+        },
+        "n": 24,
+        "target": "Polarity",
+        "distribution": [
+          {
+            "value": "Enhanced",
+            "count": 16,
+            "share": 0.6666666666666666
+          },
+          {
+            "value": "Impaired",
+            "count": 8,
+            "share": 0.3333333333333333
+          }
+        ]
+      },
+      {
+        "group": {
+          "Phase": "Define",
+          "Dimension": "Ideation & Design Generation"
+        },
+        "n": 22,
+        "target": "Polarity",
+        "distribution": [
+          {
+            "value": "Impaired",
+            "count": 13,
+            "share": 0.5909090909090909
+          },
+          {
+            "value": "Enhanced",
+            "count": 9,
+            "share": 0.4090909090909091
+          }
+        ]
+      }
+    ],
+    "valueGivenPhasePolarity": [
+      {
+        "group": {
+          "Phase": "Discover",
+          "Polarity": "Enhanced"
+        },
+        "n": 98,
+        "target": "Value",
+        "distribution": [
+          {
+            "value": "Efficiency",
+            "count": 34,
+            "share": 0.3469387755102041
+          },
+          {
+            "value": "Learning / Skills Development",
+            "count": 27,
+            "share": 0.2755102040816326
+          },
+          {
+            "value": "Accuracy",
+            "count": 10,
+            "share": 0.10204081632653061
+          },
+          {
+            "value": "Context Awareness",
+            "count": 8,
+            "share": 0.08163265306122448
+          },
+          {
+            "value": "Creativity",
+            "count": 5,
+            "share": 0.05102040816326531
+          },
+          {
+            "value": "Feasibility",
+            "count": 5,
+            "share": 0.05102040816326531
+          },
+          {
+            "value": "Collaboration",
+            "count": 4,
+            "share": 0.04081632653061224
+          },
+          {
+            "value": "Empathy / Human-centeredness",
+            "count": 2,
+            "share": 0.02040816326530612
+          }
+        ]
+      },
+      {
+        "group": {
+          "Phase": "Develop",
+          "Polarity": "Enhanced"
+        },
+        "n": 90,
+        "target": "Value",
+        "distribution": [
+          {
+            "value": "Efficiency",
+            "count": 20,
+            "share": 0.2222222222222222
+          },
+          {
+            "value": "Creativity",
+            "count": 18,
+            "share": 0.2
+          },
+          {
+            "value": "Feasibility",
+            "count": 12,
+            "share": 0.13333333333333333
+          },
+          {
+            "value": "Scalability",
+            "count": 10,
+            "share": 0.1111111111111111
+          },
+          {
+            "value": "Learning / Skills Development",
+            "count": 8,
+            "share": 0.08888888888888889
+          },
+          {
+            "value": "Collaboration",
+            "count": 7,
+            "share": 0.07777777777777778
+          },
+          {
+            "value": "Human-centeredness",
+            "count": 4,
+            "share": 0.044444444444444446
+          },
+          {
+            "value": "Controllability",
+            "count": 4,
+            "share": 0.044444444444444446
+          }
+        ]
+      },
+      {
+        "group": {
+          "Phase": "Develop",
+          "Polarity": "Impaired"
+        },
+        "n": 77,
+        "target": "Value",
+        "distribution": [
+          {
+            "value": "Creativity",
+            "count": 13,
+            "share": 0.16883116883116883
+          },
+          {
+            "value": "Context Awareness",
+            "count": 11,
+            "share": 0.14285714285714285
+          },
+          {
+            "value": "Accuracy",
+            "count": 10,
+            "share": 0.12987012987012986
+          },
+          {
+            "value": "Authenticity",
+            "count": 8,
+            "share": 0.1038961038961039
+          },
+          {
+            "value": "Controllability",
+            "count": 7,
+            "share": 0.09090909090909091
+          },
+          {
+            "value": "Learning / Skills Development",
+            "count": 6,
+            "share": 0.07792207792207792
+          },
+          {
+            "value": "Human-centeredness",
+            "count": 5,
+            "share": 0.06493506493506493
+          },
+          {
+            "value": "Trust",
+            "count": 5,
+            "share": 0.06493506493506493
+          }
+        ]
+      },
+      {
+        "group": {
+          "Phase": "Define",
+          "Polarity": "Impaired"
+        },
+        "n": 76,
+        "target": "Value",
+        "distribution": [
+          {
+            "value": "Context Awareness",
+            "count": 16,
+            "share": 0.21052631578947367
+          },
+          {
+            "value": "Accuracy",
+            "count": 13,
+            "share": 0.17105263157894737
+          },
+          {
+            "value": "Learning / Skills Development",
+            "count": 12,
+            "share": 0.15789473684210525
+          },
+          {
+            "value": "Collaboration",
+            "count": 8,
+            "share": 0.10526315789473684
+          },
+          {
+            "value": "Empathy / Human-centeredness",
+            "count": 6,
+            "share": 0.07894736842105263
+          },
+          {
+            "value": "Creativity",
+            "count": 5,
+            "share": 0.06578947368421052
+          },
+          {
+            "value": "Human-centeredness",
+            "count": 4,
+            "share": 0.05263157894736842
+          },
+          {
+            "value": "Feasibility",
+            "count": 3,
+            "share": 0.039473684210526314
+          }
+        ]
+      },
+      {
+        "group": {
+          "Phase": "Define",
+          "Polarity": "Enhanced"
+        },
+        "n": 73,
+        "target": "Value",
+        "distribution": [
+          {
+            "value": "Efficiency",
+            "count": 29,
+            "share": 0.3972602739726027
+          },
+          {
+            "value": "Human-centeredness",
+            "count": 6,
+            "share": 0.0821917808219178
+          },
+          {
+            "value": "Creativity",
+            "count": 5,
+            "share": 0.0684931506849315
+          },
+          {
+            "value": "Learning / Skills Development",
+            "count": 5,
+            "share": 0.0684931506849315
+          },
+          {
+            "value": "Collaboration",
+            "count": 5,
+            "share": 0.0684931506849315
+          },
+          {
+            "value": "Context Awareness",
+            "count": 4,
+            "share": 0.0547945205479452
+          },
+          {
+            "value": "Feasibility",
+            "count": 3,
+            "share": 0.0410958904109589
+          },
+          {
+            "value": "Empathy / Human-centeredness",
+            "count": 3,
+            "share": 0.0410958904109589
+          }
+        ]
+      },
+      {
+        "group": {
+          "Phase": "Discover",
+          "Polarity": "Impaired"
+        },
+        "n": 69,
+        "target": "Value",
+        "distribution": [
+          {
+            "value": "Accuracy",
+            "count": 23,
+            "share": 0.3333333333333333
+          },
+          {
+            "value": "Learning / Skills Development",
+            "count": 14,
+            "share": 0.2028985507246377
+          },
+          {
+            "value": "Context Awareness",
+            "count": 11,
+            "share": 0.15942028985507245
+          },
+          {
+            "value": "AI-Literacy (Trust)",
+            "count": 6,
+            "share": 0.08695652173913043
+          },
+          {
+            "value": "Efficiency",
+            "count": 4,
+            "share": 0.057971014492753624
+          },
+          {
+            "value": "Empathy / Human-centeredness",
+            "count": 4,
+            "share": 0.057971014492753624
+          },
+          {
+            "value": "Controllability",
+            "count": 3,
+            "share": 0.043478260869565216
+          },
+          {
+            "value": "Creativity",
+            "count": 2,
+            "share": 0.028985507246376812
+          }
+        ]
+      },
+      {
+        "group": {
+          "Phase": "Deliver",
+          "Polarity": "Enhanced"
+        },
+        "n": 41,
+        "target": "Value",
+        "distribution": [
+          {
+            "value": "Accuracy",
+            "count": 7,
+            "share": 0.17073170731707318
+          },
+          {
+            "value": "Efficiency",
+            "count": 7,
+            "share": 0.17073170731707318
+          },
+          {
+            "value": "Feasibility",
+            "count": 5,
+            "share": 0.12195121951219512
+          },
+          {
+            "value": "Collaboration",
+            "count": 5,
+            "share": 0.12195121951219512
+          },
+          {
+            "value": "Scalability",
+            "count": 5,
+            "share": 0.12195121951219512
+          },
+          {
+            "value": "Controllability",
+            "count": 3,
+            "share": 0.07317073170731707
+          },
+          {
+            "value": "Creativity",
+            "count": 3,
+            "share": 0.07317073170731707
+          },
+          {
+            "value": "Empathy / Human-centeredness",
+            "count": 3,
+            "share": 0.07317073170731707
+          }
+        ]
+      },
+      {
+        "group": {
+          "Phase": "Deliver",
+          "Polarity": "Impaired"
+        },
+        "n": 29,
+        "target": "Value",
+        "distribution": [
+          {
+            "value": "Context Awareness",
+            "count": 6,
+            "share": 0.20689655172413793
+          },
+          {
+            "value": "Controllability",
+            "count": 5,
+            "share": 0.1724137931034483
+          },
+          {
+            "value": "Creativity",
+            "count": 4,
+            "share": 0.13793103448275862
+          },
+          {
+            "value": "Learning / Skills Development",
+            "count": 3,
+            "share": 0.10344827586206896
+          },
+          {
+            "value": "Human-centeredness",
+            "count": 3,
+            "share": 0.10344827586206896
+          },
+          {
+            "value": "Accuracy",
+            "count": 3,
+            "share": 0.10344827586206896
+          },
+          {
+            "value": "Scalability",
+            "count": 2,
+            "share": 0.06896551724137931
+          },
+          {
+            "value": "Collaboration",
+            "count": 2,
+            "share": 0.06896551724137931
+          }
+        ]
+      }
+    ],
+    "valueGivenPhaseAssistance": [
+      {
+        "group": {
+          "Phase": "Discover",
+          "AssistanceType": "Knowledge augmentation"
+        },
+        "n": 95,
+        "target": "Value",
+        "distribution": [
+          {
+            "value": "Learning / Skills Development",
+            "count": 24,
+            "share": 0.25263157894736843
+          },
+          {
+            "value": "Efficiency",
+            "count": 23,
+            "share": 0.24210526315789474
+          },
+          {
+            "value": "Accuracy",
+            "count": 16,
+            "share": 0.16842105263157894
+          },
+          {
+            "value": "Context Awareness",
+            "count": 12,
+            "share": 0.12631578947368421
+          },
+          {
+            "value": "AI-Literacy (Trust)",
+            "count": 5,
+            "share": 0.05263157894736842
+          }
+        ]
+      },
+      {
+        "group": {
+          "Phase": "Develop",
+          "AssistanceType": "Design generation"
+        },
+        "n": 92,
+        "target": "Value",
+        "distribution": [
+          {
+            "value": "Creativity",
+            "count": 24,
+            "share": 0.2608695652173913
+          },
+          {
+            "value": "Efficiency",
+            "count": 12,
+            "share": 0.13043478260869565
+          },
+          {
+            "value": "Learning / Skills Development",
+            "count": 11,
+            "share": 0.11956521739130435
+          },
+          {
+            "value": "Authenticity",
+            "count": 7,
+            "share": 0.07608695652173914
+          },
+          {
+            "value": "Controllability",
+            "count": 7,
+            "share": 0.07608695652173914
+          }
+        ]
+      },
+      {
+        "group": {
+          "Phase": "Define",
+          "AssistanceType": "Knowledge generation"
+        },
+        "n": 81,
+        "target": "Value",
+        "distribution": [
+          {
+            "value": "Efficiency",
+            "count": 20,
+            "share": 0.24691358024691357
+          },
+          {
+            "value": "Learning / Skills Development",
+            "count": 10,
+            "share": 0.12345679012345678
+          },
+          {
+            "value": "Context Awareness",
+            "count": 8,
+            "share": 0.09876543209876543
+          },
+          {
+            "value": "Accuracy",
+            "count": 8,
+            "share": 0.09876543209876543
+          },
+          {
+            "value": "Human-centeredness",
+            "count": 7,
+            "share": 0.08641975308641975
+          }
+        ]
+      },
+      {
+        "group": {
+          "Phase": "Discover",
+          "AssistanceType": "Knowledge generation"
+        },
+        "n": 38,
+        "target": "Value",
+        "distribution": [
+          {
+            "value": "Accuracy",
+            "count": 10,
+            "share": 0.2631578947368421
+          },
+          {
+            "value": "Efficiency",
+            "count": 9,
+            "share": 0.23684210526315788
+          },
+          {
+            "value": "Learning / Skills Development",
+            "count": 7,
+            "share": 0.18421052631578946
+          },
+          {
+            "value": "Context Awareness",
+            "count": 4,
+            "share": 0.10526315789473684
+          },
+          {
+            "value": "Collaboration",
+            "count": 2,
+            "share": 0.05263157894736842
+          }
+        ]
+      },
+      {
+        "group": {
+          "Phase": "Define",
+          "AssistanceType": "Co-ordination"
+        },
+        "n": 26,
+        "target": "Value",
+        "distribution": [
+          {
+            "value": "Efficiency",
+            "count": 5,
+            "share": 0.19230769230769232
+          },
+          {
+            "value": "Collaboration",
+            "count": 5,
+            "share": 0.19230769230769232
+          },
+          {
+            "value": "Controllability",
+            "count": 4,
+            "share": 0.15384615384615385
+          },
+          {
+            "value": "Learning / Skills Development",
+            "count": 3,
+            "share": 0.11538461538461539
+          },
+          {
+            "value": "Creativity",
+            "count": 3,
+            "share": 0.11538461538461539
+          }
+        ]
+      },
+      {
+        "group": {
+          "Phase": "Define",
+          "AssistanceType": "Decision making"
+        },
+        "n": 25,
+        "target": "Value",
+        "distribution": [
+          {
+            "value": "Empathy / Human-centeredness",
+            "count": 5,
+            "share": 0.2
+          },
+          {
+            "value": "Context Awareness",
+            "count": 5,
+            "share": 0.2
+          },
+          {
+            "value": "Learning / Skills Development",
+            "count": 4,
+            "share": 0.16
+          },
+          {
+            "value": "Efficiency",
+            "count": 4,
+            "share": 0.16
+          },
+          {
+            "value": "Collaboration",
+            "count": 3,
+            "share": 0.12
+          }
+        ]
+      },
+      {
+        "group": {
+          "Phase": "Develop",
+          "AssistanceType": "Decision making"
+        },
+        "n": 24,
+        "target": "Value",
+        "distribution": [
+          {
+            "value": "Context Awareness",
+            "count": 4,
+            "share": 0.16666666666666666
+          },
+          {
+            "value": "Human-centeredness",
+            "count": 4,
+            "share": 0.16666666666666666
+          },
+          {
+            "value": "Scalability",
+            "count": 3,
+            "share": 0.125
+          },
+          {
+            "value": "Efficiency",
+            "count": 3,
+            "share": 0.125
+          },
+          {
+            "value": "Feasibility",
+            "count": 3,
+            "share": 0.125
+          }
+        ]
+      },
+      {
+        "group": {
+          "Phase": "Develop",
+          "AssistanceType": "Knowledge generation"
+        },
+        "n": 24,
+        "target": "Value",
+        "distribution": [
+          {
+            "value": "Collaboration",
+            "count": 4,
+            "share": 0.16666666666666666
+          },
+          {
+            "value": "Creativity",
+            "count": 3,
+            "share": 0.125
+          },
+          {
+            "value": "Context Awareness",
+            "count": 3,
+            "share": 0.125
+          },
+          {
+            "value": "Scalability",
+            "count": 2,
+            "share": 0.08333333333333333
+          },
+          {
+            "value": "Efficiency",
+            "count": 2,
+            "share": 0.08333333333333333
+          }
+        ]
+      },
+      {
+        "group": {
+          "Phase": "Deliver",
+          "AssistanceType": "Co-ordination"
+        },
+        "n": 22,
+        "target": "Value",
+        "distribution": [
+          {
+            "value": "Accuracy",
+            "count": 4,
+            "share": 0.18181818181818182
+          },
+          {
+            "value": "Collaboration",
+            "count": 4,
+            "share": 0.18181818181818182
+          },
+          {
+            "value": "Controllability",
+            "count": 3,
+            "share": 0.13636363636363635
+          },
+          {
+            "value": "Scalability",
+            "count": 3,
+            "share": 0.13636363636363635
+          },
+          {
+            "value": "Efficiency",
+            "count": 3,
+            "share": 0.13636363636363635
+          }
+        ]
+      },
+      {
+        "group": {
+          "Phase": "Develop",
+          "AssistanceType": "Prediction"
+        },
+        "n": 20,
+        "target": "Value",
+        "distribution": [
+          {
+            "value": "Accuracy",
+            "count": 5,
+            "share": 0.25
+          },
+          {
+            "value": "Feasibility",
+            "count": 4,
+            "share": 0.2
+          },
+          {
+            "value": "Context Awareness",
+            "count": 3,
+            "share": 0.15
+          },
+          {
+            "value": "Creativity",
+            "count": 3,
+            "share": 0.15
+          },
+          {
+            "value": "Efficiency",
+            "count": 2,
+            "share": 0.1
+          }
+        ]
+      },
+      {
+        "group": {
+          "Phase": "Discover",
+          "AssistanceType": "Co-ordination"
+        },
+        "n": 20,
+        "target": "Value",
+        "distribution": [
+          {
+            "value": "Learning / Skills Development",
+            "count": 6,
+            "share": 0.3
+          },
+          {
+            "value": "Efficiency",
+            "count": 5,
+            "share": 0.25
+          },
+          {
+            "value": "Accuracy",
+            "count": 4,
+            "share": 0.2
+          },
+          {
+            "value": "Collaboration",
+            "count": 2,
+            "share": 0.1
+          },
+          {
+            "value": "Empathy / Human-centeredness",
+            "count": 1,
+            "share": 0.05
+          }
+        ]
+      },
+      {
+        "group": {
+          "Phase": "Deliver",
+          "AssistanceType": "Design generation"
+        },
+        "n": 16,
+        "target": "Value",
+        "distribution": [
+          {
+            "value": "Creativity",
+            "count": 4,
+            "share": 0.25
+          },
+          {
+            "value": "Controllability",
+            "count": 3,
+            "share": 0.1875
+          },
+          {
+            "value": "Feasibility",
+            "count": 2,
+            "share": 0.125
+          },
+          {
+            "value": "Efficiency",
+            "count": 1,
+            "share": 0.0625
+          },
+          {
+            "value": "Learning / Skills Development",
+            "count": 1,
+            "share": 0.0625
+          }
+        ]
+      }
+    ]
+  }
+}
