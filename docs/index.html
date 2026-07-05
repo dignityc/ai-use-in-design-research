@@ -981,6 +981,14 @@
           </div>
         </section>
         <section class="panel">
+          <div class="panel-head"><h2 class="panel-title">Phase Difference Heatmap</h2><div class="panel-caption">Fixed: design phases, enhanced - impaired</div></div>
+          <div id="phaseHeatmapChart" class="chart"></div>
+          <div class="insight-box">
+            <p class="insight-title">Insight</p>
+            <p class="insight-text">Viewed by design phase, efficiency remains the strongest positive value across the workflow. Develop concentrates creativity, feasibility, and scalability gains, while Discover and Define carry the clearest accuracy and context-appropriateness risks.</p>
+          </div>
+        </section>
+        <section class="panel">
           <div class="panel-head"><h2 class="panel-title">Design Dimension Totals</h2><div class="panel-caption">Fixed: whole-dataset context</div></div>
           <div id="dimensionChart" class="chart"></div>
           <div class="insight-box">
@@ -1111,6 +1119,7 @@
       phaseValueBalance: echarts.init(document.getElementById('phaseValueBalanceChart')),
       disciplineValue: echarts.init(document.getElementById('disciplineValueChart')),
       heatmap: echarts.init(document.getElementById('heatmapChart')),
+      phaseHeatmap: echarts.init(document.getElementById('phaseHeatmapChart')),
       mlPolarity: echarts.init(document.getElementById('mlPolarityChart')),
       scatter: echarts.init(document.getElementById('scatterChart')),
       dimension: echarts.init(document.getElementById('dimensionChart')),
@@ -1220,6 +1229,55 @@
         },
         xAxis: { type: 'category', data: values, axisLabel: { rotate: 45, interval: 0, margin: 14, color: COLORS.text } },
         yAxis: { type: 'category', data: dims.map(shortDimension), axisLabel: { color: COLORS.text } },
+        visualMap: {
+          min: -15,
+          max: 15,
+          calculable: true,
+          orient: 'horizontal',
+          left: 'center',
+          bottom: 12,
+          inRange: { color: ['#b91c1c', '#ffffff', '#1f8a4c'] }
+        },
+        series: [{
+          type: 'heatmap',
+          data: points,
+          label: { show: true, formatter: p => p.value[2] ? p.value[2] : '', color: COLORS.text },
+          emphasis: { itemStyle: { borderColor: '#111827', borderWidth: 1 } }
+        }]
+      });
+    }
+
+    function renderPhaseHeatmap() {
+      if (!datasetRows.length) {
+        charts.phaseHeatmap.setOption({
+          title: { text: 'Loading phase difference heatmap...', left: 'center', top: 'middle', textStyle: { color: COLORS.muted, fontSize: 13 } },
+          xAxis: { show: false },
+          yAxis: { show: false },
+          series: []
+        }, true);
+        return;
+      }
+
+      const phaseValue = buildPhaseValueMatrix();
+      const values = DATA.valueOrder;
+      const points = [];
+      STAGE_ORDER.forEach((phase, y) => {
+        values.forEach((value, x) => {
+          points.push([x, y, phaseValue[phase][value].net]);
+        });
+      });
+      charts.phaseHeatmap.setOption({
+        grid: { left: 92, right: 20, top: 22, bottom: 172 },
+        tooltip: {
+          formatter: item => {
+            const value = values[item.value[0]];
+            const phase = STAGE_ORDER[item.value[1]];
+            const d = phaseValue[phase][value];
+            return `<b>${value}</b><br/>${phase}<br/>Enhanced: ${d.enhanced}<br/>Impaired: ${d.impaired}<br/>Net: ${d.net >= 0 ? '+' : ''}${d.net}`;
+          }
+        },
+        xAxis: { type: 'category', data: values, axisLabel: { rotate: 45, interval: 0, margin: 14, color: COLORS.text } },
+        yAxis: { type: 'category', data: STAGE_ORDER, axisLabel: { color: COLORS.text } },
         visualMap: {
           min: -15,
           max: 15,
@@ -2649,6 +2707,7 @@
         fillSelect(datasetValue, uniqueSorted(datasetRows.flatMap(rowValues)));
         renderDatasetTable();
         renderPhaseValueBalance();
+        renderPhaseHeatmap();
         renderStageView();
       } catch (error) {
         datasetVisibleCount.textContent = 'Dataset failed to load';
@@ -2679,6 +2738,7 @@
       renderDisciplineValue();
       renderDisciplineDimension();
       renderHeatmap();
+      renderPhaseHeatmap();
       renderMlValuePolarity();
       renderScatter(values);
       renderDimensionTotals();
