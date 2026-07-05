@@ -426,10 +426,19 @@
     .domain-bubbles {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
-      gap: 4px;
-      align-items: center;
+      gap: 6px;
+      align-items: start;
       justify-items: center;
-      min-height: 30px;
+      min-height: 46px;
+    }
+    .domain-bubble-wrap {
+      display: inline-flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+      gap: 4px;
+      min-width: 38px;
+      line-height: 1;
     }
     .domain-bubble {
       width: var(--s);
@@ -447,6 +456,13 @@
     }
     .domain-bubble.normalized {
       font-size: 8px;
+    }
+    .domain-bubble-percent {
+      color: var(--ink);
+      font-size: 10px;
+      font-weight: 850;
+      white-space: nowrap;
+      font-variant-numeric: tabular-nums;
     }
     .domain-bubble.empty {
       width: 6px;
@@ -2258,12 +2274,14 @@
     }
 
     function renderDomainBubble(discipline, count, disciplineTotal, maxShare) {
-      if (!count || !disciplineTotal) return `<span class="domain-bubble empty" title="${discipline}: 0"></span>`;
+      if (!disciplineTotal) {
+        return `<span class="domain-bubble-wrap" title="${discipline}: 0 / 0 (0.0%)"><span class="domain-bubble empty"></span><span class="domain-bubble-percent">0.0%</span></span>`;
+      }
       const share = count / disciplineTotal;
-      const size = Math.round(8 + Math.sqrt(share / maxShare) * 18);
-      const percent = Math.round(share * 100);
-      const label = percent >= 4 ? `${percent}%` : '';
-      return `<span class="domain-bubble normalized domain-${discipline.toLowerCase()}" style="--s:${size}px" title="${discipline}: ${count} / ${disciplineTotal} (${percent}%)">${label}</span>`;
+      const size = count ? Math.round(8 + Math.sqrt(share / maxShare) * 18) : 6;
+      const percent = (share * 100).toFixed(1);
+      const bubbleClass = count ? `domain-bubble normalized domain-${discipline.toLowerCase()}` : 'domain-bubble empty';
+      return `<span class="domain-bubble-wrap" title="${discipline}: ${count} / ${disciplineTotal} (${percent}%)"><span class="${bubbleClass}" style="--s:${size}px"></span><span class="domain-bubble-percent">${percent}%</span></span>`;
     }
 
     function phaseDomainGroups() {
@@ -2348,7 +2366,7 @@
       const title = `${group.dimension} / ${category} / ${phase}\nNormalized within each domain (${totalsText})\n${DISCIPLINE_ORDER.map(discipline => {
         const count = byDiscipline[discipline] || 0;
         const denominator = disciplineTotals[discipline] || 0;
-        const percent = denominator ? Math.round((count / denominator) * 100) : 0;
+        const percent = denominator ? ((count / denominator) * 100).toFixed(1) : '0.0';
         return `${discipline}: ${count}/${denominator} (${percent}%)`;
       }).join('\n')}`;
       return `<td class="phase-domain-cell${hot}" title="${escapeHtml(title)}">
