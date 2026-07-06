@@ -1267,6 +1267,7 @@
         });
       });
       charts.phaseHeatmap.setOption({
+        title: { show: false },
         grid: { left: 92, right: 20, top: 22, bottom: 172 },
         tooltip: {
           formatter: item => {
@@ -1293,7 +1294,7 @@
           label: { show: true, formatter: p => p.value[2] ? p.value[2] : '', color: COLORS.text },
           emphasis: { itemStyle: { borderColor: '#111827', borderWidth: 1 } }
         }]
-      });
+      }, true);
     }
 
     function renderGlobalBalance() {
@@ -1518,6 +1519,7 @@
         });
       });
       charts.phaseValueBalance.setOption({
+        title: { show: false },
         animation: false,
         grid: { left: 120, right: 34, top: 210, bottom: 70 },
         tooltip: {
@@ -1781,7 +1783,7 @@
             } : undefined
           }))
         ]
-      });
+      }, true);
     }
 
     function renderDisciplineDimension() {
