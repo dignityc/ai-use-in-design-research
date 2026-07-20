@@ -6,6 +6,7 @@
   <title>Enhanced vs Impaired Value Comparison</title>
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Crect width='16' height='16' rx='3' fill='%232754c5'/%3E%3Cpath d='M4 9h8v2H4zM4 5h5v2H4z' fill='white'/%3E%3C/svg%3E" />
   <script src="https://cdn.jsdelivr.net/npm/echarts@5/dist/echarts.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
   <style>
     :root {
       --ink: #172033;
@@ -252,14 +253,46 @@
       background: #fbfcff;
     }
     .panel-title {
+      flex: 1 1 auto;
+      min-width: 0;
       margin: 0;
       font-size: 15px;
       font-weight: 760;
     }
     .panel-caption {
+      flex: 0 1 auto;
+      margin-left: auto;
       color: var(--muted);
       font-size: 12px;
       text-align: right;
+    }
+    .plot-download-btn {
+      flex: 0 0 auto;
+      width: auto;
+      min-width: 62px;
+      height: 30px;
+      padding: 0 10px;
+      border: 1px solid #cfd6e3;
+      border-radius: 6px;
+      background: #ffffff;
+      color: var(--blue);
+      font-size: 11px;
+      font-weight: 800;
+      line-height: 28px;
+      white-space: nowrap;
+      cursor: pointer;
+    }
+    .plot-download-btn:hover,
+    .plot-download-btn:focus {
+      border-color: var(--blue);
+      background: #f2f5ff;
+      outline: none;
+    }
+    .plot-download-btn:disabled {
+      border-color: #d8dee9;
+      background: #f3f5f8;
+      color: #98a2b3;
+      cursor: wait;
     }
     .chart {
       width: 100%;
@@ -746,6 +779,19 @@
       .discipline-dimension-wide .chart { height: 760px; }
     }
     @media (max-width: 720px) {
+      .panel-head {
+        align-items: flex-start;
+        flex-wrap: wrap;
+      }
+      .panel-caption {
+        order: 3;
+        flex-basis: 100%;
+        margin-left: 0;
+        text-align: left;
+      }
+      .plot-download-btn {
+        margin-left: auto;
+      }
       .top-bar-inner {
         padding: 9px 16px;
         align-items: stretch;
@@ -2309,6 +2355,98 @@
       }
     }
 
+    const PNG_EXPORTS = [
+      { targetId: 'divergingChart', chartKey: 'diverging', filename: 'diverging-value-balance' },
+      { targetId: 'scatterChart', chartKey: 'scatter', filename: 'trade-off-scatter' },
+      { targetId: 'globalBalanceChart', chartKey: 'globalBalance', filename: 'overall-dimension-value-balance' },
+      { targetId: 'phaseValueBalanceChart', chartKey: 'phaseValueBalance', filename: 'overall-phase-value-balance' },
+      { targetId: 'disciplineValueChart', chartKey: 'disciplineValue', filename: 'discipline-divergence-by-value' },
+      { targetId: 'disciplineDimensionChart', filename: 'value-fingerprint-cards' },
+      { targetId: 'disciplineDimensionValueMatrix', filename: 'dimension-discipline-value-matrix' },
+      { targetId: 'heatmapChart', chartKey: 'heatmap', filename: 'difference-heatmap' },
+      { targetId: 'dimensionChart', chartKey: 'dimension', filename: 'design-dimension-totals' },
+      { targetId: 'mlPolarityChart', chartKey: 'mlPolarity', filename: 'value-ambivalence' },
+      { targetId: 'phaseDomainMap', filename: 'phase-category-domain-map' },
+      { targetId: 'phaseHeatmapChart', chartKey: 'phaseHeatmap', filename: 'phase-difference-heatmap' },
+      { targetId: 'stageMatrixChart', chartKey: 'stageMatrix', filename: 'discipline-design-phase' },
+      { targetId: 'stageCategoryChart', chartKey: 'stageCategory', filename: 'category-breakdown' },
+      { targetId: 'archetypeClusterView', filename: 'ai-use-archetype-clustering' }
+    ];
+
+    function triggerPngDownload(dataUrl, filename) {
+      const link = document.createElement('a');
+      link.href = dataUrl;
+      link.download = `${filename}.png`;
+      document.body.appendChild(link);
+      link.click();
+      link.remove();
+    }
+
+    async function downloadPlotPng(config, button) {
+      const target = document.getElementById(config.targetId);
+      if (!target) return;
+      const originalLabel = button.textContent;
+      button.disabled = true;
+      button.textContent = 'Saving…';
+      try {
+        if (config.chartKey) {
+          const chart = charts[config.chartKey];
+          if (!chart) throw new Error(`Chart not found: ${config.chartKey}`);
+          triggerPngDownload(chart.getDataURL({
+            type: 'png',
+            pixelRatio: 2,
+            backgroundColor: '#ffffff'
+          }), config.filename);
+          return;
+        }
+        if (typeof window.html2canvas !== 'function') {
+          throw new Error('PNG renderer is unavailable');
+        }
+        const canvas = await window.html2canvas(target, {
+          backgroundColor: '#ffffff',
+          scale: 2,
+          useCORS: true,
+          logging: false,
+          width: Math.max(target.scrollWidth, target.offsetWidth),
+          height: Math.max(target.scrollHeight, target.offsetHeight),
+          windowWidth: Math.max(document.documentElement.clientWidth, target.scrollWidth),
+          onclone: clonedDocument => {
+            if (config.targetId !== 'disciplineDimensionValueMatrix') return;
+            const clonedMatrix = clonedDocument.getElementById(config.targetId);
+            clonedMatrix?.querySelectorAll('thead th, .matrix-category-col, .matrix-discipline-col').forEach(cell => {
+              cell.style.position = 'static';
+              cell.style.left = 'auto';
+            });
+          }
+        });
+        triggerPngDownload(canvas.toDataURL('image/png'), config.filename);
+      } catch (error) {
+        console.error('PNG export failed', error);
+        window.alert('PNG export failed. Please try again after the plot finishes loading.');
+      } finally {
+        button.disabled = false;
+        button.textContent = originalLabel;
+      }
+    }
+
+    function setupPlotDownloads() {
+      PNG_EXPORTS.forEach(config => {
+        const target = document.getElementById(config.targetId);
+        const panelHead = target?.closest('.panel')?.querySelector('.panel-head');
+        if (!target || !panelHead || panelHead.querySelector(`[data-export-target="${config.targetId}"]`)) return;
+        const title = panelHead.querySelector('.panel-title')?.textContent?.trim() || 'plot';
+        const button = document.createElement('button');
+        button.type = 'button';
+        button.className = 'plot-download-btn';
+        button.dataset.exportTarget = config.targetId;
+        button.textContent = 'PNG ↓';
+        button.title = `Download ${title} as PNG`;
+        button.setAttribute('aria-label', `Download ${title} as PNG`);
+        button.addEventListener('click', () => downloadPlotPng(config, button));
+        panelHead.appendChild(button);
+      });
+    }
+
     function renderAll() {
       const values = currentValues();
       renderDiverging(values);
@@ -2386,6 +2524,7 @@
     });
     window.addEventListener('hashchange', () => showPage(pageFromHash(), false));
     window.addEventListener('resize', () => Object.values(charts).forEach(chart => chart.resize()));
+    setupPlotDownloads();
     renderAll();
     loadDatasetRows();
     showPage(pageFromHash());
