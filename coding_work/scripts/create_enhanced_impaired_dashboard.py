@@ -580,6 +580,113 @@ def html_template(data: dict[str, object]) -> str:
     .fingerprint-empty {{
       color: #b6c0cf;
     }}
+    .value-matrix-wrap {{
+      max-width: 100%;
+      overflow-x: auto;
+      padding: 16px;
+      background: #ffffff;
+      scrollbar-color: #b8c2d1 #eef2f7;
+      scrollbar-width: thin;
+    }}
+    .value-matrix {{
+      width: max-content;
+      min-width: 100%;
+      border-collapse: separate;
+      border-spacing: 0;
+      table-layout: fixed;
+      font-size: 12px;
+    }}
+    .value-matrix th,
+    .value-matrix td {{
+      height: 42px;
+      padding: 7px 9px;
+      border-right: 1px solid #e7ebf2;
+      border-bottom: 1px solid #e7ebf2;
+      text-align: center;
+      white-space: nowrap;
+    }}
+    .value-matrix thead th {{
+      position: sticky;
+      top: 0;
+      z-index: 3;
+      height: 58px;
+      border-top: 1px solid #d8dee9;
+      background: #f4f7fb;
+      color: #344054;
+      font-size: 11px;
+      font-weight: 800;
+      line-height: 1.2;
+      white-space: normal;
+    }}
+    .value-matrix .matrix-category-col {{
+      position: sticky;
+      left: 0;
+      z-index: 2;
+      width: 224px;
+      min-width: 224px;
+      max-width: 224px;
+      border-left: 1px solid #d8dee9;
+      background: #ffffff;
+      text-align: left;
+      white-space: normal;
+    }}
+    .value-matrix .matrix-discipline-col {{
+      position: sticky;
+      left: 224px;
+      z-index: 2;
+      width: 86px;
+      min-width: 86px;
+      max-width: 86px;
+      background: #ffffff;
+      text-align: left;
+    }}
+    .value-matrix thead .matrix-category-col,
+    .value-matrix thead .matrix-discipline-col {{
+      z-index: 5;
+      background: #f4f7fb;
+    }}
+    .value-matrix .matrix-value-head,
+    .value-matrix .matrix-value-cell {{
+      width: 116px;
+      min-width: 116px;
+      max-width: 116px;
+    }}
+    .value-matrix .matrix-category-col[scope="rowgroup"] {{
+      vertical-align: middle;
+      box-shadow: 1px 0 0 #d8dee9;
+    }}
+    .matrix-category-name {{
+      display: block;
+      color: var(--ink);
+      font-size: 11px;
+      font-weight: 780;
+      line-height: 1.35;
+    }}
+    .matrix-discipline-label {{
+      font-size: 11px;
+      font-weight: 850;
+    }}
+    .value-matrix .matrix-value-cell {{
+      color: #667085;
+      font-size: 12px;
+      font-weight: 850;
+    }}
+    .value-matrix .matrix-positive {{
+      color: var(--green);
+    }}
+    .value-matrix .matrix-negative {{
+      color: var(--red);
+    }}
+    .value-matrix .matrix-empty {{
+      color: #b6c0cf;
+      background: #fbfcfe !important;
+    }}
+    .value-matrix tr.matrix-group-start > * {{
+      border-top: 2px solid #b8c2d1;
+    }}
+    .value-matrix tbody tr:hover .matrix-value-cell {{
+      box-shadow: inset 0 0 0 1px rgba(39, 84, 197, 0.22);
+    }}
     table {{
       width: 100%;
       border-collapse: collapse;
@@ -686,6 +793,12 @@ def html_template(data: dict[str, object]) -> str:
         <section class="panel wide discipline-dimension-wide">
           <div class="panel-head"><h2 class="panel-title">Value Fingerprint Cards</h2><div class="panel-caption">Card = value; row = discipline; four cells = design dimensions; green/red = net balance</div></div>
           <div id="disciplineDimensionChart" class="fingerprint-grid"></div>
+        </section>
+        <section class="panel wide">
+          <div class="panel-head"><h2 class="panel-title">Dimension × Discipline × Value Matrix</h2><div class="panel-caption">Rows = design dimension and discipline; columns = values; scroll horizontally to compare</div></div>
+          <div class="value-matrix-wrap">
+            <table id="disciplineDimensionValueMatrix" class="value-matrix" aria-label="Net value balance by design dimension and discipline"></table>
+          </div>
         </section>
         <section class="panel">
           <div class="panel-head"><h2 class="panel-title">Difference Heatmap</h2><div class="panel-caption">Fixed: all dimensions, enhanced - impaired</div></div>
@@ -1176,6 +1289,60 @@ def html_template(data: dict[str, object]) -> str:
       document.getElementById('disciplineDimensionChart').innerHTML = html;
     }}
 
+    function renderDisciplineDimensionValueMatrix() {{
+      const disciplineMeta = [
+        {{ key: 'ED', color: '#2563eb' }},
+        {{ key: 'SD', color: '#ea580c' }},
+        {{ key: 'UIUX', color: '#7c3aed' }}
+      ];
+      const dimensions = Object.keys(DATA.dimensionValue);
+      const matrix = document.getElementById('disciplineDimensionValueMatrix');
+      let maxAbs = 1;
+      DATA.valueOrder.forEach(value => {{
+        disciplineMeta.forEach(meta => {{
+          dimensions.forEach(dimension => {{
+            maxAbs = Math.max(maxAbs, Math.abs(DATA.disciplineDimensionValue[meta.key][dimension][value].net));
+          }});
+        }});
+      }});
+
+      const fillFor = net => {{
+        if (!net) return '#ffffff';
+        const opacity = Math.min(0.22, 0.05 + (Math.abs(net) / maxAbs) * 0.16);
+        return net > 0 ? `rgba(31, 138, 76, ${{opacity}})` : `rgba(196, 49, 49, ${{opacity}})`;
+      }};
+      const header = DATA.valueOrder
+        .map(value => `<th scope="col" class="matrix-value-head">${{value}}</th>`)
+        .join('');
+      const rows = dimensions.map(dimension =>
+        disciplineMeta.map((meta, disciplineIndex) => {{
+          const categoryCell = disciplineIndex === 0
+            ? `<th scope="rowgroup" rowspan="${{disciplineMeta.length}}" class="matrix-category-col">
+                <span class="matrix-category-name">${{dimension}}</span>
+              </th>`
+            : '';
+          const values = DATA.valueOrder.map(value => {{
+            const d = DATA.disciplineDimensionValue[meta.key][dimension][value];
+            const className = !d.total ? 'matrix-empty' : d.net > 0 ? 'matrix-positive' : d.net < 0 ? 'matrix-negative' : '';
+            const text = !d.total ? '–' : `${{d.net > 0 ? '+' : ''}}${{d.net}}`;
+            const tooltip = `${{value}} | ${{meta.key}} / ${{shortDimension(dimension)}}\\nEnhanced: ${{d.enhanced}}\\nImpaired: ${{d.impaired}}\\nNet: ${{d.net >= 0 ? '+' : ''}}${{d.net}}`;
+            return `<td class="matrix-value-cell ${{className}}" style="background:${{fillFor(d.net)}}" title="${{tooltip}}">${{text}}</td>`;
+          }}).join('');
+          return `<tr class="${{disciplineIndex === 0 ? 'matrix-group-start' : ''}}">
+            ${{categoryCell}}
+            <th scope="row" class="matrix-discipline-col"><span class="matrix-discipline-label" style="color:${{meta.color}}">${{meta.key}}</span></th>
+            ${{values}}
+          </tr>`;
+        }}).join('')
+      ).join('');
+
+      matrix.innerHTML = `<thead><tr>
+        <th scope="col" class="matrix-category-col">Design dimension</th>
+        <th scope="col" class="matrix-discipline-col">Discipline</th>
+        ${{header}}
+      </tr></thead><tbody>${{rows}}</tbody>`;
+    }}
+
     function renderScatter(values) {{
       const labelPositions = {{
         'User-centredness': 'left',
@@ -1256,6 +1423,7 @@ def html_template(data: dict[str, object]) -> str:
       renderGlobalBalance();
       renderDisciplineValue();
       renderDisciplineDimension();
+      renderDisciplineDimensionValueMatrix();
       renderHeatmap();
       renderScatter(values);
       renderDimensionTotals();
