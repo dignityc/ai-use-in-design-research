@@ -377,7 +377,8 @@
       height: 520px;
     }
     .value-links-chart-scroll {
-      overflow: visible;
+      overflow-x: auto;
+      overscroll-behavior-x: contain;
     }
     .value-links-sideheads {
       display: flex;
@@ -1175,13 +1176,6 @@
         margin-left: 0;
       }
       .focus-charts-grid { grid-template-columns: 1fr; }
-      .value-links-chart-scroll {
-        overflow-x: auto;
-        overscroll-behavior-x: contain;
-      }
-      .value-links-chart-scroll .chart {
-        min-width: 1040px;
-      }
       .focus-chart-scroll {
         overflow-x: auto;
         overscroll-behavior-x: contain;
@@ -1430,15 +1424,15 @@
           <span class="value-links-sidehead impaired">Impaired value</span>
         </div>
         <div class="value-links-controls" aria-label="Value flow layout controls">
-          <label class="value-links-control" for="valueLinksSidePadding">
-            <span>Side padding</span>
-            <input id="valueLinksSidePadding" type="range" min="120" max="260" step="10" value="190" />
-            <output id="valueLinksSidePaddingValue" for="valueLinksSidePadding">190px</output>
+          <label class="value-links-control" for="valueLinksChartWidth">
+            <span>Chart width</span>
+            <input id="valueLinksChartWidth" type="range" min="70" max="200" step="10" value="100" />
+            <output id="valueLinksChartWidthValue" for="valueLinksChartWidth">100%</output>
           </label>
-          <label class="value-links-control" for="valueLinksNodeGap">
-            <span>Vertical gap</span>
-            <input id="valueLinksNodeGap" type="range" min="2" max="24" step="1" value="8" />
-            <output id="valueLinksNodeGapValue" for="valueLinksNodeGap">8px</output>
+          <label class="value-links-control" for="valueLinksBarHeight">
+            <span>Relative bar height</span>
+            <input id="valueLinksBarHeight" type="range" min="70" max="200" step="10" value="100" />
+            <output id="valueLinksBarHeightValue" for="valueLinksBarHeight">100%</output>
           </label>
           <button id="valueLinksClearSelection" class="value-links-clear" type="button" disabled>Clear selection</button>
         </div>
@@ -1559,11 +1553,11 @@
     const format = new Intl.NumberFormat('en-US');
     let valuePairData = null;
     let valueLinksPinnedNodeIndex = null;
-    const valueLinksLayout = { sidePadding: 190, nodeGap: 8 };
-    const valueLinksSidePadding = document.getElementById('valueLinksSidePadding');
-    const valueLinksSidePaddingValue = document.getElementById('valueLinksSidePaddingValue');
-    const valueLinksNodeGap = document.getElementById('valueLinksNodeGap');
-    const valueLinksNodeGapValue = document.getElementById('valueLinksNodeGapValue');
+    const valueLinksScale = { width: 100, height: 100 };
+    const valueLinksChartWidth = document.getElementById('valueLinksChartWidth');
+    const valueLinksChartWidthValue = document.getElementById('valueLinksChartWidthValue');
+    const valueLinksBarHeight = document.getElementById('valueLinksBarHeight');
+    const valueLinksBarHeightValue = document.getElementById('valueLinksBarHeightValue');
     const valueLinksClearSelection = document.getElementById('valueLinksClearSelection');
     const FOCUS_VALUE_SPECS = [
       { side: 'enhanced', value: 'Efficiency', slug: 'enhanced-efficiency' },
@@ -3200,6 +3194,19 @@
       valueLinksClearSelection.title = node ? `Clear ${node.label} selection` : 'No node selected';
     }
 
+    function applyValueLinksChartScale() {
+      const target = document.getElementById('valueLinksChart');
+      const viewport = target.parentElement;
+      const baseWidth = Math.max(viewport.clientWidth, 1040);
+      const scaledWidth = Math.round(baseWidth * valueLinksScale.width / 100);
+      const scaledHeight = Math.round(520 * valueLinksScale.height / 100);
+      target.style.width = `${scaledWidth}px`;
+      target.style.minWidth = '0';
+      target.style.height = `${scaledHeight}px`;
+      charts.valueLinks.resize();
+      window.requestAnimationFrame(applyValueLinksPinnedSelection);
+    }
+
     function applyValueLinksPinnedSelection() {
       charts.valueLinks.dispatchAction({ type: 'downplay', seriesIndex: 0 });
       if (valueLinksPinnedNodeIndex !== null) {
@@ -3239,12 +3246,12 @@
         tooltip: { show: false },
         series: [{
           type: 'sankey',
-          left: valueLinksLayout.sidePadding,
-          right: valueLinksLayout.sidePadding,
+          left: 190,
+          right: 190,
           top: 26,
           bottom: 24,
           nodeWidth: 15,
-          nodeGap: valueLinksLayout.nodeGap,
+          nodeGap: 8,
           nodeAlign: 'justify',
           layoutIterations: 32,
           draggable: false,
@@ -3284,7 +3291,7 @@
           label: { color: COLORS.text }
         }]
       }, true);
-      window.requestAnimationFrame(applyValueLinksPinnedSelection);
+      window.requestAnimationFrame(applyValueLinksChartScale);
     }
 
     function focusedLinks(spec) {
@@ -3592,15 +3599,15 @@
       filter.value = 'All';
       renderAll();
     });
-    valueLinksSidePadding.addEventListener('input', () => {
-      valueLinksLayout.sidePadding = Number(valueLinksSidePadding.value);
-      valueLinksSidePaddingValue.value = `${valueLinksLayout.sidePadding}px`;
-      renderValueLinks();
+    valueLinksChartWidth.addEventListener('input', () => {
+      valueLinksScale.width = Number(valueLinksChartWidth.value);
+      valueLinksChartWidthValue.value = `${valueLinksScale.width}%`;
+      applyValueLinksChartScale();
     });
-    valueLinksNodeGap.addEventListener('input', () => {
-      valueLinksLayout.nodeGap = Number(valueLinksNodeGap.value);
-      valueLinksNodeGapValue.value = `${valueLinksLayout.nodeGap}px`;
-      renderValueLinks();
+    valueLinksBarHeight.addEventListener('input', () => {
+      valueLinksScale.height = Number(valueLinksBarHeight.value);
+      valueLinksBarHeightValue.value = `${valueLinksScale.height}%`;
+      applyValueLinksChartScale();
     });
     valueLinksClearSelection.addEventListener('click', () => {
       valueLinksPinnedNodeIndex = null;
@@ -3673,7 +3680,10 @@
       control.addEventListener('change', renderDatasetTable);
     });
     window.addEventListener('hashchange', () => showPage(pageFromHash(), false));
-    window.addEventListener('resize', () => Object.values(charts).forEach(chart => chart.resize()));
+    window.addEventListener('resize', () => {
+      Object.values(charts).forEach(chart => chart.resize());
+      if (valuePairData) applyValueLinksChartScale();
+    });
     setupPlotDownloads();
     renderAll();
     loadDatasetRows();
