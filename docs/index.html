@@ -374,7 +374,7 @@
       border-radius: 8px;
     }
     .value-links-panel .chart {
-      height: 676px;
+      height: 693px;
     }
     .value-links-chart-scroll {
       overflow-x: auto;
@@ -1166,7 +1166,7 @@
       .discipline-value-wide .chart { height: 560px; }
       .discipline-dimension-wide .chart { height: 760px; }
       .ml-metrics { grid-template-columns: 1fr; }
-      .value-links-panel .chart { height: 728px; }
+      .value-links-panel .chart { height: 693px; }
       .value-links-ranking { grid-template-columns: 1fr; }
       .value-links-control {
         grid-template-columns: 105px minmax(110px, 1fr) 42px;
@@ -1434,6 +1434,11 @@
             <input id="valueLinksBarHeight" type="range" min="70" max="200" step="10" value="100" />
             <output id="valueLinksBarHeightValue" for="valueLinksBarHeight">100%</output>
           </label>
+          <label class="value-links-control" for="valueLinksFontSize">
+            <span>Font size</span>
+            <input id="valueLinksFontSize" type="range" min="12" max="25" step="1" value="16" />
+            <output id="valueLinksFontSizeValue" for="valueLinksFontSize">16px</output>
+          </label>
           <button id="valueLinksClearSelection" class="value-links-clear" type="button" disabled>Clear selection</button>
         </div>
         <div class="value-links-chart-scroll">
@@ -1553,11 +1558,13 @@
     const format = new Intl.NumberFormat('en-US');
     let valuePairData = null;
     let valueLinksPinnedNodeIndex = null;
-    const valueLinksScale = { width: 100, height: 100 };
+    const valueLinksScale = { width: 100, height: 100, fontSize: 16 };
     const valueLinksChartWidth = document.getElementById('valueLinksChartWidth');
     const valueLinksChartWidthValue = document.getElementById('valueLinksChartWidthValue');
     const valueLinksBarHeight = document.getElementById('valueLinksBarHeight');
     const valueLinksBarHeightValue = document.getElementById('valueLinksBarHeightValue');
+    const valueLinksFontSize = document.getElementById('valueLinksFontSize');
+    const valueLinksFontSizeValue = document.getElementById('valueLinksFontSizeValue');
     const valueLinksClearSelection = document.getElementById('valueLinksClearSelection');
     const FOCUS_VALUE_SPECS = [
       { side: 'enhanced', value: 'Efficiency', slug: 'enhanced-efficiency' },
@@ -3194,12 +3201,26 @@
       valueLinksClearSelection.title = node ? `Clear ${node.label} selection` : 'No node selected';
     }
 
+    function valueLinksLabelInset() {
+      return Math.round(160 + valueLinksScale.fontSize * 12);
+    }
+
+    function valueLinksNodeGap() {
+      return Math.max(14, Math.ceil(valueLinksScale.fontSize * 1.05));
+    }
+
+    function valueLinksBaseHeight() {
+      return Math.round(520 * valueLinksScale.fontSize / 12);
+    }
+
     function applyValueLinksChartScale() {
       const target = document.getElementById('valueLinksChart');
       const viewport = target.parentElement;
       const baseWidth = Math.max(viewport.clientWidth, 1040);
-      const scaledWidth = Math.round(baseWidth * valueLinksScale.width / 100);
-      const scaledHeight = Math.round(676 * valueLinksScale.height / 100);
+      const requestedWidth = Math.round(baseWidth * valueLinksScale.width / 100);
+      const minimumLabelSafeWidth = valueLinksLabelInset() * 2 + 200;
+      const scaledWidth = Math.max(requestedWidth, minimumLabelSafeWidth);
+      const scaledHeight = Math.round(valueLinksBaseHeight() * valueLinksScale.height / 100);
       target.style.width = `${scaledWidth}px`;
       target.style.minWidth = '0';
       target.style.height = `${scaledHeight}px`;
@@ -3246,12 +3267,12 @@
         tooltip: { show: false },
         series: [{
           type: 'sankey',
-          left: 250,
-          right: 250,
+          left: valueLinksLabelInset(),
+          right: valueLinksLabelInset(),
           top: 26,
           bottom: 24,
           nodeWidth: 15,
-          nodeGap: 16,
+          nodeGap: valueLinksNodeGap(),
           nodeAlign: 'justify',
           layoutIterations: 32,
           draggable: false,
@@ -3277,7 +3298,7 @@
               position: node.side === 'enhanced' ? 'left' : 'right',
               distance: 9,
               color: COLORS.text,
-              fontSize: 15.6,
+              fontSize: valueLinksScale.fontSize,
               fontWeight: 700,
               formatter: `${node.label}  ${format.format(node.total)}`
             }
@@ -3608,6 +3629,11 @@
       valueLinksScale.height = Number(valueLinksBarHeight.value);
       valueLinksBarHeightValue.value = `${valueLinksScale.height}%`;
       applyValueLinksChartScale();
+    });
+    valueLinksFontSize.addEventListener('input', () => {
+      valueLinksScale.fontSize = Number(valueLinksFontSize.value);
+      valueLinksFontSizeValue.value = `${valueLinksScale.fontSize}px`;
+      renderValueLinks();
     });
     valueLinksClearSelection.addEventListener('click', () => {
       valueLinksPinnedNodeIndex = null;
