@@ -441,6 +441,72 @@
       font-size: 15px;
       font-variant-numeric: tabular-nums;
     }
+    .focus-charts-head {
+      margin: 22px 0 12px;
+    }
+    .focus-charts-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 14px;
+    }
+    .focus-chart-panel {
+      min-width: 0;
+    }
+    .focus-group-label {
+      grid-column: 1 / -1;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-top: 4px;
+      padding: 9px 12px;
+      border-radius: 8px;
+      font-size: 12px;
+      font-weight: 850;
+      text-transform: uppercase;
+      letter-spacing: .25px;
+    }
+    .focus-group-label::before {
+      width: 10px;
+      height: 10px;
+      border-radius: 3px;
+      background: currentColor;
+      content: '';
+    }
+    .focus-group-label.enhanced {
+      color: #12653a;
+      background: var(--green-soft);
+    }
+    .focus-group-label.impaired {
+      color: #9f2424;
+      background: var(--red-soft);
+    }
+    .focus-chart-panel .panel-head {
+      min-height: 62px;
+    }
+    .focus-chart-scroll {
+      overflow: visible;
+    }
+    .focus-value-chart {
+      height: 380px;
+    }
+    .focus-chart-summary {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 7px;
+      padding: 0 14px 14px;
+      color: var(--muted);
+      font-size: 11px;
+      font-weight: 760;
+    }
+    .focus-chart-summary span {
+      display: inline-flex;
+      align-items: center;
+      min-height: 24px;
+      padding: 3px 8px;
+      border: 1px solid #e3e9f3;
+      border-radius: 999px;
+      background: #fbfcff;
+    }
     .stage-matrix-chart {
       height: 430px;
     }
@@ -1055,12 +1121,20 @@
       .ml-metrics { grid-template-columns: 1fr; }
       .value-links-panel .chart { height: 560px; }
       .value-links-ranking { grid-template-columns: 1fr; }
+      .focus-charts-grid { grid-template-columns: 1fr; }
       .value-links-chart-scroll {
         overflow-x: auto;
         overscroll-behavior-x: contain;
       }
       .value-links-chart-scroll .chart {
         min-width: 1040px;
+      }
+      .focus-chart-scroll {
+        overflow-x: auto;
+        overscroll-behavior-x: contain;
+      }
+      .focus-value-chart {
+        min-width: 720px;
       }
     }
     @media (max-width: 720px) {
@@ -1311,6 +1385,12 @@
           <p class="insight-text">This is a descriptive co-occurrence map, not a correlation coefficient or causal model. If a row contains two enhanced and two impaired values, all four possible cross-side pairs are counted once. Hover over a ribbon to isolate the connection and see its exact count.</p>
         </div>
       </section>
+      <div class="focus-charts-head">
+        <p class="section-kicker">Focused connections</p>
+        <h3 class="section-title">Eight selected value relationship charts</h3>
+        <p class="section-note">Four charts start from a selected enhanced value; four end at a selected impaired value. Each view retains only links touching its named focus value.</p>
+      </div>
+      <div id="focusValueCharts" class="focus-charts-grid"></div>
     </section>
 
     <section class="scope-section stage-zone" id="stageSection">
@@ -1416,6 +1496,16 @@
 
     const format = new Intl.NumberFormat('en-US');
     let valuePairData = null;
+    const FOCUS_VALUE_SPECS = [
+      { side: 'enhanced', value: 'Efficiency', slug: 'enhanced-efficiency' },
+      { side: 'enhanced', value: 'Learning/Skills development', slug: 'enhanced-learning-skills' },
+      { side: 'enhanced', value: 'Scalability', slug: 'enhanced-scalability' },
+      { side: 'enhanced', value: 'Creativity', slug: 'enhanced-creativity' },
+      { side: 'impaired', value: 'Accuracy', slug: 'impaired-accuracy' },
+      { side: 'impaired', value: 'Context appropriateness', slug: 'impaired-context-appropriateness' },
+      { side: 'impaired', value: 'Learning/Skills development', slug: 'impaired-learning-skills' },
+      { side: 'impaired', value: 'User-centredness', slug: 'impaired-user-centredness' }
+    ];
     document.getElementById('eligibleRows').textContent = format.format(DATA.eligibleRows);
     document.getElementById('enhancedTotal').textContent = format.format(DATA.enhancedTotal);
     document.getElementById('impairedTotal').textContent = format.format(DATA.impairedTotal);
@@ -3111,12 +3201,148 @@
       }, true);
     }
 
+    function focusedLinks(spec) {
+      return valuePairData.links
+        .filter(link => link[spec.side] === spec.value)
+        .sort((a, b) => b.value - a.value || a.enhanced.localeCompare(b.enhanced) || a.impaired.localeCompare(b.impaired));
+    }
+
+    function focusChartData(links) {
+      const enhancedTotals = new Map();
+      const impairedTotals = new Map();
+      links.forEach(link => {
+        enhancedTotals.set(link.enhanced, (enhancedTotals.get(link.enhanced) || 0) + link.value);
+        impairedTotals.set(link.impaired, (impairedTotals.get(link.impaired) || 0) + link.value);
+      });
+      const nodes = [
+        ...[...enhancedTotals.entries()].sort((a, b) => b[1] - a[1]).map(([label, total]) => ({
+          name: `Enhanced · ${label}`,
+          label,
+          side: 'enhanced',
+          total
+        })),
+        ...[...impairedTotals.entries()].sort((a, b) => b[1] - a[1]).map(([label, total]) => ({
+          name: `Impaired · ${label}`,
+          label,
+          side: 'impaired',
+          total
+        }))
+      ];
+      return { nodes, total: links.reduce((sum, link) => sum + link.value, 0) };
+    }
+
+    function renderFocusValueCharts() {
+      if (!valuePairData) return;
+      const container = document.getElementById('focusValueCharts');
+
+      if (!container.dataset.ready) {
+        container.innerHTML = FOCUS_VALUE_SPECS.map((spec, index) => {
+          const links = focusedLinks(spec);
+          const total = links.reduce((sum, link) => sum + link.value, 0);
+          const oppositeLabel = spec.side === 'enhanced' ? 'impaired values' : 'enhanced values';
+          const sideLabel = spec.side === 'enhanced' ? 'Enhanced focus' : 'Impaired focus';
+          const groupLabel = index === 0
+            ? '<div class="focus-group-label enhanced">Enhanced-focus charts</div>'
+            : index === 4
+              ? '<div class="focus-group-label impaired">Impaired-focus charts</div>'
+              : '';
+          return `${groupLabel}
+            <section class="panel focus-chart-panel">
+              <div class="panel-head">
+                <h3 class="panel-title">${escapeHtml(spec.value)}</h3>
+                <div class="panel-caption">${sideLabel}</div>
+                <button type="button" class="plot-download-btn" data-focus-export="${spec.slug}" aria-label="Download ${escapeHtml(spec.value)} focus chart as PNG">PNG ↓</button>
+              </div>
+              <div class="focus-chart-scroll">
+                <div id="focusValueChart${index}" class="focus-value-chart"></div>
+              </div>
+              <div class="focus-chart-summary">
+                <span>${format.format(total)} pair occurrences</span>
+                <span>${format.format(links.length)} connected ${oppositeLabel}</span>
+              </div>
+            </section>
+          `;
+        }).join('');
+        container.dataset.ready = 'true';
+      }
+
+      FOCUS_VALUE_SPECS.forEach((spec, index) => {
+        const targetId = `focusValueChart${index}`;
+        const chartKey = `focusValue${index}`;
+        const links = focusedLinks(spec);
+        const { nodes } = focusChartData(links);
+        if (!charts[chartKey]) {
+          charts[chartKey] = echarts.init(document.getElementById(targetId));
+          const button = container.querySelector(`[data-focus-export="${spec.slug}"]`);
+          button.addEventListener('click', () => downloadPlotPng({
+            targetId,
+            chartKey,
+            filename: `value-focus-${spec.slug}`
+          }, button));
+        }
+        charts[chartKey].setOption({
+          animationDuration: 500,
+          tooltip: {
+            trigger: 'item',
+            confine: true,
+            formatter: params => {
+              const item = params.data;
+              if (params.dataType === 'edge') {
+                return `<b>${escapeHtml(item.enhanced)} → ${escapeHtml(item.impaired)}</b><br/>Co-occurrences: ${format.format(item.value)}`;
+              }
+              return `<b>${escapeHtml(item.side === 'enhanced' ? 'Enhanced value' : 'Impaired value')}: ${escapeHtml(item.label)}</b><br/>Paired occurrences: ${format.format(item.total)}`;
+            }
+          },
+          series: [{
+            type: 'sankey',
+            left: 150,
+            right: 150,
+            top: 22,
+            bottom: 22,
+            nodeWidth: 15,
+            nodeGap: 12,
+            nodeAlign: 'justify',
+            layoutIterations: 32,
+            draggable: false,
+            emphasis: { focus: 'adjacency' },
+            data: nodes.map(node => {
+              const isFocus = node.side === spec.side && node.label === spec.value;
+              return {
+                ...node,
+                depth: node.side === 'enhanced' ? 0 : 1,
+                itemStyle: {
+                  color: node.side === 'enhanced' ? COLORS.green : COLORS.red,
+                  borderColor: isFocus ? COLORS.blue : '#ffffff',
+                  borderWidth: isFocus ? 3 : 1
+                },
+                label: {
+                  show: true,
+                  position: node.side === 'enhanced' ? 'left' : 'right',
+                  distance: 8,
+                  width: 135,
+                  overflow: 'break',
+                  lineHeight: 14,
+                  color: COLORS.text,
+                  fontSize: 11,
+                  fontWeight: isFocus ? 850 : 700,
+                  formatter: `${node.label}  ${format.format(node.total)}`
+                }
+              };
+            }),
+            links,
+            lineStyle: { color: 'gradient', opacity: 0.3, curveness: 0.52 }
+          }]
+        }, true);
+      });
+    }
+
     async function loadValuePairLinks() {
       try {
         const response = await fetch('value_pair_links.json');
         if (!response.ok) throw new Error(`HTTP ${response.status}`);
         valuePairData = await response.json();
         renderValueLinks();
+        renderFocusValueCharts();
       } catch (error) {
         document.getElementById('valueLinksSource').textContent = 'Load failed';
         document.getElementById('valueLinksMeta').textContent = 'Could not load value_pair_links.json.';
@@ -3264,6 +3490,7 @@
       renderPhaseHeatmap();
       renderMlValuePolarity();
       renderValueLinks();
+      renderFocusValueCharts();
       renderScatter(values);
       renderDimensionTotals();
       renderTable(values);
