@@ -374,7 +374,7 @@
       border-radius: 8px;
     }
     .value-links-panel .chart {
-      height: 520px;
+      height: 676px;
     }
     .value-links-chart-scroll {
       overflow-x: auto;
@@ -1166,7 +1166,7 @@
       .discipline-value-wide .chart { height: 560px; }
       .discipline-dimension-wide .chart { height: 760px; }
       .ml-metrics { grid-template-columns: 1fr; }
-      .value-links-panel .chart { height: 560px; }
+      .value-links-panel .chart { height: 728px; }
       .value-links-ranking { grid-template-columns: 1fr; }
       .value-links-control {
         grid-template-columns: 105px minmax(110px, 1fr) 42px;
@@ -3199,7 +3199,7 @@
       const viewport = target.parentElement;
       const baseWidth = Math.max(viewport.clientWidth, 1040);
       const scaledWidth = Math.round(baseWidth * valueLinksScale.width / 100);
-      const scaledHeight = Math.round(520 * valueLinksScale.height / 100);
+      const scaledHeight = Math.round(676 * valueLinksScale.height / 100);
       target.style.width = `${scaledWidth}px`;
       target.style.minWidth = '0';
       target.style.height = `${scaledHeight}px`;
@@ -3251,7 +3251,7 @@
           top: 26,
           bottom: 24,
           nodeWidth: 15,
-          nodeGap: 8,
+          nodeGap: 16,
           nodeAlign: 'justify',
           layoutIterations: 32,
           draggable: false,
@@ -3277,7 +3277,7 @@
               position: node.side === 'enhanced' ? 'left' : 'right',
               distance: 9,
               color: COLORS.text,
-              fontSize: 12,
+              fontSize: 15.6,
               fontWeight: 700,
               formatter: `${node.label}  ${format.format(node.total)}`
             }
