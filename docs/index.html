@@ -166,6 +166,10 @@
       border-top: 5px solid #7c3aed;
       background: #fdfbff;
     }
+    .scope-section.value-links-zone {
+      border-top: 5px solid #0f9f68;
+      background: #fbfffd;
+    }
     .section-head {
       display: grid;
       grid-template-columns: minmax(0, 1fr) auto;
@@ -368,6 +372,74 @@
       margin: 0 16px 14px;
       border: 1px solid #edf0f5;
       border-radius: 8px;
+    }
+    .value-links-panel .chart {
+      height: 760px;
+    }
+    .value-links-chart-scroll {
+      overflow: visible;
+    }
+    .value-links-sideheads {
+      display: flex;
+      justify-content: space-between;
+      gap: 20px;
+      padding: 18px 22px 0;
+    }
+    .value-links-sidehead {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      min-height: 30px;
+      padding: 4px 10px;
+      border-radius: 999px;
+      font-size: 12px;
+      font-weight: 850;
+      letter-spacing: .2px;
+      text-transform: uppercase;
+    }
+    .value-links-sidehead.enhanced {
+      color: #12653a;
+      background: var(--green-soft);
+    }
+    .value-links-sidehead.impaired {
+      color: #9f2424;
+      background: var(--red-soft);
+    }
+    .value-links-sidehead::before {
+      width: 9px;
+      height: 9px;
+      border-radius: 3px;
+      background: currentColor;
+      content: '';
+    }
+    .value-links-ranking {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 8px;
+      padding: 0 16px 16px;
+    }
+    .value-link-row {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto;
+      gap: 12px;
+      align-items: center;
+      min-width: 0;
+      padding: 10px 12px;
+      border: 1px solid #e4e9f2;
+      border-radius: 8px;
+      background: #fbfcff;
+      color: var(--ink);
+      font-size: 12px;
+      line-height: 1.35;
+    }
+    .value-link-row span {
+      min-width: 0;
+      overflow-wrap: anywhere;
+    }
+    .value-link-row b {
+      color: var(--blue);
+      font-size: 15px;
+      font-variant-numeric: tabular-nums;
     }
     .stage-matrix-chart {
       height: 430px;
@@ -981,6 +1053,8 @@
       .discipline-value-wide .chart { height: 560px; }
       .discipline-dimension-wide .chart { height: 760px; }
       .ml-metrics { grid-template-columns: 1fr; }
+      .value-links-panel .chart { height: 700px; }
+      .value-links-ranking { grid-template-columns: 1fr; }
     }
     @media (max-width: 720px) {
       .panel-head {
@@ -995,6 +1069,13 @@
       }
       .plot-download-btn {
         margin-left: auto;
+      }
+      .value-links-chart-scroll {
+        overflow-x: auto;
+        overscroll-behavior-x: contain;
+      }
+      .value-links-chart-scroll .chart {
+        min-width: 920px;
       }
       .top-bar-inner {
         padding: 9px 16px;
@@ -1024,6 +1105,7 @@
       <div class="nav-title">Enhanced vs Impaired Value Comparison</div>
       <div class="nav-links">
         <a class="nav-link active" href="#dataset" data-target="datasetSection">Dataset</a>
+        <a class="nav-link" href="#value-links" data-target="valueLinksSection">Value Links</a>
         <a class="nav-link" href="#phase" data-target="stageSection">Phase View</a>
         <a class="nav-link" href="#dimension" data-target="filterSection">Dimension View</a>
         <a class="nav-link" href="#overall" data-target="globalSection">Overall View</a>
@@ -1197,6 +1279,40 @@
       </div>
     </section>
 
+    <section class="scope-section value-links-zone" id="valueLinksSection">
+      <div class="section-head">
+        <div>
+          <p class="section-kicker">Value co-occurrence map</p>
+          <h2 class="section-title">How enhanced values connect to impaired values</h2>
+          <p class="section-note">Each ribbon links values recorded together in the same source row. Ribbon width represents the number of row-level co-occurrences; design discipline and AI activity are intentionally ignored.</p>
+        </div>
+      </div>
+      <section class="cards">
+        <div class="card"><div class="label">Rows with both sides</div><div class="metric green" id="valueLinksRows">—</div><div class="note">Cases that contain enhanced and impaired values</div></div>
+        <div class="card"><div class="label">Pair occurrences</div><div class="metric blue" id="valueLinksOccurrences">—</div><div class="note">All row-level Enhanced → Impaired combinations</div></div>
+        <div class="card"><div class="label">Unique relationships</div><div class="metric" id="valueLinksUnique">—</div><div class="note">Distinct value-to-value links</div></div>
+        <div class="card"><div class="label">Source</div><div class="metric" style="font-size:18px" id="valueLinksSource">Loading…</div><div class="note">Latest repository workbook</div></div>
+      </section>
+      <section class="panel wide value-links-panel">
+        <div class="panel-head">
+          <h2 class="panel-title">Enhanced → Impaired Value Flow</h2>
+          <div class="panel-caption" id="valueLinksMeta">Loading row-level connections…</div>
+        </div>
+        <div class="value-links-sideheads" aria-hidden="true">
+          <span class="value-links-sidehead enhanced">Enhanced value</span>
+          <span class="value-links-sidehead impaired">Impaired value</span>
+        </div>
+        <div class="value-links-chart-scroll">
+          <div id="valueLinksChart" class="chart"></div>
+        </div>
+        <div id="valueLinksRanking" class="value-links-ranking"></div>
+        <div class="insight-box">
+          <p class="insight-title">How to read</p>
+          <p class="insight-text">This is a descriptive co-occurrence map, not a correlation coefficient or causal model. If a row contains two enhanced and two impaired values, all four possible cross-side pairs are counted once. Hover over a ribbon to isolate the connection and see its exact count.</p>
+        </div>
+      </section>
+    </section>
+
     <section class="scope-section stage-zone" id="stageSection">
       <div class="section-head">
         <div>
@@ -1284,6 +1400,7 @@
       heatmap: echarts.init(document.getElementById('heatmapChart')),
       phaseHeatmap: echarts.init(document.getElementById('phaseHeatmapChart')),
       mlPolarity: echarts.init(document.getElementById('mlPolarityChart')),
+      valueLinks: echarts.init(document.getElementById('valueLinksChart')),
       scatter: echarts.init(document.getElementById('scatterChart')),
       dimension: echarts.init(document.getElementById('dimensionChart')),
       stageMatrix: echarts.init(document.getElementById('stageMatrixChart')),
@@ -1298,6 +1415,7 @@
     const shortDimension = name => DIM_LABELS[name] || name;
 
     const format = new Intl.NumberFormat('en-US');
+    let valuePairData = null;
     document.getElementById('eligibleRows').textContent = format.format(DATA.eligibleRows);
     document.getElementById('enhancedTotal').textContent = format.format(DATA.enhancedTotal);
     document.getElementById('impairedTotal').textContent = format.format(DATA.impairedTotal);
@@ -2917,6 +3035,98 @@
       `;
     }
 
+    function renderValueLinks() {
+      if (!valuePairData) {
+        charts.valueLinks.setOption({
+          title: { text: 'Loading value connections…', left: 'center', top: 'middle', textStyle: { color: COLORS.muted, fontSize: 13 } },
+          series: []
+        }, true);
+        return;
+      }
+
+      document.getElementById('valueLinksRows').textContent = format.format(valuePairData.rowsWithBoth);
+      document.getElementById('valueLinksOccurrences').textContent = format.format(valuePairData.pairOccurrences);
+      document.getElementById('valueLinksUnique').textContent = format.format(valuePairData.uniquePairs);
+      document.getElementById('valueLinksSource').textContent = valuePairData.source;
+      document.getElementById('valueLinksMeta').textContent = `${format.format(valuePairData.uniquePairs)} observed relationships · ribbon width = row-level pair count`;
+
+      document.getElementById('valueLinksRanking').innerHTML = valuePairData.topPairs.map((link, index) => `
+        <div class="value-link-row">
+          <span>${index + 1}. <span class="pos">${escapeHtml(link.enhanced)}</span> → <span class="neg">${escapeHtml(link.impaired)}</span></span>
+          <b>${format.format(link.value)}</b>
+        </div>
+      `).join('');
+
+      charts.valueLinks.setOption({
+        animationDuration: 650,
+        tooltip: {
+          trigger: 'item',
+          confine: true,
+          formatter: params => {
+            const item = params.data;
+            if (params.dataType === 'edge') {
+              return `<b>${escapeHtml(item.enhanced)} → ${escapeHtml(item.impaired)}</b><br/>Co-occurrences: ${format.format(item.value)}`;
+            }
+            return `<b>${escapeHtml(item.side === 'enhanced' ? 'Enhanced value' : 'Impaired value')}: ${escapeHtml(item.label)}</b><br/>Paired occurrences: ${format.format(item.total)}`;
+          }
+        },
+        series: [{
+          type: 'sankey',
+          left: 190,
+          right: 190,
+          top: 26,
+          bottom: 24,
+          nodeWidth: 15,
+          nodeGap: 11,
+          nodeAlign: 'justify',
+          layoutIterations: 32,
+          draggable: false,
+          emphasis: { focus: 'adjacency' },
+          data: valuePairData.nodes.map(node => ({
+            ...node,
+            depth: node.side === 'enhanced' ? 0 : 1,
+            itemStyle: {
+              color: node.side === 'enhanced' ? COLORS.green : COLORS.red,
+              borderColor: '#ffffff',
+              borderWidth: 1
+            },
+            label: {
+              show: true,
+              position: node.side === 'enhanced' ? 'left' : 'right',
+              distance: 9,
+              color: COLORS.text,
+              fontSize: 12,
+              fontWeight: 700,
+              formatter: `${node.label}  ${format.format(node.total)}`
+            }
+          })),
+          links: valuePairData.links,
+          lineStyle: {
+            color: 'gradient',
+            opacity: 0.24,
+            curveness: 0.52
+          },
+          label: { color: COLORS.text }
+        }]
+      }, true);
+    }
+
+    async function loadValuePairLinks() {
+      try {
+        const response = await fetch('value_pair_links.json');
+        if (!response.ok) throw new Error(`HTTP ${response.status}`);
+        valuePairData = await response.json();
+        renderValueLinks();
+      } catch (error) {
+        document.getElementById('valueLinksSource').textContent = 'Load failed';
+        document.getElementById('valueLinksMeta').textContent = 'Could not load value_pair_links.json.';
+        charts.valueLinks.setOption({
+          title: { text: 'Value connection data failed to load', left: 'center', top: 'middle', textStyle: { color: COLORS.red, fontSize: 13 } },
+          series: []
+        }, true);
+      }
+    }
+
     async function loadDatasetRows() {
       try {
         const response = await fetch('dataset_rows.json');
@@ -2960,6 +3170,7 @@
       { targetId: 'heatmapChart', chartKey: 'heatmap', filename: 'difference-heatmap' },
       { targetId: 'dimensionChart', chartKey: 'dimension', filename: 'design-dimension-totals' },
       { targetId: 'mlPolarityChart', chartKey: 'mlPolarity', filename: 'value-ambivalence' },
+      { targetId: 'valueLinksChart', chartKey: 'valueLinks', filename: 'enhanced-to-impaired-value-flow' },
       { targetId: 'phaseDomainMap', filename: 'phase-category-domain-map' },
       { targetId: 'phaseHeatmapChart', chartKey: 'phaseHeatmap', filename: 'phase-difference-heatmap' },
       { targetId: 'stageMatrixChart', chartKey: 'stageMatrix', filename: 'discipline-design-phase' },
@@ -3052,6 +3263,7 @@
       renderHeatmap();
       renderPhaseHeatmap();
       renderMlValuePolarity();
+      renderValueLinks();
       renderScatter(values);
       renderDimensionTotals();
       renderTable(values);
@@ -3082,6 +3294,7 @@
     function hashForPage(targetId) {
       if (targetId === 'globalSection') return '#overall';
       if (targetId === 'stageSection') return '#phase';
+      if (targetId === 'valueLinksSection') return '#value-links';
       if (targetId === 'datasetSection') return '#dataset';
       return '#dimension';
     }
@@ -3089,6 +3302,7 @@
     function pageFromHash() {
       if (location.hash === '#overall' || location.hash === '#global' || location.hash === '#globalSection') return 'globalSection';
       if (location.hash === '#phase' || location.hash === '#phaseSection' || location.hash === '#stage' || location.hash === '#stageSection') return 'stageSection';
+      if (location.hash === '#value-links' || location.hash === '#valueLinks' || location.hash === '#valueLinksSection') return 'valueLinksSection';
       if (location.hash === '#dimension' || location.hash === '#filter' || location.hash === '#filterSection') return 'filterSection';
       return 'datasetSection';
     }
@@ -3123,6 +3337,7 @@
     setupPlotDownloads();
     renderAll();
     loadDatasetRows();
+    loadValuePairLinks();
     loadArchetypeClusters();
     showPage(pageFromHash());
   </script>

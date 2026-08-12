@@ -1,0 +1,859 @@
+{
+  "source": "Value.xlsx",
+  "sheet": "Sheet1",
+  "sourceRows": 270,
+  "rowsWithEnhanced": 218,
+  "rowsWithImpaired": 183,
+  "rowsWithBoth": 157,
+  "pairOccurrences": 284,
+  "uniquePairs": 90,
+  "pairingRule": "Within each source row, every distinct Enhanced Value 1/2 is paired with every distinct Impaired Value 1/2.",
+  "nodes": [
+    {
+      "name": "Enhanced · Efficiency",
+      "label": "Efficiency",
+      "side": "enhanced",
+      "total": 88
+    },
+    {
+      "name": "Enhanced · Learning/Skills development",
+      "label": "Learning/Skills development",
+      "side": "enhanced",
+      "total": 39
+    },
+    {
+      "name": "Enhanced · Accuracy",
+      "label": "Accuracy",
+      "side": "enhanced",
+      "total": 18
+    },
+    {
+      "name": "Enhanced · Context appropriateness",
+      "label": "Context appropriateness",
+      "side": "enhanced",
+      "total": 18
+    },
+    {
+      "name": "Enhanced · Creativity",
+      "label": "Creativity",
+      "side": "enhanced",
+      "total": 26
+    },
+    {
+      "name": "Enhanced · User-centredness",
+      "label": "User-centredness",
+      "side": "enhanced",
+      "total": 21
+    },
+    {
+      "name": "Enhanced · Collaboration",
+      "label": "Collaboration",
+      "side": "enhanced",
+      "total": 16
+    },
+    {
+      "name": "Enhanced · Feasibility",
+      "label": "Feasibility",
+      "side": "enhanced",
+      "total": 22
+    },
+    {
+      "name": "Enhanced · Controllability",
+      "label": "Controllability",
+      "side": "enhanced",
+      "total": 5
+    },
+    {
+      "name": "Enhanced · Scalability",
+      "label": "Scalability",
+      "side": "enhanced",
+      "total": 26
+    },
+    {
+      "name": "Enhanced · AI-Literacy (Trust)",
+      "label": "AI-Literacy (Trust)",
+      "side": "enhanced",
+      "total": 1
+    },
+    {
+      "name": "Enhanced · Affordability",
+      "label": "Affordability",
+      "side": "enhanced",
+      "total": 4
+    },
+    {
+      "name": "Impaired · Efficiency",
+      "label": "Efficiency",
+      "side": "impaired",
+      "total": 6
+    },
+    {
+      "name": "Impaired · Learning/Skills development",
+      "label": "Learning/Skills development",
+      "side": "impaired",
+      "total": 34
+    },
+    {
+      "name": "Impaired · Accuracy",
+      "label": "Accuracy",
+      "side": "impaired",
+      "total": 60
+    },
+    {
+      "name": "Impaired · Context appropriateness",
+      "label": "Context appropriateness",
+      "side": "impaired",
+      "total": 47
+    },
+    {
+      "name": "Impaired · Creativity",
+      "label": "Creativity",
+      "side": "impaired",
+      "total": 23
+    },
+    {
+      "name": "Impaired · User-centredness",
+      "label": "User-centredness",
+      "side": "impaired",
+      "total": 26
+    },
+    {
+      "name": "Impaired · Collaboration",
+      "label": "Collaboration",
+      "side": "impaired",
+      "total": 16
+    },
+    {
+      "name": "Impaired · Feasibility",
+      "label": "Feasibility",
+      "side": "impaired",
+      "total": 9
+    },
+    {
+      "name": "Impaired · Controllability",
+      "label": "Controllability",
+      "side": "impaired",
+      "total": 24
+    },
+    {
+      "name": "Impaired · Scalability",
+      "label": "Scalability",
+      "side": "impaired",
+      "total": 4
+    },
+    {
+      "name": "Impaired · AI-Literacy (Trust)",
+      "label": "AI-Literacy (Trust)",
+      "side": "impaired",
+      "total": 22
+    },
+    {
+      "name": "Impaired · Authenticity",
+      "label": "Authenticity",
+      "side": "impaired",
+      "total": 11
+    },
+    {
+      "name": "Impaired · Affordability",
+      "label": "Affordability",
+      "side": "impaired",
+      "total": 1
+    },
+    {
+      "name": "Impaired · Other",
+      "label": "Other",
+      "side": "impaired",
+      "total": 1
+    }
+  ],
+  "links": [
+    {
+      "source": "Enhanced · Efficiency",
+      "target": "Impaired · Efficiency",
+      "enhanced": "Efficiency",
+      "impaired": "Efficiency",
+      "value": 1
+    },
+    {
+      "source": "Enhanced · Efficiency",
+      "target": "Impaired · Learning/Skills development",
+      "enhanced": "Efficiency",
+      "impaired": "Learning/Skills development",
+      "value": 10
+    },
+    {
+      "source": "Enhanced · Efficiency",
+      "target": "Impaired · Accuracy",
+      "enhanced": "Efficiency",
+      "impaired": "Accuracy",
+      "value": 18
+    },
+    {
+      "source": "Enhanced · Efficiency",
+      "target": "Impaired · Context appropriateness",
+      "enhanced": "Efficiency",
+      "impaired": "Context appropriateness",
+      "value": 14
+    },
+    {
+      "source": "Enhanced · Efficiency",
+      "target": "Impaired · Creativity",
+      "enhanced": "Efficiency",
+      "impaired": "Creativity",
+      "value": 6
+    },
+    {
+      "source": "Enhanced · Efficiency",
+      "target": "Impaired · User-centredness",
+      "enhanced": "Efficiency",
+      "impaired": "User-centredness",
+      "value": 9
+    },
+    {
+      "source": "Enhanced · Efficiency",
+      "target": "Impaired · Collaboration",
+      "enhanced": "Efficiency",
+      "impaired": "Collaboration",
+      "value": 8
+    },
+    {
+      "source": "Enhanced · Efficiency",
+      "target": "Impaired · Feasibility",
+      "enhanced": "Efficiency",
+      "impaired": "Feasibility",
+      "value": 5
+    },
+    {
+      "source": "Enhanced · Efficiency",
+      "target": "Impaired · Controllability",
+      "enhanced": "Efficiency",
+      "impaired": "Controllability",
+      "value": 4
+    },
+    {
+      "source": "Enhanced · Efficiency",
+      "target": "Impaired · Scalability",
+      "enhanced": "Efficiency",
+      "impaired": "Scalability",
+      "value": 1
+    },
+    {
+      "source": "Enhanced · Efficiency",
+      "target": "Impaired · AI-Literacy (Trust)",
+      "enhanced": "Efficiency",
+      "impaired": "AI-Literacy (Trust)",
+      "value": 7
+    },
+    {
+      "source": "Enhanced · Efficiency",
+      "target": "Impaired · Authenticity",
+      "enhanced": "Efficiency",
+      "impaired": "Authenticity",
+      "value": 3
+    },
+    {
+      "source": "Enhanced · Efficiency",
+      "target": "Impaired · Affordability",
+      "enhanced": "Efficiency",
+      "impaired": "Affordability",
+      "value": 1
+    },
+    {
+      "source": "Enhanced · Efficiency",
+      "target": "Impaired · Other",
+      "enhanced": "Efficiency",
+      "impaired": "Other",
+      "value": 1
+    },
+    {
+      "source": "Enhanced · Learning/Skills development",
+      "target": "Impaired · Efficiency",
+      "enhanced": "Learning/Skills development",
+      "impaired": "Efficiency",
+      "value": 3
+    },
+    {
+      "source": "Enhanced · Learning/Skills development",
+      "target": "Impaired · Learning/Skills development",
+      "enhanced": "Learning/Skills development",
+      "impaired": "Learning/Skills development",
+      "value": 11
+    },
+    {
+      "source": "Enhanced · Learning/Skills development",
+      "target": "Impaired · Accuracy",
+      "enhanced": "Learning/Skills development",
+      "impaired": "Accuracy",
+      "value": 9
+    },
+    {
+      "source": "Enhanced · Learning/Skills development",
+      "target": "Impaired · Context appropriateness",
+      "enhanced": "Learning/Skills development",
+      "impaired": "Context appropriateness",
+      "value": 3
+    },
+    {
+      "source": "Enhanced · Learning/Skills development",
+      "target": "Impaired · Creativity",
+      "enhanced": "Learning/Skills development",
+      "impaired": "Creativity",
+      "value": 2
+    },
+    {
+      "source": "Enhanced · Learning/Skills development",
+      "target": "Impaired · User-centredness",
+      "enhanced": "Learning/Skills development",
+      "impaired": "User-centredness",
+      "value": 2
+    },
+    {
+      "source": "Enhanced · Learning/Skills development",
+      "target": "Impaired · Collaboration",
+      "enhanced": "Learning/Skills development",
+      "impaired": "Collaboration",
+      "value": 1
+    },
+    {
+      "source": "Enhanced · Learning/Skills development",
+      "target": "Impaired · Controllability",
+      "enhanced": "Learning/Skills development",
+      "impaired": "Controllability",
+      "value": 5
+    },
+    {
+      "source": "Enhanced · Learning/Skills development",
+      "target": "Impaired · Scalability",
+      "enhanced": "Learning/Skills development",
+      "impaired": "Scalability",
+      "value": 1
+    },
+    {
+      "source": "Enhanced · Learning/Skills development",
+      "target": "Impaired · AI-Literacy (Trust)",
+      "enhanced": "Learning/Skills development",
+      "impaired": "AI-Literacy (Trust)",
+      "value": 2
+    },
+    {
+      "source": "Enhanced · Accuracy",
+      "target": "Impaired · Efficiency",
+      "enhanced": "Accuracy",
+      "impaired": "Efficiency",
+      "value": 1
+    },
+    {
+      "source": "Enhanced · Accuracy",
+      "target": "Impaired · Learning/Skills development",
+      "enhanced": "Accuracy",
+      "impaired": "Learning/Skills development",
+      "value": 5
+    },
+    {
+      "source": "Enhanced · Accuracy",
+      "target": "Impaired · Accuracy",
+      "enhanced": "Accuracy",
+      "impaired": "Accuracy",
+      "value": 1
+    },
+    {
+      "source": "Enhanced · Accuracy",
+      "target": "Impaired · Context appropriateness",
+      "enhanced": "Accuracy",
+      "impaired": "Context appropriateness",
+      "value": 6
+    },
+    {
+      "source": "Enhanced · Accuracy",
+      "target": "Impaired · User-centredness",
+      "enhanced": "Accuracy",
+      "impaired": "User-centredness",
+      "value": 2
+    },
+    {
+      "source": "Enhanced · Accuracy",
+      "target": "Impaired · Controllability",
+      "enhanced": "Accuracy",
+      "impaired": "Controllability",
+      "value": 2
+    },
+    {
+      "source": "Enhanced · Accuracy",
+      "target": "Impaired · Scalability",
+      "enhanced": "Accuracy",
+      "impaired": "Scalability",
+      "value": 1
+    },
+    {
+      "source": "Enhanced · Context appropriateness",
+      "target": "Impaired · Efficiency",
+      "enhanced": "Context appropriateness",
+      "impaired": "Efficiency",
+      "value": 1
+    },
+    {
+      "source": "Enhanced · Context appropriateness",
+      "target": "Impaired · Learning/Skills development",
+      "enhanced": "Context appropriateness",
+      "impaired": "Learning/Skills development",
+      "value": 1
+    },
+    {
+      "source": "Enhanced · Context appropriateness",
+      "target": "Impaired · Accuracy",
+      "enhanced": "Context appropriateness",
+      "impaired": "Accuracy",
+      "value": 5
+    },
+    {
+      "source": "Enhanced · Context appropriateness",
+      "target": "Impaired · Context appropriateness",
+      "enhanced": "Context appropriateness",
+      "impaired": "Context appropriateness",
+      "value": 4
+    },
+    {
+      "source": "Enhanced · Context appropriateness",
+      "target": "Impaired · Creativity",
+      "enhanced": "Context appropriateness",
+      "impaired": "Creativity",
+      "value": 1
+    },
+    {
+      "source": "Enhanced · Context appropriateness",
+      "target": "Impaired · User-centredness",
+      "enhanced": "Context appropriateness",
+      "impaired": "User-centredness",
+      "value": 2
+    },
+    {
+      "source": "Enhanced · Context appropriateness",
+      "target": "Impaired · Collaboration",
+      "enhanced": "Context appropriateness",
+      "impaired": "Collaboration",
+      "value": 1
+    },
+    {
+      "source": "Enhanced · Context appropriateness",
+      "target": "Impaired · Feasibility",
+      "enhanced": "Context appropriateness",
+      "impaired": "Feasibility",
+      "value": 1
+    },
+    {
+      "source": "Enhanced · Context appropriateness",
+      "target": "Impaired · Controllability",
+      "enhanced": "Context appropriateness",
+      "impaired": "Controllability",
+      "value": 1
+    },
+    {
+      "source": "Enhanced · Context appropriateness",
+      "target": "Impaired · Scalability",
+      "enhanced": "Context appropriateness",
+      "impaired": "Scalability",
+      "value": 1
+    },
+    {
+      "source": "Enhanced · Creativity",
+      "target": "Impaired · Learning/Skills development",
+      "enhanced": "Creativity",
+      "impaired": "Learning/Skills development",
+      "value": 2
+    },
+    {
+      "source": "Enhanced · Creativity",
+      "target": "Impaired · Accuracy",
+      "enhanced": "Creativity",
+      "impaired": "Accuracy",
+      "value": 6
+    },
+    {
+      "source": "Enhanced · Creativity",
+      "target": "Impaired · Context appropriateness",
+      "enhanced": "Creativity",
+      "impaired": "Context appropriateness",
+      "value": 3
+    },
+    {
+      "source": "Enhanced · Creativity",
+      "target": "Impaired · Creativity",
+      "enhanced": "Creativity",
+      "impaired": "Creativity",
+      "value": 5
+    },
+    {
+      "source": "Enhanced · Creativity",
+      "target": "Impaired · Collaboration",
+      "enhanced": "Creativity",
+      "impaired": "Collaboration",
+      "value": 1
+    },
+    {
+      "source": "Enhanced · Creativity",
+      "target": "Impaired · Feasibility",
+      "enhanced": "Creativity",
+      "impaired": "Feasibility",
+      "value": 2
+    },
+    {
+      "source": "Enhanced · Creativity",
+      "target": "Impaired · Controllability",
+      "enhanced": "Creativity",
+      "impaired": "Controllability",
+      "value": 1
+    },
+    {
+      "source": "Enhanced · Creativity",
+      "target": "Impaired · AI-Literacy (Trust)",
+      "enhanced": "Creativity",
+      "impaired": "AI-Literacy (Trust)",
+      "value": 2
+    },
+    {
+      "source": "Enhanced · Creativity",
+      "target": "Impaired · Authenticity",
+      "enhanced": "Creativity",
+      "impaired": "Authenticity",
+      "value": 4
+    },
+    {
+      "source": "Enhanced · User-centredness",
+      "target": "Impaired · Learning/Skills development",
+      "enhanced": "User-centredness",
+      "impaired": "Learning/Skills development",
+      "value": 1
+    },
+    {
+      "source": "Enhanced · User-centredness",
+      "target": "Impaired · Accuracy",
+      "enhanced": "User-centredness",
+      "impaired": "Accuracy",
+      "value": 4
+    },
+    {
+      "source": "Enhanced · User-centredness",
+      "target": "Impaired · Context appropriateness",
+      "enhanced": "User-centredness",
+      "impaired": "Context appropriateness",
+      "value": 4
+    },
+    {
+      "source": "Enhanced · User-centredness",
+      "target": "Impaired · Creativity",
+      "enhanced": "User-centredness",
+      "impaired": "Creativity",
+      "value": 1
+    },
+    {
+      "source": "Enhanced · User-centredness",
+      "target": "Impaired · User-centredness",
+      "enhanced": "User-centredness",
+      "impaired": "User-centredness",
+      "value": 3
+    },
+    {
+      "source": "Enhanced · User-centredness",
+      "target": "Impaired · Collaboration",
+      "enhanced": "User-centredness",
+      "impaired": "Collaboration",
+      "value": 2
+    },
+    {
+      "source": "Enhanced · User-centredness",
+      "target": "Impaired · Feasibility",
+      "enhanced": "User-centredness",
+      "impaired": "Feasibility",
+      "value": 1
+    },
+    {
+      "source": "Enhanced · User-centredness",
+      "target": "Impaired · Controllability",
+      "enhanced": "User-centredness",
+      "impaired": "Controllability",
+      "value": 4
+    },
+    {
+      "source": "Enhanced · User-centredness",
+      "target": "Impaired · AI-Literacy (Trust)",
+      "enhanced": "User-centredness",
+      "impaired": "AI-Literacy (Trust)",
+      "value": 1
+    },
+    {
+      "source": "Enhanced · Collaboration",
+      "target": "Impaired · Learning/Skills development",
+      "enhanced": "Collaboration",
+      "impaired": "Learning/Skills development",
+      "value": 2
+    },
+    {
+      "source": "Enhanced · Collaboration",
+      "target": "Impaired · Accuracy",
+      "enhanced": "Collaboration",
+      "impaired": "Accuracy",
+      "value": 5
+    },
+    {
+      "source": "Enhanced · Collaboration",
+      "target": "Impaired · Context appropriateness",
+      "enhanced": "Collaboration",
+      "impaired": "Context appropriateness",
+      "value": 2
+    },
+    {
+      "source": "Enhanced · Collaboration",
+      "target": "Impaired · User-centredness",
+      "enhanced": "Collaboration",
+      "impaired": "User-centredness",
+      "value": 1
+    },
+    {
+      "source": "Enhanced · Collaboration",
+      "target": "Impaired · Controllability",
+      "enhanced": "Collaboration",
+      "impaired": "Controllability",
+      "value": 3
+    },
+    {
+      "source": "Enhanced · Collaboration",
+      "target": "Impaired · AI-Literacy (Trust)",
+      "enhanced": "Collaboration",
+      "impaired": "AI-Literacy (Trust)",
+      "value": 1
+    },
+    {
+      "source": "Enhanced · Collaboration",
+      "target": "Impaired · Authenticity",
+      "enhanced": "Collaboration",
+      "impaired": "Authenticity",
+      "value": 2
+    },
+    {
+      "source": "Enhanced · Feasibility",
+      "target": "Impaired · Accuracy",
+      "enhanced": "Feasibility",
+      "impaired": "Accuracy",
+      "value": 6
+    },
+    {
+      "source": "Enhanced · Feasibility",
+      "target": "Impaired · Context appropriateness",
+      "enhanced": "Feasibility",
+      "impaired": "Context appropriateness",
+      "value": 6
+    },
+    {
+      "source": "Enhanced · Feasibility",
+      "target": "Impaired · Creativity",
+      "enhanced": "Feasibility",
+      "impaired": "Creativity",
+      "value": 1
+    },
+    {
+      "source": "Enhanced · Feasibility",
+      "target": "Impaired · User-centredness",
+      "enhanced": "Feasibility",
+      "impaired": "User-centredness",
+      "value": 2
+    },
+    {
+      "source": "Enhanced · Feasibility",
+      "target": "Impaired · Controllability",
+      "enhanced": "Feasibility",
+      "impaired": "Controllability",
+      "value": 1
+    },
+    {
+      "source": "Enhanced · Feasibility",
+      "target": "Impaired · AI-Literacy (Trust)",
+      "enhanced": "Feasibility",
+      "impaired": "AI-Literacy (Trust)",
+      "value": 5
+    },
+    {
+      "source": "Enhanced · Feasibility",
+      "target": "Impaired · Authenticity",
+      "enhanced": "Feasibility",
+      "impaired": "Authenticity",
+      "value": 1
+    },
+    {
+      "source": "Enhanced · Controllability",
+      "target": "Impaired · Accuracy",
+      "enhanced": "Controllability",
+      "impaired": "Accuracy",
+      "value": 1
+    },
+    {
+      "source": "Enhanced · Controllability",
+      "target": "Impaired · Context appropriateness",
+      "enhanced": "Controllability",
+      "impaired": "Context appropriateness",
+      "value": 1
+    },
+    {
+      "source": "Enhanced · Controllability",
+      "target": "Impaired · Creativity",
+      "enhanced": "Controllability",
+      "impaired": "Creativity",
+      "value": 1
+    },
+    {
+      "source": "Enhanced · Controllability",
+      "target": "Impaired · Collaboration",
+      "enhanced": "Controllability",
+      "impaired": "Collaboration",
+      "value": 1
+    },
+    {
+      "source": "Enhanced · Controllability",
+      "target": "Impaired · AI-Literacy (Trust)",
+      "enhanced": "Controllability",
+      "impaired": "AI-Literacy (Trust)",
+      "value": 1
+    },
+    {
+      "source": "Enhanced · Scalability",
+      "target": "Impaired · Learning/Skills development",
+      "enhanced": "Scalability",
+      "impaired": "Learning/Skills development",
+      "value": 2
+    },
+    {
+      "source": "Enhanced · Scalability",
+      "target": "Impaired · Accuracy",
+      "enhanced": "Scalability",
+      "impaired": "Accuracy",
+      "value": 3
+    },
+    {
+      "source": "Enhanced · Scalability",
+      "target": "Impaired · Context appropriateness",
+      "enhanced": "Scalability",
+      "impaired": "Context appropriateness",
+      "value": 2
+    },
+    {
+      "source": "Enhanced · Scalability",
+      "target": "Impaired · Creativity",
+      "enhanced": "Scalability",
+      "impaired": "Creativity",
+      "value": 6
+    },
+    {
+      "source": "Enhanced · Scalability",
+      "target": "Impaired · User-centredness",
+      "enhanced": "Scalability",
+      "impaired": "User-centredness",
+      "value": 5
+    },
+    {
+      "source": "Enhanced · Scalability",
+      "target": "Impaired · Collaboration",
+      "enhanced": "Scalability",
+      "impaired": "Collaboration",
+      "value": 1
+    },
+    {
+      "source": "Enhanced · Scalability",
+      "target": "Impaired · Controllability",
+      "enhanced": "Scalability",
+      "impaired": "Controllability",
+      "value": 3
+    },
+    {
+      "source": "Enhanced · Scalability",
+      "target": "Impaired · AI-Literacy (Trust)",
+      "enhanced": "Scalability",
+      "impaired": "AI-Literacy (Trust)",
+      "value": 3
+    },
+    {
+      "source": "Enhanced · Scalability",
+      "target": "Impaired · Authenticity",
+      "enhanced": "Scalability",
+      "impaired": "Authenticity",
+      "value": 1
+    },
+    {
+      "source": "Enhanced · AI-Literacy (Trust)",
+      "target": "Impaired · Collaboration",
+      "enhanced": "AI-Literacy (Trust)",
+      "impaired": "Collaboration",
+      "value": 1
+    },
+    {
+      "source": "Enhanced · Affordability",
+      "target": "Impaired · Accuracy",
+      "enhanced": "Affordability",
+      "impaired": "Accuracy",
+      "value": 2
+    },
+    {
+      "source": "Enhanced · Affordability",
+      "target": "Impaired · Context appropriateness",
+      "enhanced": "Affordability",
+      "impaired": "Context appropriateness",
+      "value": 2
+    }
+  ],
+  "topPairs": [
+    {
+      "source": "Enhanced · Efficiency",
+      "target": "Impaired · Accuracy",
+      "enhanced": "Efficiency",
+      "impaired": "Accuracy",
+      "value": 18
+    },
+    {
+      "source": "Enhanced · Efficiency",
+      "target": "Impaired · Context appropriateness",
+      "enhanced": "Efficiency",
+      "impaired": "Context appropriateness",
+      "value": 14
+    },
+    {
+      "source": "Enhanced · Learning/Skills development",
+      "target": "Impaired · Learning/Skills development",
+      "enhanced": "Learning/Skills development",
+      "impaired": "Learning/Skills development",
+      "value": 11
+    },
+    {
+      "source": "Enhanced · Efficiency",
+      "target": "Impaired · Learning/Skills development",
+      "enhanced": "Efficiency",
+      "impaired": "Learning/Skills development",
+      "value": 10
+    },
+    {
+      "source": "Enhanced · Efficiency",
+      "target": "Impaired · User-centredness",
+      "enhanced": "Efficiency",
+      "impaired": "User-centredness",
+      "value": 9
+    },
+    {
+      "source": "Enhanced · Learning/Skills development",
+      "target": "Impaired · Accuracy",
+      "enhanced": "Learning/Skills development",
+      "impaired": "Accuracy",
+      "value": 9
+    },
+    {
+      "source": "Enhanced · Efficiency",
+      "target": "Impaired · Collaboration",
+      "enhanced": "Efficiency",
+      "impaired": "Collaboration",
+      "value": 8
+    },
+    {
+      "source": "Enhanced · Efficiency",
+      "target": "Impaired · AI-Literacy (Trust)",
+      "enhanced": "Efficiency",
+      "impaired": "AI-Literacy (Trust)",
+      "value": 7
+    }
+  ]
+}
