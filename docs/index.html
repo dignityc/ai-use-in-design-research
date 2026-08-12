@@ -374,7 +374,7 @@
       border-radius: 8px;
     }
     .value-links-panel .chart {
-      height: 760px;
+      height: 520px;
     }
     .value-links-chart-scroll {
       overflow: visible;
@@ -1053,8 +1053,15 @@
       .discipline-value-wide .chart { height: 560px; }
       .discipline-dimension-wide .chart { height: 760px; }
       .ml-metrics { grid-template-columns: 1fr; }
-      .value-links-panel .chart { height: 700px; }
+      .value-links-panel .chart { height: 560px; }
       .value-links-ranking { grid-template-columns: 1fr; }
+      .value-links-chart-scroll {
+        overflow-x: auto;
+        overscroll-behavior-x: contain;
+      }
+      .value-links-chart-scroll .chart {
+        min-width: 1040px;
+      }
     }
     @media (max-width: 720px) {
       .panel-head {
@@ -1069,13 +1076,6 @@
       }
       .plot-download-btn {
         margin-left: auto;
-      }
-      .value-links-chart-scroll {
-        overflow-x: auto;
-        overscroll-behavior-x: contain;
-      }
-      .value-links-chart-scroll .chart {
-        min-width: 920px;
       }
       .top-bar-inner {
         padding: 9px 16px;
@@ -3077,7 +3077,7 @@
           top: 26,
           bottom: 24,
           nodeWidth: 15,
-          nodeGap: 11,
+          nodeGap: 8,
           nodeAlign: 'justify',
           layoutIterations: 32,
           draggable: false,
