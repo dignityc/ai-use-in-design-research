@@ -412,6 +412,52 @@
       background: currentColor;
       content: '';
     }
+    .value-links-controls {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 10px 18px;
+      margin: 12px 16px 0;
+      padding: 10px 12px;
+      border: 1px solid #e4e9f2;
+      border-radius: 8px;
+      background: #fbfcff;
+    }
+    .value-links-control {
+      display: grid;
+      grid-template-columns: auto minmax(120px, 190px) 42px;
+      align-items: center;
+      gap: 9px;
+      color: var(--ink);
+      font-size: 12px;
+      font-weight: 780;
+    }
+    .value-links-control input {
+      accent-color: var(--blue);
+      cursor: pointer;
+    }
+    .value-links-control output {
+      color: var(--muted);
+      font-variant-numeric: tabular-nums;
+      text-align: right;
+    }
+    .value-links-clear {
+      min-height: 32px;
+      margin-left: auto;
+      padding: 5px 11px;
+      border: 1px solid #d7deea;
+      border-radius: 7px;
+      background: #fff;
+      color: var(--ink);
+      cursor: pointer;
+      font-size: 12px;
+      font-weight: 800;
+    }
+    .value-links-clear:disabled {
+      color: #9aa4b5;
+      cursor: default;
+      opacity: .7;
+    }
     .value-links-ranking {
       display: grid;
       grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -1121,6 +1167,13 @@
       .ml-metrics { grid-template-columns: 1fr; }
       .value-links-panel .chart { height: 560px; }
       .value-links-ranking { grid-template-columns: 1fr; }
+      .value-links-control {
+        grid-template-columns: 105px minmax(110px, 1fr) 42px;
+        width: 100%;
+      }
+      .value-links-clear {
+        margin-left: 0;
+      }
       .focus-charts-grid { grid-template-columns: 1fr; }
       .value-links-chart-scroll {
         overflow-x: auto;
@@ -1376,6 +1429,19 @@
           <span class="value-links-sidehead enhanced">Enhanced value</span>
           <span class="value-links-sidehead impaired">Impaired value</span>
         </div>
+        <div class="value-links-controls" aria-label="Value flow layout controls">
+          <label class="value-links-control" for="valueLinksSidePadding">
+            <span>Side padding</span>
+            <input id="valueLinksSidePadding" type="range" min="120" max="260" step="10" value="190" />
+            <output id="valueLinksSidePaddingValue" for="valueLinksSidePadding">190px</output>
+          </label>
+          <label class="value-links-control" for="valueLinksNodeGap">
+            <span>Vertical gap</span>
+            <input id="valueLinksNodeGap" type="range" min="2" max="24" step="1" value="8" />
+            <output id="valueLinksNodeGapValue" for="valueLinksNodeGap">8px</output>
+          </label>
+          <button id="valueLinksClearSelection" class="value-links-clear" type="button" disabled>Clear selection</button>
+        </div>
         <div class="value-links-chart-scroll">
           <div id="valueLinksChart" class="chart"></div>
         </div>
@@ -1496,6 +1562,13 @@
 
     const format = new Intl.NumberFormat('en-US');
     let valuePairData = null;
+    let valueLinksPinnedNodeIndex = null;
+    const valueLinksLayout = { sidePadding: 190, nodeGap: 8 };
+    const valueLinksSidePadding = document.getElementById('valueLinksSidePadding');
+    const valueLinksSidePaddingValue = document.getElementById('valueLinksSidePaddingValue');
+    const valueLinksNodeGap = document.getElementById('valueLinksNodeGap');
+    const valueLinksNodeGapValue = document.getElementById('valueLinksNodeGapValue');
+    const valueLinksClearSelection = document.getElementById('valueLinksClearSelection');
     const FOCUS_VALUE_SPECS = [
       { side: 'enhanced', value: 'Efficiency', slug: 'enhanced-efficiency' },
       { side: 'enhanced', value: 'Learning/Skills development', slug: 'enhanced-learning-skills' },
@@ -3125,6 +3198,24 @@
       `;
     }
 
+    function updateValueLinksSelectionControl() {
+      const node = valuePairData?.nodes?.[valueLinksPinnedNodeIndex];
+      valueLinksClearSelection.disabled = !node;
+      valueLinksClearSelection.title = node ? `Clear ${node.label} selection` : 'No node selected';
+    }
+
+    function applyValueLinksPinnedSelection() {
+      charts.valueLinks.dispatchAction({ type: 'downplay', seriesIndex: 0 });
+      if (valueLinksPinnedNodeIndex !== null) {
+        charts.valueLinks.dispatchAction({
+          type: 'highlight',
+          seriesIndex: 0,
+          dataIndex: valueLinksPinnedNodeIndex
+        });
+      }
+      updateValueLinksSelectionControl();
+    }
+
     function renderValueLinks() {
       if (!valuePairData) {
         charts.valueLinks.setOption({
@@ -3149,29 +3240,27 @@
 
       charts.valueLinks.setOption({
         animationDuration: 650,
-        tooltip: {
-          trigger: 'item',
-          confine: true,
-          formatter: params => {
-            const item = params.data;
-            if (params.dataType === 'edge') {
-              return `<b>${escapeHtml(item.enhanced)} → ${escapeHtml(item.impaired)}</b><br/>Co-occurrences: ${format.format(item.value)}`;
-            }
-            return `<b>${escapeHtml(item.side === 'enhanced' ? 'Enhanced value' : 'Impaired value')}: ${escapeHtml(item.label)}</b><br/>Paired occurrences: ${format.format(item.total)}`;
-          }
-        },
+        tooltip: { show: false },
         series: [{
           type: 'sankey',
-          left: 190,
-          right: 190,
+          left: valueLinksLayout.sidePadding,
+          right: valueLinksLayout.sidePadding,
           top: 26,
           bottom: 24,
           nodeWidth: 15,
-          nodeGap: 8,
+          nodeGap: valueLinksLayout.nodeGap,
           nodeAlign: 'justify',
           layoutIterations: 32,
           draggable: false,
-          emphasis: { focus: 'adjacency' },
+          emphasis: {
+            focus: 'adjacency',
+            lineStyle: { opacity: 0.68 }
+          },
+          blur: {
+            itemStyle: { opacity: 0.18 },
+            lineStyle: { opacity: 0.05 },
+            label: { opacity: 0.18 }
+          },
           data: valuePairData.nodes.map(node => ({
             ...node,
             depth: node.side === 'enhanced' ? 0 : 1,
@@ -3199,6 +3288,7 @@
           label: { color: COLORS.text }
         }]
       }, true);
+      window.requestAnimationFrame(applyValueLinksPinnedSelection);
     }
 
     function focusedLinks(spec) {
@@ -3423,6 +3513,10 @@
         if (config.chartKey) {
           const chart = charts[config.chartKey];
           if (!chart) throw new Error(`Chart not found: ${config.chartKey}`);
+          if (config.chartKey === 'valueLinks') {
+            applyValueLinksPinnedSelection();
+            await new Promise(resolve => window.requestAnimationFrame(() => window.requestAnimationFrame(resolve)));
+          }
           triggerPngDownload(chart.getDataURL({
             type: 'png',
             pixelRatio: 2,
@@ -3501,6 +3595,29 @@
     document.getElementById('resetBtn').addEventListener('click', () => {
       filter.value = 'All';
       renderAll();
+    });
+    valueLinksSidePadding.addEventListener('input', () => {
+      valueLinksLayout.sidePadding = Number(valueLinksSidePadding.value);
+      valueLinksSidePaddingValue.value = `${valueLinksLayout.sidePadding}px`;
+      renderValueLinks();
+    });
+    valueLinksNodeGap.addEventListener('input', () => {
+      valueLinksLayout.nodeGap = Number(valueLinksNodeGap.value);
+      valueLinksNodeGapValue.value = `${valueLinksLayout.nodeGap}px`;
+      renderValueLinks();
+    });
+    valueLinksClearSelection.addEventListener('click', () => {
+      valueLinksPinnedNodeIndex = null;
+      applyValueLinksPinnedSelection();
+    });
+    charts.valueLinks.on('click', params => {
+      if (params.seriesType !== 'sankey' || params.dataType !== 'node') return;
+      valueLinksPinnedNodeIndex = params.dataIndex;
+      applyValueLinksPinnedSelection();
+    });
+    charts.valueLinks.on('mouseout', () => {
+      if (valueLinksPinnedNodeIndex === null) return;
+      window.requestAnimationFrame(applyValueLinksPinnedSelection);
     });
     charts.stageMatrix.on('click', params => {
       if (!params.data || !params.data.discipline || !params.data.phase) return;
