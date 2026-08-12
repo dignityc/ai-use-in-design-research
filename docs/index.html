@@ -374,16 +374,16 @@
       border-radius: 8px;
     }
     .value-links-panel .chart {
-      height: 520px;
+      height: 620px;
     }
     .value-links-chart-scroll {
       overflow: visible;
     }
     .value-links-sideheads {
       display: flex;
-      justify-content: space-between;
+      justify-content: center;
       gap: 20px;
-      padding: 18px 22px 0;
+      padding: 14px 22px;
     }
     .value-links-sidehead {
       display: inline-flex;
@@ -1053,7 +1053,7 @@
       .discipline-value-wide .chart { height: 560px; }
       .discipline-dimension-wide .chart { height: 760px; }
       .ml-metrics { grid-template-columns: 1fr; }
-      .value-links-panel .chart { height: 560px; }
+      .value-links-panel .chart { height: 620px; }
       .value-links-ranking { grid-template-columns: 1fr; }
       .value-links-chart-scroll {
         overflow-x: auto;
@@ -1300,10 +1300,12 @@
         </div>
         <div class="value-links-sideheads" aria-hidden="true">
           <span class="value-links-sidehead enhanced">Enhanced value</span>
-          <span class="value-links-sidehead impaired">Impaired value</span>
         </div>
         <div class="value-links-chart-scroll">
           <div id="valueLinksChart" class="chart"></div>
+        </div>
+        <div class="value-links-sideheads" aria-hidden="true">
+          <span class="value-links-sidehead impaired">Impaired value</span>
         </div>
         <div id="valueLinksRanking" class="value-links-ranking"></div>
         <div class="insight-box">
@@ -3072,34 +3074,42 @@
         },
         series: [{
           type: 'sankey',
-          left: 190,
-          right: 190,
-          top: 26,
-          bottom: 24,
+          orient: 'vertical',
+          left: 70,
+          right: 70,
+          top: 118,
+          bottom: 118,
           nodeWidth: 15,
           nodeGap: 8,
           nodeAlign: 'justify',
           layoutIterations: 32,
           draggable: false,
           emphasis: { focus: 'adjacency' },
-          data: valuePairData.nodes.map(node => ({
-            ...node,
-            depth: node.side === 'enhanced' ? 0 : 1,
-            itemStyle: {
-              color: node.side === 'enhanced' ? COLORS.green : COLORS.red,
-              borderColor: '#ffffff',
-              borderWidth: 1
-            },
-            label: {
-              show: true,
-              position: node.side === 'enhanced' ? 'left' : 'right',
-              distance: 9,
-              color: COLORS.text,
-              fontSize: 12,
-              fontWeight: 700,
-              formatter: `${node.label}  ${format.format(node.total)}`
-            }
-          })),
+          data: valuePairData.nodes.map(node => {
+            const sideNodes = valuePairData.nodes.filter(item => item.side === node.side);
+            const sideIndex = sideNodes.findIndex(item => item.name === node.name);
+            const leanRight = sideIndex < sideNodes.length / 2;
+            return {
+              ...node,
+              depth: node.side === 'enhanced' ? 0 : 1,
+              itemStyle: {
+                color: node.side === 'enhanced' ? COLORS.green : COLORS.red,
+                borderColor: '#ffffff',
+                borderWidth: 1
+              },
+              label: {
+                show: true,
+                position: node.side === 'enhanced' ? 'top' : 'bottom',
+                distance: 10,
+                rotate: leanRight ? -68 : 68,
+                align: leanRight ? 'left' : 'right',
+                color: COLORS.text,
+                fontSize: 11,
+                fontWeight: 700,
+                formatter: `${node.label}  ${format.format(node.total)}`
+              }
+            };
+          }),
           links: valuePairData.links,
           lineStyle: {
             color: 'gradient',
