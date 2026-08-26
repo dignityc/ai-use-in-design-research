@@ -33,9 +33,10 @@ VALUE_ORDER = [
     "Scalability",
     "AI-Literacy (Trust)",
     "Authenticity",
-    "Affordability",
-    "Other",
+    "Affordance",
 ]
+
+EXCLUDED_VALUES = {"Other"}
 
 VALUE_MAP = {
     "Efficiency": "Efficiency",
@@ -61,7 +62,7 @@ VALUE_MAP = {
     "AI-Literacy (Trust)": "AI-Literacy (Trust)",
     "Trust": "AI-Literacy (Trust)",
     "Authenticity": "Authenticity",
-    "Affordability": "Affordability",
+    "Affordability": "Affordance",
     "Intuition": "Other",
 }
 
@@ -139,14 +140,14 @@ def build_data() -> dict[str, object]:
             dict.fromkeys(
                 value
                 for value in (normalize_value(row.get(13)), normalize_value(row.get(14)))
-                if value
+                if value and value not in EXCLUDED_VALUES
             )
         )
         impaired = list(
             dict.fromkeys(
                 value
                 for value in (normalize_value(row.get(15)), normalize_value(row.get(16)))
-                if value
+                if value and value not in EXCLUDED_VALUES
             )
         )
         rows_with_enhanced += bool(enhanced)

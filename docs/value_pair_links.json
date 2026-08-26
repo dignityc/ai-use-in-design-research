@@ -5,15 +5,15 @@
   "rowsWithEnhanced": 218,
   "rowsWithImpaired": 183,
   "rowsWithBoth": 157,
-  "pairOccurrences": 284,
-  "uniquePairs": 90,
+  "pairOccurrences": 283,
+  "uniquePairs": 89,
   "pairingRule": "Within each source row, every distinct Enhanced Value 1/2 is paired with every distinct Impaired Value 1/2.",
   "nodes": [
     {
       "name": "Enhanced · Efficiency",
       "label": "Efficiency",
       "side": "enhanced",
-      "total": 88
+      "total": 87
     },
     {
       "name": "Enhanced · Learning/Skills development",
@@ -76,8 +76,8 @@
       "total": 1
     },
     {
-      "name": "Enhanced · Affordability",
-      "label": "Affordability",
+      "name": "Enhanced · Affordance",
+      "label": "Affordance",
       "side": "enhanced",
       "total": 4
     },
@@ -154,14 +154,8 @@
       "total": 11
     },
     {
-      "name": "Impaired · Affordability",
-      "label": "Affordability",
-      "side": "impaired",
-      "total": 1
-    },
-    {
-      "name": "Impaired · Other",
-      "label": "Other",
+      "name": "Impaired · Affordance",
+      "label": "Affordance",
       "side": "impaired",
       "total": 1
     }
@@ -253,16 +247,9 @@
     },
     {
       "source": "Enhanced · Efficiency",
-      "target": "Impaired · Affordability",
+      "target": "Impaired · Affordance",
       "enhanced": "Efficiency",
-      "impaired": "Affordability",
-      "value": 1
-    },
-    {
-      "source": "Enhanced · Efficiency",
-      "target": "Impaired · Other",
-      "enhanced": "Efficiency",
-      "impaired": "Other",
+      "impaired": "Affordance",
       "value": 1
     },
     {
@@ -784,16 +771,16 @@
       "value": 1
     },
     {
-      "source": "Enhanced · Affordability",
+      "source": "Enhanced · Affordance",
       "target": "Impaired · Accuracy",
-      "enhanced": "Affordability",
+      "enhanced": "Affordance",
       "impaired": "Accuracy",
       "value": 2
     },
     {
-      "source": "Enhanced · Affordability",
+      "source": "Enhanced · Affordance",
       "target": "Impaired · Context appropriateness",
-      "enhanced": "Affordability",
+      "enhanced": "Affordance",
       "impaired": "Context appropriateness",
       "value": 2
     }
